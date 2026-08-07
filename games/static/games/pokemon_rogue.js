@@ -1752,8 +1752,15 @@
         const actor = currentActor();
         if (!actor) return;
         try {
-            const ready = engine.queueMega(actor.slot);
-            actionQueued(ready);
+            engine.queueMega(actor.slot);
+            // Mega Evolving is not this Pokemon's action any more -- it
+            // happens at the top of the turn and the Pokemon still attacks --
+            // so the command menu stays on it, waiting for a move.
+            const name = window.PokemonBattleSimulation
+                .megaDisplayName(actor.pokemon.megaTarget.species);
+            setMessage(`${actor.pokemon.name} will Mega Evolve into ${name}. Now choose its move.`, "prompt");
+            showMegaTrigger();
+            renderStatus();
         } catch (error) {
             setMessage(error.message, "danger");
         }

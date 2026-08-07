@@ -1959,6 +1959,13 @@
         // only the health bar remembers the encounter.
         settleAfterWildEncounter() {
             this.state.party.forEach((pokemon) => {
+                // A wild battle ends like any other: the form goes back. Only
+                // the duel path reverted it, so Mega Evolving against a wild
+                // Pokemon left the party member transformed for the rest of
+                // the run -- and, since it still counted as Mega Evolved, it
+                // could never transform again.
+                this.revertMega(pokemon);
+                pokemon.heldItemSpent = false;
                 pokemon.volatileStatus = {};
                 pokemon.pendingMove = null;
                 pokemon.statusCondition = null;

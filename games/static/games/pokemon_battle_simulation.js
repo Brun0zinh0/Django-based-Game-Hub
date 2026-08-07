@@ -1325,6 +1325,10 @@
             this.uproarTurns = 0;
             // Mega Evolution is once per battle, per side.
             this.megaSpent = { player: false, enemy: false };
+            // Declared this turn, applied before anyone moves. Mega Evolution
+            // is not an action in the games -- it happens at the start of the
+            // turn and the Pokemon still attacks.
+            this.pendingMega = { player: null, enemy: null };
             this.turn = 1;
             this.phase = "command";
             this.result = null;
@@ -1536,6 +1540,7 @@
             const pokemon = this.teams[side]?.[teamIndex];
             if (!pokemon || pokemon.fainted) return { usable: false, reason: "That Pokemon cannot act." };
             if (this.megaSpent[side]) return { usable: false, reason: "Your team has already Mega Evolved this battle." };
+            if (this.pendingMega[side]) return { usable: false, reason: "Your team is already Mega Evolving this turn." };
             if (pokemon.megaEvolved) return { usable: false, reason: `${pokemon.name} has already Mega Evolved.` };
             if (!pokemon.megaTarget?.species) {
                 return { usable: false, reason: `${pokemon.name} is not holding a usable Mega Stone.` };
@@ -1554,7 +1559,7 @@
             if (this.isCommitted("player", actorIndex)) {
                 throw new Error(this.commitmentLabel("player", actorIndex));
             }
-            this.playerActions.push({ kind: "mega", side: "player", actorIndex, actorSlot });
+            this.pendingMega.player = { side: "player", actorIndex, actorSlot };
             return this.canResolve();
         }
 
@@ -1778,9 +1783,10 @@
         // A trainer holding a stone spends it as soon as the Pokemon carrying
         // it is on the field, the way a player almost always would.
         considerEnemyMega(slot, teamIndex) {
-            if (!this.megaUsability("enemy", teamIndex).usable) return null;
-            if (this.isCommitted("enemy", teamIndex)) return null;
-            return { kind: "mega", side: "enemy", actorIndex: teamIndex, actorSlot: slot };
+            if (!this.megaUsability("enemy", teamIndex).usable) return false;
+            if (this.isCommitted("enemy", teamIndex)) return false;
+            this.pendingMega.enemy = { side: "enemy", actorIndex: teamIndex, actorSlot: slot };
+            return true;
         }
 
         buildTrainerEnemyActions() {
@@ -1790,8 +1796,7 @@
             return enemyActors.map(({ slot, teamIndex, pokemon }) => {
                 const forced = this.forcedAction("enemy", teamIndex);
                 if (forced) return forced;
-                const transform = this.considerEnemyMega(slot, teamIndex);
-                if (transform) return transform;
+                this.considerEnemyMega(slot, teamIndex);
                 const retreat = this.considerEnemySwitch(slot, teamIndex, pokemon, playerTargets);
                 if (retreat) return retreat;
                 const candidates = [];
@@ -1913,6 +1918,15 @@
             });
 
             const events = [{ type: "turn", turn: this.turn, message: `Turn ${this.turn}` }];
+            // Mega Evolution resolves before anybody moves, so the Pokemon
+            // fights the turn it transforms -- with its mega stats, as in the
+            // games. buildEnemyActions() above is what lets the AI declare
+            // one, so this has to come after it.
+            ["player", "enemy"].forEach((side) => {
+                const declared = this.pendingMega[side];
+                this.pendingMega[side] = null;
+                if (declared) this.executeMega(declared, events);
+            });
             // Battle-opening ability triggers ride along with the first turn.
             if (this.openingEvents?.length) {
                 events.push(...this.openingEvents);

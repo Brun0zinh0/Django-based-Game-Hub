@@ -11,6 +11,9 @@
     --menu-cyan: #78e0df;
     --menu-gold: #f0cb70;
     --menu-panel: rgba(10, 28, 47, 0.92);
+    /* The main menu's padding. The league screen adds the same amount to
+       its own width so the two screens paint the same size. */
+    --menu-frame: clamp(1rem, 5vw, 4.5rem);
     --pokemon-menu-background: none;
 }
 
@@ -448,6 +451,16 @@ body:has(.pokemon-battle-page) .page {
     animation: room-enter 280ms ease-out both;
 }
 
+/* The main menu is content-box, so its 1080px is the room INSIDE its padding
+   and border and it paints about 1214px wide. The league screen carries no
+   padding of its own, so at the same declared width it sat ~134px narrower
+   than the menu it follows straight after. Match the painted width instead
+   of the declared one, tracking the same padding clamp so the two stay level
+   at every viewport. */
+.league-selection {
+    width: min(calc(1080px + 2 * var(--menu-frame) + 6px), calc(100% - 1.25rem));
+}
+
 .main-menu {
     display: grid;
     min-height: min(690px, calc(100svh - 76px));
@@ -455,7 +468,11 @@ body:has(.pokemon-battle-page) .page {
     place-items: center start;
     border: 3px solid #4d7187;
     border-radius: 18px;
-    padding: clamp(1rem, 5vw, 4.5rem);
+    /* Content-box: the declared width is the shared painted width minus
+       this screen's own frame, so the menu and the league screen paint
+       the same box and neither overhangs the page on a phone. */
+    width: min(1080px, calc(100% - 1.25rem - 2 * var(--menu-frame) - 6px));
+    padding: var(--menu-frame);
     background:
         linear-gradient(90deg, rgba(8, 23, 41, 0.5) 0%, rgba(12, 31, 51, 0.32) 45%, rgba(12, 31, 51, 0.08) 100%),
         var(--pokemon-menu-background),
@@ -577,18 +594,25 @@ body:has(.pokemon-battle-page) .page {
 
 .league-choice-grid { position: relative; z-index: 1; }
 
+/* The rows used to be 1fr against a full-height grid, so the cards grew to
+   swallow the whole stage and the artwork behind them never showed. They sit
+   at their own size now, centred, with the backdrop visible around them. */
 .league-choice-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    grid-auto-rows: minmax(0, 1fr);
-    gap: clamp(0.6rem, 1.6vw, 1.1rem);
+    grid-auto-rows: clamp(120px, 19vh, 168px);
+    align-content: center;
+    justify-content: center;
+    gap: clamp(0.7rem, 1.8vw, 1.25rem);
+    width: min(100%, 1010px);
     height: 100%;
+    margin: 0 auto;
 }
 
 .league-choice {
     display: grid;
-    grid-template-columns: clamp(76px, 8vw, 108px) minmax(0, 1fr);
-    min-height: 128px;
+    grid-template-columns: clamp(64px, 6.6vw, 92px) minmax(0, 1fr);
+    min-height: 0;
     align-items: center;
     gap: 0.8rem;
     overflow: hidden;
@@ -605,7 +629,7 @@ button.league-choice { cursor: pointer; }
 button.league-choice:not(:disabled):hover,
 button.league-choice:not(:disabled):focus-visible { border-color: #f1d170; outline: 3px solid #79dcd9; outline-offset: 2px; transform: translateY(-2px); }
 .league-choice:disabled { filter: grayscale(0.45); opacity: 0.68; }
-.league-choice img { width: 100%; height: clamp(96px, 14vh, 132px); object-fit: contain; image-rendering: pixelated; }
+.league-choice img { width: 100%; height: clamp(72px, 10.5vh, 108px); object-fit: contain; image-rendering: pixelated; }
 .league-choice strong,
 .league-choice small { display: block; }
 .league-choice strong { color: #fff0b9; font-size: clamp(0.9rem, 1.5vw, 1.15rem); }
@@ -3122,7 +3146,8 @@ button.career-card:focus-visible { border-color: #7be0de; outline: 2px solid #7b
     .battle-message { min-height: 3.5rem; }
     .move-grid, .item-grid { grid-template-columns: 1fr; }
     .battle-submenu { max-height: 52vh; }
-    .main-menu { min-height: calc(100svh - 72px); place-items: end stretch; padding: 0.75rem; }
+    .pokemon-battle-page { --menu-frame: 0.75rem; }
+    .main-menu { min-height: calc(100svh - 72px); place-items: end stretch; }
     .main-menu-card { width: auto; padding: 1rem; }
     .main-menu h2 { font-size: clamp(3.2rem, 20vw, 5rem); }
     .main-menu-copy { margin: 1rem 0; font-size: 0.8rem; }

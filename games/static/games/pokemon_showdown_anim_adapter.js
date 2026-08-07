@@ -13,10 +13,18 @@
     // the real sprite, not the side midpoint.
     const SD = {
         baseLeft: 210, baseTop: 245, spanLeft: 220, spanTop: -110,
+        // Showdown shrinks the far side with depth -- their scale runs 2.0 at
+        // the near row down to 1.0 at the far one. This stage does not: both
+        // rows draw their Pokemon at the same size. Keeping their perspective
+        // made every effect aimed at the player's row twice as large and
+        // twice as far from its target as the same effect aimed at the
+        // enemy's, which threw half of Crunch's jaw off the bottom of the
+        // canvas. A flat scale matches the stage, and because solve() uses
+        // the same number the participants still land on their own sprites.
+        FLAT_SCALE: 1.0,
         project(loc) {
             const z = loc.z || 0;
-            let scale = 2.0 - z / 200;
-            if (scale < 0.1) scale = 0.1;
+            const scale = SD.FLAT_SCALE;
             return {
                 left: SD.baseLeft + SD.spanLeft * (z / 200) + (loc.x || 0) * scale,
                 top: SD.baseTop + SD.spanTop * (z / 200) - (loc.y || 0) * scale,
@@ -26,7 +34,7 @@
         // Inverse: which their-space x/y puts project() onto this left/top,
         // for a fixed side depth z.
         solve(left, top, z) {
-            const scale = Math.max(0.1, 2.0 - z / 200);
+            const scale = SD.FLAT_SCALE;
             return {
                 x: (left - SD.baseLeft - SD.spanLeft * (z / 200)) / scale,
                 y: (SD.baseTop + SD.spanTop * (z / 200) - top) / scale,
@@ -54,6 +62,13 @@
         // Waits use the wall clock for the same reason the tween failsafe does:
         // a sleeping scene clock must not strand a battle mid-animation.
         const wait = (ms) => new Promise((resolve) => setTimeout(resolve, Math.max(0, ms)));
+        // Showdown's timings are written for its own stage and play a touch
+        // hurried here, where the sprites are larger and there is more to
+        // read. Every duration and delay the choreography supplies passes
+        // through this, so the whole sequence keeps its shape and only its
+        // pace changes.
+        const TIME_SCALE = 1.25;
+        const beat = (ms) => Math.round(Math.max(0, Number(ms) || 0) * TIME_SCALE);
         // Phaser drops a tween whose target has been destroyed without ever
         // firing onComplete. Cleanup destroys effect images every move, so a
         // plain onComplete promise could hang the battle forever -- onStop
@@ -135,18 +150,23 @@
         // invisible or screen-filling (Signal Beam came out at 29px, Thunder
         // Wave at 933px). Every swapped texture is normalised to the size the
         // choreography was written against.
-        const SHOWDOWN_REFERENCE_PX = 100;
+        const SHOWDOWN_REFERENCE_PX = 72;
+        // A DS particle is pixel art from a 256px-wide screen. Blowing a
+        // 12px puff up to the full reference size is a 6x magnification and
+        // it reads as a blurry smear, so the enlargement is capped and small
+        // art simply stays small.
+        const DS_MAX_MAGNIFICATION = 3;
         // Nothing on a 960x480 stage should be a 1500px smear or a 12px
         // speck. Thunder Wave's own choreography ends at 27x, which is fine
         // for Showdown's stage and absurd on ours.
         const MIN_EFFECT_PX = 18;
-        const MAX_EFFECT_PX = 260;
+        const MAX_EFFECT_PX = 170;
 
         function sizeCorrection(key, image) {
             if (!String(key).startsWith("dsp-")) return 1;
             const natural = Math.max(image.width, image.height);
             if (!natural) return 1;
-            return SHOWDOWN_REFERENCE_PX / natural;
+            return Math.min(SHOWDOWN_REFERENCE_PX / natural, DS_MAX_MAGNIFICATION);
         }
 
         // Clamp a requested scale so the sprite lands inside the sane range.
@@ -171,16 +191,28 @@
             image.texture.setFilter(isDs
                 ? Phaser.Textures.FilterMode.NEAREST
                 : Phaser.Textures.FilterMode.LINEAR);
-            // DS particles are drawn additively in the games; without ADD they
-            // read as grey smudges instead of glow.
-            if (isDs) image.setBlendMode(Phaser.BlendModes.ADD);
+            // Most DS particles are glows and want additive blending, but a
+            // few are drawn objects -- Rock Blast's boulder, Leech Seed's
+            // seed -- whose dark outline additive blending erases, leaving
+            // the backdrop showing through as a halo. Those ask for normal
+            // blending instead. The tint puts back the colour the handheld
+            // applied from the emitter, which the art itself does not carry.
+            if (isDs) {
+                const style = options.dsStyleFor ? options.dsStyleFor(currentSlug) : null;
+                image.setBlendMode(style && style.blend === "normal"
+                    ? Phaser.BlendModes.NORMAL
+                    : Phaser.BlendModes.ADD);
+                if (style && style.tint !== null && style.tint !== undefined) {
+                    image.setTint(style.tint);
+                }
+            }
             live.add(image);
             return image;
         }
 
         function driveEffect(image, start, end, ease, after, jobs) {
             jobs.push((async () => {
-                if (start.time) await wait(start.time);
+                if (start.time) await wait(beat(start.time));
                 if (!image.active) return;
                 image.setVisible(true);
                 const to = place(end);
@@ -188,7 +220,7 @@
                     x: to.x, y: to.y,
                     scale: boundedScale(image, (end.scale ?? start.scale ?? 1) * to.scale * (image.baseSizeCorrection || 1)),
                     alpha: end.opacity ?? image.alpha,
-                    duration: Math.max(60, (end.time ?? 600) - (start.time || 0)),
+                    duration: Math.max(60, beat((end.time ?? 600) - (start.time || 0))),
                     ease: easeFor(ease),
                 });
                 if (!image.active) return;
@@ -237,7 +269,7 @@
                             scaleX: saved.scaleX * (end.scale ?? 1),
                             scaleY: saved.scaleY * (end.scale ?? 1),
                             alpha: end.opacity ?? sprite.alpha,
-                            duration: end.time ?? 500,
+                            duration: beat(end.time ?? 500),
                             ease: easeFor(ease),
                         });
                     });
@@ -245,7 +277,7 @@
                     return proxy;
                 },
                 delay(ms) {
-                    queue = queue.then(() => wait(ms));
+                    queue = queue.then(() => wait(beat(ms)));
                     jobs.push(queue);
                     return proxy;
                 },
@@ -306,8 +338,8 @@
                         live.delete(wash);
                     })());
                 },
-                activityWait(ms) { jobs.push(wait(Number(ms) || 0)); },
-                wait(ms) { jobs.push(wait(Number(ms) || 0)); },
+                activityWait(ms) { jobs.push(wait(beat(ms))); },
+                wait(ms) { jobs.push(wait(beat(ms))); },
             };
         }
 
