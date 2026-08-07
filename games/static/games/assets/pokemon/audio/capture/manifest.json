@@ -1,0 +1,42 @@
+{
+  "synthesized": false,
+  "source": "https://sounds.spriters-resource.com/ds_dsi/pokemonblackwhite/asset/487564/",
+  "note": "Gen 4/5 SDAT ball cues from the Pokemon Black/White rip; HGSS's own rip carries no ball sounds. Names unchanged since Diamond/Pearl.",
+  "files": {
+    "throw": {
+      "file": "throw.wav",
+      "member": "Sound Effects/SEQ_SE/SEQ_SE_NAGERU.wav",
+      "seconds": 1.12
+    },
+    "open": {
+      "file": "open.wav",
+      "member": "Sound Effects/SEQ_SE/SEQ_SE_BOWA2.wav",
+      "seconds": 0.61
+    },
+    "bounce": {
+      "file": "bounce.wav",
+      "member": "Sound Effects/SEQ_SE/SEQ_SE_TB_KON.wav",
+      "seconds": 0.18
+    },
+    "shake": {
+      "file": "shake.wav",
+      "member": "Sound Effects/SEQ_SE/SEQ_SE_TB_KON.wav",
+      "seconds": 0.18
+    },
+    "click": {
+      "file": "click.wav",
+      "member": "Sound Effects/SEQ_SE/SEQ_SE_GETTING.wav",
+      "seconds": 0.42
+    },
+    "break": {
+      "file": "break.wav",
+      "member": "Sound Effects/SEQ_SE/SEQ_SE_BOWA3.wav",
+      "seconds": 2.07
+    },
+    "stars": {
+      "file": "stars.wav",
+      "member": "Sound Effects/SEQ_ME/SEQ_ME_POKEGET.wav",
+      "seconds": 2.4
+    }
+  }
+}

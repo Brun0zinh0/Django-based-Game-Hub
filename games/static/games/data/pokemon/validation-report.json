@@ -1,0 +1,71 @@
+{
+  "valid": true,
+  "validated_at": "2026-08-01T18:20:17.078Z",
+  "dataset": {
+    "path": "C:\\Users\\icato\\Documents\\Game making\\espace de travail codexx\\games\\static\\games\\data\\pokemon\\gen1.json",
+    "bytes": 10706835,
+    "schema_version": 3,
+    "id": "radical-red-4.1"
+  },
+  "rom": {
+    "sha256": "679d112cdfe699c2793d82c7e7999ac9dfca9e222ad5a85d4f8f1e457cd0283f",
+    "verified_species_records": 1343,
+    "verification_failures": 0
+  },
+  "counts": {
+    "pokemon": 1343,
+    "unique_species_ids": 1343,
+    "moves": 1003,
+    "abilities": 255,
+    "items": 749,
+    "evolution_chains": 733,
+    "areas": 221,
+    "trainers": 464,
+    "referenced_asset_files": 6121,
+    "packaged_asset_files": 6403,
+    "packaged_asset_bytes": 4162011
+  },
+  "generation_counts": {
+    "1": {
+      "species_records": 224,
+      "unique_dex_numbers": 151
+    },
+    "2": {
+      "species_records": 142,
+      "unique_dex_numbers": 100
+    },
+    "3": {
+      "species_records": 164,
+      "unique_dex_numbers": 135
+    },
+    "4": {
+      "species_records": 150,
+      "unique_dex_numbers": 107
+    },
+    "5": {
+      "species_records": 188,
+      "unique_dex_numbers": 156
+    },
+    "6": {
+      "species_records": 94,
+      "unique_dex_numbers": 72
+    },
+    "7": {
+      "species_records": 127,
+      "unique_dex_numbers": 88
+    },
+    "8": {
+      "species_records": 124,
+      "unique_dex_numbers": 96
+    },
+    "9": {
+      "species_records": 129,
+      "unique_dex_numbers": 120
+    },
+    "custom": {
+      "species_records": 1,
+      "unique_dex_numbers": 1
+    }
+  },
+  "errors": []
+}

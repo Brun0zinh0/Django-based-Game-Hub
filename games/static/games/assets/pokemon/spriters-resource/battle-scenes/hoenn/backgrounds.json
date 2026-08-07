@@ -1,0 +1,201 @@
+{
+  "region": "hoenn",
+  "sources": [
+    "Painted battleback set (240x112 terrain backdrops), supplied locally.",
+    "Pokemon HeartGold/SoulSilver 'Location Art (Johto)', ripped by Latias Tamer (spriters-resource asset 28243, marked No Credit Needed).",
+    "Battle backgrounds by Princess-Phoenix (deviantart.com/princess-phoenix), used with credit for this fan project.",
+    "Battle backgrounds by carchagui (deviantart.com/carchagui), used with credit for this fan project."
+  ],
+  "note": "Backdrops are painted scenery; platforms are drawn separately by the battle scene.",
+  "scenes": [
+    {
+      "scene": "route",
+      "source": "battleback/BEACH",
+      "source_size": [
+        240,
+        112
+      ],
+      "colours": 21
+    },
+    {
+      "scene": "grass",
+      "source": "battleback/TALL GRASS NIGHT",
+      "source_size": [
+        240,
+        112
+      ],
+      "colours": 39
+    },
+    {
+      "scene": "water",
+      "source": "battleback/UNDERWATER",
+      "source_size": [
+        240,
+        112
+      ],
+      "colours": 402
+    },
+    {
+      "scene": "rock",
+      "source": "battleback/MOUNTAIN NIGHT",
+      "source_size": [
+        240,
+        112
+      ],
+      "colours": 49
+    },
+    {
+      "scene": "cave",
+      "source": "battleback/CAVE 2",
+      "source_size": [
+        240,
+        112
+      ],
+      "colours": 21
+    },
+    {
+      "scene": "pond",
+      "source": "battleback/LAKE NIGHT",
+      "source_size": [
+        240,
+        112
+      ],
+      "colours": 124
+    },
+    {
+      "scene": "ice",
+      "source": "battleback/SNOW NIGHT",
+      "source_size": [
+        240,
+        112
+      ],
+      "colours": 34
+    },
+    {
+      "scene": "sand",
+      "source": "battleback/DESERT NIGHT",
+      "source_size": [
+        240,
+        112
+      ],
+      "colours": 33
+    },
+    {
+      "scene": "gym",
+      "source": "location-art/national-park/morning",
+      "source_size": [
+        256,
+        160
+      ],
+      "colours": 117
+    },
+    {
+      "scene": "psychic",
+      "source": "location-art/tohjo-falls/morning",
+      "source_size": [
+        256,
+        160
+      ],
+      "colours": 79
+    },
+    {
+      "scene": "rocket",
+      "source": "location-art/mt-mortar/night",
+      "source_size": [
+        256,
+        160
+      ],
+      "colours": 48
+    },
+    {
+      "scene": "league",
+      "source": "location-art/victory-road/night",
+      "source_size": [
+        256,
+        160
+      ],
+      "colours": 34
+    },
+    {
+      "scene": "mountain",
+      "source": "deviantart/mountain#panel0",
+      "source_size": [
+        320,
+        193
+      ],
+      "artist": "carchagui (deviantart.com/carchagui)"
+    },
+    {
+      "scene": "sea",
+      "source": "deviantart/sea#panel0",
+      "source_size": [
+        342,
+        209
+      ],
+      "artist": "carchagui (deviantart.com/carchagui)"
+    },
+    {
+      "scene": "lake",
+      "source": "deviantart/lake#panel0",
+      "source_size": [
+        318,
+        190
+      ],
+      "artist": "carchagui (deviantart.com/carchagui)"
+    },
+    {
+      "scene": "autumn-forest",
+      "source": "deviantart/autumn-forest#panel0",
+      "source_size": [
+        318,
+        190
+      ],
+      "artist": "carchagui (deviantart.com/carchagui)"
+    },
+    {
+      "scene": "woodland",
+      "source": "deviantart/woodland-wall#panel0",
+      "source_size": [
+        248,
+        185
+      ],
+      "artist": "Princess-Phoenix (deviantart.com/princess-phoenix)"
+    },
+    {
+      "scene": "dark-cave",
+      "source": "deviantart/cave#panel0",
+      "source_size": [
+        321,
+        193
+      ],
+      "artist": "carchagui (deviantart.com/carchagui)"
+    },
+    {
+      "scene": "dune-cave",
+      "source": "deviantart/cave#panel1",
+      "source_size": [
+        321,
+        193
+      ],
+      "artist": "carchagui (deviantart.com/carchagui)"
+    },
+    {
+      "scene": "glacier",
+      "source": "deviantart/cave#panel2",
+      "source_size": [
+        321,
+        193
+      ],
+      "artist": "carchagui (deviantart.com/carchagui)"
+    },
+    {
+      "scene": "volcano",
+      "source": "deviantart/cave#panel3",
+      "source_size": [
+        321,
+        193
+      ],
+      "artist": "carchagui (deviantart.com/carchagui)"
+    }
+  ]
+}

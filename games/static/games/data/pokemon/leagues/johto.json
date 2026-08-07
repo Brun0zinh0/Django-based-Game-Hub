@@ -1,0 +1,997 @@
+{
+  "schema_version": 1,
+  "league": {
+    "id": "johto",
+    "number": 2,
+    "name": "Johto League",
+    "generation": 2,
+    "dex_range": [
+      152,
+      251
+    ],
+    "duels": 23,
+    "battle_format": {
+      "active_per_side": 2,
+      "maximum_party_size": 6,
+      "pc_enabled": true
+    }
+  },
+  "starter_rules": {
+    "count": 2,
+    "choice_pool_size": 4,
+    "level": 5,
+    "featured_starter_count": 1,
+    "featured_starter_ids": [
+      152,
+      155,
+      158
+    ],
+    "early_game_species_ids": [
+      161,
+      163,
+      165,
+      167,
+      170,
+      177,
+      179,
+      183,
+      187,
+      191,
+      194,
+      204
+    ],
+    "allowed_evolution_tags": [
+      "basic",
+      "stage-1"
+    ],
+    "excluded_tags": [
+      "legendary",
+      "mythical",
+      "mega-evolution",
+      "regional-form",
+      "battle-form"
+    ]
+  },
+  "opponent_scaling": {
+    "match_player_party_size": false,
+    "minimum_team_size": 2,
+    "maximum_team_size": 6,
+    "opening_team_size": 2,
+    "team_size_variation_from_duel": 3,
+    "team_size_offsets_by_strength": {
+      "weak": [
+        -1,
+        0
+      ],
+      "mid": [
+        -1,
+        0,
+        1
+      ],
+      "strong": [
+        0,
+        1
+      ],
+      "boss": [
+        0,
+        1
+      ]
+    },
+    "minimum_level": 5,
+    "level_lag": 0.35,
+    "progression_bonus_per_duel": 0.08,
+    "opening_pool_until_duel": 3,
+    "opening_level_until_duel": 1,
+    "opening_level": 4,
+    "opening_species_ids": [
+      161,
+      163,
+      165,
+      167,
+      187,
+      191,
+      194
+    ],
+    "base_stat_total_caps": [
+      {
+        "through_duel": 3,
+        "maximum": 330
+      },
+      {
+        "through_duel": 4,
+        "maximum": 440
+      },
+      {
+        "through_duel": 5,
+        "maximum": 480
+      }
+    ],
+    "allow_stage_2_from_duel": 4,
+    "allow_fully_evolved_from_duel": 8,
+    "excluded_tags": [
+      "legendary",
+      "mythical",
+      "mega-evolution",
+      "regional-form",
+      "battle-form"
+    ],
+    "team_size_by_round": [
+      {
+        "from_duel": 1,
+        "size": 2
+      },
+      {
+        "from_duel": 5,
+        "size": 3
+      },
+      {
+        "from_duel": 10,
+        "size": 4
+      },
+      {
+        "from_duel": 16,
+        "size": 5
+      },
+      {
+        "from_duel": 22,
+        "size": 6
+      }
+    ],
+    "team_size_growth_every_duels": 5,
+    "level_spread": 2
+  },
+  "trainer_rules": {
+    "catalog_generations": [
+      2
+    ],
+    "type_team_bias": 0.75,
+    "boss_every_rounds": 0,
+    "boss_schedule": {},
+    "strength_progression": [
+      {
+        "from_round": 1,
+        "strength": "weak"
+      },
+      {
+        "from_round": 3,
+        "strength": "mid"
+      },
+      {
+        "from_round": 6,
+        "strength": "strong"
+      }
+    ]
+  },
+  "battle_scenes": {
+    "asset_root": "games/assets/pokemon/spriters-resource/battle-scenes/johto/",
+    "default": "route",
+    "scenes": [
+      "route",
+      "grass",
+      "water",
+      "rock",
+      "cave",
+      "pond",
+      "ice",
+      "sand",
+      "gym",
+      "psychic",
+      "rocket",
+      "league",
+      "mountain",
+      "sea",
+      "lake",
+      "autumn-forest",
+      "woodland",
+      "dark-cave",
+      "dune-cave",
+      "glacier",
+      "volcano"
+    ],
+    "specialty_scenes": {
+      "normal": "route",
+      "bug": "autumn-forest",
+      "grass": "woodland",
+      "flying": "mountain",
+      "water": "sea",
+      "rock": "mountain",
+      "ground": "dune-cave",
+      "ghost": "dark-cave",
+      "poison": "dark-cave",
+      "ice": "glacier",
+      "fire": "volcano",
+      "electric": "gym",
+      "steel": "gym",
+      "fighting": "gym",
+      "psychic": "psychic",
+      "fairy": "psychic",
+      "dark": "dark-cave",
+      "dragon": "mountain",
+      "mixed": "route"
+    },
+    "milestone_scenes": {
+      "zephyr-badge": "mountain",
+      "hive-badge": "autumn-forest",
+      "plain-badge": "gym",
+      "fog-badge": "dark-cave",
+      "storm-badge": "mountain",
+      "mineral-badge": "dune-cave",
+      "glacier-badge": "glacier",
+      "rising-badge": "mountain",
+      "elite-will": "psychic",
+      "elite-koga": "dark-cave",
+      "elite-bruno": "mountain",
+      "elite-karen": "dark-cave",
+      "johto-champion": "league"
+    },
+    "wild_area_scenes": {
+      "route-29": "route",
+      "route-31-dark-cave": "dark-cave",
+      "union-cave": "dark-cave",
+      "ilex-forest": "woodland",
+      "national-park": "grass",
+      "route-38-olivine": "route",
+      "whirl-islands": "sea",
+      "mt-mortar": "mountain",
+      "lake-of-rage": "lake",
+      "ice-path": "glacier",
+      "dragons-den": "league"
+    }
+  },
+  "story_route": {
+    "mode": "level-gated",
+    "minimum_random_duels_before_first_boss": 2,
+    "unlock_hard_mode_on_completion": true,
+    "unlock_next_league_on_completion": true,
+    "unlock_legendary_wilds_on_completion": true,
+    "next_league": {
+      "id": "hoenn",
+      "number": 3,
+      "name": "Hoenn League"
+    },
+    "milestones": [
+      {
+        "id": "zephyr-badge",
+        "chapter": "Violet Gym",
+        "title": "Zephyr Badge",
+        "trainer_id": "falkner",
+        "trainer_class": "Gym Leader",
+        "minimum_average_level": 8,
+        "minimum_random_duels_after_previous": 1,
+        "team_species_ids": [
+          16,
+          17,
+          163
+        ]
+      },
+      {
+        "id": "hive-badge",
+        "chapter": "Azalea Gym",
+        "title": "Hive Badge",
+        "trainer_id": "bugsy",
+        "trainer_class": "Gym Leader",
+        "minimum_average_level": 14,
+        "minimum_random_duels_after_previous": 1,
+        "team_species_ids": [
+          11,
+          14,
+          123
+        ]
+      },
+      {
+        "id": "plain-badge",
+        "chapter": "Goldenrod Gym",
+        "title": "Plain Badge",
+        "trainer_id": "whitney",
+        "trainer_class": "Gym Leader",
+        "minimum_average_level": 20,
+        "minimum_random_duels_after_previous": 1,
+        "team_species_ids": [
+          35,
+          241
+        ]
+      },
+      {
+        "id": "fog-badge",
+        "chapter": "Ecruteak Gym",
+        "title": "Fog Badge",
+        "trainer_id": "morty",
+        "trainer_class": "Gym Leader",
+        "minimum_average_level": 26,
+        "minimum_random_duels_after_previous": 1,
+        "team_species_ids": [
+          92,
+          93,
+          93,
+          94
+        ]
+      },
+      {
+        "id": "storm-badge",
+        "chapter": "Cianwood Gym",
+        "title": "Storm Badge",
+        "trainer_id": "chuck",
+        "trainer_class": "Gym Leader",
+        "minimum_average_level": 32,
+        "minimum_random_duels_after_previous": 1,
+        "team_species_ids": [
+          57,
+          62
+        ]
+      },
+      {
+        "id": "mineral-badge",
+        "chapter": "Olivine Lighthouse",
+        "title": "Mineral Badge",
+        "trainer_id": "jasmine",
+        "trainer_class": "Gym Leader",
+        "minimum_average_level": 36,
+        "minimum_random_duels_after_previous": 1,
+        "team_species_ids": [
+          81,
+          81,
+          208
+        ]
+      },
+      {
+        "id": "glacier-badge",
+        "chapter": "Mahogany Gym",
+        "title": "Glacier Badge",
+        "trainer_id": "pryce",
+        "trainer_class": "Gym Leader",
+        "minimum_average_level": 40,
+        "minimum_random_duels_after_previous": 1,
+        "team_species_ids": [
+          86,
+          87,
+          221
+        ]
+      },
+      {
+        "id": "rising-badge",
+        "chapter": "Blackthorn Gym",
+        "title": "Rising Badge",
+        "trainer_id": "clair",
+        "trainer_class": "Gym Leader",
+        "minimum_average_level": 44,
+        "minimum_random_duels_after_previous": 1,
+        "team_species_ids": [
+          148,
+          148,
+          148,
+          230
+        ]
+      },
+      {
+        "id": "elite-will",
+        "chapter": "Elite Four Room",
+        "title": "Elite Four Will",
+        "trainer_id": "will",
+        "trainer_class": "Elite Four",
+        "minimum_average_level": 48,
+        "minimum_random_duels_after_previous": 0,
+        "team_species_ids": [
+          178,
+          124,
+          103,
+          80,
+          178
+        ]
+      },
+      {
+        "id": "elite-koga",
+        "chapter": "Elite Four Room",
+        "title": "Elite Four Koga",
+        "trainer_id": "koga",
+        "trainer_class": "Elite Four",
+        "minimum_average_level": 50,
+        "minimum_random_duels_after_previous": 0,
+        "team_species_ids": [
+          168,
+          49,
+          205,
+          89,
+          169
+        ]
+      },
+      {
+        "id": "elite-bruno",
+        "chapter": "Elite Four Room",
+        "title": "Elite Four Bruno",
+        "trainer_id": "bruno",
+        "trainer_class": "Elite Four",
+        "minimum_average_level": 52,
+        "minimum_random_duels_after_previous": 0,
+        "team_species_ids": [
+          237,
+          106,
+          107,
+          95,
+          68
+        ]
+      },
+      {
+        "id": "elite-karen",
+        "chapter": "Elite Four Room",
+        "title": "Elite Four Karen",
+        "trainer_id": "karen",
+        "trainer_class": "Elite Four",
+        "minimum_average_level": 54,
+        "minimum_random_duels_after_previous": 0,
+        "team_species_ids": [
+          197,
+          45,
+          198,
+          94,
+          229
+        ]
+      },
+      {
+        "id": "johto-champion",
+        "chapter": "Champion's Room",
+        "title": "Johto Champion",
+        "trainer_id": "lance",
+        "trainer_class": "League Champion",
+        "minimum_average_level": 58,
+        "minimum_random_duels_after_previous": 0,
+        "team_species_ids": [
+          130,
+          142,
+          149,
+          149,
+          149,
+          6
+        ],
+        "level_offset": 2,
+        "finale": true
+      }
+    ]
+  },
+  "progression": {
+    "experience_share": true,
+    "base_experience_per_duel": 420,
+    "experience_growth_per_duel": 105,
+    "experience_to_next_level_base": 45,
+    "experience_to_next_level_growth": 12,
+    "bench_experience_share": 0.5,
+    "knockout_experience_bonus": 0.2
+  },
+  "item_quality_progression": {
+    "capture": [
+      {
+        "from_duel": 1,
+        "item_ids": [
+          4
+        ]
+      },
+      {
+        "from_duel": 2,
+        "item_ids": [
+          4,
+          3
+        ]
+      },
+      {
+        "from_duel": 5,
+        "item_ids": [
+          4,
+          3,
+          2
+        ]
+      }
+    ],
+    "healing": [
+      {
+        "from_duel": 1,
+        "item_ids": [
+          13,
+          22,
+          24,
+          26
+        ]
+      },
+      {
+        "from_duel": 3,
+        "item_ids": [
+          13,
+          22,
+          24,
+          26,
+          27,
+          28
+        ]
+      },
+      {
+        "from_duel": 5,
+        "item_ids": [
+          13,
+          22,
+          24,
+          26,
+          27,
+          28,
+          21,
+          29
+        ]
+      },
+      {
+        "from_duel": 8,
+        "item_ids": [
+          22,
+          24,
+          25,
+          21,
+          29,
+          19,
+          20
+        ]
+      }
+    ]
+  },
+  "league_progression": {
+    "hard_mode_unlock_rounds": 23,
+    "legendary_wild_unlock_rounds": 23,
+    "mew_species_id": 251,
+    "mew_mastery_excluded_species_ids": [
+      251
+    ]
+  },
+  "between_duel_recovery": {
+    "normal": {
+      "heal_hp": true,
+      "revive_fainted": true,
+      "clear_status": true,
+      "restore_pp": true
+    },
+    "hard": {
+      "heal_hp": false,
+      "heal_hp_ratio": 0.5,
+      "revive_fainted": false,
+      "revive_choice_count": 1,
+      "revive_hp_ratio": 0.5,
+      "clear_status": true,
+      "restore_pp": true,
+      "block_battle_healing": true
+    }
+  },
+  "duel_rewards": {
+    "money_base": 650,
+    "money_growth_per_duel": 125,
+    "legacy_base": 2,
+    "legacy_growth_every": 3,
+    "drop_count_min": 2,
+    "drop_count_max": 4,
+    "capture_item_ids": [
+      4,
+      3,
+      2
+    ],
+    "healing_item_ids": [
+      13,
+      22,
+      21,
+      24
+    ]
+  },
+  "wild_encounter": {
+    "fee_base": 300,
+    "fee_growth_per_duel": 40,
+    "level_lag": 0,
+    "legendary_chance_by_mode": {
+      "normal": 0.04,
+      "hard": 0.12
+    },
+    "mew_chance": 0.04,
+    "area_progression": [
+      {
+        "id": "route-29",
+        "name": "Route 29 · New Bark—Cherrygrove",
+        "short_name": "Route 29",
+        "from_round": 1,
+        "from_milestone": 0,
+        "species_ids": [
+          161,
+          163,
+          16,
+          19,
+          10
+        ]
+      },
+      {
+        "id": "route-31-dark-cave",
+        "name": "Route 31 · Dark Cave",
+        "short_name": "Dark Cave",
+        "from_round": 2,
+        "from_milestone": 1,
+        "species_ids": [
+          165,
+          167,
+          41,
+          74,
+          206,
+          216,
+          69
+        ]
+      },
+      {
+        "id": "union-cave",
+        "name": "Union Cave · Route 33",
+        "short_name": "Union Cave",
+        "from_round": 3,
+        "from_milestone": 2,
+        "species_ids": [
+          194,
+          95,
+          27,
+          41,
+          74,
+          183,
+          60,
+          187,
+          172
+        ]
+      },
+      {
+        "id": "ilex-forest",
+        "name": "Ilex Forest · Route 34",
+        "short_name": "Ilex Forest",
+        "from_round": 5,
+        "from_milestone": 3,
+        "species_ids": [
+          46,
+          43,
+          54,
+          11,
+          14,
+          132,
+          235,
+          190,
+          63,
+          174
+        ]
+      },
+      {
+        "id": "national-park",
+        "name": "National Park",
+        "short_name": "Nat. Park",
+        "from_round": 7,
+        "from_milestone": 4,
+        "species_ids": [
+          191,
+          48,
+          123,
+          127,
+          165,
+          167,
+          214,
+          204,
+          10,
+          13,
+          193,
+          173
+        ]
+      },
+      {
+        "id": "route-38-olivine",
+        "name": "Routes 38—39 · Olivine",
+        "short_name": "Olivine",
+        "from_round": 9,
+        "from_milestone": 5,
+        "species_ids": [
+          241,
+          128,
+          81,
+          83,
+          58,
+          209,
+          234,
+          179,
+          20,
+          177,
+          133,
+          175
+        ]
+      },
+      {
+        "id": "whirl-islands",
+        "name": "Whirl Islands",
+        "short_name": "Whirl Is.",
+        "from_round": 11,
+        "from_milestone": 6,
+        "species_ids": [
+          170,
+          222,
+          223,
+          86,
+          98,
+          116,
+          72,
+          42,
+          129,
+          226,
+          211,
+          239
+        ]
+      },
+      {
+        "id": "mt-mortar",
+        "name": "Mt. Mortar",
+        "short_name": "Mt. Mortar",
+        "from_round": 13,
+        "from_milestone": 7,
+        "species_ids": [
+          66,
+          67,
+          74,
+          75,
+          236,
+          183,
+          41,
+          118,
+          95,
+          213,
+          231,
+          111,
+          240
+        ]
+      },
+      {
+        "id": "lake-of-rage",
+        "name": "Lake of Rage · Route 43",
+        "short_name": "Lake of Rage",
+        "from_round": 15,
+        "from_milestone": 8,
+        "species_ids": [
+          129,
+          130,
+          194,
+          195,
+          203,
+          179,
+          164,
+          48,
+          70,
+          198,
+          200,
+          207,
+          113,
+          137
+        ]
+      },
+      {
+        "id": "ice-path",
+        "name": "Ice Path",
+        "short_name": "Ice Path",
+        "from_round": 17,
+        "from_milestone": 9,
+        "species_ids": [
+          220,
+          215,
+          225,
+          124,
+          41,
+          42,
+          227,
+          218,
+          228,
+          221,
+          86,
+          87,
+          231,
+          199
+        ]
+      },
+      {
+        "id": "dragons-den",
+        "name": "Dragon's Den · Blackthorn",
+        "short_name": "Dragon's Den",
+        "from_round": 19,
+        "from_milestone": 10,
+        "species_ids": [
+          147,
+          148,
+          246,
+          247,
+          116,
+          117,
+          129,
+          130,
+          202,
+          201,
+          185,
+          217,
+          232,
+          229,
+          210
+        ]
+      }
+    ],
+    "excluded_tags": [
+      "legendary",
+      "mythical",
+      "mega-evolution",
+      "regional-form",
+      "battle-form"
+    ]
+  },
+  "shop": {
+    "offer_count": 5,
+    "general_offer_count": 3,
+    "evolution_item_chance": 0.25,
+    "held_item_chance": 0.55,
+    "mega_stone_chance": 0.16,
+    "mega_stones_from_duel": 5,
+    "general_capture_item_ids": [
+      4,
+      3,
+      2
+    ],
+    "general_healing_item_ids": [
+      13,
+      22,
+      21,
+      20,
+      24
+    ],
+    "price_by_category": {
+      "capture": 250,
+      "healing": 350,
+      "evolution": 1100,
+      "held": 900,
+      "mega-stone": 2400
+    },
+    "price_variance": 0.18,
+    "sell_ratio": 0.5,
+    "slots_by_round": [
+      {
+        "from_duel": 1,
+        "slots": 3
+      },
+      {
+        "from_duel": 4,
+        "slots": 4
+      },
+      {
+        "from_duel": 9,
+        "slots": 5
+      },
+      {
+        "from_duel": 15,
+        "slots": 6
+      }
+    ],
+    "rarity_weights_by_round": [
+      {
+        "from_duel": 1,
+        "weights": {
+          "common": 72,
+          "uncommon": 25,
+          "rare": 3,
+          "epic": 0
+        }
+      },
+      {
+        "from_duel": 4,
+        "weights": {
+          "common": 52,
+          "uncommon": 32,
+          "rare": 14,
+          "epic": 2
+        }
+      },
+      {
+        "from_duel": 9,
+        "weights": {
+          "common": 34,
+          "uncommon": 34,
+          "rare": 27,
+          "epic": 5
+        }
+      },
+      {
+        "from_duel": 15,
+        "weights": {
+          "common": 20,
+          "uncommon": 30,
+          "rare": 38,
+          "epic": 12
+        }
+      }
+    ],
+    "price_by_rarity": {
+      "common": 1,
+      "uncommon": 1.6,
+      "rare": 2.8,
+      "epic": 4.5
+    },
+    "guaranteed_categories": [
+      "healing"
+    ],
+    "item_rarity": {
+      "capture": {
+        "4": "common",
+        "3": "uncommon",
+        "2": "rare",
+        "1": "epic"
+      },
+      "healing": {
+        "13": "common",
+        "22": "common",
+        "26": "common",
+        "24": "uncommon",
+        "27": "uncommon",
+        "28": "uncommon",
+        "21": "rare",
+        "29": "rare",
+        "25": "rare",
+        "19": "rare",
+        "20": "epic"
+      },
+      "evolution": "rare",
+      "mega-stone": "epic"
+    },
+    "category_weights": {
+      "capture": 22,
+      "healing": 30,
+      "held": 30,
+      "evolution": 12,
+      "mega-stone": 6
+    },
+    "max_per_category": {
+      "held": 2,
+      "evolution": 1,
+      "mega-stone": 1
+    },
+    "refresh": {
+      "fee_base": 400,
+      "fee_growth_per_duel": 80,
+      "fee_multiplier_per_use": 1.75
+    }
+  },
+  "hard_mode": {
+    "enemy_held_item_chance": 0.28,
+    "boss_held_item_chance": 0.7,
+    "boss_mega_chance": 0.75,
+    "experience_multiplier": 0.7,
+    "item_rarity": {
+      "mega-stone": "rare"
+    },
+    "enemy_items_from_duel": 3
+  },
+  "rival": {
+    "name": "Silver",
+    "trainer_class": "Rival",
+    "sprite": "games/assets/pokemon/trainers/showdown-all/silver.png",
+    "intro_line": "...You again. Fine. I'll show you which of us is the strong one.",
+    "rounds": [
+      4,
+      10,
+      16
+    ],
+    "level_offsets": [
+      0,
+      1,
+      2
+    ],
+    "teams": [
+      [
+        92,
+        41,
+        158
+      ],
+      [
+        93,
+        42,
+        215,
+        159
+      ],
+      [
+        94,
+        169,
+        215,
+        82,
+        160
+      ]
+    ]
+  }
+}

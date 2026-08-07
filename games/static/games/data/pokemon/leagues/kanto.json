@@ -1,0 +1,1020 @@
+{
+  "schema_version": 1,
+  "league": {
+    "id": "kanto",
+    "number": 1,
+    "name": "Kanto League",
+    "generation": 1,
+    "dex_range": [
+      1,
+      151
+    ],
+    "duels": 23,
+    "battle_format": {
+      "active_per_side": 2,
+      "maximum_party_size": 6,
+      "pc_enabled": true
+    }
+  },
+  "starter_rules": {
+    "count": 2,
+    "choice_pool_size": 4,
+    "level": 5,
+    "featured_starter_count": 1,
+    "featured_starter_ids": [
+      1,
+      4,
+      7
+    ],
+    "early_game_species_ids": [
+      10,
+      13,
+      16,
+      19,
+      21,
+      25,
+      29,
+      32,
+      41,
+      43,
+      56,
+      60
+    ],
+    "allowed_evolution_tags": [
+      "basic",
+      "stage-1"
+    ],
+    "excluded_tags": [
+      "legendary",
+      "mythical",
+      "mega-evolution",
+      "regional-form",
+      "battle-form"
+    ]
+  },
+  "opponent_scaling": {
+    "match_player_party_size": false,
+    "minimum_team_size": 2,
+    "maximum_team_size": 6,
+    "opening_team_size": 2,
+    "team_size_variation_from_duel": 3,
+    "team_size_offsets_by_strength": {
+      "weak": [
+        -1,
+        0
+      ],
+      "mid": [
+        -1,
+        0,
+        1
+      ],
+      "strong": [
+        0,
+        1
+      ],
+      "boss": [
+        0,
+        1
+      ]
+    },
+    "minimum_level": 5,
+    "level_lag": 0.35,
+    "progression_bonus_per_duel": 0.08,
+    "opening_pool_until_duel": 3,
+    "opening_level_until_duel": 1,
+    "opening_level": 4,
+    "opening_species_ids": [
+      10,
+      13,
+      16,
+      41,
+      46,
+      48,
+      60
+    ],
+    "base_stat_total_caps": [
+      {
+        "through_duel": 3,
+        "maximum": 330
+      },
+      {
+        "through_duel": 4,
+        "maximum": 440
+      },
+      {
+        "through_duel": 5,
+        "maximum": 480
+      }
+    ],
+    "allow_stage_2_from_duel": 4,
+    "allow_fully_evolved_from_duel": 8,
+    "excluded_tags": [
+      "legendary",
+      "mythical",
+      "mega-evolution",
+      "regional-form",
+      "battle-form"
+    ],
+    "team_size_by_round": [
+      {
+        "from_duel": 1,
+        "size": 2
+      },
+      {
+        "from_duel": 5,
+        "size": 3
+      },
+      {
+        "from_duel": 10,
+        "size": 4
+      },
+      {
+        "from_duel": 16,
+        "size": 5
+      },
+      {
+        "from_duel": 22,
+        "size": 6
+      }
+    ],
+    "team_size_growth_every_duels": 5,
+    "level_spread": 2
+  },
+  "trainer_rules": {
+    "catalog_generations": [
+      1
+    ],
+    "type_team_bias": 0.75,
+    "boss_every_rounds": 0,
+    "boss_schedule": {},
+    "strength_progression": [
+      {
+        "from_round": 1,
+        "strength": "weak"
+      },
+      {
+        "from_round": 3,
+        "strength": "mid"
+      },
+      {
+        "from_round": 6,
+        "strength": "strong"
+      }
+    ]
+  },
+  "battle_scenes": {
+    "asset_root": "games/assets/pokemon/spriters-resource/battle-scenes/kanto/",
+    "default": "route",
+    "scenes": [
+      "route",
+      "grass",
+      "water",
+      "rock",
+      "cave",
+      "pond",
+      "ice",
+      "sand",
+      "gym",
+      "psychic",
+      "rocket",
+      "league",
+      "mountain",
+      "sea",
+      "lake",
+      "autumn-forest",
+      "woodland",
+      "dark-cave",
+      "dune-cave",
+      "glacier",
+      "volcano"
+    ],
+    "specialty_scenes": {
+      "normal": "route",
+      "bug": "autumn-forest",
+      "grass": "woodland",
+      "flying": "mountain",
+      "water": "sea",
+      "rock": "mountain",
+      "ground": "dune-cave",
+      "ghost": "dark-cave",
+      "poison": "dark-cave",
+      "ice": "glacier",
+      "fire": "volcano",
+      "electric": "gym",
+      "steel": "gym",
+      "fighting": "gym",
+      "psychic": "psychic",
+      "fairy": "psychic",
+      "dark": "dark-cave",
+      "dragon": "mountain",
+      "mixed": "route"
+    },
+    "milestone_scenes": {
+      "boulder-badge": "mountain",
+      "cascade-badge": "lake",
+      "thunder-badge": "gym",
+      "rainbow-badge": "grass",
+      "rocket-silph": "rocket",
+      "soul-badge": "dark-cave",
+      "marsh-badge": "psychic",
+      "volcano-badge": "volcano",
+      "earth-badge": "dune-cave",
+      "elite-lorelei": "glacier",
+      "elite-bruno": "mountain",
+      "elite-agatha": "psychic",
+      "elite-lance": "league",
+      "kanto-champion": "league"
+    },
+    "wild_area_scenes": {
+      "route-1": "route",
+      "route-2-viridian-forest": "woodland",
+      "route-3-mt-moon": "mountain",
+      "cerulean-routes": "pond",
+      "vermilion-routes": "route",
+      "diglett-cave-route-10": "dark-cave",
+      "rock-tunnel-lavender": "dark-cave",
+      "southern-routes": "grass",
+      "safari-zone": "grass",
+      "seafoam-cinnabar": "glacier",
+      "victory-road": "league"
+    }
+  },
+  "story_route": {
+    "mode": "level-gated",
+    "minimum_random_duels_before_first_boss": 2,
+    "unlock_hard_mode_on_completion": true,
+    "unlock_next_league_on_completion": true,
+    "unlock_legendary_wilds_on_completion": true,
+    "next_league": {
+      "id": "johto",
+      "number": 2,
+      "name": "Johto League"
+    },
+    "milestones": [
+      {
+        "id": "boulder-badge",
+        "chapter": "Pewter Gym",
+        "title": "Boulder Badge",
+        "trainer_id": "brock-gen3",
+        "trainer_class": "Gym Leader",
+        "minimum_average_level": 8,
+        "minimum_random_duels_after_previous": 1,
+        "team_species_ids": [
+          74,
+          95
+        ]
+      },
+      {
+        "id": "cascade-badge",
+        "chapter": "Cerulean Gym",
+        "title": "Cascade Badge",
+        "trainer_id": "misty-gen3",
+        "trainer_class": "Gym Leader",
+        "minimum_average_level": 14,
+        "minimum_random_duels_after_previous": 1,
+        "team_species_ids": [
+          120,
+          121
+        ]
+      },
+      {
+        "id": "thunder-badge",
+        "chapter": "Vermilion Gym",
+        "title": "Thunder Badge",
+        "trainer_id": "ltsurge-gen3",
+        "trainer_class": "Gym Leader",
+        "minimum_average_level": 20,
+        "minimum_random_duels_after_previous": 1,
+        "team_species_ids": [
+          100,
+          25,
+          26
+        ]
+      },
+      {
+        "id": "rainbow-badge",
+        "chapter": "Celadon Gym",
+        "title": "Rainbow Badge",
+        "trainer_id": "erika-gen3",
+        "trainer_class": "Gym Leader",
+        "minimum_average_level": 26,
+        "minimum_random_duels_after_previous": 1,
+        "team_species_ids": [
+          71,
+          114,
+          45
+        ]
+      },
+      {
+        "id": "rocket-silph",
+        "chapter": "Silph Co.",
+        "title": "Team Rocket Showdown",
+        "trainer_id": "giovanni-gen3",
+        "trainer_class": "Team Rocket Boss",
+        "minimum_average_level": 30,
+        "minimum_random_duels_after_previous": 1,
+        "team_species_ids": [
+          95,
+          111,
+          115,
+          34
+        ]
+      },
+      {
+        "id": "soul-badge",
+        "chapter": "Fuchsia Gym",
+        "title": "Soul Badge",
+        "trainer_id": "koga-gen3",
+        "trainer_class": "Gym Leader",
+        "minimum_average_level": 34,
+        "minimum_random_duels_after_previous": 1,
+        "team_species_ids": [
+          109,
+          89,
+          109,
+          110
+        ]
+      },
+      {
+        "id": "marsh-badge",
+        "chapter": "Saffron Gym",
+        "title": "Marsh Badge",
+        "trainer_id": "sabrina-gen3",
+        "trainer_class": "Gym Leader",
+        "minimum_average_level": 38,
+        "minimum_random_duels_after_previous": 1,
+        "team_species_ids": [
+          122,
+          64,
+          49,
+          65
+        ]
+      },
+      {
+        "id": "volcano-badge",
+        "chapter": "Cinnabar Gym",
+        "title": "Volcano Badge",
+        "trainer_id": "blaine-gen3",
+        "trainer_class": "Gym Leader",
+        "minimum_average_level": 42,
+        "minimum_random_duels_after_previous": 1,
+        "team_species_ids": [
+          58,
+          77,
+          78,
+          59
+        ]
+      },
+      {
+        "id": "earth-badge",
+        "chapter": "Viridian Gym",
+        "title": "Earth Badge",
+        "trainer_id": "giovanni-gen3",
+        "trainer_class": "Viridian Gym Leader",
+        "minimum_average_level": 46,
+        "minimum_random_duels_after_previous": 1,
+        "team_species_ids": [
+          111,
+          51,
+          31,
+          34,
+          112
+        ]
+      },
+      {
+        "id": "elite-lorelei",
+        "chapter": "Indigo Plateau",
+        "title": "Elite Four · Lorelei",
+        "trainer_id": "lorelei-gen3",
+        "trainer_class": "Elite Four",
+        "minimum_average_level": 50,
+        "minimum_random_duels_after_previous": 1,
+        "level_offset": 1,
+        "team_species_ids": [
+          87,
+          91,
+          80,
+          124,
+          131
+        ]
+      },
+      {
+        "id": "elite-bruno",
+        "chapter": "Indigo Plateau",
+        "title": "Elite Four · Bruno",
+        "trainer_id": "bruno-gen3",
+        "trainer_class": "Elite Four",
+        "minimum_average_level": 52,
+        "minimum_random_duels_after_previous": 0,
+        "level_offset": 1,
+        "team_species_ids": [
+          95,
+          107,
+          106,
+          95,
+          68
+        ]
+      },
+      {
+        "id": "elite-agatha",
+        "chapter": "Indigo Plateau",
+        "title": "Elite Four · Agatha",
+        "trainer_id": "agatha-gen3",
+        "trainer_class": "Elite Four",
+        "minimum_average_level": 54,
+        "minimum_random_duels_after_previous": 0,
+        "level_offset": 1,
+        "team_species_ids": [
+          94,
+          42,
+          93,
+          24,
+          94
+        ]
+      },
+      {
+        "id": "elite-lance",
+        "chapter": "Indigo Plateau",
+        "title": "Elite Four · Lance",
+        "trainer_id": "lance-gen3",
+        "trainer_class": "Elite Four",
+        "minimum_average_level": 56,
+        "minimum_random_duels_after_previous": 0,
+        "level_offset": 1,
+        "team_species_ids": [
+          130,
+          148,
+          148,
+          142,
+          149
+        ]
+      },
+      {
+        "id": "kanto-champion",
+        "chapter": "Champion's Room",
+        "title": "Kanto Champion",
+        "trainer_id": "blue-gen3champion",
+        "trainer_class": "League Champion",
+        "minimum_average_level": 58,
+        "minimum_random_duels_after_previous": 0,
+        "level_offset": 2,
+        "team_species_ids": [
+          18,
+          65,
+          112,
+          103,
+          59,
+          9
+        ],
+        "finale": true
+      }
+    ]
+  },
+  "progression": {
+    "experience_share": true,
+    "base_experience_per_duel": 420,
+    "experience_growth_per_duel": 105,
+    "experience_to_next_level_base": 45,
+    "experience_to_next_level_growth": 12,
+    "bench_experience_share": 0.5,
+    "knockout_experience_bonus": 0.2
+  },
+  "item_quality_progression": {
+    "capture": [
+      {
+        "from_duel": 1,
+        "item_ids": [
+          4
+        ]
+      },
+      {
+        "from_duel": 2,
+        "item_ids": [
+          4,
+          3
+        ]
+      },
+      {
+        "from_duel": 5,
+        "item_ids": [
+          4,
+          3,
+          2
+        ]
+      }
+    ],
+    "healing": [
+      {
+        "from_duel": 1,
+        "item_ids": [
+          13,
+          22,
+          24,
+          26
+        ]
+      },
+      {
+        "from_duel": 3,
+        "item_ids": [
+          13,
+          22,
+          24,
+          26,
+          27,
+          28
+        ]
+      },
+      {
+        "from_duel": 5,
+        "item_ids": [
+          13,
+          22,
+          24,
+          26,
+          27,
+          28,
+          21,
+          29
+        ]
+      },
+      {
+        "from_duel": 8,
+        "item_ids": [
+          22,
+          24,
+          25,
+          21,
+          29,
+          19,
+          20
+        ]
+      }
+    ]
+  },
+  "league_progression": {
+    "hard_mode_unlock_rounds": 23,
+    "legendary_wild_unlock_rounds": 23,
+    "mew_species_id": 151,
+    "mew_mastery_excluded_species_ids": [
+      151
+    ]
+  },
+  "between_duel_recovery": {
+    "normal": {
+      "heal_hp": true,
+      "revive_fainted": true,
+      "clear_status": true,
+      "restore_pp": true
+    },
+    "hard": {
+      "heal_hp": false,
+      "heal_hp_ratio": 0.5,
+      "revive_fainted": false,
+      "revive_choice_count": 1,
+      "revive_hp_ratio": 0.5,
+      "clear_status": true,
+      "restore_pp": true,
+      "block_battle_healing": true
+    }
+  },
+  "duel_rewards": {
+    "money_base": 650,
+    "money_growth_per_duel": 125,
+    "legacy_base": 2,
+    "legacy_growth_every": 3,
+    "drop_count_min": 2,
+    "drop_count_max": 4,
+    "capture_item_ids": [
+      4,
+      3,
+      2
+    ],
+    "healing_item_ids": [
+      13,
+      22,
+      21,
+      24
+    ]
+  },
+  "wild_encounter": {
+    "fee_base": 300,
+    "fee_growth_per_duel": 40,
+    "level_lag": 0,
+    "legendary_chance_by_mode": {
+      "normal": 0.04,
+      "hard": 0.12
+    },
+    "mew_chance": 0.04,
+    "area_progression": [
+      {
+        "id": "route-1",
+        "name": "Route 1 · Pallet—Viridian",
+        "short_name": "Route 1",
+        "from_round": 1,
+        "from_milestone": 0,
+        "species_ids": [
+          16,
+          19
+        ]
+      },
+      {
+        "id": "route-2-viridian-forest",
+        "name": "Route 2 · Viridian Forest",
+        "short_name": "Route 2",
+        "from_round": 2,
+        "from_milestone": 1,
+        "species_ids": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          19,
+          25
+        ]
+      },
+      {
+        "id": "route-3-mt-moon",
+        "name": "Route 3 · Mt. Moon",
+        "short_name": "Mt. Moon",
+        "from_round": 3,
+        "from_milestone": 2,
+        "species_ids": [
+          21,
+          29,
+          32,
+          35,
+          39,
+          41,
+          46,
+          74,
+          116,
+          37,
+          27
+        ]
+      },
+      {
+        "id": "cerulean-routes",
+        "name": "Routes 24—25 · Cerulean",
+        "short_name": "Cerulean",
+        "from_round": 4,
+        "from_milestone": 3,
+        "species_ids": [
+          10,
+          13,
+          16,
+          43,
+          48,
+          63,
+          69,
+          60,
+          124,
+          84
+        ]
+      },
+      {
+        "id": "vermilion-routes",
+        "name": "Routes 5—11 · Vermilion",
+        "short_name": "Vermilion",
+        "from_round": 5,
+        "from_milestone": 4,
+        "species_ids": [
+          16,
+          19,
+          21,
+          23,
+          43,
+          52,
+          56,
+          69,
+          79,
+          54
+        ]
+      },
+      {
+        "id": "diglett-cave-route-10",
+        "name": "Diglett's Cave · Route 10",
+        "short_name": "Route 10",
+        "from_round": 6,
+        "from_milestone": 5,
+        "species_ids": [
+          19,
+          21,
+          23,
+          50,
+          51,
+          56,
+          74,
+          81,
+          118,
+          133,
+          96
+        ]
+      },
+      {
+        "id": "rock-tunnel-lavender",
+        "name": "Rock Tunnel · Lavender",
+        "short_name": "Rock Tunnel",
+        "from_round": 7,
+        "from_milestone": 6,
+        "species_ids": [
+          41,
+          42,
+          66,
+          67,
+          74,
+          75,
+          92,
+          93,
+          95,
+          104,
+          100,
+          58
+        ]
+      },
+      {
+        "id": "southern-routes",
+        "name": "Routes 12—15 · Fuchsia",
+        "short_name": "Fuchsia",
+        "from_round": 8,
+        "from_milestone": 7,
+        "species_ids": [
+          48,
+          49,
+          69,
+          70,
+          88,
+          89,
+          102,
+          114,
+          123,
+          128,
+          132,
+          138,
+          140,
+          125
+        ]
+      },
+      {
+        "id": "safari-zone",
+        "name": "Safari Zone",
+        "short_name": "Safari Zone",
+        "from_round": 9,
+        "from_milestone": 8,
+        "species_ids": [
+          102,
+          111,
+          112,
+          113,
+          114,
+          115,
+          123,
+          127,
+          128,
+          108,
+          143
+        ]
+      },
+      {
+        "id": "seafoam-cinnabar",
+        "name": "Seafoam · Cinnabar",
+        "short_name": "Cinnabar",
+        "from_round": 10,
+        "from_milestone": 9,
+        "species_ids": [
+          72,
+          73,
+          86,
+          87,
+          90,
+          91,
+          98,
+          99,
+          109,
+          110,
+          120,
+          121,
+          126,
+          137,
+          83,
+          106
+        ]
+      },
+      {
+        "id": "victory-road",
+        "name": "Victory Road",
+        "short_name": "Victory Road",
+        "from_round": 11,
+        "from_milestone": 10,
+        "species_ids": [
+          42,
+          57,
+          67,
+          75,
+          76,
+          78,
+          89,
+          95,
+          105,
+          110,
+          112,
+          126,
+          130,
+          142,
+          148,
+          122,
+          131
+        ]
+      }
+    ],
+    "excluded_tags": [
+      "legendary",
+      "mythical",
+      "mega-evolution",
+      "regional-form",
+      "battle-form"
+    ]
+  },
+  "shop": {
+    "offer_count": 5,
+    "general_offer_count": 3,
+    "evolution_item_chance": 0.25,
+    "held_item_chance": 0.55,
+    "mega_stone_chance": 0.16,
+    "mega_stones_from_duel": 5,
+    "general_capture_item_ids": [
+      4,
+      3,
+      2
+    ],
+    "general_healing_item_ids": [
+      13,
+      22,
+      21,
+      20,
+      24
+    ],
+    "price_by_category": {
+      "capture": 250,
+      "healing": 350,
+      "evolution": 1100,
+      "held": 900,
+      "mega-stone": 2400
+    },
+    "price_variance": 0.18,
+    "sell_ratio": 0.5,
+    "slots_by_round": [
+      {
+        "from_duel": 1,
+        "slots": 3
+      },
+      {
+        "from_duel": 4,
+        "slots": 4
+      },
+      {
+        "from_duel": 9,
+        "slots": 5
+      },
+      {
+        "from_duel": 15,
+        "slots": 6
+      }
+    ],
+    "rarity_weights_by_round": [
+      {
+        "from_duel": 1,
+        "weights": {
+          "common": 72,
+          "uncommon": 25,
+          "rare": 3,
+          "epic": 0
+        }
+      },
+      {
+        "from_duel": 4,
+        "weights": {
+          "common": 52,
+          "uncommon": 32,
+          "rare": 14,
+          "epic": 2
+        }
+      },
+      {
+        "from_duel": 9,
+        "weights": {
+          "common": 34,
+          "uncommon": 34,
+          "rare": 27,
+          "epic": 5
+        }
+      },
+      {
+        "from_duel": 15,
+        "weights": {
+          "common": 20,
+          "uncommon": 30,
+          "rare": 38,
+          "epic": 12
+        }
+      }
+    ],
+    "price_by_rarity": {
+      "common": 1,
+      "uncommon": 1.6,
+      "rare": 2.8,
+      "epic": 4.5
+    },
+    "guaranteed_categories": [
+      "healing"
+    ],
+    "item_rarity": {
+      "capture": {
+        "4": "common",
+        "3": "uncommon",
+        "2": "rare",
+        "1": "epic"
+      },
+      "healing": {
+        "13": "common",
+        "22": "common",
+        "26": "common",
+        "24": "uncommon",
+        "27": "uncommon",
+        "28": "uncommon",
+        "21": "rare",
+        "29": "rare",
+        "25": "rare",
+        "19": "rare",
+        "20": "epic"
+      },
+      "evolution": "rare",
+      "mega-stone": "epic"
+    },
+    "category_weights": {
+      "capture": 22,
+      "healing": 30,
+      "held": 30,
+      "evolution": 12,
+      "mega-stone": 6
+    },
+    "max_per_category": {
+      "held": 2,
+      "evolution": 1,
+      "mega-stone": 1
+    },
+    "refresh": {
+      "fee_base": 400,
+      "fee_growth_per_duel": 80,
+      "fee_multiplier_per_use": 1.75
+    }
+  },
+  "hard_mode": {
+    "enemy_held_item_chance": 0.28,
+    "boss_held_item_chance": 0.7,
+    "boss_mega_chance": 0.75,
+    "experience_multiplier": 0.7,
+    "item_rarity": {
+      "mega-stone": "rare"
+    },
+    "enemy_items_from_duel": 3
+  },
+  "rival": {
+    "name": "Blue",
+    "trainer_class": "Rival",
+    "sprite": "games/assets/pokemon/trainers/showdown-all/blue-gen3.png",
+    "intro_line": "Smell ya later? Not this time - I've been waiting for you!",
+    "rounds": [
+      4,
+      10,
+      16
+    ],
+    "level_offsets": [
+      0,
+      1,
+      2
+    ],
+    "teams": [
+      [
+        16,
+        63,
+        7
+      ],
+      [
+        17,
+        64,
+        58,
+        8
+      ],
+      [
+        18,
+        65,
+        59,
+        112,
+        9
+      ]
+    ]
+  }
+}

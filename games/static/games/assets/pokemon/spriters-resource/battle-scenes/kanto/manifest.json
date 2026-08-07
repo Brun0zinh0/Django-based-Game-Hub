@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "viewport": [
+    960,
+    480
+  ],
+  "scenes": {
+    "route": {
+      "backdrop": "route-backdrop.png",
+      "player_base": "route-player-base.png",
+      "enemy_base": "route-enemy-base.png"
+    },
+    "grass": {
+      "backdrop": "grass-backdrop.png",
+      "player_base": "grass-player-base.png",
+      "enemy_base": "grass-enemy-base.png"
+    },
+    "water": {
+      "backdrop": "water-backdrop.png",
+      "player_base": "water-player-base.png",
+      "enemy_base": "water-enemy-base.png"
+    },
+    "rock": {
+      "backdrop": "rock-backdrop.png",
+      "player_base": "rock-player-base.png",
+      "enemy_base": "rock-enemy-base.png"
+    },
+    "cave": {
+      "backdrop": "cave-backdrop.png",
+      "player_base": "cave-player-base.png",
+      "enemy_base": "cave-enemy-base.png"
+    },
+    "pond": {
+      "backdrop": "pond-backdrop.png",
+      "player_base": "pond-player-base.png",
+      "enemy_base": "pond-enemy-base.png"
+    },
+    "ice": {
+      "backdrop": "ice-backdrop.png",
+      "player_base": "ice-player-base.png",
+      "enemy_base": "ice-enemy-base.png"
+    },
+    "sand": {
+      "backdrop": "sand-backdrop.png",
+      "player_base": "sand-player-base.png",
+      "enemy_base": "sand-enemy-base.png"
+    },
+    "gym": {
+      "backdrop": "gym-backdrop.png",
+      "player_base": "gym-player-base.png",
+      "enemy_base": "gym-enemy-base.png"
+    },
+    "psychic": {
+      "backdrop": "psychic-backdrop.png",
+      "player_base": "psychic-player-base.png",
+      "enemy_base": "psychic-enemy-base.png"
+    },
+    "rocket": {
+      "backdrop": "rocket-backdrop.png",
+      "player_base": "rocket-player-base.png",
+      "enemy_base": "rocket-enemy-base.png"
+    },
+    "league": {
+      "backdrop": "league-backdrop.png",
+      "player_base": "league-player-base.png",
+      "enemy_base": "league-enemy-base.png"
+    },
+    "mountain": {
+      "backdrop": "mountain-backdrop.png",
+      "player_base": "mountain-player-base.png",
+      "enemy_base": "mountain-enemy-base.png"
+    },
+    "sea": {
+      "backdrop": "sea-backdrop.png",
+      "player_base": "sea-player-base.png",
+      "enemy_base": "sea-enemy-base.png"
+    },
+    "lake": {
+      "backdrop": "lake-backdrop.png",
+      "player_base": "lake-player-base.png",
+      "enemy_base": "lake-enemy-base.png"
+    },
+    "autumn-forest": {
+      "backdrop": "autumn-forest-backdrop.png",
+      "player_base": "autumn-forest-player-base.png",
+      "enemy_base": "autumn-forest-enemy-base.png"
+    },
+    "woodland": {
+      "backdrop": "woodland-backdrop.png",
+      "player_base": "woodland-player-base.png",
+      "enemy_base": "woodland-enemy-base.png"
+    },
+    "dark-cave": {
+      "backdrop": "dark-cave-backdrop.png",
+      "player_base": "dark-cave-player-base.png",
+      "enemy_base": "dark-cave-enemy-base.png"
+    },
+    "dune-cave": {
+      "backdrop": "dune-cave-backdrop.png",
+      "player_base": "dune-cave-player-base.png",
+      "enemy_base": "dune-cave-enemy-base.png"
+    },
+    "glacier": {
+      "backdrop": "glacier-backdrop.png",
+      "player_base": "glacier-player-base.png",
+      "enemy_base": "glacier-enemy-base.png"
+    },
+    "volcano": {
+      "backdrop": "volcano-backdrop.png",
+      "player_base": "volcano-player-base.png",
+      "enemy_base": "volcano-enemy-base.png"
+    }
+  }
+}

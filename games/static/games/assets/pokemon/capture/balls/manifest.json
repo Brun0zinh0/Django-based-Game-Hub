@@ -1,0 +1,29 @@
+{
+  "source": "https://raw.githubusercontent.com/pret/pokefirered/master/graphics/items/",
+  "balls": {
+    "poke": {
+      "width": 18,
+      "height": 18,
+      "band_row": 11,
+      "light_bottom_pixels": 38
+    },
+    "great": {
+      "width": 18,
+      "height": 18,
+      "band_row": 11,
+      "light_bottom_pixels": 38
+    },
+    "ultra": {
+      "width": 18,
+      "height": 18,
+      "band_row": 11,
+      "light_bottom_pixels": 44
+    },
+    "master": {
+      "width": 18,
+      "height": 18,
+      "band_row": 11,
+      "light_bottom_pixels": 52
+    }
+  }
+}

@@ -1,0 +1,75 @@
+{% extends "games/base.html" %}
+{% load static %}
+
+{% block title %}{{ game.title }} · The cool Rogue Game Hub{% endblock %}
+
+{% block content %}
+<a class="back-link" href="{% url 'games:home' %}">← Tous les jeux</a>
+
+<section class="arcade-page arcade-theme-{{ game.theme }}"
+         data-game="{{ game.slug }}"
+         aria-labelledby="arcade-title">
+    <div class="arcade-heading">
+        <div class="game-icon arcade-title-icon" aria-hidden="true">
+            {{ game.icon }}
+        </div>
+        <div>
+            <p class="eyebrow">{{ game.eyebrow }}</p>
+            <h1 id="arcade-title">{{ game.title }}</h1>
+            <p>{{ game.objective }}</p>
+        </div>
+    </div>
+
+    <div class="arcade-hud" aria-label="Informations de la partie">
+        {% for stat in game.stats %}
+        <div class="arcade-stat">
+            <span>{{ stat.label }}</span>
+            <strong id="arcade-stat-{{ forloop.counter }}">
+                {{ stat.initial }}
+            </strong>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="arcade-stage">
+        <canvas
+            id="arcade-canvas"
+            width="960"
+            height="600"
+            tabindex="0"
+            aria-label="Zone de jeu de {{ game.title }}"
+        >
+            Ton navigateur ne prend pas en charge le canvas HTML.
+        </canvas>
+
+        <div class="arcade-overlay" id="arcade-overlay">
+            <div class="overlay-card">
+                <p class="eyebrow">Mission</p>
+                <h2 id="arcade-overlay-title">{{ game.overlay_title }}</h2>
+                <p id="arcade-overlay-message">{{ game.overlay_message }}</p>
+                <button class="button button-arcade" id="arcade-start"
+                        type="button">
+                    {{ game.button_label }}
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <p class="sr-only" id="arcade-status" aria-live="polite">
+        Jeu prêt.
+    </p>
+
+    <div class="arcade-controls">
+        {% for control in game.controls %}
+        <div>
+            <strong>{{ control.label }}</strong>
+            <span>{{ control.value }}</span>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<script src="{% static 'games/gpu_runtime.js' %}?v=20260731-1" defer></script>
+<script src="{% static 'games/arcade_core.js' %}?v=20260731-1" defer></script>
+<script src="{% static game.script %}" defer></script>
+{% endblock %}

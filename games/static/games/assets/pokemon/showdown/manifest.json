@@ -1,0 +1,2728 @@
+{
+  "schema_version": 1,
+  "source": "https://play.pokemonshowdown.com/sprites/",
+  "credit": "Sprites served by Pokemon Showdown (play.pokemonshowdown.com); art from Game Freak / Nintendo / Creatures Inc., Gen 5 style. Fan project use only.",
+  "icon_sheet": "games/assets/pokemon/showdown/pokemonicons-sheet.png",
+  "sprites": {
+    "1": {
+      "front": "games/assets/pokemon/showdown/front/bulbasaur.gif",
+      "back": "games/assets/pokemon/showdown/back/bulbasaur.gif"
+    },
+    "2": {
+      "front": "games/assets/pokemon/showdown/front/ivysaur.gif",
+      "back": "games/assets/pokemon/showdown/back/ivysaur.gif"
+    },
+    "3": {
+      "front": "games/assets/pokemon/showdown/front/venusaur.gif",
+      "back": "games/assets/pokemon/showdown/back/venusaur.gif"
+    },
+    "4": {
+      "front": "games/assets/pokemon/showdown/front/charmander.gif",
+      "back": "games/assets/pokemon/showdown/back/charmander.gif"
+    },
+    "5": {
+      "front": "games/assets/pokemon/showdown/front/charmeleon.gif",
+      "back": "games/assets/pokemon/showdown/back/charmeleon.gif"
+    },
+    "6": {
+      "front": "games/assets/pokemon/showdown/front/charizard.gif",
+      "back": "games/assets/pokemon/showdown/back/charizard.gif"
+    },
+    "7": {
+      "front": "games/assets/pokemon/showdown/front/squirtle.gif",
+      "back": "games/assets/pokemon/showdown/back/squirtle.gif"
+    },
+    "8": {
+      "front": "games/assets/pokemon/showdown/front/wartortle.gif",
+      "back": "games/assets/pokemon/showdown/back/wartortle.gif"
+    },
+    "9": {
+      "front": "games/assets/pokemon/showdown/front/blastoise.gif",
+      "back": "games/assets/pokemon/showdown/back/blastoise.gif"
+    },
+    "10": {
+      "front": "games/assets/pokemon/showdown/front/caterpie.gif",
+      "back": "games/assets/pokemon/showdown/back/caterpie.gif"
+    },
+    "11": {
+      "front": "games/assets/pokemon/showdown/front/metapod.gif",
+      "back": "games/assets/pokemon/showdown/back/metapod.gif"
+    },
+    "12": {
+      "front": "games/assets/pokemon/showdown/front/butterfree.gif",
+      "back": "games/assets/pokemon/showdown/back/butterfree.gif"
+    },
+    "13": {
+      "front": "games/assets/pokemon/showdown/front/weedle.gif",
+      "back": "games/assets/pokemon/showdown/back/weedle.gif"
+    },
+    "14": {
+      "front": "games/assets/pokemon/showdown/front/kakuna.gif",
+      "back": "games/assets/pokemon/showdown/back/kakuna.gif"
+    },
+    "15": {
+      "front": "games/assets/pokemon/showdown/front/beedrill.gif",
+      "back": "games/assets/pokemon/showdown/back/beedrill.gif"
+    },
+    "16": {
+      "front": "games/assets/pokemon/showdown/front/pidgey.gif",
+      "back": "games/assets/pokemon/showdown/back/pidgey.gif"
+    },
+    "17": {
+      "front": "games/assets/pokemon/showdown/front/pidgeotto.gif",
+      "back": "games/assets/pokemon/showdown/back/pidgeotto.gif"
+    },
+    "18": {
+      "front": "games/assets/pokemon/showdown/front/pidgeot.gif",
+      "back": "games/assets/pokemon/showdown/back/pidgeot.gif"
+    },
+    "19": {
+      "front": "games/assets/pokemon/showdown/front/rattata.gif",
+      "back": "games/assets/pokemon/showdown/back/rattata.gif"
+    },
+    "20": {
+      "front": "games/assets/pokemon/showdown/front/raticate.gif",
+      "back": "games/assets/pokemon/showdown/back/raticate.gif"
+    },
+    "21": {
+      "front": "games/assets/pokemon/showdown/front/spearow.gif",
+      "back": "games/assets/pokemon/showdown/back/spearow.gif"
+    },
+    "22": {
+      "front": "games/assets/pokemon/showdown/front/fearow.gif",
+      "back": "games/assets/pokemon/showdown/back/fearow.gif"
+    },
+    "23": {
+      "front": "games/assets/pokemon/showdown/front/ekans.gif",
+      "back": "games/assets/pokemon/showdown/back/ekans.gif"
+    },
+    "24": {
+      "front": "games/assets/pokemon/showdown/front/arbok.gif",
+      "back": "games/assets/pokemon/showdown/back/arbok.gif"
+    },
+    "25": {
+      "front": "games/assets/pokemon/showdown/front/pikachu.gif",
+      "back": "games/assets/pokemon/showdown/back/pikachu.gif"
+    },
+    "26": {
+      "front": "games/assets/pokemon/showdown/front/raichu.gif",
+      "back": "games/assets/pokemon/showdown/back/raichu.gif"
+    },
+    "27": {
+      "front": "games/assets/pokemon/showdown/front/sandshrew.gif",
+      "back": "games/assets/pokemon/showdown/back/sandshrew.gif"
+    },
+    "28": {
+      "front": "games/assets/pokemon/showdown/front/sandslash.gif",
+      "back": "games/assets/pokemon/showdown/back/sandslash.gif"
+    },
+    "29": {
+      "front": "games/assets/pokemon/showdown/front/nidoran-f.gif",
+      "back": "games/assets/pokemon/showdown/back/nidoranf.gif"
+    },
+    "30": {
+      "front": "games/assets/pokemon/showdown/front/nidorina.gif",
+      "back": "games/assets/pokemon/showdown/back/nidorina.gif"
+    },
+    "31": {
+      "front": "games/assets/pokemon/showdown/front/nidoqueen.gif",
+      "back": "games/assets/pokemon/showdown/back/nidoqueen.gif"
+    },
+    "32": {
+      "front": "games/assets/pokemon/showdown/front/nidoranm.gif",
+      "back": "games/assets/pokemon/showdown/back/nidoranm.gif"
+    },
+    "33": {
+      "front": "games/assets/pokemon/showdown/front/nidorino.gif",
+      "back": "games/assets/pokemon/showdown/back/nidorino.gif"
+    },
+    "34": {
+      "front": "games/assets/pokemon/showdown/front/nidoking.gif",
+      "back": "games/assets/pokemon/showdown/back/nidoking.gif"
+    },
+    "35": {
+      "front": "games/assets/pokemon/showdown/front/clefairy.gif",
+      "back": "games/assets/pokemon/showdown/back/clefairy.gif"
+    },
+    "36": {
+      "front": "games/assets/pokemon/showdown/front/clefable.gif",
+      "back": "games/assets/pokemon/showdown/back/clefable.gif"
+    },
+    "37": {
+      "front": "games/assets/pokemon/showdown/front/vulpix.gif",
+      "back": "games/assets/pokemon/showdown/back/vulpix.gif"
+    },
+    "38": {
+      "front": "games/assets/pokemon/showdown/front/ninetales.gif",
+      "back": "games/assets/pokemon/showdown/back/ninetales.gif"
+    },
+    "39": {
+      "front": "games/assets/pokemon/showdown/front/jigglypuff.gif",
+      "back": "games/assets/pokemon/showdown/back/jigglypuff.gif"
+    },
+    "40": {
+      "front": "games/assets/pokemon/showdown/front/wigglytuff.gif",
+      "back": "games/assets/pokemon/showdown/back/wigglytuff.gif"
+    },
+    "41": {
+      "front": "games/assets/pokemon/showdown/front/zubat.gif",
+      "back": "games/assets/pokemon/showdown/back/zubat.gif"
+    },
+    "42": {
+      "front": "games/assets/pokemon/showdown/front/golbat.gif",
+      "back": "games/assets/pokemon/showdown/back/golbat.gif"
+    },
+    "43": {
+      "front": "games/assets/pokemon/showdown/front/oddish.gif",
+      "back": "games/assets/pokemon/showdown/back/oddish.gif"
+    },
+    "44": {
+      "front": "games/assets/pokemon/showdown/front/gloom.gif",
+      "back": "games/assets/pokemon/showdown/back/gloom.gif"
+    },
+    "45": {
+      "front": "games/assets/pokemon/showdown/front/vileplume.gif",
+      "back": "games/assets/pokemon/showdown/back/vileplume.gif"
+    },
+    "46": {
+      "front": "games/assets/pokemon/showdown/front/paras.gif",
+      "back": "games/assets/pokemon/showdown/back/paras.gif"
+    },
+    "47": {
+      "front": "games/assets/pokemon/showdown/front/parasect.gif",
+      "back": "games/assets/pokemon/showdown/back/parasect.gif"
+    },
+    "48": {
+      "front": "games/assets/pokemon/showdown/front/venonat.gif",
+      "back": "games/assets/pokemon/showdown/back/venonat.gif"
+    },
+    "49": {
+      "front": "games/assets/pokemon/showdown/front/venomoth.gif",
+      "back": "games/assets/pokemon/showdown/back/venomoth.gif"
+    },
+    "50": {
+      "front": "games/assets/pokemon/showdown/front/diglett.gif",
+      "back": "games/assets/pokemon/showdown/back/diglett.gif"
+    },
+    "51": {
+      "front": "games/assets/pokemon/showdown/front/dugtrio.gif",
+      "back": "games/assets/pokemon/showdown/back/dugtrio.gif"
+    },
+    "52": {
+      "front": "games/assets/pokemon/showdown/front/meowth.gif",
+      "back": "games/assets/pokemon/showdown/back/meowth.gif"
+    },
+    "53": {
+      "front": "games/assets/pokemon/showdown/front/persian.gif",
+      "back": "games/assets/pokemon/showdown/back/persian.gif"
+    },
+    "54": {
+      "front": "games/assets/pokemon/showdown/front/psyduck.gif",
+      "back": "games/assets/pokemon/showdown/back/psyduck.gif"
+    },
+    "55": {
+      "front": "games/assets/pokemon/showdown/front/golduck.gif",
+      "back": "games/assets/pokemon/showdown/back/golduck.gif"
+    },
+    "56": {
+      "front": "games/assets/pokemon/showdown/front/mankey.gif",
+      "back": "games/assets/pokemon/showdown/back/mankey.gif"
+    },
+    "57": {
+      "front": "games/assets/pokemon/showdown/front/primeape.gif",
+      "back": "games/assets/pokemon/showdown/back/primeape.gif"
+    },
+    "58": {
+      "front": "games/assets/pokemon/showdown/front/growlithe.gif",
+      "back": "games/assets/pokemon/showdown/back/growlithe.gif"
+    },
+    "59": {
+      "front": "games/assets/pokemon/showdown/front/arcanine.gif",
+      "back": "games/assets/pokemon/showdown/back/arcanine.gif"
+    },
+    "60": {
+      "front": "games/assets/pokemon/showdown/front/poliwag.gif",
+      "back": "games/assets/pokemon/showdown/back/poliwag.gif"
+    },
+    "61": {
+      "front": "games/assets/pokemon/showdown/front/poliwhirl.gif",
+      "back": "games/assets/pokemon/showdown/back/poliwhirl.gif"
+    },
+    "62": {
+      "front": "games/assets/pokemon/showdown/front/poliwrath.gif",
+      "back": "games/assets/pokemon/showdown/back/poliwrath.gif"
+    },
+    "63": {
+      "front": "games/assets/pokemon/showdown/front/abra.gif",
+      "back": "games/assets/pokemon/showdown/back/abra.gif"
+    },
+    "64": {
+      "front": "games/assets/pokemon/showdown/front/kadabra.gif",
+      "back": "games/assets/pokemon/showdown/back/kadabra.gif"
+    },
+    "65": {
+      "front": "games/assets/pokemon/showdown/front/alakazam.gif",
+      "back": "games/assets/pokemon/showdown/back/alakazam.gif"
+    },
+    "66": {
+      "front": "games/assets/pokemon/showdown/front/machop.gif",
+      "back": "games/assets/pokemon/showdown/back/machop.gif"
+    },
+    "67": {
+      "front": "games/assets/pokemon/showdown/front/machoke.gif",
+      "back": "games/assets/pokemon/showdown/back/machoke.gif"
+    },
+    "68": {
+      "front": "games/assets/pokemon/showdown/front/machamp.gif",
+      "back": "games/assets/pokemon/showdown/back/machamp.gif"
+    },
+    "69": {
+      "front": "games/assets/pokemon/showdown/front/bellsprout.gif",
+      "back": "games/assets/pokemon/showdown/back/bellsprout.gif"
+    },
+    "70": {
+      "front": "games/assets/pokemon/showdown/front/weepinbell.gif",
+      "back": "games/assets/pokemon/showdown/back/weepinbell.gif"
+    },
+    "71": {
+      "front": "games/assets/pokemon/showdown/front/victreebel.gif",
+      "back": "games/assets/pokemon/showdown/back/victreebel.gif"
+    },
+    "72": {
+      "front": "games/assets/pokemon/showdown/front/tentacool.gif",
+      "back": "games/assets/pokemon/showdown/back/tentacool.gif"
+    },
+    "73": {
+      "front": "games/assets/pokemon/showdown/front/tentacruel.gif",
+      "back": "games/assets/pokemon/showdown/back/tentacruel.gif"
+    },
+    "74": {
+      "front": "games/assets/pokemon/showdown/front/geodude.gif",
+      "back": "games/assets/pokemon/showdown/back/geodude.gif"
+    },
+    "75": {
+      "front": "games/assets/pokemon/showdown/front/graveler.gif",
+      "back": "games/assets/pokemon/showdown/back/graveler.gif"
+    },
+    "76": {
+      "front": "games/assets/pokemon/showdown/front/golem.gif",
+      "back": "games/assets/pokemon/showdown/back/golem.gif"
+    },
+    "77": {
+      "front": "games/assets/pokemon/showdown/front/ponyta.gif",
+      "back": "games/assets/pokemon/showdown/back/ponyta.gif"
+    },
+    "78": {
+      "front": "games/assets/pokemon/showdown/front/rapidash.gif",
+      "back": "games/assets/pokemon/showdown/back/rapidash.gif"
+    },
+    "79": {
+      "front": "games/assets/pokemon/showdown/front/slowpoke.gif",
+      "back": "games/assets/pokemon/showdown/back/slowpoke.gif"
+    },
+    "80": {
+      "front": "games/assets/pokemon/showdown/front/slowbro.gif",
+      "back": "games/assets/pokemon/showdown/back/slowbro.gif"
+    },
+    "81": {
+      "front": "games/assets/pokemon/showdown/front/magnemite.gif",
+      "back": "games/assets/pokemon/showdown/back/magnemite.gif"
+    },
+    "82": {
+      "front": "games/assets/pokemon/showdown/front/magneton.gif",
+      "back": "games/assets/pokemon/showdown/back/magneton.gif"
+    },
+    "83": {
+      "front": "games/assets/pokemon/showdown/front/farfetchd.gif",
+      "back": "games/assets/pokemon/showdown/back/farfetchd.gif"
+    },
+    "84": {
+      "front": "games/assets/pokemon/showdown/front/doduo.gif",
+      "back": "games/assets/pokemon/showdown/back/doduo.gif"
+    },
+    "85": {
+      "front": "games/assets/pokemon/showdown/front/dodrio.gif",
+      "back": "games/assets/pokemon/showdown/back/dodrio.gif"
+    },
+    "86": {
+      "front": "games/assets/pokemon/showdown/front/seel.gif",
+      "back": "games/assets/pokemon/showdown/back/seel.gif"
+    },
+    "87": {
+      "front": "games/assets/pokemon/showdown/front/dewgong.gif",
+      "back": "games/assets/pokemon/showdown/back/dewgong.gif"
+    },
+    "88": {
+      "front": "games/assets/pokemon/showdown/front/grimer.gif",
+      "back": "games/assets/pokemon/showdown/back/grimer.gif"
+    },
+    "89": {
+      "front": "games/assets/pokemon/showdown/front/muk.gif",
+      "back": "games/assets/pokemon/showdown/back/muk.gif"
+    },
+    "90": {
+      "front": "games/assets/pokemon/showdown/front/shellder.gif",
+      "back": "games/assets/pokemon/showdown/back/shellder.gif"
+    },
+    "91": {
+      "front": "games/assets/pokemon/showdown/front/cloyster.gif",
+      "back": "games/assets/pokemon/showdown/back/cloyster.gif"
+    },
+    "92": {
+      "front": "games/assets/pokemon/showdown/front/gastly.gif",
+      "back": "games/assets/pokemon/showdown/back/gastly.gif"
+    },
+    "93": {
+      "front": "games/assets/pokemon/showdown/front/haunter.gif",
+      "back": "games/assets/pokemon/showdown/back/haunter.gif"
+    },
+    "94": {
+      "front": "games/assets/pokemon/showdown/front/gengar.gif",
+      "back": "games/assets/pokemon/showdown/back/gengar.gif"
+    },
+    "95": {
+      "front": "games/assets/pokemon/showdown/front/onix.gif",
+      "back": "games/assets/pokemon/showdown/back/onix.gif"
+    },
+    "96": {
+      "front": "games/assets/pokemon/showdown/front/drowzee.gif",
+      "back": "games/assets/pokemon/showdown/back/drowzee.gif"
+    },
+    "97": {
+      "front": "games/assets/pokemon/showdown/front/hypno.gif",
+      "back": "games/assets/pokemon/showdown/back/hypno.gif"
+    },
+    "98": {
+      "front": "games/assets/pokemon/showdown/front/krabby.gif",
+      "back": "games/assets/pokemon/showdown/back/krabby.gif"
+    },
+    "99": {
+      "front": "games/assets/pokemon/showdown/front/kingler.gif",
+      "back": "games/assets/pokemon/showdown/back/kingler.gif"
+    },
+    "100": {
+      "front": "games/assets/pokemon/showdown/front/voltorb.gif",
+      "back": "games/assets/pokemon/showdown/back/voltorb.gif"
+    },
+    "101": {
+      "front": "games/assets/pokemon/showdown/front/electrode.gif",
+      "back": "games/assets/pokemon/showdown/back/electrode.gif"
+    },
+    "102": {
+      "front": "games/assets/pokemon/showdown/front/exeggcute.gif",
+      "back": "games/assets/pokemon/showdown/back/exeggcute.gif"
+    },
+    "103": {
+      "front": "games/assets/pokemon/showdown/front/exeggutor.gif",
+      "back": "games/assets/pokemon/showdown/back/exeggutor.gif"
+    },
+    "104": {
+      "front": "games/assets/pokemon/showdown/front/cubone.gif",
+      "back": "games/assets/pokemon/showdown/back/cubone.gif"
+    },
+    "105": {
+      "front": "games/assets/pokemon/showdown/front/marowak.gif",
+      "back": "games/assets/pokemon/showdown/back/marowak.gif"
+    },
+    "106": {
+      "front": "games/assets/pokemon/showdown/front/hitmonlee.gif",
+      "back": "games/assets/pokemon/showdown/back/hitmonlee.gif"
+    },
+    "107": {
+      "front": "games/assets/pokemon/showdown/front/hitmonchan.gif",
+      "back": "games/assets/pokemon/showdown/back/hitmonchan.gif"
+    },
+    "108": {
+      "front": "games/assets/pokemon/showdown/front/lickitung.gif",
+      "back": "games/assets/pokemon/showdown/back/lickitung.gif"
+    },
+    "109": {
+      "front": "games/assets/pokemon/showdown/front/koffing.gif",
+      "back": "games/assets/pokemon/showdown/back/koffing.gif"
+    },
+    "110": {
+      "front": "games/assets/pokemon/showdown/front/weezing.gif",
+      "back": "games/assets/pokemon/showdown/back/weezing.gif"
+    },
+    "111": {
+      "front": "games/assets/pokemon/showdown/front/rhyhorn.gif",
+      "back": "games/assets/pokemon/showdown/back/rhyhorn.gif"
+    },
+    "112": {
+      "front": "games/assets/pokemon/showdown/front/rhydon.gif",
+      "back": "games/assets/pokemon/showdown/back/rhydon.gif"
+    },
+    "113": {
+      "front": "games/assets/pokemon/showdown/front/chansey.gif",
+      "back": "games/assets/pokemon/showdown/back/chansey.gif"
+    },
+    "114": {
+      "front": "games/assets/pokemon/showdown/front/tangela.gif",
+      "back": "games/assets/pokemon/showdown/back/tangela.gif"
+    },
+    "115": {
+      "front": "games/assets/pokemon/showdown/front/kangaskhan.gif",
+      "back": "games/assets/pokemon/showdown/back/kangaskhan.gif"
+    },
+    "116": {
+      "front": "games/assets/pokemon/showdown/front/horsea.gif",
+      "back": "games/assets/pokemon/showdown/back/horsea.gif"
+    },
+    "117": {
+      "front": "games/assets/pokemon/showdown/front/seadra.gif",
+      "back": "games/assets/pokemon/showdown/back/seadra.gif"
+    },
+    "118": {
+      "front": "games/assets/pokemon/showdown/front/goldeen.gif",
+      "back": "games/assets/pokemon/showdown/back/goldeen.gif"
+    },
+    "119": {
+      "front": "games/assets/pokemon/showdown/front/seaking.gif",
+      "back": "games/assets/pokemon/showdown/back/seaking.gif"
+    },
+    "120": {
+      "front": "games/assets/pokemon/showdown/front/staryu.gif",
+      "back": "games/assets/pokemon/showdown/back/staryu.gif"
+    },
+    "121": {
+      "front": "games/assets/pokemon/showdown/front/starmie.gif",
+      "back": "games/assets/pokemon/showdown/back/starmie.gif"
+    },
+    "122": {
+      "front": "games/assets/pokemon/showdown/front/mrmime.gif",
+      "back": "games/assets/pokemon/showdown/back/mrmime.gif"
+    },
+    "123": {
+      "front": "games/assets/pokemon/showdown/front/scyther.gif",
+      "back": "games/assets/pokemon/showdown/back/scyther.gif"
+    },
+    "124": {
+      "front": "games/assets/pokemon/showdown/front/jynx.gif",
+      "back": "games/assets/pokemon/showdown/back/jynx.gif"
+    },
+    "125": {
+      "front": "games/assets/pokemon/showdown/front/electabuzz.gif",
+      "back": "games/assets/pokemon/showdown/back/electabuzz.gif"
+    },
+    "126": {
+      "front": "games/assets/pokemon/showdown/front/magmar.gif",
+      "back": "games/assets/pokemon/showdown/back/magmar.gif"
+    },
+    "127": {
+      "front": "games/assets/pokemon/showdown/front/pinsir.gif",
+      "back": "games/assets/pokemon/showdown/back/pinsir.gif"
+    },
+    "128": {
+      "front": "games/assets/pokemon/showdown/front/tauros.gif",
+      "back": "games/assets/pokemon/showdown/back/tauros.gif"
+    },
+    "129": {
+      "front": "games/assets/pokemon/showdown/front/magikarp.gif",
+      "back": "games/assets/pokemon/showdown/back/magikarp.gif"
+    },
+    "130": {
+      "front": "games/assets/pokemon/showdown/front/gyarados.gif",
+      "back": "games/assets/pokemon/showdown/back/gyarados.gif"
+    },
+    "131": {
+      "front": "games/assets/pokemon/showdown/front/lapras.gif",
+      "back": "games/assets/pokemon/showdown/back/lapras.gif"
+    },
+    "132": {
+      "front": "games/assets/pokemon/showdown/front/ditto.gif",
+      "back": "games/assets/pokemon/showdown/back/ditto.gif"
+    },
+    "133": {
+      "front": "games/assets/pokemon/showdown/front/eevee.gif",
+      "back": "games/assets/pokemon/showdown/back/eevee.gif"
+    },
+    "134": {
+      "front": "games/assets/pokemon/showdown/front/vaporeon.gif",
+      "back": "games/assets/pokemon/showdown/back/vaporeon.gif"
+    },
+    "135": {
+      "front": "games/assets/pokemon/showdown/front/jolteon.gif",
+      "back": "games/assets/pokemon/showdown/back/jolteon.gif"
+    },
+    "136": {
+      "front": "games/assets/pokemon/showdown/front/flareon.gif",
+      "back": "games/assets/pokemon/showdown/back/flareon.gif"
+    },
+    "137": {
+      "front": "games/assets/pokemon/showdown/front/porygon.gif",
+      "back": "games/assets/pokemon/showdown/back/porygon.gif"
+    },
+    "138": {
+      "front": "games/assets/pokemon/showdown/front/omanyte.gif",
+      "back": "games/assets/pokemon/showdown/back/omanyte.gif"
+    },
+    "139": {
+      "front": "games/assets/pokemon/showdown/front/omastar.gif",
+      "back": "games/assets/pokemon/showdown/back/omastar.gif"
+    },
+    "140": {
+      "front": "games/assets/pokemon/showdown/front/kabuto.gif",
+      "back": "games/assets/pokemon/showdown/back/kabuto.gif"
+    },
+    "141": {
+      "front": "games/assets/pokemon/showdown/front/kabutops.gif",
+      "back": "games/assets/pokemon/showdown/back/kabutops.gif"
+    },
+    "142": {
+      "front": "games/assets/pokemon/showdown/front/aerodactyl.gif",
+      "back": "games/assets/pokemon/showdown/back/aerodactyl.gif"
+    },
+    "143": {
+      "front": "games/assets/pokemon/showdown/front/snorlax.gif",
+      "back": "games/assets/pokemon/showdown/back/snorlax.gif"
+    },
+    "144": {
+      "front": "games/assets/pokemon/showdown/front/articuno.gif",
+      "back": "games/assets/pokemon/showdown/back/articuno.gif"
+    },
+    "145": {
+      "front": "games/assets/pokemon/showdown/front/zapdos.gif",
+      "back": "games/assets/pokemon/showdown/back/zapdos.gif"
+    },
+    "146": {
+      "front": "games/assets/pokemon/showdown/front/moltres.gif",
+      "back": "games/assets/pokemon/showdown/back/moltres.gif"
+    },
+    "147": {
+      "front": "games/assets/pokemon/showdown/front/dratini.gif",
+      "back": "games/assets/pokemon/showdown/back/dratini.gif"
+    },
+    "148": {
+      "front": "games/assets/pokemon/showdown/front/dragonair.gif",
+      "back": "games/assets/pokemon/showdown/back/dragonair.gif"
+    },
+    "149": {
+      "front": "games/assets/pokemon/showdown/front/dragonite.gif",
+      "back": "games/assets/pokemon/showdown/back/dragonite.gif"
+    },
+    "150": {
+      "front": "games/assets/pokemon/showdown/front/mewtwo.gif",
+      "back": "games/assets/pokemon/showdown/back/mewtwo.gif"
+    },
+    "151": {
+      "front": "games/assets/pokemon/showdown/front/mew.gif",
+      "back": "games/assets/pokemon/showdown/back/mew.gif"
+    },
+    "152": {
+      "front": "games/assets/pokemon/showdown/front/chikorita.gif",
+      "back": "games/assets/pokemon/showdown/back/chikorita.gif"
+    },
+    "153": {
+      "front": "games/assets/pokemon/showdown/front/bayleef.gif",
+      "back": "games/assets/pokemon/showdown/back/bayleef.gif"
+    },
+    "154": {
+      "front": "games/assets/pokemon/showdown/front/meganium.gif",
+      "back": "games/assets/pokemon/showdown/back/meganium.gif"
+    },
+    "155": {
+      "front": "games/assets/pokemon/showdown/front/cyndaquil.gif",
+      "back": "games/assets/pokemon/showdown/back/cyndaquil.gif"
+    },
+    "156": {
+      "front": "games/assets/pokemon/showdown/front/quilava.gif",
+      "back": "games/assets/pokemon/showdown/back/quilava.gif"
+    },
+    "157": {
+      "front": "games/assets/pokemon/showdown/front/typhlosion.gif",
+      "back": "games/assets/pokemon/showdown/back/typhlosion.gif"
+    },
+    "158": {
+      "front": "games/assets/pokemon/showdown/front/totodile.gif",
+      "back": "games/assets/pokemon/showdown/back/totodile.gif"
+    },
+    "159": {
+      "front": "games/assets/pokemon/showdown/front/croconaw.gif",
+      "back": "games/assets/pokemon/showdown/back/croconaw.gif"
+    },
+    "160": {
+      "front": "games/assets/pokemon/showdown/front/feraligatr.gif",
+      "back": "games/assets/pokemon/showdown/back/feraligatr.gif"
+    },
+    "161": {
+      "front": "games/assets/pokemon/showdown/front/sentret.gif",
+      "back": "games/assets/pokemon/showdown/back/sentret.gif"
+    },
+    "162": {
+      "front": "games/assets/pokemon/showdown/front/furret.gif",
+      "back": "games/assets/pokemon/showdown/back/furret.gif"
+    },
+    "163": {
+      "front": "games/assets/pokemon/showdown/front/hoothoot.gif",
+      "back": "games/assets/pokemon/showdown/back/hoothoot.gif"
+    },
+    "164": {
+      "front": "games/assets/pokemon/showdown/front/noctowl.gif",
+      "back": "games/assets/pokemon/showdown/back/noctowl.gif"
+    },
+    "165": {
+      "front": "games/assets/pokemon/showdown/front/ledyba.gif",
+      "back": "games/assets/pokemon/showdown/back/ledyba.gif"
+    },
+    "166": {
+      "front": "games/assets/pokemon/showdown/front/ledian.gif",
+      "back": "games/assets/pokemon/showdown/back/ledian.gif"
+    },
+    "167": {
+      "front": "games/assets/pokemon/showdown/front/spinarak.gif",
+      "back": "games/assets/pokemon/showdown/back/spinarak.gif"
+    },
+    "168": {
+      "front": "games/assets/pokemon/showdown/front/ariados.gif",
+      "back": "games/assets/pokemon/showdown/back/ariados.gif"
+    },
+    "169": {
+      "front": "games/assets/pokemon/showdown/front/crobat.gif",
+      "back": "games/assets/pokemon/showdown/back/crobat.gif"
+    },
+    "170": {
+      "front": "games/assets/pokemon/showdown/front/chinchou.gif",
+      "back": "games/assets/pokemon/showdown/back/chinchou.gif"
+    },
+    "171": {
+      "front": "games/assets/pokemon/showdown/front/lanturn.gif",
+      "back": "games/assets/pokemon/showdown/back/lanturn.gif"
+    },
+    "172": {
+      "front": "games/assets/pokemon/showdown/front/pichu.gif",
+      "back": "games/assets/pokemon/showdown/back/pichu.gif"
+    },
+    "173": {
+      "front": "games/assets/pokemon/showdown/front/cleffa.gif",
+      "back": "games/assets/pokemon/showdown/back/cleffa.gif"
+    },
+    "174": {
+      "front": "games/assets/pokemon/showdown/front/igglybuff.gif",
+      "back": "games/assets/pokemon/showdown/back/igglybuff.gif"
+    },
+    "175": {
+      "front": "games/assets/pokemon/showdown/front/togepi.gif",
+      "back": "games/assets/pokemon/showdown/back/togepi.gif"
+    },
+    "176": {
+      "front": "games/assets/pokemon/showdown/front/togetic.gif",
+      "back": "games/assets/pokemon/showdown/back/togetic.gif"
+    },
+    "177": {
+      "front": "games/assets/pokemon/showdown/front/natu.gif",
+      "back": "games/assets/pokemon/showdown/back/natu.gif"
+    },
+    "178": {
+      "front": "games/assets/pokemon/showdown/front/xatu.gif",
+      "back": "games/assets/pokemon/showdown/back/xatu.gif"
+    },
+    "179": {
+      "front": "games/assets/pokemon/showdown/front/mareep.gif",
+      "back": "games/assets/pokemon/showdown/back/mareep.gif"
+    },
+    "180": {
+      "front": "games/assets/pokemon/showdown/front/flaaffy.gif",
+      "back": "games/assets/pokemon/showdown/back/flaaffy.gif"
+    },
+    "181": {
+      "front": "games/assets/pokemon/showdown/front/ampharos.gif",
+      "back": "games/assets/pokemon/showdown/back/ampharos.gif"
+    },
+    "182": {
+      "front": "games/assets/pokemon/showdown/front/bellossom.gif",
+      "back": "games/assets/pokemon/showdown/back/bellossom.gif"
+    },
+    "183": {
+      "front": "games/assets/pokemon/showdown/front/marill.gif",
+      "back": "games/assets/pokemon/showdown/back/marill.gif"
+    },
+    "184": {
+      "front": "games/assets/pokemon/showdown/front/azumarill.gif",
+      "back": "games/assets/pokemon/showdown/back/azumarill.gif"
+    },
+    "185": {
+      "front": "games/assets/pokemon/showdown/front/sudowoodo.gif",
+      "back": "games/assets/pokemon/showdown/back/sudowoodo.gif"
+    },
+    "186": {
+      "front": "games/assets/pokemon/showdown/front/politoed.gif",
+      "back": "games/assets/pokemon/showdown/back/politoed.gif"
+    },
+    "187": {
+      "front": "games/assets/pokemon/showdown/front/hoppip.gif",
+      "back": "games/assets/pokemon/showdown/back/hoppip.gif"
+    },
+    "188": {
+      "front": "games/assets/pokemon/showdown/front/skiploom.gif",
+      "back": "games/assets/pokemon/showdown/back/skiploom.gif"
+    },
+    "189": {
+      "front": "games/assets/pokemon/showdown/front/jumpluff.gif",
+      "back": "games/assets/pokemon/showdown/back/jumpluff.gif"
+    },
+    "190": {
+      "front": "games/assets/pokemon/showdown/front/aipom.gif",
+      "back": "games/assets/pokemon/showdown/back/aipom.gif"
+    },
+    "191": {
+      "front": "games/assets/pokemon/showdown/front/sunkern.gif",
+      "back": "games/assets/pokemon/showdown/back/sunkern.gif"
+    },
+    "192": {
+      "front": "games/assets/pokemon/showdown/front/sunflora.gif",
+      "back": "games/assets/pokemon/showdown/back/sunflora.gif"
+    },
+    "193": {
+      "front": "games/assets/pokemon/showdown/front/yanma.gif",
+      "back": "games/assets/pokemon/showdown/back/yanma.gif"
+    },
+    "194": {
+      "front": "games/assets/pokemon/showdown/front/wooper.gif",
+      "back": "games/assets/pokemon/showdown/back/wooper.gif"
+    },
+    "195": {
+      "front": "games/assets/pokemon/showdown/front/quagsire.gif",
+      "back": "games/assets/pokemon/showdown/back/quagsire.gif"
+    },
+    "196": {
+      "front": "games/assets/pokemon/showdown/front/espeon.gif",
+      "back": "games/assets/pokemon/showdown/back/espeon.gif"
+    },
+    "197": {
+      "front": "games/assets/pokemon/showdown/front/umbreon.gif",
+      "back": "games/assets/pokemon/showdown/back/umbreon.gif"
+    },
+    "198": {
+      "front": "games/assets/pokemon/showdown/front/murkrow.gif",
+      "back": "games/assets/pokemon/showdown/back/murkrow.gif"
+    },
+    "199": {
+      "front": "games/assets/pokemon/showdown/front/slowking.gif",
+      "back": "games/assets/pokemon/showdown/back/slowking.gif"
+    },
+    "200": {
+      "front": "games/assets/pokemon/showdown/front/misdreavus.gif",
+      "back": "games/assets/pokemon/showdown/back/misdreavus.gif"
+    },
+    "201": {
+      "front": "games/assets/pokemon/showdown/front/unown.gif",
+      "back": "games/assets/pokemon/showdown/back/unown.gif"
+    },
+    "202": {
+      "front": "games/assets/pokemon/showdown/front/wobbuffet.gif",
+      "back": "games/assets/pokemon/showdown/back/wobbuffet.gif"
+    },
+    "203": {
+      "front": "games/assets/pokemon/showdown/front/girafarig.gif",
+      "back": "games/assets/pokemon/showdown/back/girafarig.gif"
+    },
+    "204": {
+      "front": "games/assets/pokemon/showdown/front/pineco.gif",
+      "back": "games/assets/pokemon/showdown/back/pineco.gif"
+    },
+    "205": {
+      "front": "games/assets/pokemon/showdown/front/forretress.gif",
+      "back": "games/assets/pokemon/showdown/back/forretress.gif"
+    },
+    "206": {
+      "front": "games/assets/pokemon/showdown/front/dunsparce.gif",
+      "back": "games/assets/pokemon/showdown/back/dunsparce.gif"
+    },
+    "207": {
+      "front": "games/assets/pokemon/showdown/front/gligar.gif",
+      "back": "games/assets/pokemon/showdown/back/gligar.gif"
+    },
+    "208": {
+      "front": "games/assets/pokemon/showdown/front/steelix.gif",
+      "back": "games/assets/pokemon/showdown/back/steelix.gif"
+    },
+    "209": {
+      "front": "games/assets/pokemon/showdown/front/snubbull.gif",
+      "back": "games/assets/pokemon/showdown/back/snubbull.gif"
+    },
+    "210": {
+      "front": "games/assets/pokemon/showdown/front/granbull.gif",
+      "back": "games/assets/pokemon/showdown/back/granbull.gif"
+    },
+    "211": {
+      "front": "games/assets/pokemon/showdown/front/qwilfish.gif",
+      "back": "games/assets/pokemon/showdown/back/qwilfish.gif"
+    },
+    "212": {
+      "front": "games/assets/pokemon/showdown/front/scizor.gif",
+      "back": "games/assets/pokemon/showdown/back/scizor.gif"
+    },
+    "213": {
+      "front": "games/assets/pokemon/showdown/front/shuckle.gif",
+      "back": "games/assets/pokemon/showdown/back/shuckle.gif"
+    },
+    "214": {
+      "front": "games/assets/pokemon/showdown/front/heracross.gif",
+      "back": "games/assets/pokemon/showdown/back/heracross.gif"
+    },
+    "215": {
+      "front": "games/assets/pokemon/showdown/front/sneasel.gif",
+      "back": "games/assets/pokemon/showdown/back/sneasel.gif"
+    },
+    "216": {
+      "front": "games/assets/pokemon/showdown/front/teddiursa.gif",
+      "back": "games/assets/pokemon/showdown/back/teddiursa.gif"
+    },
+    "217": {
+      "front": "games/assets/pokemon/showdown/front/ursaring.gif",
+      "back": "games/assets/pokemon/showdown/back/ursaring.gif"
+    },
+    "218": {
+      "front": "games/assets/pokemon/showdown/front/slugma.gif",
+      "back": "games/assets/pokemon/showdown/back/slugma.gif"
+    },
+    "219": {
+      "front": "games/assets/pokemon/showdown/front/magcargo.gif",
+      "back": "games/assets/pokemon/showdown/back/magcargo.gif"
+    },
+    "220": {
+      "front": "games/assets/pokemon/showdown/front/swinub.gif",
+      "back": "games/assets/pokemon/showdown/back/swinub.gif"
+    },
+    "221": {
+      "front": "games/assets/pokemon/showdown/front/piloswine.gif",
+      "back": "games/assets/pokemon/showdown/back/piloswine.gif"
+    },
+    "222": {
+      "front": "games/assets/pokemon/showdown/front/corsola.gif",
+      "back": "games/assets/pokemon/showdown/back/corsola.gif"
+    },
+    "223": {
+      "front": "games/assets/pokemon/showdown/front/remoraid.gif",
+      "back": "games/assets/pokemon/showdown/back/remoraid.gif"
+    },
+    "224": {
+      "front": "games/assets/pokemon/showdown/front/octillery.gif",
+      "back": "games/assets/pokemon/showdown/back/octillery.gif"
+    },
+    "225": {
+      "front": "games/assets/pokemon/showdown/front/delibird.gif",
+      "back": "games/assets/pokemon/showdown/back/delibird.gif"
+    },
+    "226": {
+      "front": "games/assets/pokemon/showdown/front/mantine.gif",
+      "back": "games/assets/pokemon/showdown/back/mantine.gif"
+    },
+    "227": {
+      "front": "games/assets/pokemon/showdown/front/skarmory.gif",
+      "back": "games/assets/pokemon/showdown/back/skarmory.gif"
+    },
+    "228": {
+      "front": "games/assets/pokemon/showdown/front/houndour.gif",
+      "back": "games/assets/pokemon/showdown/back/houndour.gif"
+    },
+    "229": {
+      "front": "games/assets/pokemon/showdown/front/houndoom.gif",
+      "back": "games/assets/pokemon/showdown/back/houndoom.gif"
+    },
+    "230": {
+      "front": "games/assets/pokemon/showdown/front/kingdra.gif",
+      "back": "games/assets/pokemon/showdown/back/kingdra.gif"
+    },
+    "231": {
+      "front": "games/assets/pokemon/showdown/front/phanpy.gif",
+      "back": "games/assets/pokemon/showdown/back/phanpy.gif"
+    },
+    "232": {
+      "front": "games/assets/pokemon/showdown/front/donphan.gif",
+      "back": "games/assets/pokemon/showdown/back/donphan.gif"
+    },
+    "233": {
+      "front": "games/assets/pokemon/showdown/front/porygon2.gif",
+      "back": "games/assets/pokemon/showdown/back/porygon2.gif"
+    },
+    "234": {
+      "front": "games/assets/pokemon/showdown/front/stantler.gif",
+      "back": "games/assets/pokemon/showdown/back/stantler.gif"
+    },
+    "235": {
+      "front": "games/assets/pokemon/showdown/front/smeargle.gif",
+      "back": "games/assets/pokemon/showdown/back/smeargle.gif"
+    },
+    "236": {
+      "front": "games/assets/pokemon/showdown/front/tyrogue.gif",
+      "back": "games/assets/pokemon/showdown/back/tyrogue.gif"
+    },
+    "237": {
+      "front": "games/assets/pokemon/showdown/front/hitmontop.gif",
+      "back": "games/assets/pokemon/showdown/back/hitmontop.gif"
+    },
+    "238": {
+      "front": "games/assets/pokemon/showdown/front/smoochum.gif",
+      "back": "games/assets/pokemon/showdown/back/smoochum.gif"
+    },
+    "239": {
+      "front": "games/assets/pokemon/showdown/front/elekid.gif",
+      "back": "games/assets/pokemon/showdown/back/elekid.gif"
+    },
+    "240": {
+      "front": "games/assets/pokemon/showdown/front/magby.gif",
+      "back": "games/assets/pokemon/showdown/back/magby.gif"
+    },
+    "241": {
+      "front": "games/assets/pokemon/showdown/front/miltank.gif",
+      "back": "games/assets/pokemon/showdown/back/miltank.gif"
+    },
+    "242": {
+      "front": "games/assets/pokemon/showdown/front/blissey.gif",
+      "back": "games/assets/pokemon/showdown/back/blissey.gif"
+    },
+    "243": {
+      "front": "games/assets/pokemon/showdown/front/raikou.gif",
+      "back": "games/assets/pokemon/showdown/back/raikou.gif"
+    },
+    "244": {
+      "front": "games/assets/pokemon/showdown/front/entei.gif",
+      "back": "games/assets/pokemon/showdown/back/entei.gif"
+    },
+    "245": {
+      "front": "games/assets/pokemon/showdown/front/suicune.gif",
+      "back": "games/assets/pokemon/showdown/back/suicune.gif"
+    },
+    "246": {
+      "front": "games/assets/pokemon/showdown/front/larvitar.gif",
+      "back": "games/assets/pokemon/showdown/back/larvitar.gif"
+    },
+    "247": {
+      "front": "games/assets/pokemon/showdown/front/pupitar.gif",
+      "back": "games/assets/pokemon/showdown/back/pupitar.gif"
+    },
+    "248": {
+      "front": "games/assets/pokemon/showdown/front/tyranitar.gif",
+      "back": "games/assets/pokemon/showdown/back/tyranitar.gif"
+    },
+    "249": {
+      "front": "games/assets/pokemon/showdown/front/lugia.gif",
+      "back": "games/assets/pokemon/showdown/back/lugia.gif"
+    },
+    "250": {
+      "front": "games/assets/pokemon/showdown/front/hooh.gif",
+      "back": "games/assets/pokemon/showdown/back/hooh.gif"
+    },
+    "251": {
+      "front": "games/assets/pokemon/showdown/front/celebi.gif",
+      "back": "games/assets/pokemon/showdown/back/celebi.gif"
+    },
+    "277": {
+      "front": "games/assets/pokemon/showdown/front/treecko.gif",
+      "back": "games/assets/pokemon/showdown/back/treecko.gif"
+    },
+    "278": {
+      "front": "games/assets/pokemon/showdown/front/grovyle.gif",
+      "back": "games/assets/pokemon/showdown/back/grovyle.gif"
+    },
+    "279": {
+      "front": "games/assets/pokemon/showdown/front/sceptile.gif",
+      "back": "games/assets/pokemon/showdown/back/sceptile.gif"
+    },
+    "280": {
+      "front": "games/assets/pokemon/showdown/front/torchic.gif",
+      "back": "games/assets/pokemon/showdown/back/torchic.gif"
+    },
+    "281": {
+      "front": "games/assets/pokemon/showdown/front/combusken.gif",
+      "back": "games/assets/pokemon/showdown/back/combusken.gif"
+    },
+    "282": {
+      "front": "games/assets/pokemon/showdown/front/blaziken.gif",
+      "back": "games/assets/pokemon/showdown/back/blaziken.gif"
+    },
+    "283": {
+      "front": "games/assets/pokemon/showdown/front/mudkip.gif",
+      "back": "games/assets/pokemon/showdown/back/mudkip.gif"
+    },
+    "284": {
+      "front": "games/assets/pokemon/showdown/front/marshtomp.gif",
+      "back": "games/assets/pokemon/showdown/back/marshtomp.gif"
+    },
+    "285": {
+      "front": "games/assets/pokemon/showdown/front/swampert.gif",
+      "back": "games/assets/pokemon/showdown/back/swampert.gif"
+    },
+    "286": {
+      "front": "games/assets/pokemon/showdown/front/poochyena.gif",
+      "back": "games/assets/pokemon/showdown/back/poochyena.gif"
+    },
+    "287": {
+      "front": "games/assets/pokemon/showdown/front/mightyena.gif",
+      "back": "games/assets/pokemon/showdown/back/mightyena.gif"
+    },
+    "288": {
+      "front": "games/assets/pokemon/showdown/front/zigzagoon.gif",
+      "back": "games/assets/pokemon/showdown/back/zigzagoon.gif"
+    },
+    "289": {
+      "front": "games/assets/pokemon/showdown/front/linoone.gif",
+      "back": "games/assets/pokemon/showdown/back/linoone.gif"
+    },
+    "290": {
+      "front": "games/assets/pokemon/showdown/front/wurmple.gif",
+      "back": "games/assets/pokemon/showdown/back/wurmple.gif"
+    },
+    "291": {
+      "front": "games/assets/pokemon/showdown/front/silcoon.gif",
+      "back": "games/assets/pokemon/showdown/back/silcoon.gif"
+    },
+    "292": {
+      "front": "games/assets/pokemon/showdown/front/beautifly.gif",
+      "back": "games/assets/pokemon/showdown/back/beautifly.gif"
+    },
+    "293": {
+      "front": "games/assets/pokemon/showdown/front/cascoon.gif",
+      "back": "games/assets/pokemon/showdown/back/cascoon.gif"
+    },
+    "294": {
+      "front": "games/assets/pokemon/showdown/front/dustox.gif",
+      "back": "games/assets/pokemon/showdown/back/dustox.gif"
+    },
+    "295": {
+      "front": "games/assets/pokemon/showdown/front/lotad.gif",
+      "back": "games/assets/pokemon/showdown/back/lotad.gif"
+    },
+    "296": {
+      "front": "games/assets/pokemon/showdown/front/lombre.gif",
+      "back": "games/assets/pokemon/showdown/back/lombre.gif"
+    },
+    "297": {
+      "front": "games/assets/pokemon/showdown/front/ludicolo.gif",
+      "back": "games/assets/pokemon/showdown/back/ludicolo.gif"
+    },
+    "298": {
+      "front": "games/assets/pokemon/showdown/front/seedot.gif",
+      "back": "games/assets/pokemon/showdown/back/seedot.gif"
+    },
+    "299": {
+      "front": "games/assets/pokemon/showdown/front/nuzleaf.gif",
+      "back": "games/assets/pokemon/showdown/back/nuzleaf.gif"
+    },
+    "300": {
+      "front": "games/assets/pokemon/showdown/front/shiftry.gif",
+      "back": "games/assets/pokemon/showdown/back/shiftry.gif"
+    },
+    "301": {
+      "front": "games/assets/pokemon/showdown/front/nincada.gif",
+      "back": "games/assets/pokemon/showdown/back/nincada.gif"
+    },
+    "302": {
+      "front": "games/assets/pokemon/showdown/front/ninjask.gif",
+      "back": "games/assets/pokemon/showdown/back/ninjask.gif"
+    },
+    "303": {
+      "front": "games/assets/pokemon/showdown/front/shedinja.gif",
+      "back": "games/assets/pokemon/showdown/back/shedinja.gif"
+    },
+    "304": {
+      "front": "games/assets/pokemon/showdown/front/taillow.gif",
+      "back": "games/assets/pokemon/showdown/back/taillow.gif"
+    },
+    "305": {
+      "front": "games/assets/pokemon/showdown/front/swellow.gif",
+      "back": "games/assets/pokemon/showdown/back/swellow.gif"
+    },
+    "306": {
+      "front": "games/assets/pokemon/showdown/front/shroomish.gif",
+      "back": "games/assets/pokemon/showdown/back/shroomish.gif"
+    },
+    "307": {
+      "front": "games/assets/pokemon/showdown/front/breloom.gif",
+      "back": "games/assets/pokemon/showdown/back/breloom.gif"
+    },
+    "308": {
+      "front": "games/assets/pokemon/showdown/front/spinda.gif",
+      "back": "games/assets/pokemon/showdown/back/spinda.gif"
+    },
+    "309": {
+      "front": "games/assets/pokemon/showdown/front/wingull.gif",
+      "back": "games/assets/pokemon/showdown/back/wingull.gif"
+    },
+    "310": {
+      "front": "games/assets/pokemon/showdown/front/pelipper.gif",
+      "back": "games/assets/pokemon/showdown/back/pelipper.gif"
+    },
+    "311": {
+      "front": "games/assets/pokemon/showdown/front/surskit.gif",
+      "back": "games/assets/pokemon/showdown/back/surskit.gif"
+    },
+    "312": {
+      "front": "games/assets/pokemon/showdown/front/masquerain.gif",
+      "back": "games/assets/pokemon/showdown/back/masquerain.gif"
+    },
+    "313": {
+      "front": "games/assets/pokemon/showdown/front/wailmer.gif",
+      "back": "games/assets/pokemon/showdown/back/wailmer.gif"
+    },
+    "314": {
+      "front": "games/assets/pokemon/showdown/front/wailord.gif",
+      "back": "games/assets/pokemon/showdown/back/wailord.gif"
+    },
+    "315": {
+      "front": "games/assets/pokemon/showdown/front/skitty.gif",
+      "back": "games/assets/pokemon/showdown/back/skitty.gif"
+    },
+    "316": {
+      "front": "games/assets/pokemon/showdown/front/delcatty.gif",
+      "back": "games/assets/pokemon/showdown/back/delcatty.gif"
+    },
+    "317": {
+      "front": "games/assets/pokemon/showdown/front/kecleon.gif",
+      "back": "games/assets/pokemon/showdown/back/kecleon.gif"
+    },
+    "318": {
+      "front": "games/assets/pokemon/showdown/front/baltoy.gif",
+      "back": "games/assets/pokemon/showdown/back/baltoy.gif"
+    },
+    "319": {
+      "front": "games/assets/pokemon/showdown/front/claydol.gif",
+      "back": "games/assets/pokemon/showdown/back/claydol.gif"
+    },
+    "320": {
+      "front": "games/assets/pokemon/showdown/front/nosepass.gif",
+      "back": "games/assets/pokemon/showdown/back/nosepass.gif"
+    },
+    "321": {
+      "front": "games/assets/pokemon/showdown/front/torkoal.gif",
+      "back": "games/assets/pokemon/showdown/back/torkoal.gif"
+    },
+    "322": {
+      "front": "games/assets/pokemon/showdown/front/sableye.gif",
+      "back": "games/assets/pokemon/showdown/back/sableye.gif"
+    },
+    "323": {
+      "front": "games/assets/pokemon/showdown/front/barboach.gif",
+      "back": "games/assets/pokemon/showdown/back/barboach.gif"
+    },
+    "324": {
+      "front": "games/assets/pokemon/showdown/front/whiscash.gif",
+      "back": "games/assets/pokemon/showdown/back/whiscash.gif"
+    },
+    "325": {
+      "front": "games/assets/pokemon/showdown/front/luvdisc.gif",
+      "back": "games/assets/pokemon/showdown/back/luvdisc.gif"
+    },
+    "326": {
+      "front": "games/assets/pokemon/showdown/front/corphish.gif",
+      "back": "games/assets/pokemon/showdown/back/corphish.gif"
+    },
+    "327": {
+      "front": "games/assets/pokemon/showdown/front/crawdaunt.gif",
+      "back": "games/assets/pokemon/showdown/back/crawdaunt.gif"
+    },
+    "328": {
+      "front": "games/assets/pokemon/showdown/front/feebas.gif",
+      "back": "games/assets/pokemon/showdown/back/feebas.gif"
+    },
+    "329": {
+      "front": "games/assets/pokemon/showdown/front/milotic.gif",
+      "back": "games/assets/pokemon/showdown/back/milotic.gif"
+    },
+    "330": {
+      "front": "games/assets/pokemon/showdown/front/carvanha.gif",
+      "back": "games/assets/pokemon/showdown/back/carvanha.gif"
+    },
+    "331": {
+      "front": "games/assets/pokemon/showdown/front/sharpedo.gif",
+      "back": "games/assets/pokemon/showdown/back/sharpedo.gif"
+    },
+    "332": {
+      "front": "games/assets/pokemon/showdown/front/trapinch.gif",
+      "back": "games/assets/pokemon/showdown/back/trapinch.gif"
+    },
+    "333": {
+      "front": "games/assets/pokemon/showdown/front/vibrava.gif",
+      "back": "games/assets/pokemon/showdown/back/vibrava.gif"
+    },
+    "334": {
+      "front": "games/assets/pokemon/showdown/front/flygon.gif",
+      "back": "games/assets/pokemon/showdown/back/flygon.gif"
+    },
+    "335": {
+      "front": "games/assets/pokemon/showdown/front/makuhita.gif",
+      "back": "games/assets/pokemon/showdown/back/makuhita.gif"
+    },
+    "336": {
+      "front": "games/assets/pokemon/showdown/front/hariyama.gif",
+      "back": "games/assets/pokemon/showdown/back/hariyama.gif"
+    },
+    "337": {
+      "front": "games/assets/pokemon/showdown/front/electrike.gif",
+      "back": "games/assets/pokemon/showdown/back/electrike.gif"
+    },
+    "338": {
+      "front": "games/assets/pokemon/showdown/front/manectric.gif",
+      "back": "games/assets/pokemon/showdown/back/manectric.gif"
+    },
+    "339": {
+      "front": "games/assets/pokemon/showdown/front/numel.gif",
+      "back": "games/assets/pokemon/showdown/back/numel.gif"
+    },
+    "340": {
+      "front": "games/assets/pokemon/showdown/front/camerupt.gif",
+      "back": "games/assets/pokemon/showdown/back/camerupt.gif"
+    },
+    "341": {
+      "front": "games/assets/pokemon/showdown/front/spheal.gif",
+      "back": "games/assets/pokemon/showdown/back/spheal.gif"
+    },
+    "342": {
+      "front": "games/assets/pokemon/showdown/front/sealeo.gif",
+      "back": "games/assets/pokemon/showdown/back/sealeo.gif"
+    },
+    "343": {
+      "front": "games/assets/pokemon/showdown/front/walrein.gif",
+      "back": "games/assets/pokemon/showdown/back/walrein.gif"
+    },
+    "344": {
+      "front": "games/assets/pokemon/showdown/front/cacnea.gif",
+      "back": "games/assets/pokemon/showdown/back/cacnea.gif"
+    },
+    "345": {
+      "front": "games/assets/pokemon/showdown/front/cacturne.gif",
+      "back": "games/assets/pokemon/showdown/back/cacturne.gif"
+    },
+    "346": {
+      "front": "games/assets/pokemon/showdown/front/snorunt.gif",
+      "back": "games/assets/pokemon/showdown/back/snorunt.gif"
+    },
+    "347": {
+      "front": "games/assets/pokemon/showdown/front/glalie.gif",
+      "back": "games/assets/pokemon/showdown/back/glalie.gif"
+    },
+    "348": {
+      "front": "games/assets/pokemon/showdown/front/lunatone.gif",
+      "back": "games/assets/pokemon/showdown/back/lunatone.gif"
+    },
+    "349": {
+      "front": "games/assets/pokemon/showdown/front/solrock.gif",
+      "back": "games/assets/pokemon/showdown/back/solrock.gif"
+    },
+    "350": {
+      "front": "games/assets/pokemon/showdown/front/azurill.gif",
+      "back": "games/assets/pokemon/showdown/back/azurill.gif"
+    },
+    "351": {
+      "front": "games/assets/pokemon/showdown/front/spoink.gif",
+      "back": "games/assets/pokemon/showdown/back/spoink.gif"
+    },
+    "352": {
+      "front": "games/assets/pokemon/showdown/front/grumpig.gif",
+      "back": "games/assets/pokemon/showdown/back/grumpig.gif"
+    },
+    "353": {
+      "front": "games/assets/pokemon/showdown/front/plusle.gif",
+      "back": "games/assets/pokemon/showdown/back/plusle.gif"
+    },
+    "354": {
+      "front": "games/assets/pokemon/showdown/front/minun.gif",
+      "back": "games/assets/pokemon/showdown/back/minun.gif"
+    },
+    "355": {
+      "front": "games/assets/pokemon/showdown/front/mawile.gif",
+      "back": "games/assets/pokemon/showdown/back/mawile.gif"
+    },
+    "356": {
+      "front": "games/assets/pokemon/showdown/front/meditite.gif",
+      "back": "games/assets/pokemon/showdown/back/meditite.gif"
+    },
+    "357": {
+      "front": "games/assets/pokemon/showdown/front/medicham.gif",
+      "back": "games/assets/pokemon/showdown/back/medicham.gif"
+    },
+    "358": {
+      "front": "games/assets/pokemon/showdown/front/swablu.gif",
+      "back": "games/assets/pokemon/showdown/back/swablu.gif"
+    },
+    "359": {
+      "front": "games/assets/pokemon/showdown/front/altaria.gif",
+      "back": "games/assets/pokemon/showdown/back/altaria.gif"
+    },
+    "360": {
+      "front": "games/assets/pokemon/showdown/front/wynaut.gif",
+      "back": "games/assets/pokemon/showdown/back/wynaut.gif"
+    },
+    "361": {
+      "front": "games/assets/pokemon/showdown/front/duskull.gif",
+      "back": "games/assets/pokemon/showdown/back/duskull.gif"
+    },
+    "362": {
+      "front": "games/assets/pokemon/showdown/front/dusclops.gif",
+      "back": "games/assets/pokemon/showdown/back/dusclops.gif"
+    },
+    "363": {
+      "front": "games/assets/pokemon/showdown/front/roselia.gif",
+      "back": "games/assets/pokemon/showdown/back/roselia.gif"
+    },
+    "364": {
+      "front": "games/assets/pokemon/showdown/front/slakoth.gif",
+      "back": "games/assets/pokemon/showdown/back/slakoth.gif"
+    },
+    "365": {
+      "front": "games/assets/pokemon/showdown/front/vigoroth.gif",
+      "back": "games/assets/pokemon/showdown/back/vigoroth.gif"
+    },
+    "366": {
+      "front": "games/assets/pokemon/showdown/front/slaking.gif",
+      "back": "games/assets/pokemon/showdown/back/slaking.gif"
+    },
+    "367": {
+      "front": "games/assets/pokemon/showdown/front/gulpin.gif",
+      "back": "games/assets/pokemon/showdown/back/gulpin.gif"
+    },
+    "368": {
+      "front": "games/assets/pokemon/showdown/front/swalot.gif",
+      "back": "games/assets/pokemon/showdown/back/swalot.gif"
+    },
+    "369": {
+      "front": "games/assets/pokemon/showdown/front/tropius.gif",
+      "back": "games/assets/pokemon/showdown/back/tropius.gif"
+    },
+    "370": {
+      "front": "games/assets/pokemon/showdown/front/whismur.gif",
+      "back": "games/assets/pokemon/showdown/back/whismur.gif"
+    },
+    "371": {
+      "front": "games/assets/pokemon/showdown/front/loudred.gif",
+      "back": "games/assets/pokemon/showdown/back/loudred.gif"
+    },
+    "372": {
+      "front": "games/assets/pokemon/showdown/front/exploud.gif",
+      "back": "games/assets/pokemon/showdown/back/exploud.gif"
+    },
+    "373": {
+      "front": "games/assets/pokemon/showdown/front/clamperl.gif",
+      "back": "games/assets/pokemon/showdown/back/clamperl.gif"
+    },
+    "374": {
+      "front": "games/assets/pokemon/showdown/front/huntail.gif",
+      "back": "games/assets/pokemon/showdown/back/huntail.gif"
+    },
+    "375": {
+      "front": "games/assets/pokemon/showdown/front/gorebyss.gif",
+      "back": "games/assets/pokemon/showdown/back/gorebyss.gif"
+    },
+    "376": {
+      "front": "games/assets/pokemon/showdown/front/absol.gif",
+      "back": "games/assets/pokemon/showdown/back/absol.gif"
+    },
+    "377": {
+      "front": "games/assets/pokemon/showdown/front/shuppet.gif",
+      "back": "games/assets/pokemon/showdown/back/shuppet.gif"
+    },
+    "378": {
+      "front": "games/assets/pokemon/showdown/front/banette.gif",
+      "back": "games/assets/pokemon/showdown/back/banette.gif"
+    },
+    "379": {
+      "front": "games/assets/pokemon/showdown/front/seviper.gif",
+      "back": "games/assets/pokemon/showdown/back/seviper.gif"
+    },
+    "380": {
+      "front": "games/assets/pokemon/showdown/front/zangoose.gif",
+      "back": "games/assets/pokemon/showdown/back/zangoose.gif"
+    },
+    "381": {
+      "front": "games/assets/pokemon/showdown/front/relicanth.gif",
+      "back": "games/assets/pokemon/showdown/back/relicanth.gif"
+    },
+    "382": {
+      "front": "games/assets/pokemon/showdown/front/aron.gif",
+      "back": "games/assets/pokemon/showdown/back/aron.gif"
+    },
+    "383": {
+      "front": "games/assets/pokemon/showdown/front/lairon.gif",
+      "back": "games/assets/pokemon/showdown/back/lairon.gif"
+    },
+    "384": {
+      "front": "games/assets/pokemon/showdown/front/aggron.gif",
+      "back": "games/assets/pokemon/showdown/back/aggron.gif"
+    },
+    "385": {
+      "front": "games/assets/pokemon/showdown/front/castform.gif",
+      "back": "games/assets/pokemon/showdown/back/castform.gif"
+    },
+    "386": {
+      "front": "games/assets/pokemon/showdown/front/volbeat.gif",
+      "back": "games/assets/pokemon/showdown/back/volbeat.gif"
+    },
+    "387": {
+      "front": "games/assets/pokemon/showdown/front/illumise.gif",
+      "back": "games/assets/pokemon/showdown/back/illumise.gif"
+    },
+    "388": {
+      "front": "games/assets/pokemon/showdown/front/lileep.gif",
+      "back": "games/assets/pokemon/showdown/back/lileep.gif"
+    },
+    "389": {
+      "front": "games/assets/pokemon/showdown/front/cradily.gif",
+      "back": "games/assets/pokemon/showdown/back/cradily.gif"
+    },
+    "390": {
+      "front": "games/assets/pokemon/showdown/front/anorith.gif",
+      "back": "games/assets/pokemon/showdown/back/anorith.gif"
+    },
+    "391": {
+      "front": "games/assets/pokemon/showdown/front/armaldo.gif",
+      "back": "games/assets/pokemon/showdown/back/armaldo.gif"
+    },
+    "392": {
+      "front": "games/assets/pokemon/showdown/front/ralts.gif",
+      "back": "games/assets/pokemon/showdown/back/ralts.gif"
+    },
+    "393": {
+      "front": "games/assets/pokemon/showdown/front/kirlia.gif",
+      "back": "games/assets/pokemon/showdown/back/kirlia.gif"
+    },
+    "394": {
+      "front": "games/assets/pokemon/showdown/front/gardevoir.gif",
+      "back": "games/assets/pokemon/showdown/back/gardevoir.gif"
+    },
+    "395": {
+      "front": "games/assets/pokemon/showdown/front/bagon.gif",
+      "back": "games/assets/pokemon/showdown/back/bagon.gif"
+    },
+    "396": {
+      "front": "games/assets/pokemon/showdown/front/shelgon.gif",
+      "back": "games/assets/pokemon/showdown/back/shelgon.gif"
+    },
+    "397": {
+      "front": "games/assets/pokemon/showdown/front/salamence.gif",
+      "back": "games/assets/pokemon/showdown/back/salamence.gif"
+    },
+    "398": {
+      "front": "games/assets/pokemon/showdown/front/beldum.gif",
+      "back": "games/assets/pokemon/showdown/back/beldum.gif"
+    },
+    "399": {
+      "front": "games/assets/pokemon/showdown/front/metang.gif",
+      "back": "games/assets/pokemon/showdown/back/metang.gif"
+    },
+    "400": {
+      "front": "games/assets/pokemon/showdown/front/metagross.gif",
+      "back": "games/assets/pokemon/showdown/back/metagross.gif"
+    },
+    "401": {
+      "front": "games/assets/pokemon/showdown/front/regirock.gif",
+      "back": "games/assets/pokemon/showdown/back/regirock.gif"
+    },
+    "402": {
+      "front": "games/assets/pokemon/showdown/front/regice.gif",
+      "back": "games/assets/pokemon/showdown/back/regice.gif"
+    },
+    "403": {
+      "front": "games/assets/pokemon/showdown/front/registeel.gif",
+      "back": "games/assets/pokemon/showdown/back/registeel.gif"
+    },
+    "404": {
+      "front": "games/assets/pokemon/showdown/front/kyogre.gif",
+      "back": "games/assets/pokemon/showdown/back/kyogre.gif"
+    },
+    "405": {
+      "front": "games/assets/pokemon/showdown/front/groudon.gif",
+      "back": "games/assets/pokemon/showdown/back/groudon.gif"
+    },
+    "406": {
+      "front": "games/assets/pokemon/showdown/front/rayquaza.gif",
+      "back": "games/assets/pokemon/showdown/back/rayquaza.gif"
+    },
+    "407": {
+      "front": "games/assets/pokemon/showdown/front/latias.gif",
+      "back": "games/assets/pokemon/showdown/back/latias.gif"
+    },
+    "408": {
+      "front": "games/assets/pokemon/showdown/front/latios.gif",
+      "back": "games/assets/pokemon/showdown/back/latios.gif"
+    },
+    "409": {
+      "front": "games/assets/pokemon/showdown/front/jirachi.gif",
+      "back": "games/assets/pokemon/showdown/back/jirachi.gif"
+    },
+    "410": {
+      "front": "games/assets/pokemon/showdown/front/deoxys.gif",
+      "back": "games/assets/pokemon/showdown/back/deoxys.gif"
+    },
+    "411": {
+      "front": "games/assets/pokemon/showdown/front/chimecho.gif",
+      "back": "games/assets/pokemon/showdown/back/chimecho.gif"
+    },
+    "413": {
+      "front": "games/assets/pokemon/showdown/front/unown.gif",
+      "back": "games/assets/pokemon/showdown/back/unown.gif"
+    },
+    "414": {
+      "front": "games/assets/pokemon/showdown/front/unown.gif",
+      "back": "games/assets/pokemon/showdown/back/unown.gif"
+    },
+    "415": {
+      "front": "games/assets/pokemon/showdown/front/unown.gif",
+      "back": "games/assets/pokemon/showdown/back/unown.gif"
+    },
+    "416": {
+      "front": "games/assets/pokemon/showdown/front/unown.gif",
+      "back": "games/assets/pokemon/showdown/back/unown.gif"
+    },
+    "417": {
+      "front": "games/assets/pokemon/showdown/front/unown.gif",
+      "back": "games/assets/pokemon/showdown/back/unown.gif"
+    },
+    "418": {
+      "front": "games/assets/pokemon/showdown/front/unown.gif",
+      "back": "games/assets/pokemon/showdown/back/unown.gif"
+    },
+    "419": {
+      "front": "games/assets/pokemon/showdown/front/unown.gif",
+      "back": "games/assets/pokemon/showdown/back/unown.gif"
+    },
+    "420": {
+      "front": "games/assets/pokemon/showdown/front/unown.gif",
+      "back": "games/assets/pokemon/showdown/back/unown.gif"
+    },
+    "421": {
+      "front": "games/assets/pokemon/showdown/front/unown.gif",
+      "back": "games/assets/pokemon/showdown/back/unown.gif"
+    },
+    "422": {
+      "front": "games/assets/pokemon/showdown/front/unown.gif",
+      "back": "games/assets/pokemon/showdown/back/unown.gif"
+    },
+    "423": {
+      "front": "games/assets/pokemon/showdown/front/unown.gif",
+      "back": "games/assets/pokemon/showdown/back/unown.gif"
+    },
+    "424": {
+      "front": "games/assets/pokemon/showdown/front/unown.gif",
+      "back": "games/assets/pokemon/showdown/back/unown.gif"
+    },
+    "425": {
+      "front": "games/assets/pokemon/showdown/front/unown.gif",
+      "back": "games/assets/pokemon/showdown/back/unown.gif"
+    },
+    "426": {
+      "front": "games/assets/pokemon/showdown/front/unown.gif",
+      "back": "games/assets/pokemon/showdown/back/unown.gif"
+    },
+    "427": {
+      "front": "games/assets/pokemon/showdown/front/unown.gif",
+      "back": "games/assets/pokemon/showdown/back/unown.gif"
+    },
+    "428": {
+      "front": "games/assets/pokemon/showdown/front/unown.gif",
+      "back": "games/assets/pokemon/showdown/back/unown.gif"
+    },
+    "429": {
+      "front": "games/assets/pokemon/showdown/front/unown.gif",
+      "back": "games/assets/pokemon/showdown/back/unown.gif"
+    },
+    "430": {
+      "front": "games/assets/pokemon/showdown/front/unown.gif",
+      "back": "games/assets/pokemon/showdown/back/unown.gif"
+    },
+    "431": {
+      "front": "games/assets/pokemon/showdown/front/unown.gif",
+      "back": "games/assets/pokemon/showdown/back/unown.gif"
+    },
+    "432": {
+      "front": "games/assets/pokemon/showdown/front/unown.gif",
+      "back": "games/assets/pokemon/showdown/back/unown.gif"
+    },
+    "433": {
+      "front": "games/assets/pokemon/showdown/front/unown.gif",
+      "back": "games/assets/pokemon/showdown/back/unown.gif"
+    },
+    "434": {
+      "front": "games/assets/pokemon/showdown/front/unown.gif",
+      "back": "games/assets/pokemon/showdown/back/unown.gif"
+    },
+    "435": {
+      "front": "games/assets/pokemon/showdown/front/unown.gif",
+      "back": "games/assets/pokemon/showdown/back/unown.gif"
+    },
+    "436": {
+      "front": "games/assets/pokemon/showdown/front/unown.gif",
+      "back": "games/assets/pokemon/showdown/back/unown.gif"
+    },
+    "437": {
+      "front": "games/assets/pokemon/showdown/front/unown.gif",
+      "back": "games/assets/pokemon/showdown/back/unown.gif"
+    },
+    "438": {
+      "front": "games/assets/pokemon/showdown/front/unown.gif",
+      "back": "games/assets/pokemon/showdown/back/unown.gif"
+    },
+    "439": {
+      "front": "games/assets/pokemon/showdown/front/unown.gif",
+      "back": "games/assets/pokemon/showdown/back/unown.gif"
+    },
+    "440": {
+      "front": "games/assets/pokemon/showdown/front/turtwig.gif",
+      "back": "games/assets/pokemon/showdown/back/turtwig.gif"
+    },
+    "441": {
+      "front": "games/assets/pokemon/showdown/front/grotle.gif",
+      "back": "games/assets/pokemon/showdown/back/grotle.gif"
+    },
+    "442": {
+      "front": "games/assets/pokemon/showdown/front/torterra.gif",
+      "back": "games/assets/pokemon/showdown/back/torterra.gif"
+    },
+    "443": {
+      "front": "games/assets/pokemon/showdown/front/chimchar.gif",
+      "back": "games/assets/pokemon/showdown/back/chimchar.gif"
+    },
+    "444": {
+      "front": "games/assets/pokemon/showdown/front/monferno.gif",
+      "back": "games/assets/pokemon/showdown/back/monferno.gif"
+    },
+    "445": {
+      "front": "games/assets/pokemon/showdown/front/infernape.gif",
+      "back": "games/assets/pokemon/showdown/back/infernape.gif"
+    },
+    "446": {
+      "front": "games/assets/pokemon/showdown/front/piplup.gif",
+      "back": "games/assets/pokemon/showdown/back/piplup.gif"
+    },
+    "447": {
+      "front": "games/assets/pokemon/showdown/front/prinplup.gif",
+      "back": "games/assets/pokemon/showdown/back/prinplup.gif"
+    },
+    "448": {
+      "front": "games/assets/pokemon/showdown/front/empoleon.gif",
+      "back": "games/assets/pokemon/showdown/back/empoleon.gif"
+    },
+    "449": {
+      "front": "games/assets/pokemon/showdown/front/starly.gif",
+      "back": "games/assets/pokemon/showdown/back/starly.gif"
+    },
+    "450": {
+      "front": "games/assets/pokemon/showdown/front/staravia.gif",
+      "back": "games/assets/pokemon/showdown/back/staravia.gif"
+    },
+    "451": {
+      "front": "games/assets/pokemon/showdown/front/staraptor.gif",
+      "back": "games/assets/pokemon/showdown/back/staraptor.gif"
+    },
+    "452": {
+      "front": "games/assets/pokemon/showdown/front/bidoof.gif",
+      "back": "games/assets/pokemon/showdown/back/bidoof.gif"
+    },
+    "453": {
+      "front": "games/assets/pokemon/showdown/front/bibarel.gif",
+      "back": "games/assets/pokemon/showdown/back/bibarel.gif"
+    },
+    "454": {
+      "front": "games/assets/pokemon/showdown/front/kricketot.gif",
+      "back": "games/assets/pokemon/showdown/back/kricketot.gif"
+    },
+    "455": {
+      "front": "games/assets/pokemon/showdown/front/kricketune.gif",
+      "back": "games/assets/pokemon/showdown/back/kricketune.gif"
+    },
+    "456": {
+      "front": "games/assets/pokemon/showdown/front/shinx.gif",
+      "back": "games/assets/pokemon/showdown/back/shinx.gif"
+    },
+    "457": {
+      "front": "games/assets/pokemon/showdown/front/luxio.gif",
+      "back": "games/assets/pokemon/showdown/back/luxio.gif"
+    },
+    "458": {
+      "front": "games/assets/pokemon/showdown/front/luxray.gif",
+      "back": "games/assets/pokemon/showdown/back/luxray.gif"
+    },
+    "459": {
+      "front": "games/assets/pokemon/showdown/front/budew.gif",
+      "back": "games/assets/pokemon/showdown/back/budew.gif"
+    },
+    "460": {
+      "front": "games/assets/pokemon/showdown/front/roserade.gif",
+      "back": "games/assets/pokemon/showdown/back/roserade.gif"
+    },
+    "461": {
+      "front": "games/assets/pokemon/showdown/front/cranidos.gif",
+      "back": "games/assets/pokemon/showdown/back/cranidos.gif"
+    },
+    "462": {
+      "front": "games/assets/pokemon/showdown/front/rampardos.gif",
+      "back": "games/assets/pokemon/showdown/back/rampardos.gif"
+    },
+    "463": {
+      "front": "games/assets/pokemon/showdown/front/shieldon.gif",
+      "back": "games/assets/pokemon/showdown/back/shieldon.gif"
+    },
+    "464": {
+      "front": "games/assets/pokemon/showdown/front/bastiodon.gif",
+      "back": "games/assets/pokemon/showdown/back/bastiodon.gif"
+    },
+    "465": {
+      "front": "games/assets/pokemon/showdown/front/burmy.gif",
+      "back": "games/assets/pokemon/showdown/back/burmy.gif"
+    },
+    "466": {
+      "front": "games/assets/pokemon/showdown/front/wormadam.gif",
+      "back": "games/assets/pokemon/showdown/back/wormadam.gif"
+    },
+    "467": {
+      "front": "games/assets/pokemon/showdown/front/mothim.gif",
+      "back": "games/assets/pokemon/showdown/back/mothim.gif"
+    },
+    "468": {
+      "front": "games/assets/pokemon/showdown/front/combee.gif",
+      "back": "games/assets/pokemon/showdown/back/combee.gif"
+    },
+    "469": {
+      "front": "games/assets/pokemon/showdown/front/vespiquen.gif",
+      "back": "games/assets/pokemon/showdown/back/vespiquen.gif"
+    },
+    "470": {
+      "front": "games/assets/pokemon/showdown/front/pachirisu.gif",
+      "back": "games/assets/pokemon/showdown/back/pachirisu.gif"
+    },
+    "471": {
+      "front": "games/assets/pokemon/showdown/front/buizel.gif",
+      "back": "games/assets/pokemon/showdown/back/buizel.gif"
+    },
+    "472": {
+      "front": "games/assets/pokemon/showdown/front/floatzel.gif",
+      "back": "games/assets/pokemon/showdown/back/floatzel.gif"
+    },
+    "473": {
+      "front": "games/assets/pokemon/showdown/front/cherubi.gif",
+      "back": "games/assets/pokemon/showdown/back/cherubi.gif"
+    },
+    "474": {
+      "front": "games/assets/pokemon/showdown/front/cherrim.gif",
+      "back": "games/assets/pokemon/showdown/back/cherrim.gif"
+    },
+    "475": {
+      "front": "games/assets/pokemon/showdown/front/shellos.gif",
+      "back": "games/assets/pokemon/showdown/back/shellos.gif"
+    },
+    "476": {
+      "front": "games/assets/pokemon/showdown/front/gastrodon.gif",
+      "back": "games/assets/pokemon/showdown/back/gastrodon.gif"
+    },
+    "477": {
+      "front": "games/assets/pokemon/showdown/front/ambipom.gif",
+      "back": "games/assets/pokemon/showdown/back/ambipom.gif"
+    },
+    "478": {
+      "front": "games/assets/pokemon/showdown/front/drifloon.gif",
+      "back": "games/assets/pokemon/showdown/back/drifloon.gif"
+    },
+    "479": {
+      "front": "games/assets/pokemon/showdown/front/drifblim.gif",
+      "back": "games/assets/pokemon/showdown/back/drifblim.gif"
+    },
+    "480": {
+      "front": "games/assets/pokemon/showdown/front/buneary.gif",
+      "back": "games/assets/pokemon/showdown/back/buneary.gif"
+    },
+    "481": {
+      "front": "games/assets/pokemon/showdown/front/lopunny.gif",
+      "back": "games/assets/pokemon/showdown/back/lopunny.gif"
+    },
+    "482": {
+      "front": "games/assets/pokemon/showdown/front/mismagius.gif",
+      "back": "games/assets/pokemon/showdown/back/mismagius.gif"
+    },
+    "483": {
+      "front": "games/assets/pokemon/showdown/front/honchkrow.gif",
+      "back": "games/assets/pokemon/showdown/back/honchkrow.gif"
+    },
+    "484": {
+      "front": "games/assets/pokemon/showdown/front/glameow.gif",
+      "back": "games/assets/pokemon/showdown/back/glameow.gif"
+    },
+    "485": {
+      "front": "games/assets/pokemon/showdown/front/purugly.gif",
+      "back": "games/assets/pokemon/showdown/back/purugly.gif"
+    },
+    "486": {
+      "front": "games/assets/pokemon/showdown/front/chingling.gif",
+      "back": "games/assets/pokemon/showdown/back/chingling.gif"
+    },
+    "487": {
+      "front": "games/assets/pokemon/showdown/front/stunky.gif",
+      "back": "games/assets/pokemon/showdown/back/stunky.gif"
+    },
+    "488": {
+      "front": "games/assets/pokemon/showdown/front/skuntank.gif",
+      "back": "games/assets/pokemon/showdown/back/skuntank.gif"
+    },
+    "489": {
+      "front": "games/assets/pokemon/showdown/front/bronzor.gif",
+      "back": "games/assets/pokemon/showdown/back/bronzor.gif"
+    },
+    "490": {
+      "front": "games/assets/pokemon/showdown/front/bronzong.gif",
+      "back": "games/assets/pokemon/showdown/back/bronzong.gif"
+    },
+    "491": {
+      "front": "games/assets/pokemon/showdown/front/bonsly.gif",
+      "back": "games/assets/pokemon/showdown/back/bonsly.gif"
+    },
+    "492": {
+      "front": "games/assets/pokemon/showdown/front/mimejr.gif",
+      "back": "games/assets/pokemon/showdown/back/mimejr.gif"
+    },
+    "493": {
+      "front": "games/assets/pokemon/showdown/front/happiny.gif",
+      "back": "games/assets/pokemon/showdown/back/happiny.gif"
+    },
+    "494": {
+      "front": "games/assets/pokemon/showdown/front/chatot.gif",
+      "back": "games/assets/pokemon/showdown/back/chatot.gif"
+    },
+    "495": {
+      "front": "games/assets/pokemon/showdown/front/spiritomb.gif",
+      "back": "games/assets/pokemon/showdown/back/spiritomb.gif"
+    },
+    "496": {
+      "front": "games/assets/pokemon/showdown/front/gible.gif",
+      "back": "games/assets/pokemon/showdown/back/gible.gif"
+    },
+    "497": {
+      "front": "games/assets/pokemon/showdown/front/gabite.gif",
+      "back": "games/assets/pokemon/showdown/back/gabite.gif"
+    },
+    "498": {
+      "front": "games/assets/pokemon/showdown/front/garchomp.gif",
+      "back": "games/assets/pokemon/showdown/back/garchomp.gif"
+    },
+    "499": {
+      "front": "games/assets/pokemon/showdown/front/munchlax.gif",
+      "back": "games/assets/pokemon/showdown/back/munchlax.gif"
+    },
+    "500": {
+      "front": "games/assets/pokemon/showdown/front/riolu.gif",
+      "back": "games/assets/pokemon/showdown/back/riolu.gif"
+    },
+    "501": {
+      "front": "games/assets/pokemon/showdown/front/lucario.gif",
+      "back": "games/assets/pokemon/showdown/back/lucario.gif"
+    },
+    "502": {
+      "front": "games/assets/pokemon/showdown/front/hippopotas.gif",
+      "back": "games/assets/pokemon/showdown/back/hippopotas.gif"
+    },
+    "503": {
+      "front": "games/assets/pokemon/showdown/front/hippowdon.gif",
+      "back": "games/assets/pokemon/showdown/back/hippowdon.gif"
+    },
+    "504": {
+      "front": "games/assets/pokemon/showdown/front/skorupi.gif",
+      "back": "games/assets/pokemon/showdown/back/skorupi.gif"
+    },
+    "505": {
+      "front": "games/assets/pokemon/showdown/front/drapion.gif",
+      "back": "games/assets/pokemon/showdown/back/drapion.gif"
+    },
+    "506": {
+      "front": "games/assets/pokemon/showdown/front/croagunk.gif",
+      "back": "games/assets/pokemon/showdown/back/croagunk.gif"
+    },
+    "507": {
+      "front": "games/assets/pokemon/showdown/front/toxicroak.gif",
+      "back": "games/assets/pokemon/showdown/back/toxicroak.gif"
+    },
+    "508": {
+      "front": "games/assets/pokemon/showdown/front/carnivine.gif",
+      "back": "games/assets/pokemon/showdown/back/carnivine.gif"
+    },
+    "509": {
+      "front": "games/assets/pokemon/showdown/front/finneon.gif",
+      "back": "games/assets/pokemon/showdown/back/finneon.gif"
+    },
+    "510": {
+      "front": "games/assets/pokemon/showdown/front/lumineon.gif",
+      "back": "games/assets/pokemon/showdown/back/lumineon.gif"
+    },
+    "511": {
+      "front": "games/assets/pokemon/showdown/front/mantyke.gif",
+      "back": "games/assets/pokemon/showdown/back/mantyke.gif"
+    },
+    "512": {
+      "front": "games/assets/pokemon/showdown/front/snover.gif",
+      "back": "games/assets/pokemon/showdown/back/snover.gif"
+    },
+    "513": {
+      "front": "games/assets/pokemon/showdown/front/abomasnow.gif",
+      "back": "games/assets/pokemon/showdown/back/abomasnow.gif"
+    },
+    "514": {
+      "front": "games/assets/pokemon/showdown/front/weavile.gif",
+      "back": "games/assets/pokemon/showdown/back/weavile.gif"
+    },
+    "515": {
+      "front": "games/assets/pokemon/showdown/front/magnezone.gif",
+      "back": "games/assets/pokemon/showdown/back/magnezone.gif"
+    },
+    "516": {
+      "front": "games/assets/pokemon/showdown/front/lickilicky.gif",
+      "back": "games/assets/pokemon/showdown/back/lickilicky.gif"
+    },
+    "517": {
+      "front": "games/assets/pokemon/showdown/front/rhyperior.gif",
+      "back": "games/assets/pokemon/showdown/back/rhyperior.gif"
+    },
+    "518": {
+      "front": "games/assets/pokemon/showdown/front/tangrowth.gif",
+      "back": "games/assets/pokemon/showdown/back/tangrowth.gif"
+    },
+    "519": {
+      "front": "games/assets/pokemon/showdown/front/electivire.gif",
+      "back": "games/assets/pokemon/showdown/back/electivire.gif"
+    },
+    "520": {
+      "front": "games/assets/pokemon/showdown/front/magmortar.gif",
+      "back": "games/assets/pokemon/showdown/back/magmortar.gif"
+    },
+    "521": {
+      "front": "games/assets/pokemon/showdown/front/togekiss.gif",
+      "back": "games/assets/pokemon/showdown/back/togekiss.gif"
+    },
+    "522": {
+      "front": "games/assets/pokemon/showdown/front/yanmega.gif",
+      "back": "games/assets/pokemon/showdown/back/yanmega.gif"
+    },
+    "523": {
+      "front": "games/assets/pokemon/showdown/front/leafeon.gif",
+      "back": "games/assets/pokemon/showdown/back/leafeon.gif"
+    },
+    "524": {
+      "front": "games/assets/pokemon/showdown/front/glaceon.gif",
+      "back": "games/assets/pokemon/showdown/back/glaceon.gif"
+    },
+    "525": {
+      "front": "games/assets/pokemon/showdown/front/gliscor.gif",
+      "back": "games/assets/pokemon/showdown/back/gliscor.gif"
+    },
+    "526": {
+      "front": "games/assets/pokemon/showdown/front/mamoswine.gif",
+      "back": "games/assets/pokemon/showdown/back/mamoswine.gif"
+    },
+    "527": {
+      "front": "games/assets/pokemon/showdown/front/porygon-z.gif",
+      "back": "games/assets/pokemon/showdown/back/porygonz.gif"
+    },
+    "528": {
+      "front": "games/assets/pokemon/showdown/front/gallade.gif",
+      "back": "games/assets/pokemon/showdown/back/gallade.gif"
+    },
+    "529": {
+      "front": "games/assets/pokemon/showdown/front/probopass.gif",
+      "back": "games/assets/pokemon/showdown/back/probopass.gif"
+    },
+    "530": {
+      "front": "games/assets/pokemon/showdown/front/dusknoir.gif",
+      "back": "games/assets/pokemon/showdown/back/dusknoir.gif"
+    },
+    "531": {
+      "front": "games/assets/pokemon/showdown/front/froslass.gif",
+      "back": "games/assets/pokemon/showdown/back/froslass.gif"
+    },
+    "532": {
+      "front": "games/assets/pokemon/showdown/front/rotom.gif",
+      "back": "games/assets/pokemon/showdown/back/rotom.gif"
+    },
+    "533": {
+      "front": "games/assets/pokemon/showdown/front/uxie.gif",
+      "back": "games/assets/pokemon/showdown/back/uxie.gif"
+    },
+    "534": {
+      "front": "games/assets/pokemon/showdown/front/mesprit.gif",
+      "back": "games/assets/pokemon/showdown/back/mesprit.gif"
+    },
+    "535": {
+      "front": "games/assets/pokemon/showdown/front/azelf.gif",
+      "back": "games/assets/pokemon/showdown/back/azelf.gif"
+    },
+    "536": {
+      "front": "games/assets/pokemon/showdown/front/dialga.gif",
+      "back": "games/assets/pokemon/showdown/back/dialga.gif"
+    },
+    "537": {
+      "front": "games/assets/pokemon/showdown/front/palkia.gif",
+      "back": "games/assets/pokemon/showdown/back/palkia.gif"
+    },
+    "538": {
+      "front": "games/assets/pokemon/showdown/front/heatran.gif",
+      "back": "games/assets/pokemon/showdown/back/heatran.gif"
+    },
+    "539": {
+      "front": "games/assets/pokemon/showdown/front/regigigas.gif",
+      "back": "games/assets/pokemon/showdown/back/regigigas.gif"
+    },
+    "540": {
+      "front": "games/assets/pokemon/showdown/front/giratina.gif",
+      "back": "games/assets/pokemon/showdown/back/giratina.gif"
+    },
+    "541": {
+      "front": "games/assets/pokemon/showdown/front/cresselia.gif",
+      "back": "games/assets/pokemon/showdown/back/cresselia.gif"
+    },
+    "542": {
+      "front": "games/assets/pokemon/showdown/front/phione.gif",
+      "back": "games/assets/pokemon/showdown/back/phione.gif"
+    },
+    "543": {
+      "front": "games/assets/pokemon/showdown/front/manaphy.gif",
+      "back": "games/assets/pokemon/showdown/back/manaphy.gif"
+    },
+    "544": {
+      "front": "games/assets/pokemon/showdown/front/darkrai.gif",
+      "back": "games/assets/pokemon/showdown/back/darkrai.gif"
+    },
+    "545": {
+      "front": "games/assets/pokemon/showdown/front/shaymin.gif",
+      "back": "games/assets/pokemon/showdown/back/shaymin.gif"
+    },
+    "546": {
+      "front": "games/assets/pokemon/showdown/front/arceus.gif",
+      "back": "games/assets/pokemon/showdown/back/arceus.gif"
+    },
+    "707": {
+      "front": "games/assets/pokemon/showdown/front/burmy.gif",
+      "back": "games/assets/pokemon/showdown/back/burmy.gif"
+    },
+    "708": {
+      "front": "games/assets/pokemon/showdown/front/burmy.gif",
+      "back": "games/assets/pokemon/showdown/back/burmy.gif"
+    },
+    "709": {
+      "front": "games/assets/pokemon/showdown/front/wormadam-sandy.gif",
+      "back": "games/assets/pokemon/showdown/back/wormadam-sandy.gif"
+    },
+    "710": {
+      "front": "games/assets/pokemon/showdown/front/wormadam-trash.gif",
+      "back": "games/assets/pokemon/showdown/back/wormadam-trash.gif"
+    },
+    "711": {
+      "front": "games/assets/pokemon/showdown/front/shellos.gif",
+      "back": "games/assets/pokemon/showdown/back/shellos.gif"
+    },
+    "712": {
+      "front": "games/assets/pokemon/showdown/front/gastrodon.gif",
+      "back": "games/assets/pokemon/showdown/back/gastrodon.gif"
+    },
+    "713": {
+      "front": "games/assets/pokemon/showdown/front/rotom-heat.gif",
+      "back": "games/assets/pokemon/showdown/back/rotom-heat.gif"
+    },
+    "714": {
+      "front": "games/assets/pokemon/showdown/front/rotom-wash.gif",
+      "back": "games/assets/pokemon/showdown/back/rotom-wash.gif"
+    },
+    "715": {
+      "front": "games/assets/pokemon/showdown/front/rotom-frost.gif",
+      "back": "games/assets/pokemon/showdown/back/rotom-frost.gif"
+    },
+    "716": {
+      "front": "games/assets/pokemon/showdown/front/rotom-fan.gif",
+      "back": "games/assets/pokemon/showdown/back/rotom-fan.gif"
+    },
+    "717": {
+      "front": "games/assets/pokemon/showdown/front/rotom-mow.gif",
+      "back": "games/assets/pokemon/showdown/back/rotom-mow.gif"
+    },
+    "718": {
+      "front": "games/assets/pokemon/showdown/front/giratina-origin.gif",
+      "back": "games/assets/pokemon/showdown/back/giratina-origin.gif"
+    },
+    "719": {
+      "front": "games/assets/pokemon/showdown/front/shaymin-sky.gif",
+      "back": "games/assets/pokemon/showdown/back/shaymin-sky.gif"
+    },
+    "720": {
+      "front": "games/assets/pokemon/showdown/front/arceus-fighting.gif",
+      "back": "games/assets/pokemon/showdown/back/arceus-fighting.gif"
+    },
+    "721": {
+      "front": "games/assets/pokemon/showdown/front/arceus-flying.gif",
+      "back": "games/assets/pokemon/showdown/back/arceus-flying.gif"
+    },
+    "722": {
+      "front": "games/assets/pokemon/showdown/front/arceus-poison.gif",
+      "back": "games/assets/pokemon/showdown/back/arceus-poison.gif"
+    },
+    "723": {
+      "front": "games/assets/pokemon/showdown/front/arceus-ground.gif",
+      "back": "games/assets/pokemon/showdown/back/arceus-ground.gif"
+    },
+    "724": {
+      "front": "games/assets/pokemon/showdown/front/arceus-rock.gif",
+      "back": "games/assets/pokemon/showdown/back/arceus-rock.gif"
+    },
+    "725": {
+      "front": "games/assets/pokemon/showdown/front/arceus-bug.gif",
+      "back": "games/assets/pokemon/showdown/back/arceus-bug.gif"
+    },
+    "726": {
+      "front": "games/assets/pokemon/showdown/front/arceus-ghost.gif",
+      "back": "games/assets/pokemon/showdown/back/arceus-ghost.gif"
+    },
+    "727": {
+      "front": "games/assets/pokemon/showdown/front/arceus-steel.gif",
+      "back": "games/assets/pokemon/showdown/back/arceus-steel.gif"
+    },
+    "728": {
+      "front": "games/assets/pokemon/showdown/front/arceus-fire.gif",
+      "back": "games/assets/pokemon/showdown/back/arceus-fire.gif"
+    },
+    "729": {
+      "front": "games/assets/pokemon/showdown/front/arceus-water.gif",
+      "back": "games/assets/pokemon/showdown/back/arceus-water.gif"
+    },
+    "730": {
+      "front": "games/assets/pokemon/showdown/front/arceus-grass.gif",
+      "back": "games/assets/pokemon/showdown/back/arceus-grass.gif"
+    },
+    "731": {
+      "front": "games/assets/pokemon/showdown/front/arceus-electric.gif",
+      "back": "games/assets/pokemon/showdown/back/arceus-electric.gif"
+    },
+    "732": {
+      "front": "games/assets/pokemon/showdown/front/arceus-psychic.gif",
+      "back": "games/assets/pokemon/showdown/back/arceus-psychic.gif"
+    },
+    "733": {
+      "front": "games/assets/pokemon/showdown/front/arceus-ice.gif",
+      "back": "games/assets/pokemon/showdown/back/arceus-ice.gif"
+    },
+    "734": {
+      "front": "games/assets/pokemon/showdown/front/arceus-dragon.gif",
+      "back": "games/assets/pokemon/showdown/back/arceus-dragon.gif"
+    },
+    "735": {
+      "front": "games/assets/pokemon/showdown/front/arceus-dark.gif",
+      "back": "games/assets/pokemon/showdown/back/arceus-dark.gif"
+    },
+    "744": {
+      "front": "games/assets/pokemon/showdown/front/hippopotas.gif",
+      "back": "games/assets/pokemon/showdown/back/hippopotas.gif"
+    },
+    "745": {
+      "front": "games/assets/pokemon/showdown/front/hippowdon.gif",
+      "back": "games/assets/pokemon/showdown/back/hippowdon.gif"
+    },
+    "751": {
+      "front": "games/assets/pokemon/showdown/front/cherrim-sunshine.gif",
+      "back": "games/assets/pokemon/showdown/back/cherrim-sunshine.gif"
+    },
+    "834": {
+      "front": "games/assets/pokemon/showdown/front/arceus-fairy.gif",
+      "back": "games/assets/pokemon/showdown/back/arceus-fairy.gif"
+    },
+    "869": {
+      "front": "games/assets/pokemon/showdown/front/venusaur-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/venusaur-mega.gif"
+    },
+    "870": {
+      "front": "games/assets/pokemon/showdown/front/charizard-megax.gif",
+      "back": "games/assets/pokemon/showdown/back/charizard-megax.gif"
+    },
+    "871": {
+      "front": "games/assets/pokemon/showdown/front/charizard-megay.gif",
+      "back": "games/assets/pokemon/showdown/back/charizard-megay.gif"
+    },
+    "872": {
+      "front": "games/assets/pokemon/showdown/front/blastoise-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/blastoise-mega.gif"
+    },
+    "873": {
+      "front": "games/assets/pokemon/showdown/front/beedrill-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/beedrill-mega.gif"
+    },
+    "874": {
+      "front": "games/assets/pokemon/showdown/front/pidgeot-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/pidgeot-mega.gif"
+    },
+    "875": {
+      "front": "games/assets/pokemon/showdown/front/alakazam-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/alakazam-mega.gif"
+    },
+    "876": {
+      "front": "games/assets/pokemon/showdown/front/slowbro-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/slowbro-mega.gif"
+    },
+    "877": {
+      "front": "games/assets/pokemon/showdown/front/gengar-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/gengar-mega.gif"
+    },
+    "878": {
+      "front": "games/assets/pokemon/showdown/front/kangaskhan-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/kangaskhan-mega.gif"
+    },
+    "879": {
+      "front": "games/assets/pokemon/showdown/front/pinsir-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/pinsir-mega.gif"
+    },
+    "880": {
+      "front": "games/assets/pokemon/showdown/front/gyarados-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/gyarados-mega.gif"
+    },
+    "881": {
+      "front": "games/assets/pokemon/showdown/front/aerodactyl-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/aerodactyl-mega.gif"
+    },
+    "882": {
+      "front": "games/assets/pokemon/showdown/front/mewtwo-megax.gif",
+      "back": "games/assets/pokemon/showdown/back/mewtwo-megax.gif"
+    },
+    "883": {
+      "front": "games/assets/pokemon/showdown/front/mewtwo-megay.gif",
+      "back": "games/assets/pokemon/showdown/back/mewtwo-megay.gif"
+    },
+    "884": {
+      "front": "games/assets/pokemon/showdown/front/ampharos-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/ampharos-mega.gif"
+    },
+    "885": {
+      "front": "games/assets/pokemon/showdown/front/steelix-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/steelix-mega.gif"
+    },
+    "886": {
+      "front": "games/assets/pokemon/showdown/front/scizor-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/scizor-mega.gif"
+    },
+    "887": {
+      "front": "games/assets/pokemon/showdown/front/heracross-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/heracross-mega.gif"
+    },
+    "888": {
+      "front": "games/assets/pokemon/showdown/front/houndoom-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/houndoom-mega.gif"
+    },
+    "889": {
+      "front": "games/assets/pokemon/showdown/front/tyranitar-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/tyranitar-mega.gif"
+    },
+    "890": {
+      "front": "games/assets/pokemon/showdown/front/sceptile-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/sceptile-mega.gif"
+    },
+    "891": {
+      "front": "games/assets/pokemon/showdown/front/blaziken-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/blaziken-mega.gif"
+    },
+    "892": {
+      "front": "games/assets/pokemon/showdown/front/swampert-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/swampert-mega.gif"
+    },
+    "893": {
+      "front": "games/assets/pokemon/showdown/front/gardevoir-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/gardevoir-mega.gif"
+    },
+    "894": {
+      "front": "games/assets/pokemon/showdown/front/sableye-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/sableye-mega.gif"
+    },
+    "895": {
+      "front": "games/assets/pokemon/showdown/front/mawile-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/mawile-mega.gif"
+    },
+    "896": {
+      "front": "games/assets/pokemon/showdown/front/aggron-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/aggron-mega.gif"
+    },
+    "897": {
+      "front": "games/assets/pokemon/showdown/front/medicham-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/medicham-mega.gif"
+    },
+    "898": {
+      "front": "games/assets/pokemon/showdown/front/manectric-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/manectric-mega.gif"
+    },
+    "899": {
+      "front": "games/assets/pokemon/showdown/front/sharpedo-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/sharpedo-mega.gif"
+    },
+    "900": {
+      "front": "games/assets/pokemon/showdown/front/camerupt-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/camerupt-mega.gif"
+    },
+    "901": {
+      "front": "games/assets/pokemon/showdown/front/altaria-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/altaria-mega.gif"
+    },
+    "902": {
+      "front": "games/assets/pokemon/showdown/front/banette-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/banette-mega.gif"
+    },
+    "903": {
+      "front": "games/assets/pokemon/showdown/front/absol-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/absol-mega.gif"
+    },
+    "904": {
+      "front": "games/assets/pokemon/showdown/front/glalie-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/glalie-mega.gif"
+    },
+    "905": {
+      "front": "games/assets/pokemon/showdown/front/salamence-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/salamence-mega.gif"
+    },
+    "906": {
+      "front": "games/assets/pokemon/showdown/front/metagross-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/metagross-mega.gif"
+    },
+    "907": {
+      "front": "games/assets/pokemon/showdown/front/latias-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/latias-mega.gif"
+    },
+    "908": {
+      "front": "games/assets/pokemon/showdown/front/latios-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/latios-mega.gif"
+    },
+    "909": {
+      "front": "games/assets/pokemon/showdown/front/groudon-primal.gif",
+      "back": "games/assets/pokemon/showdown/back/groudon-primal.gif"
+    },
+    "910": {
+      "front": "games/assets/pokemon/showdown/front/kyogre-primal.gif",
+      "back": "games/assets/pokemon/showdown/back/kyogre-primal.gif"
+    },
+    "911": {
+      "front": "games/assets/pokemon/showdown/front/rayquaza-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/rayquaza-mega.gif"
+    },
+    "912": {
+      "front": "games/assets/pokemon/showdown/front/lopunny-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/lopunny-mega.gif"
+    },
+    "913": {
+      "front": "games/assets/pokemon/showdown/front/garchomp-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/garchomp-mega.gif"
+    },
+    "914": {
+      "front": "games/assets/pokemon/showdown/front/lucario-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/lucario-mega.gif"
+    },
+    "915": {
+      "front": "games/assets/pokemon/showdown/front/abomasnow-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/abomasnow-mega.gif"
+    },
+    "916": {
+      "front": "games/assets/pokemon/showdown/front/gallade-mega.gif",
+      "back": "games/assets/pokemon/showdown/back/gallade-mega.gif"
+    },
+    "919": {
+      "front": "games/assets/pokemon/showdown/front/dialga.gif",
+      "back": "games/assets/pokemon/showdown/back/dialga.gif"
+    },
+    "930": {
+      "front": "games/assets/pokemon/showdown/front/wooper-paldea.gif",
+      "back": "games/assets/pokemon/showdown/back/wooper-paldea.gif"
+    },
+    "1020": {
+      "front": "games/assets/pokemon/showdown/front/rattata-alola.gif",
+      "back": "games/assets/pokemon/showdown/back/rattata-alola.gif"
+    },
+    "1021": {
+      "front": "games/assets/pokemon/showdown/front/raticate-alola.gif",
+      "back": "games/assets/pokemon/showdown/back/raticate-alola.gif"
+    },
+    "1022": {
+      "front": "games/assets/pokemon/showdown/front/raichu-alola.gif",
+      "back": "games/assets/pokemon/showdown/back/raichu-alola.gif"
+    },
+    "1023": {
+      "front": "games/assets/pokemon/showdown/front/sandshrew-alola.gif",
+      "back": "games/assets/pokemon/showdown/back/sandshrew-alola.gif"
+    },
+    "1024": {
+      "front": "games/assets/pokemon/showdown/front/sandslash-alola.gif",
+      "back": "games/assets/pokemon/showdown/back/sandslash-alola.gif"
+    },
+    "1025": {
+      "front": "games/assets/pokemon/showdown/front/vulpix-alola.gif",
+      "back": "games/assets/pokemon/showdown/back/vulpix-alola.gif"
+    },
+    "1026": {
+      "front": "games/assets/pokemon/showdown/front/ninetales-alola.gif",
+      "back": "games/assets/pokemon/showdown/back/ninetales-alola.gif"
+    },
+    "1027": {
+      "front": "games/assets/pokemon/showdown/front/diglett-alola.gif",
+      "back": "games/assets/pokemon/showdown/back/diglett-alola.gif"
+    },
+    "1028": {
+      "front": "games/assets/pokemon/showdown/front/dugtrio-alola.gif",
+      "back": "games/assets/pokemon/showdown/back/dugtrio-alola.gif"
+    },
+    "1029": {
+      "front": "games/assets/pokemon/showdown/front/meowth-alola.gif",
+      "back": "games/assets/pokemon/showdown/back/meowth-alola.gif"
+    },
+    "1030": {
+      "front": "games/assets/pokemon/showdown/front/persian-alola.gif",
+      "back": "games/assets/pokemon/showdown/back/persian-alola.gif"
+    },
+    "1031": {
+      "front": "games/assets/pokemon/showdown/front/geodude-alola.gif",
+      "back": "games/assets/pokemon/showdown/back/geodude-alola.gif"
+    },
+    "1032": {
+      "front": "games/assets/pokemon/showdown/front/graveler-alola.gif",
+      "back": "games/assets/pokemon/showdown/back/graveler-alola.gif"
+    },
+    "1033": {
+      "front": "games/assets/pokemon/showdown/front/golem-alola.gif",
+      "back": "games/assets/pokemon/showdown/back/golem-alola.gif"
+    },
+    "1034": {
+      "front": "games/assets/pokemon/showdown/front/grimer-alola.gif",
+      "back": "games/assets/pokemon/showdown/back/grimer-alola.gif"
+    },
+    "1035": {
+      "front": "games/assets/pokemon/showdown/front/muk-alola.gif",
+      "back": "games/assets/pokemon/showdown/back/muk-alola.gif"
+    },
+    "1037": {
+      "front": "games/assets/pokemon/showdown/front/exeggutor-alola.gif",
+      "back": "games/assets/pokemon/showdown/back/exeggutor-alola.gif"
+    },
+    "1039": {
+      "front": "games/assets/pokemon/showdown/front/marowak-alola.gif",
+      "back": "games/assets/pokemon/showdown/back/marowak-alola.gif"
+    },
+    "1040": {
+      "front": "games/assets/pokemon/showdown/front/deoxys-attack.gif",
+      "back": "games/assets/pokemon/showdown/back/deoxys-attack.gif"
+    },
+    "1041": {
+      "front": "games/assets/pokemon/showdown/front/deoxys-defense.gif",
+      "back": "games/assets/pokemon/showdown/back/deoxys-defense.gif"
+    },
+    "1042": {
+      "front": "games/assets/pokemon/showdown/front/deoxys-speed.gif",
+      "back": "games/assets/pokemon/showdown/back/deoxys-speed.gif"
+    },
+    "1085": {
+      "front": "games/assets/pokemon/showdown/front/pikachu.gif",
+      "back": "games/assets/pokemon/showdown/back/pikachu.gif"
+    },
+    "1086": {
+      "front": "games/assets/pokemon/showdown/front/pikachu.gif",
+      "back": "games/assets/pokemon/showdown/back/pikachu.gif"
+    },
+    "1087": {
+      "front": "games/assets/pokemon/showdown/front/pikachu-cosplay.gif",
+      "back": "games/assets/pokemon/showdown/back/pikachu-cosplay.gif"
+    },
+    "1088": {
+      "front": "games/assets/pokemon/showdown/front/pikachu-libre.gif",
+      "back": "games/assets/pokemon/showdown/back/pikachu.gif"
+    },
+    "1089": {
+      "front": "games/assets/pokemon/showdown/front/pikachu-pop-star.gif",
+      "back": "games/assets/pokemon/showdown/back/pikachu-popstar.gif"
+    },
+    "1090": {
+      "front": "games/assets/pokemon/showdown/front/pikachu-rockstar.gif",
+      "back": "games/assets/pokemon/showdown/back/pikachu-rockstar.gif"
+    },
+    "1091": {
+      "front": "games/assets/pokemon/showdown/front/pikachu-belle.gif",
+      "back": "games/assets/pokemon/showdown/back/pikachu-belle.gif"
+    },
+    "1092": {
+      "front": "games/assets/pokemon/showdown/front/pikachu-phd.gif",
+      "back": "games/assets/pokemon/showdown/back/pikachu-phd.gif"
+    },
+    "1093": {
+      "front": "games/assets/pokemon/showdown/front/pikachu-original.gif",
+      "back": "games/assets/pokemon/showdown/back/pikachu-original.gif"
+    },
+    "1094": {
+      "front": "games/assets/pokemon/showdown/front/pikachu-hoenn.gif",
+      "back": "games/assets/pokemon/showdown/back/pikachu-hoenn.gif"
+    },
+    "1095": {
+      "front": "games/assets/pokemon/showdown/front/pikachu-sinnoh.gif",
+      "back": "games/assets/pokemon/showdown/back/pikachu-sinnoh.gif"
+    },
+    "1096": {
+      "front": "games/assets/pokemon/showdown/front/pikachu-unova.gif",
+      "back": "games/assets/pokemon/showdown/back/pikachu-unova.gif"
+    },
+    "1097": {
+      "front": "games/assets/pokemon/showdown/front/pikachu-kalos.gif",
+      "back": "games/assets/pokemon/showdown/back/pikachu-kalos.gif"
+    },
+    "1098": {
+      "front": "games/assets/pokemon/showdown/front/pikachu-alola.gif",
+      "back": "games/assets/pokemon/showdown/back/pikachu-alola.gif"
+    },
+    "1099": {
+      "front": "games/assets/pokemon/showdown/front/pikachu-partner.gif",
+      "back": "games/assets/pokemon/showdown/back/pikachu-partner.gif"
+    },
+    "1208": {
+      "front": "games/assets/pokemon/showdown/front/meowth-galar.gif",
+      "back": "games/assets/pokemon/showdown/back/meowth-galar.gif"
+    },
+    "1209": {
+      "front": "games/assets/pokemon/showdown/front/ponyta-galar.gif",
+      "back": "games/assets/pokemon/showdown/back/ponyta-galar.gif"
+    },
+    "1210": {
+      "front": "games/assets/pokemon/showdown/front/rapidash-galar.gif",
+      "back": "games/assets/pokemon/showdown/back/rapidash-galar.gif"
+    },
+    "1211": {
+      "front": "games/assets/pokemon/showdown/front/slowpoke-galar.gif",
+      "back": "games/assets/pokemon/showdown/back/slowpoke-galar.gif"
+    },
+    "1212": {
+      "front": "games/assets/pokemon/showdown/front/slowbro-galar.gif",
+      "back": "games/assets/pokemon/showdown/back/slowbro-galar.gif"
+    },
+    "1213": {
+      "front": "games/assets/pokemon/showdown/front/farfetchd-galar.gif",
+      "back": "games/assets/pokemon/showdown/back/farfetchd-galar.gif"
+    },
+    "1215": {
+      "front": "games/assets/pokemon/showdown/front/weezing-galar.gif",
+      "back": "games/assets/pokemon/showdown/back/weezing-galar.gif"
+    },
+    "1216": {
+      "front": "games/assets/pokemon/showdown/front/mrmime-galar.gif",
+      "back": "games/assets/pokemon/showdown/back/mrmime-galar.gif"
+    },
+    "1217": {
+      "front": "games/assets/pokemon/showdown/front/articuno-galar.gif",
+      "back": "games/assets/pokemon/showdown/back/articuno-galar.gif"
+    },
+    "1218": {
+      "front": "games/assets/pokemon/showdown/front/zapdos-galar.gif",
+      "back": "games/assets/pokemon/showdown/back/zapdos-galar.gif"
+    },
+    "1219": {
+      "front": "games/assets/pokemon/showdown/front/moltres-galar.gif",
+      "back": "games/assets/pokemon/showdown/back/moltres-galar.gif"
+    },
+    "1220": {
+      "front": "games/assets/pokemon/showdown/front/slowking-galar.gif",
+      "back": "games/assets/pokemon/showdown/back/slowking-galar.gif"
+    },
+    "1221": {
+      "front": "games/assets/pokemon/showdown/front/corsola-galar.gif",
+      "back": "games/assets/pokemon/showdown/back/corsola-galar.gif"
+    },
+    "1222": {
+      "front": "games/assets/pokemon/showdown/front/zigzagoon-galar.gif",
+      "back": "games/assets/pokemon/showdown/back/zigzagoon-galar.gif"
+    },
+    "1223": {
+      "front": "games/assets/pokemon/showdown/front/linoone-galar.gif",
+      "back": "games/assets/pokemon/showdown/back/linoone-galar.gif"
+    },
+    "1233": {
+      "front": "games/assets/pokemon/showdown/front/butterfree.gif",
+      "back": "games/assets/pokemon/showdown/back/butterfree.gif"
+    },
+    "1234": {
+      "front": "games/assets/pokemon/showdown/front/tauros-paldeacombat.gif",
+      "back": "games/assets/pokemon/showdown/back/tauros-paldeacombat.gif"
+    },
+    "1235": {
+      "front": "games/assets/pokemon/showdown/front/tauros-paldeaaqua.gif",
+      "back": "games/assets/pokemon/showdown/back/tauros-paldeaaqua.gif"
+    },
+    "1236": {
+      "front": "games/assets/pokemon/showdown/front/machamp.gif",
+      "back": "games/assets/pokemon/showdown/back/machamp.gif"
+    },
+    "1238": {
+      "front": "games/assets/pokemon/showdown/front/kingler.gif",
+      "back": "games/assets/pokemon/showdown/back/kingler.gif"
+    },
+    "1239": {
+      "front": "games/assets/pokemon/showdown/front/lapras.gif",
+      "back": "games/assets/pokemon/showdown/back/lapras.gif"
+    },
+    "1240": {
+      "front": "games/assets/pokemon/showdown/front/tauros-paldeablaze.gif",
+      "back": "games/assets/pokemon/showdown/back/tauros-paldeablaze.gif"
+    },
+    "1241": {
+      "front": "games/assets/pokemon/showdown/front/snorlax.gif",
+      "back": "games/assets/pokemon/showdown/back/snorlax.gif"
+    },
+    "1271": {
+      "front": "games/assets/pokemon/showdown/front/growlithe-hisui.gif",
+      "back": "games/assets/pokemon/showdown/back/growlithe-hisui.gif"
+    },
+    "1272": {
+      "front": "games/assets/pokemon/showdown/front/arcanine-hisui.gif",
+      "back": "games/assets/pokemon/showdown/back/arcanine-hisui.gif"
+    },
+    "1276": {
+      "front": "games/assets/pokemon/showdown/front/doduo.gif",
+      "back": "games/assets/pokemon/showdown/back/doduo.gif"
+    },
+    "1277": {
+      "front": "games/assets/pokemon/showdown/front/dodrio.gif",
+      "back": "games/assets/pokemon/showdown/back/dodrio.gif"
+    },
+    "1278": {
+      "front": "games/assets/pokemon/showdown/front/teddiursa.gif",
+      "back": "games/assets/pokemon/showdown/back/teddiursa.gif"
+    },
+    "1279": {
+      "front": "games/assets/pokemon/showdown/front/ursaring.gif",
+      "back": "games/assets/pokemon/showdown/back/ursaring.gif"
+    },
+    "1282": {
+      "front": "games/assets/pokemon/showdown/front/carnivine.gif",
+      "back": "games/assets/pokemon/showdown/back/carnivine.gif"
+    },
+    "1283": {
+      "front": "games/assets/pokemon/showdown/front/mantyke.gif",
+      "back": "games/assets/pokemon/showdown/back/mantyke.gif"
+    },
+    "1284": {
+      "front": "games/assets/pokemon/showdown/front/mantine.gif",
+      "back": "games/assets/pokemon/showdown/back/mantine.gif"
+    },
+    "1285": {
+      "front": "games/assets/pokemon/showdown/front/feebas.gif",
+      "back": "games/assets/pokemon/showdown/back/feebas.gif"
+    },
+    "1286": {
+      "front": "games/assets/pokemon/showdown/front/milotic.gif",
+      "back": "games/assets/pokemon/showdown/back/milotic.gif"
+    },
+    "1295": {
+      "front": "games/assets/pokemon/showdown/front/voltorb-hisui.gif",
+      "back": "games/assets/pokemon/showdown/back/voltorb-hisui.gif"
+    },
+    "1296": {
+      "front": "games/assets/pokemon/showdown/front/electrode-hisui.gif",
+      "back": "games/assets/pokemon/showdown/back/electrode-hisui.gif"
+    },
+    "1299": {
+      "front": "games/assets/pokemon/showdown/front/typhlosion-hisui.gif",
+      "back": "games/assets/pokemon/showdown/back/typhlosion-hisui.gif"
+    },
+    "1304": {
+      "front": "games/assets/pokemon/showdown/front/sneasel-hisui.gif",
+      "back": "games/assets/pokemon/showdown/back/sneasel-hisui.gif"
+    },
+    "1307": {
+      "front": "games/assets/pokemon/showdown/front/qwilfish-hisui.gif",
+      "back": "games/assets/pokemon/showdown/back/qwilfish-hisui.gif"
+    },
+    "1310": {
+      "front": "games/assets/pokemon/showdown/front/dialga.gif",
+      "back": "games/assets/pokemon/showdown/back/dialga.gif"
+    },
+    "1311": {
+      "front": "games/assets/pokemon/showdown/front/palkia.gif",
+      "back": "games/assets/pokemon/showdown/back/palkia.gif"
+    }
+  }
+}

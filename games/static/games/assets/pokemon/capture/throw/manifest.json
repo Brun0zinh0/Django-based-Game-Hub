@@ -1,0 +1,121 @@
+{
+  "red": {
+    "frames": 5,
+    "sizes": [
+      [
+        64,
+        64
+      ],
+      [
+        64,
+        64
+      ],
+      [
+        64,
+        64
+      ],
+      [
+        64,
+        64
+      ],
+      [
+        64,
+        64
+      ]
+    ],
+    "source": "pret/pokefirered red_back_pic.png"
+  },
+  "ethan": {
+    "frames": 5,
+    "sizes": [
+      [
+        70,
+        68
+      ],
+      [
+        70,
+        68
+      ],
+      [
+        70,
+        68
+      ],
+      [
+        70,
+        68
+      ],
+      [
+        70,
+        68
+      ]
+    ],
+    "window": [
+      0,
+      5
+    ],
+    "rowFrames": 5,
+    "source": "spriters-resource asset 41995 (HGSS trainer backsprites, ETHAN|LYRA band)"
+  },
+  "lyra": {
+    "frames": 5,
+    "sizes": [
+      [
+        71,
+        69
+      ],
+      [
+        71,
+        69
+      ],
+      [
+        71,
+        69
+      ],
+      [
+        71,
+        69
+      ],
+      [
+        71,
+        69
+      ]
+    ],
+    "window": [
+      0,
+      5
+    ],
+    "rowFrames": 5,
+    "source": "spriters-resource asset 41995 (HGSS trainer backsprites, ETHAN|LYRA band)"
+  },
+  "lucas": {
+    "frames": 5,
+    "sizes": [
+      [
+        69,
+        65
+      ],
+      [
+        69,
+        65
+      ],
+      [
+        69,
+        65
+      ],
+      [
+        69,
+        65
+      ],
+      [
+        69,
+        65
+      ]
+    ],
+    "window": [
+      0,
+      5
+    ],
+    "rowFrames": 5,
+    "source": "spriters-resource asset 41995 (HGSS trainer backsprites, ETHAN|LYRA band)"
+  }
+}

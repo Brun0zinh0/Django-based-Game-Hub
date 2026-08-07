@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "trainer_policy": "Nine distinct retro back-sprite avatars. Later 3D-only generations use a pixel-art fallback.",
+  "league_trainers": [
+    {
+      "league": 1,
+      "character": "Red",
+      "file": "league-trainers/league-01-red.png",
+      "source_sheet": "frlg-player-sprites.png",
+      "crop": [
+        9,
+        227,
+        71,
+        289
+      ],
+      "anchor": "bottom-center"
+    },
+    {
+      "league": 2,
+      "character": "Ethan",
+      "file": "league-trainers/league-02-ethan.png",
+      "source_sheet": "hgss-trainers-back.png",
+      "crop": [
+        1,
+        19,
+        80,
+        97
+      ],
+      "anchor": "bottom-center"
+    },
+    {
+      "league": 3,
+      "character": "Lyra",
+      "file": "league-trainers/league-03-lyra.png",
+      "source_sheet": "hgss-trainers-back.png",
+      "crop": [
+        406,
+        19,
+        485,
+        97
+      ],
+      "anchor": "bottom-center"
+    },
+    {
+      "league": 4,
+      "character": "Lucas",
+      "file": "league-trainers/league-04-lucas.png",
+      "source_sheet": "platinum-trainers-back.png",
+      "crop": [
+        1,
+        19,
+        80,
+        97
+      ],
+      "anchor": "bottom-center"
+    },
+    {
+      "league": 5,
+      "character": "Hilbert",
+      "file": "league-trainers/league-05-hilbert.png",
+      "source_sheet": "bw-trainers-back.png",
+      "crop": [
+        0,
+        0,
+        52,
+        147
+      ],
+      "anchor": "bottom-center"
+    },
+    {
+      "league": 6,
+      "character": "Hilda",
+      "file": "league-trainers/league-06-hilda.png",
+      "source_sheet": "bw-trainers-back.png",
+      "crop": [
+        256,
+        0,
+        312,
+        147
+      ],
+      "anchor": "bottom-center"
+    },
+    {
+      "league": 7,
+      "character": "Nate",
+      "file": "league-trainers/league-07-nate.png",
+      "source_sheet": "bw2-trainers-back.png",
+      "crop": [
+        2,
+        0,
+        50,
+        130
+      ],
+      "anchor": "bottom-center"
+    },
+    {
+      "league": 8,
+      "character": "Rosa",
+      "file": "league-trainers/league-08-rosa.png",
+      "source_sheet": "bw2-trainers-back.png",
+      "crop": [
+        261,
+        0,
+        314,
+        130
+      ],
+      "anchor": "bottom-center"
+    },
+    {
+      "league": 9,
+      "character": "Leaf",
+      "file": "league-trainers/league-09-leaf.png",
+      "source_sheet": "frlg-player-sprites.png",
+      "crop": [
+        9,
+        484,
+        71,
+        557
+      ],
+      "anchor": "bottom-center"
+    }
+  ],
+  "area_previews": {
+    "viridian-forest": "area-previews/viridian-forest.png",
+    "mt-moon": "area-previews/mt-moon.png",
+    "diglett-cave": "area-previews/diglett-cave.png",
+    "rock-tunnel": "area-previews/rock-tunnel.png",
+    "power-plant": "area-previews/power-plant.png",
+    "rocket-hideout": "area-previews/rocket-hideout.png",
+    "safari-zone": "area-previews/safari-zone.png",
+    "seafoam-islands": "area-previews/seafoam-islands.png",
+    "victory-road": "area-previews/victory-road.png",
+    "cerulean-cave": "area-previews/cerulean-cave.png"
+  },
+  "interface": {
+    "league_selection_background": "ui/kanto-town-map.png",
+    "league_title": "ui/kanto-title.png",
+    "pc_backgrounds": [
+      "ui/pc-box-01.png",
+      "ui/pc-box-02.png",
+      "ui/pc-box-03.png",
+      "ui/pc-box-04.png"
+    ]
+  },
+  "sources": {
+    "frlg-player-sprites.png": {
+      "page": "https://www.spriters-resource.com/game_boy_advance/pokemonfireredleafgreen/asset/52432/",
+      "credit": "Uploaded by FrenchOrange"
+    },
+    "frlg-area-previews.png": {
+      "page": "https://www.spriters-resource.com/game_boy_advance/pokemonfireredleafgreen/asset/3859/",
+      "credit": "Uploaded by FrenchOrange"
+    },
+    "frlg-pc-interface.png": {
+      "page": "https://www.spriters-resource.com/game_boy_advance/pokemonfireredleafgreen/asset/3861/",
+      "credit": "Uploaded by yoursavior; contributed by fabnt"
+    },
+    "frlg-town-map.png": {
+      "page": "https://www.spriters-resource.com/game_boy_advance/pokemonfireredleafgreen/asset/3864/",
+      "credit": "Uploaded by FrenchOrange"
+    },
+    "frlg-intro-title.png": {
+      "page": "https://www.spriters-resource.com/game_boy_advance/pokemonfireredleafgreen/asset/3850/",
+      "credit": "Uploaded by FrenchOrange"
+    },
+    "hgss-trainers-back.png": {
+      "page": "https://www.spriters-resource.com/ds_dsi/pokemonheartgoldsoulsilver/asset/41995/",
+      "credit": "Uploaded by tsuka; contributed by mufasakong"
+    },
+    "bw-trainers-back.png": {
+      "page": "https://www.spriters-resource.com/ds_dsi/pokemonblackwhite/asset/34020/",
+      "credit": "Uploaded by Barubary"
+    },
+    "bw2-trainers-back.png": {
+      "page": "https://www.spriters-resource.com/ds_dsi/pokemonblack2white2/asset/48032/",
+      "credit": "Uploaded by redblueyellow"
+    },
+    "platinum-trainers-back.png": {
+      "page": "https://www.spriters-resource.com/ds_dsi/pokemonplatinum/asset/151090/page-1/",
+      "credit": "Uploaded by mufasakong"
+    }
+  }
+}

@@ -1,0 +1,483 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0e1828">
+    <title>Pokemon Rogue · Double Battle</title>
+    <link rel="stylesheet" href="{% static 'games/pokemon_rogue.css' %}?v=20260808-6">
+    <script defer src="{% static 'games/vendor/phaser-3.90.0.min.js' %}"></script>
+    <script defer src="{% static 'games/pokemon_battle_abilities.js' %}?v=20260807-8"></script>
+    <script defer src="{% static 'games/pokemon_multi_turn_moves.js' %}?v=20260804-2"></script>
+    <script defer src="{% static 'games/pokemon_battle_field.js' %}?v=20260804-2"></script>
+    <script defer src="{% static 'games/pokemon_held_items.js' %}?v=20260804-3"></script>
+    <script defer src="{% static 'games/pokemon_battle_simulation.js' %}?v=20260808-6"></script>
+    <script defer src="{% static 'games/pokemon_run_simulation.js' %}?v=20260808-5"></script>
+    <script defer src="{% static 'games/pokemon_move_effects.js' %}?v=20260803-2"></script>
+    <script defer src="{% static 'games/pokemon_battle_audio.js' %}?v=20260807-6"></script>
+    <script defer src="{% static 'games/pokemon_showdown_move_anims.js' %}?v=20260806-1"></script>
+    <script defer src="{% static 'games/pokemon_showdown_anim_adapter.js' %}?v=20260806-14"></script>
+    <script defer src="{% static 'games/pokemon_battle_scene.js' %}?v=20260808-4"></script>
+    <script defer src="{% static 'games/pokemon_rogue.js' %}?v=20260808-6"></script>
+</head>
+<body>
+    <main
+        id="pokemon-rogue-app"
+        class="pokemon-battle-page"
+        data-data-url="{% static 'games/data/pokemon/gen1.json' %}?v=20260802-1"
+        data-league-url="{% static 'games/data/pokemon/leagues/kanto.json' %}?v=20260808-3"
+        data-league-urls='{"1": "{% static "games/data/pokemon/leagues/kanto.json" %}?v=20260808-3", "2": "{% static "games/data/pokemon/leagues/johto.json" %}?v=20260808-3", "3": "{% static "games/data/pokemon/leagues/hoenn.json" %}?v=20260808-3", "4": "{% static "games/data/pokemon/leagues/sinnoh.json" %}?v=20260808-3"}'
+        data-trainers-url="{% static 'games/data/pokemon/trainers.json' %}?v=20260808-1"
+        data-gender-url="{% static 'games/data/pokemon/gender.json' %}?v=20260803-1"
+        data-sprites-url="{% static 'games/assets/pokemon/showdown/manifest.json' %}?v=20260808-1"
+        data-static-prefix="{% static '' %}"
+    >
+        <header class="battle-topbar">
+            <a class="battle-back" href="{% url 'games:home' %}">
+                <span aria-hidden="true">←</span> Game hub
+            </a>
+            <div class="battle-title-group">
+                <p>Pokemon Rogue</p>
+                <h1 id="screen-title">Double Battle Prototype</h1>
+            </div>
+            <span id="screen-mode" class="battle-mode">2 VS 2 · TEAM OF 6</span>
+        </header>
+
+        <section id="pokemon-loading" class="pokemon-loading" aria-live="polite">
+            <div>
+                <div class="loading-pokeball" aria-hidden="true"></div>
+                <p id="pokemon-loading-text">Starting battle engine...</p>
+            </div>
+        </section>
+
+        <section id="main-menu" class="main-menu" hidden aria-labelledby="main-menu-title">
+            <div class="main-menu-card">
+                <h2 id="main-menu-title">POKEMON<br><span>ROGUE</span></h2>
+                <p class="main-menu-copy">Build a team, clear a region, and leave a legacy across nine leagues.</p>
+                <div class="main-menu-actions">
+                    <button id="menu-play" class="menu-button menu-play" type="button"><span>PLAY</span><small>Choose a league</small></button>
+                    <button id="menu-legacy" class="menu-button menu-legacy" type="button"><span>LEGACY SHOP</span><small id="menu-legacy-balance">Permanent upgrades · ◆0</small></button>
+                    <button id="menu-settings" class="menu-button menu-settings" type="button"><span>SETTINGS</span><small>Animation and display</small></button>
+                </div>
+            </div>
+        </section>
+
+        <section id="league-selection" class="league-selection" hidden aria-labelledby="league-selection-title">
+            <header class="flow-heading">
+                <button id="league-selection-back" class="flow-back" type="button">← MAIN MENU</button>
+                <div>
+                    <p>CHOOSE YOUR JOURNEY</p>
+                    <h2 id="league-selection-title">Select a League</h2>
+                </div>
+
+            </header>
+            <div class="league-map-stage">
+                <div id="league-choice-grid" class="league-choice-grid" aria-label="Available leagues"></div>
+            </div>
+        </section>
+
+        <section id="league-start" class="league-start" hidden aria-labelledby="league-start-title">
+            <header class="league-start-heading">
+                <div class="league-start-identity">
+                    <figure class="league-player-avatar">
+                        <img id="league-player-avatar" src="{% static 'games/assets/pokemon/spriters-resource/league-trainers/league-01-red.png' %}" alt="Red, the Kanto player character, seen from behind">
+                        <figcaption><small>PLAYER</small><strong id="league-player-name">RED</strong></figcaption>
+                    </figure>
+                    <div class="league-start-copy">
+                        <img id="league-title-art" class="league-title-art" src="{% static 'games/assets/pokemon/spriters-resource/ui/kanto-title.png' %}" alt="Pokemon FireRed title artwork">
+                        <p id="league-start-era">LEAGUE 1 · GENERATION 1</p>
+                        <h2 id="league-start-title">Kanto League</h2>
+                    </div>
+                </div>
+                <span id="league-dex-pill" class="league-dex-pill">DEX 001—151</span>
+            </header>
+            <div class="league-rules-strip">
+                <span><strong>2</strong> STARTERS</span>
+                <span><strong>Lv.5</strong> START</span>
+                <span><strong>2v2</strong> BATTLES</span>
+                <span><strong>6</strong> PARTY MAX</span>
+            </div>
+            <section class="league-career" aria-label="Kanto League progression">
+                <div class="league-career-grid">
+                    <button id="open-league-dex" class="career-card dex-career-card" type="button">
+                        <small id="league-dex-region-label">KANTO LEAGUE DEX</small>
+                        <strong><span id="league-dex-count">0</span> / <span id="league-dex-total">151</span> REGISTERED</strong>
+                        <em>ONE SHARED DEX RECORD</em>
+                    </button>
+                    <article class="career-card record-career-card">
+                        <small>PERSONAL RECORD</small>
+                        <strong>ROUND <span id="league-best-round">0</span></strong>
+                        <em>Best run across all modes</em>
+                    </article>
+                    <article class="career-card reward-career-card">
+                        <small>LEAGUE REWARDS</small>
+                        <strong id="legendary-status">LEGENDARIES LOCKED</strong>
+                        <em id="mew-status">Mew mastery locked</em>
+                    </article>
+                </div>
+                <div class="league-milestone">
+                    <div>
+                        <strong id="league-milestone-label">KANTO STORY · 0 / 14</strong>
+                        <span id="league-milestone-copy">Defeat the Champion to unlock Hard Mode + Johto League</span>
+                    </div>
+                    <div class="league-milestone-track" aria-hidden="true"><i id="league-milestone-bar"></i></div>
+                </div>
+                <fieldset class="mode-selector">
+                    <legend>RUN MODE</legend>
+                    <div class="mode-options">
+                        <button id="normal-mode" class="mode-option is-selected" type="button" aria-pressed="true">
+                            <strong>NORMAL</strong><small>Full recovery after each duel</small>
+                        </button>
+                        <button id="hard-mode" class="mode-option hard-mode-option" type="button" aria-pressed="false" disabled>
+                            <strong>HARD</strong><small id="hard-mode-lock">Locked · Defeat the Kanto Champion</small>
+                        </button>
+                    </div>
+                    <p id="mode-description">Your team fully heals, revives, clears status, and restores PP after a win.</p>
+                </fieldset>
+            </section>
+            <footer class="league-setup-actions">
+                <button id="back-to-leagues" class="starter-secondary" type="button">← BACK TO LEAGUES</button>
+                <button id="continue-run" class="starter-confirm continue-run-button" type="button" hidden>
+                    CONTINUE RUN <small id="continue-run-copy"></small>
+                </button>
+                <button id="continue-to-starters" class="starter-confirm" type="button">CHOOSE STARTERS →</button>
+            </footer>
+        </section>
+
+        <section id="starter-screen" class="starter-screen" hidden aria-labelledby="starter-selection-title">
+            <header class="flow-heading starter-screen-heading">
+                <button id="back-to-mode" class="flow-back" type="button">← MODE</button>
+                <div>
+                    <p><span id="starter-league-label">KANTO LEAGUE</span> · <span id="starter-mode-label">NORMAL MODE</span></p>
+                    <h2>Build Your Opening Pair</h2>
+                </div>
+                <span>STEP 3 / 3</span>
+            </header>
+            <section class="starter-selection" aria-labelledby="starter-selection-title">
+                <div class="starter-copy">
+                    <p>BUILD YOUR OPENING PAIR</p>
+                    <h3 id="starter-selection-title">Choose two Pokémon</h3>
+                    <span id="starter-blurb">Pick two from four: one random regional starter and three early-route Pokémon.</span>
+                </div>
+                <div id="starter-choices" class="starter-choices"></div>
+                <footer class="starter-footer">
+                    <p id="starter-count" aria-live="polite">0 / 2 SELECTED</p>
+                    <button id="reroll-starters" class="starter-secondary" type="button">REROLL CHOICES</button>
+                    <button id="start-kanto-run" class="starter-confirm" type="button" disabled>START RUN</button>
+                </footer>
+            </section>
+        </section>
+
+        <section id="between-rounds" class="between-rounds" hidden aria-labelledby="room-heading">
+            <header class="room-heading">
+                <div>
+                    <p id="room-kicker" class="room-kicker">LEAGUE 1 · KANTO</p>
+                    <h2 id="room-heading">Round complete</h2>
+                </div>
+                <div class="room-progress">
+                    <span id="room-round">ROUND 1</span>
+                    <strong id="room-wins">1 WIN</strong>
+                    <button id="room-open-dex" class="room-dex-button" type="button">DEX 0/151</button>
+                    <em id="room-mode">NORMAL</em>
+                    <b id="room-legacy">LEGACY 0</b>
+                </div>
+            </header>
+
+            <div class="room-layout">
+                <section class="room-panel shop-panel" aria-labelledby="shop-heading">
+                    <header class="panel-title shop-title">
+                        <span aria-hidden="true">✦</span>
+                        <div>
+                            <p>SUPPLY COUNTER</p>
+                            <h3 id="shop-heading">SHOP</h3>
+                        </div>
+                    </header>
+                    <div id="shop-offers" class="shop-offers"></div>
+                    <button id="shop-refresh" class="shop-refresh" type="button">
+                        <span aria-hidden="true">⟳</span>
+                        <span><small>RESTOCK THE COUNTER</small><strong id="shop-refresh-fee">₽0</strong></span>
+                    </button>
+                    <footer class="shop-footer">
+                        <div class="money-display" aria-label="Current money">
+                            <span>MONEY</span>
+                            <strong id="room-money">₽0</strong>
+                        </div>
+                        <button id="open-bag" class="room-action bag-action" type="button">
+                            <span class="bag-icon" aria-hidden="true"></span>
+                            <span><small>OPEN</small>BAG</span>
+                            <strong id="bag-count">0</strong>
+                        </button>
+                    </footer>
+                </section>
+
+                <section class="room-panel roster-panel" aria-labelledby="roster-heading">
+                    <header class="panel-title roster-title">
+                        <div>
+                            <p>ACTIVE PARTY</p>
+                            <h3 id="roster-heading">TEAM</h3>
+                        </div>
+                        <div class="roster-actions">
+                            <button id="open-order" class="pc-button order-button" type="button" aria-pressed="false">REORDER</button>
+                        </div>
+                    </header>
+                    <div id="room-team" class="room-team"></div>
+                </section>
+
+                <button id="wild-encounter" class="room-primary-button wild-button" type="button">
+                    <span id="wild-preview" class="wild-preview" aria-hidden="true"></span>
+                    <span><small id="wild-fee">ENCOUNTER FEE</small>WILD POKEMON</span>
+                    <span aria-hidden="true">?</span>
+                </button>
+
+                <button id="open-pc" class="room-primary-button pc-primary-button" type="button">
+                    <span aria-hidden="true">▤</span>
+                    <span><small>STORED <b id="pc-count">0</b></small>PC BOX</span>
+                </button>
+            </div>
+
+            <div class="room-bottom-bar">
+                <p id="room-feedback" class="room-feedback" aria-live="polite">
+                    Spend your reward, prepare the team, then choose the next encounter.
+                </p>
+                <button id="next-duel" class="next-duel-button" type="button">NEXT DUEL →</button>
+            </div>
+        </section>
+
+        <section id="trainer-intro" class="trainer-intro" hidden aria-labelledby="trainer-intro-name">
+            <div class="trainer-intro-card">
+                <div class="trainer-intro-grid" aria-hidden="true"></div>
+                <header class="trainer-intro-heading">
+                    <p id="trainer-intro-kicker">KANTO LEAGUE · DUEL 1</p>
+                    <strong id="trainer-intro-rank">TRAINER BATTLE</strong>
+                </header>
+                <div class="trainer-intro-stage">
+                    <section class="trainer-challenger" aria-label="Player team">
+                        <small>YOUR SIDE</small>
+                        <strong id="trainer-intro-challenger">KANTO<br>CHALLENGER</strong>
+                        <div id="trainer-intro-party" class="trainer-intro-party"></div>
+                    </section>
+                    <div class="trainer-versus" aria-hidden="true"><span>VS</span></div>
+                    <figure class="trainer-reveal">
+                        <div class="trainer-sprite-aura">
+                            <img id="trainer-intro-sprite" src="" alt="">
+                        </div>
+                        <figcaption>
+                            <small id="trainer-intro-class">TRAINER</small>
+                            <h2 id="trainer-intro-name">Opponent</h2>
+                        </figcaption>
+                    </figure>
+                </div>
+                <footer class="trainer-intro-footer">
+                    <div>
+                        <div id="trainer-intro-types" class="trainer-intro-types"></div>
+                        <blockquote id="trainer-intro-quote">A trainer challenges you!</blockquote>
+                    </div>
+                    <button id="trainer-intro-start" class="trainer-intro-start" type="button">START DUEL</button>
+                </footer>
+            </div>
+        </section>
+
+        <section id="pokemon-battle-shell" class="pokemon-battle-shell" hidden>
+            <div class="battle-team-rail" aria-label="Team status">
+                <div class="team-side">
+                    <span class="team-label">YOUR TEAM</span>
+                    <div id="player-team-strip" class="team-strip"></div>
+                </div>
+                <strong id="battle-round" class="battle-round">TURN 1</strong>
+                <div class="team-side">
+                    <span class="team-label">OPPONENT</span>
+                    <div id="enemy-team-strip" class="team-strip"></div>
+                </div>
+            </div>
+
+            <div class="battle-stage-frame">
+                <div
+                    id="battle-renderer"
+                    class="battle-renderer"
+                    role="img"
+                    aria-label="Pokemon battlefield"
+                ></div>
+                <button id="mega-trigger" class="mega-trigger" type="button" hidden>
+                    <span class="mega-trigger-icon" aria-hidden="true">◆</span>
+                    <span class="mega-trigger-copy"><b>MEGA</b><small id="mega-trigger-hint">EVOLVE</small></span>
+                </button>
+            </div>
+
+            <div class="battle-console">
+                <div class="battle-log-panel">
+                    <p id="battle-message" class="battle-message" aria-live="assertive">
+                        Choose a command.
+                    </p>
+                    <button id="battle-continue" class="battle-continue" type="button" hidden>CONTINUE <span aria-hidden="true">▶</span></button>
+                </div>
+
+                <section id="battle-command-panel" class="battle-command-panel" aria-label="Battle commands">
+                    <div class="command-grid">
+                        <button id="command-attack" class="command-button command-attack" type="button" aria-pressed="false">
+                            <span class="command-number" aria-hidden="true">01</span>
+                            <span class="command-copy"><strong>FIGHT</strong><small>Choose a move</small></span>
+                        </button>
+                        <button id="command-pokemon" class="command-button command-pokemon" type="button" aria-pressed="false">
+                            <span class="command-number" aria-hidden="true">02</span>
+                            <span class="command-copy"><strong>POKEMON</strong><small>Team and switch</small></span>
+                        </button>
+                        <button id="command-item" class="command-button command-item" type="button" aria-pressed="false">
+                            <span class="command-number command-bag-icon" aria-hidden="true"><span class="bag-icon"></span></span>
+                            <span class="command-copy"><strong>BAG</strong><small>Use an item</small></span>
+                        </button>
+                        <button id="command-forfeit" class="command-button command-forfeit" type="button">
+                            <span class="command-number" aria-hidden="true">04</span>
+                            <span class="command-copy"><strong>FORFEIT</strong><small>End the battle</small></span>
+                        </button>
+                    </div>
+
+                    <section id="battle-submenu" class="battle-submenu" aria-label="Command details" hidden>
+                        <div class="submenu-heading">
+                            <h2 id="submenu-title">Choose</h2>
+                            <button id="submenu-back" class="submenu-back" type="button">BACK</button>
+                        </div>
+                        <div id="submenu-content" class="submenu-content"></div>
+                    </section>
+                </section>
+            </div>
+        </section>
+
+        <dialog id="forfeit-confirmation" class="forfeit-dialog">
+            <div class="dialog-body">
+                <h2>Forfeit this battle?</h2>
+                <p>Your current battle will end immediately.</p>
+                <div class="dialog-actions">
+                    <button id="cancel-forfeit" class="dialog-button" type="button">KEEP FIGHTING</button>
+                    <button id="confirm-forfeit" class="dialog-button dialog-button-danger" type="button">FORFEIT</button>
+                </div>
+            </div>
+        </dialog>
+
+        <dialog id="game-settings" class="settings-dialog">
+            <form id="settings-form" class="settings-card">
+                <header>
+                    <div>
+                        <p>GAME OPTIONS</p>
+                        <h2>Settings</h2>
+                    </div>
+                    <button id="close-settings" class="room-dialog-close" type="button" aria-label="Close settings">×</button>
+                </header>
+                <div class="settings-fields">
+                    <label for="idle-animation-speed">
+                        <span><strong>Sprite idle speed</strong><small>Controls the looping battle sprites.</small></span>
+                        <select id="idle-animation-speed">
+                            <option value="6">Calm</option>
+                            <option value="4">Slow</option>
+                        </select>
+                    </label>
+                    <label for="reduced-battle-motion">
+                        <span><strong>Reduced battle motion</strong><small>Minimizes shakes, flashes, and transitions.</small></span>
+                        <input id="reduced-battle-motion" type="checkbox">
+                    </label>
+                    <label for="sound-enabled">
+                        <span><strong>Sound</strong><small>Capture sound effects.</small></span>
+                        <input id="sound-enabled" type="checkbox" checked>
+                    </label>
+                    <label for="music-volume" class="settings-music-volume">
+                        <span><strong>Music volume</strong><small>Now playing: <em id="music-now-playing">—</em></small></span>
+                        <span class="settings-range">
+                            <input id="music-volume" type="range" min="0" max="100" step="5" value="30">
+                            <output id="music-volume-value" for="music-volume">30%</output>
+                        </span>
+                    </label>
+                    <label for="music-playlist">
+                        <span><strong>Playlist</strong><small>Drop audio files in sounds/Pokerogue/music — each sub-folder becomes a playlist.</small></span>
+                        <select id="music-playlist">
+                            {% for playlist in pokemon_music_playlists %}
+                            <option value="{{ playlist.id }}">{{ playlist.name }} ({{ playlist.track_count }})</option>
+                            {% endfor %}
+                        </select>
+                    </label>
+                </div>
+                <footer>
+                    <button id="cancel-settings" class="starter-secondary" type="button">CANCEL</button>
+                    <button class="starter-confirm" type="submit">SAVE SETTINGS</button>
+                </footer>
+            </form>
+        </dialog>
+
+        <dialog id="legacy-shop" class="settings-dialog legacy-shop">
+            <div class="settings-card">
+                <header>
+                    <div>
+                        <p>PERMANENT UPGRADES</p>
+                        <h2>Legacy Shop</h2>
+                    </div>
+                    <span id="legacy-balance" class="legacy-balance">◆ 0</span>
+                    <button id="legacy-close" class="room-dialog-close" type="button" aria-label="Close legacy shop">×</button>
+                </header>
+                <div class="settings-fields legacy-items">
+                    <label>
+                        <span><strong>Bankroll</strong><small id="ls-money-copy">Start every run with extra prize money.</small></span>
+                        <button id="ls-money" class="legacy-buy" type="button"></button>
+                    </label>
+                    <label>
+                        <span><strong>Third Starter</strong><small id="ls-starter-copy">Begin each run with three Pokémon instead of two.</small></span>
+                        <button id="ls-starter" class="legacy-buy" type="button"></button>
+                    </label>
+                    <label>
+                        <span><strong>Stone Magnet</strong><small id="ls-magnet-copy">Mega Stones turn up a whole rarity tier more often.</small></span>
+                        <button id="ls-magnet" class="legacy-buy" type="button"></button>
+                    </label>
+                    <label>
+                        <span><strong>Shiny Loot Box</strong><small id="ls-loot-copy">Unlocks the shiny skin of a random Pokémon you have caught.</small></span>
+                        <button id="ls-loot" class="legacy-buy" type="button"></button>
+                    </label>
+                </div>
+                <div id="ls-loot-result" class="legacy-loot-result" hidden>
+                    <img id="ls-loot-sprite" alt="">
+                    <p id="ls-loot-text"></p>
+                </div>
+            </div>
+        </dialog>
+
+        <dialog id="room-dialog" class="room-dialog">
+            <div class="room-dialog-shell">
+                <header>
+                    <div>
+                        <p id="room-dialog-kicker">PARTY</p>
+                        <h2 id="room-dialog-title">Details</h2>
+                    </div>
+                    <button id="close-room-dialog" class="room-dialog-close" type="button" aria-label="Close">×</button>
+                </header>
+                <div id="room-dialog-content" class="room-dialog-content"></div>
+            </div>
+        </dialog>
+
+        <section id="battle-result" class="battle-result" hidden aria-live="assertive">
+            <div id="battle-result-card" class="result-card">
+                <div class="result-speed-lines" aria-hidden="true"></div>
+                <header class="result-hero">
+                    <div class="result-emblem" aria-hidden="true"><span id="battle-result-symbol">★</span></div>
+                    <div>
+                        <p id="battle-result-kicker" class="result-kicker">KANTO LEAGUE · DUEL CLEAR</p>
+                        <h2 id="battle-result-title">VICTORY</h2>
+                    </div>
+                </header>
+                <div id="battle-result-body" class="result-body">
+                    <p id="battle-result-text" class="result-message"></p>
+                    <div id="battle-result-rewards" class="result-rewards" hidden></div>
+                    <div id="result-slot-report" class="result-slot"></div>
+                    <p id="battle-result-recovery" class="result-recovery" hidden></p>
+                    <div id="result-slot-revival" class="result-slot"></div>
+                    <div id="battle-result-unlocks" class="result-unlocks" hidden></div>
+                </div>
+                <div class="result-actions">
+                    <button id="battle-restart" class="result-button" type="button">BATTLE AGAIN</button>
+                </div>
+            </div>
+        </section>
+
+        <noscript>This battle requires JavaScript.</noscript>
+
+        <audio id="pokemon-background-music" preload="auto" playsinline></audio>
+        {{ pokemon_music_tracks|json_script:"pokemon-music-tracks" }}
+    </main>
+</body>
+</html>

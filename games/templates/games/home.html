@@ -1,0 +1,77 @@
+{% extends "games/base.html" %}
+{% load static %}
+
+{% block title %}Accueil · The cool Rogue Game Hub{% endblock %}
+
+{% block body_class %}theme-dark{% endblock %}
+
+{% block header %}
+<header class="site-header site-header-home">
+    <a class="pixel-logo" href="{% url 'games:home' %}">The cool Rogue Game Hub</a>
+</header>
+{% endblock %}
+
+{% block content %}
+<section aria-labelledby="games-title">
+    <h2 id="games-title">Les jeux</h2>
+
+    <div class="game-grid">
+        <article class="game-card battle-card">
+            <figure class="game-card-cover">
+                <img
+                    src="{% static 'games/assets/hub/battle-royale-cover.jpg' %}"
+                    alt=""
+                    decoding="async"
+                >
+                <span class="game-icon battle-icon" aria-hidden="true">⚡</span>
+            </figure>
+            <div class="game-card-body">
+                <p class="eyebrow">Jeu no 1</p>
+                <h3>Rogue Like Battle Royale</h3>
+                <p>
+                    Affronte 12 adversaires, reste dans la zone et deviens
+                    le dernier survivant.
+                </p>
+                <a class="button button-battle"
+                   href="{% url 'games:battle_royale' %}">
+                    Entrer dans l’arène
+                </a>
+            </div>
+        </article>
+
+        {% for game in arcade_games %}
+        <article class="game-card arcade-card arcade-card-{{ game.theme }}{% if not game.available %} is-coming-soon{% endif %}">
+            {% if game.slug == "pokemon-rogue" %}
+                <figure class="game-card-cover">
+                    <img
+                        src="{% static 'games/assets/hub/pokemon-rogue-cover.jpg' %}"
+                        alt=""
+                        decoding="async"
+                    >
+                    <span class="game-icon arcade-icon" aria-hidden="true">{{ game.icon }}</span>
+                </figure>
+            {% else %}
+                <div class="game-icon arcade-icon" aria-hidden="true">{{ game.icon }}</div>
+            {% endif %}
+            <div class="game-card-body">
+                <p class="eyebrow">Jeu no {{ game.number }}</p>
+                <h3>{{ game.title }}</h3>
+                <p>{{ game.description }}</p>
+                {% if game.available %}
+                    <a class="button button-arcade"
+                       href="{% if game.slug == 'pokemon-rogue' %}{% url 'games:pokemon_rogue' %}{% else %}{% url 'games:arcade_game' game.slug %}{% endif %}">
+                        Jouer
+                    </a>
+                {% else %}
+                    <span class="button button-arcade button-coming-soon"
+                          aria-disabled="true">
+                        À venir
+                    </span>
+                {% endif %}
+            </div>
+        </article>
+        {% endfor %}
+
+    </div>
+</section>
+{% endblock %}

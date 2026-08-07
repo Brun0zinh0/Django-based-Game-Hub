@@ -1,0 +1,28 @@
+{% load static %}
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}The cool Rogue Game Hub{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+    <link rel="stylesheet" href="{% static 'games/styles.css' %}?v=20260806-44">
+</head>
+<body class="{% block body_class %}{% endblock %}">
+    {% block header %}
+    <header class="site-header">
+        <a class="brand" href="{% url 'games:home' %}">The cool Rogue Game Hub</a>
+    </header>
+    {% endblock %}
+
+    <main class="page">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        Construit avec Python et Django.
+    </footer>
+</body>
+</html>

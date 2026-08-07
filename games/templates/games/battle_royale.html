@@ -1,0 +1,682 @@
+{% extends "games/base.html" %}
+{% load static %}
+
+{% block title %}Rogue Like Battle Royale · The cool Rogue Game Hub{% endblock %}
+
+{% block content %}
+<section class="battle-page" aria-labelledby="battle-title">
+    <header class="battle-topbar">
+        <a class="battle-back" href="{% url 'games:home' %}">
+            <span aria-hidden="true">←</span> Game hub
+        </a>
+        <div class="battle-title-group">
+            <p>Rogue Like Battle Royale</p>
+            <h1 id="battle-title">Survival Arena Prototype</h1>
+        </div>
+        <span class="battle-mode">SOLO · LAST ONE STANDING</span>
+    </header>
+
+    <div class="battle-stage">
+    <div class="battle-view-toolbar">
+        <span>
+            <strong>Affichage de l’arène</strong>
+            <small>Le plein écran agrandit le jeu sans quitter la page.</small>
+        </span>
+        <div class="battle-view-actions">
+            <button class="fullscreen-toggle" id="fullscreen-toggle"
+                    type="button" aria-pressed="false">
+                <span aria-hidden="true">⛶</span>
+                <span data-fullscreen-label>Plein écran</span>
+                <kbd>F</kbd>
+            </button>
+            <button class="settings-toggle" id="settings-toggle" type="button"
+                    aria-haspopup="dialog">
+                <span aria-hidden="true">⚙</span>
+                Paramètres
+            </button>
+        </div>
+    </div>
+
+    <div class="battle-hud" aria-label="Informations de la partie">
+        <div class="hud-stat">
+            <span>Round</span>
+            <strong id="round-value">1</strong>
+        </div>
+        <div class="hud-stat points-stat">
+            <span>Points</span>
+            <strong class="points-total">
+                <span id="points-value">0</span>
+                <small id="points-gain" aria-hidden="true"></small>
+            </strong>
+        </div>
+        <div class="hud-stat">
+            <span>Survivants</span>
+            <strong id="players-left">19</strong>
+        </div>
+        <div class="hud-stat health-stat">
+            <span>Santé</span>
+            <strong id="health-value">100 / 100</strong>
+            <div class="health-track" aria-hidden="true">
+                <div class="health-fill" id="health-fill"></div>
+            </div>
+        </div>
+        <div class="hud-stat">
+            <span>Éliminations</span>
+            <strong id="kill-count">0</strong>
+        </div>
+        <div class="hud-stat">
+            <span>Zone</span>
+            <strong id="zone-timer">150 s</strong>
+        </div>
+    </div>
+
+    <div class="battle-arena">
+        <canvas
+            id="battle-canvas"
+            width="960"
+            height="600"
+            tabindex="0"
+            data-wizard-atlas="{% static 'games/assets/wizard_creature_atlas_v2.png' %}?v=20260731-26"
+            data-bonus-wizard-atlas="{% static 'games/assets/wizard_bonus_atlas_v1.png' %}?v=20260731-28"
+            data-biome-atlas="{% static 'games/assets/biome_texture_atlas.png' %}?v=20260730-15"
+            aria-label="Arène du Rogue Like Battle Royale"
+        >
+            Ton navigateur ne prend pas en charge le canvas HTML.
+        </canvas>
+
+        <div class="combat-resource-bars"
+             aria-label="Ressources de combat">
+            <div class="combat-resource resource-health">
+                <span>
+                    <b>HP</b>
+                    <small id="top-health-value">100 / 100</small>
+                </span>
+                <div><i id="top-health-fill"></i></div>
+            </div>
+            <div class="combat-resource resource-ultimate">
+                <span>
+                    <b>ULT · E</b>
+                    <small id="top-ultimate-value">Verrouillée</small>
+                </span>
+                <div><i id="top-ultimate-fill"></i></div>
+            </div>
+            <div class="combat-resource resource-dash">
+                <span>
+                    <b>DASH</b>
+                    <small id="top-dash-value">Verrouillé</small>
+                </span>
+                <div><i id="top-dash-fill"></i></div>
+            </div>
+        </div>
+
+        <div class="battle-bottom-hud">
+            <div class="music-now-playing" aria-live="polite">
+                <span>Now playing :</span>
+                <strong id="now-playing-title">
+                    {% if battle_music_tracks %}
+                        {{ battle_music_tracks.0.title }}
+                    {% else %}
+                        Aucune musique trouvée
+                    {% endif %}
+                </strong>
+            </div>
+
+            <details class="battle-info-menu" id="battle-info-menu">
+                <summary aria-label="Afficher les informations détaillées">
+                    <span>
+                        <small>DPS</small>
+                        <strong id="compact-dps">0</strong>
+                    </span>
+                    <span>
+                        <small>HP</small>
+                        <strong id="compact-health">100</strong>
+                    </span>
+                    <span>
+                        <small>Shield</small>
+                        <strong id="compact-shield">0</strong>
+                    </span>
+                    <i aria-hidden="true">⌃</i>
+                </summary>
+                <div class="battle-live-status">
+                    <span id="build-status">Arme standard</span>
+                    <span id="shield-status">Bouclier 0</span>
+                    <span id="dash-status">Dash verrouillé · perk 100 pts</span>
+                    <span id="ability-status">E · talent à débloquer</span>
+                    <span id="legacy-status">◆ 0 héritage</span>
+                    <span id="terrain-status">Terrain normal</span>
+                    <span id="enemy-status">Menace standard</span>
+                </div>
+            </details>
+        </div>
+
+        <div class="battle-overlay" id="battle-overlay">
+            <div class="overlay-card">
+                <p class="eyebrow" id="overlay-eyebrow">Campagne</p>
+                <h2 id="overlay-title">Choisis ton avatar</h2>
+                <p id="overlay-message">
+                    Choisis une voie élémentaire : trois sont disponibles,
+                    trois autres se débloquent définitivement avec l’héritage.
+                </p>
+
+                <div class="round-rewards" id="round-rewards" hidden>
+                    <span>
+                        <small>Éliminations</small>
+                        <strong id="reward-kills">0</strong>
+                    </span>
+                    <span>
+                        <small>Bonus du round</small>
+                        <strong id="reward-points">+0</strong>
+                    </span>
+                    <span>
+                        <small>Essence de talent</small>
+                        <strong id="reward-talent">+1</strong>
+                    </span>
+                    <span>
+                        <small>Jetons héritage</small>
+                        <strong id="reward-legacy">+0</strong>
+                    </span>
+                </div>
+
+                <table class="defeat-stats" id="defeat-stats"
+                       aria-label="Statistiques de la campagne" hidden>
+                    <tbody>
+                        <tr>
+                            <th>Round atteint</th>
+                            <td id="defeat-round">1</td>
+                            <th>Éliminations</th>
+                            <td id="defeat-kills">0</td>
+                            <th>Temps survécu</th>
+                            <td id="defeat-time">0:00</td>
+                        </tr>
+                        <tr>
+                            <th>Dégâts infligés</th>
+                            <td id="defeat-damage-dealt">0</td>
+                            <th>Dégâts subis</th>
+                            <td id="defeat-damage-taken">0</td>
+                            <th>Héritage gagné</th>
+                            <td id="defeat-legacy">0</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <section class="upgrade-shop" id="upgrade-shop"
+                         aria-labelledby="upgrade-title">
+                    <div class="upgrade-heading">
+                        <div>
+                            <p class="eyebrow">Armurerie</p>
+                            <h3 id="upgrade-title">Préparation du prochain round</h3>
+                        </div>
+                        <span class="shop-balance">
+                            <strong id="shop-points">0</strong> points
+                        </span>
+                    </div>
+
+                    <div class="upgrade-dashboard">
+                    <div class="upgrade-column upgrade-armory-column">
+                    <section class="character-preview-card"
+                             aria-labelledby="selected-skin-name">
+                        <div class="character-preview-stage">
+                            <canvas id="menu-character-preview"
+                                    width="180" height="180"
+                                    aria-label="Aperçu animé du personnage équipé">
+                            </canvas>
+                            <span class="preview-element-badge"
+                                  id="preview-element-badge">
+                                Élément à choisir
+                            </span>
+                        </div>
+                        <div class="character-preview-copy">
+                            <p class="upgrade-section-title">Ton combattant</p>
+                            <strong id="selected-skin-name">
+                                Mage voyageur
+                            </strong>
+                            <small id="character-preview-description">
+                                Survole une classe pour essayer ses couleurs.
+                            </small>
+                            <button class="wardrobe-toggle" id="wardrobe-toggle"
+                                    type="button" aria-expanded="false"
+                                    aria-controls="wardrobe-panel">
+                                Changer / acheter un skin
+                            </button>
+                        </div>
+                    </section>
+
+                    <div class="skin-selector" id="wardrobe-panel"
+                         aria-labelledby="skin-title" hidden>
+                        <span class="skin-selector-title">
+                            <strong id="skin-title">Vestiaire permanent</strong>
+                            <small>Équipe un skin acquis ou débloque-en un.</small>
+                            <span class="legacy-wallet">
+                                <b id="legacy-credits">0</b>
+                                jetons héritage permanents
+                            </span>
+                        </span>
+                        <div class="skin-options">
+                            <button class="skin-option selected" type="button"
+                                    data-skin="aqua"
+                                    aria-label="Mage voyageur"
+                                    style="--skin-color: #5eead4">
+                                <span data-skin-cost>Gratuit</span>
+                            </button>
+                            <button class="skin-option" type="button"
+                                    data-skin="ember"
+                                    aria-label="Sorcière écarlate verrouillée"
+                                    style="--skin-color: #fb7185">
+                                <span data-skin-cost>30 ◆</span>
+                            </button>
+                            <button class="skin-option" type="button"
+                                    data-skin="royal"
+                                    aria-label="Félin arcanique verrouillé"
+                                    style="--skin-color: #a78bfa">
+                                <span data-skin-cost>75 ◆</span>
+                            </button>
+                            <button class="skin-option" type="button"
+                                    data-skin="solar"
+                                    aria-label="Saurien runique verrouillé"
+                                    style="--skin-color: #fbbf24">
+                                <span data-skin-cost>140 ◆</span>
+                            </button>
+                            <button class="skin-option" type="button"
+                                    data-skin="phantom"
+                                    aria-label="Vampire nocturne verrouillée"
+                                    style="--skin-color: #93c5fd">
+                                <span data-skin-cost>220 ◆</span>
+                            </button>
+                            <button class="skin-option" type="button"
+                                    data-skin="automaton"
+                                    aria-label="Automate arcanique verrouillé"
+                                    style="--skin-color: #67e8f9">
+                                <span data-skin-cost>320 ◆</span>
+                            </button>
+                            <button class="skin-option" type="button"
+                                    data-skin="skeleton"
+                                    aria-label="Squelette occultiste verrouillé"
+                                    style="--skin-color: #60a5fa">
+                                <span data-skin-cost>420 ◆</span>
+                            </button>
+                            <button class="skin-option" type="button"
+                                    data-skin="clown"
+                                    aria-label="Clownesse astrale verrouillée"
+                                    style="--skin-color: #f472b6">
+                                <span data-skin-cost>520 ◆</span>
+                            </button>
+                            <button class="skin-option" type="button"
+                                    data-skin="mermaid"
+                                    aria-label="Sirène des abysses verrouillée"
+                                    style="--skin-color: #2dd4bf">
+                                <span data-skin-cost>650 ◆</span>
+                            </button>
+                            <button class="skin-option" type="button"
+                                    data-skin="bride"
+                                    aria-label="Mariée mystique verrouillée"
+                                    style="--skin-color: #e2e8f0">
+                                <span data-skin-cost>800 ◆</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <p class="upgrade-section-title">Améliorations principales</p>
+                    <div class="upgrade-grid">
+                        <button class="upgrade-option" type="button"
+                                data-upgrade="vitality">
+                            <span class="upgrade-icon" aria-hidden="true">+</span>
+                            <span class="upgrade-copy">
+                                <strong>Vitalité</strong>
+                                <small>+25 points de santé</small>
+                            </span>
+                            <span class="upgrade-price">
+                                <small data-upgrade-level>Niv. 0/5</small>
+                                <strong data-upgrade-cost>40 pts</strong>
+                            </span>
+                        </button>
+                        <button class="upgrade-option" type="button"
+                                data-upgrade="power">
+                            <span class="upgrade-icon" aria-hidden="true">✦</span>
+                            <span class="upgrade-copy">
+                                <strong>Puissance</strong>
+                                <small>+8 dégâts par tir</small>
+                            </span>
+                            <span class="upgrade-price">
+                                <small data-upgrade-level>Niv. 0/5</small>
+                                <strong data-upgrade-cost>45 pts</strong>
+                            </span>
+                        </button>
+                        <button class="upgrade-option" type="button"
+                                data-upgrade="cadence">
+                            <span class="upgrade-icon" aria-hidden="true">»</span>
+                            <span class="upgrade-copy">
+                                <strong>Cadence</strong>
+                                <small>Tirs 10 % plus rapides</small>
+                            </span>
+                            <span class="upgrade-price">
+                                <small data-upgrade-level>Niv. 0/5</small>
+                                <strong data-upgrade-cost>50 pts</strong>
+                            </span>
+                        </button>
+                        <button class="upgrade-option" type="button"
+                                data-upgrade="mobility">
+                            <span class="upgrade-icon" aria-hidden="true">↗</span>
+                            <span class="upgrade-copy">
+                                <strong>Mobilité</strong>
+                                <small>+22 de vitesse</small>
+                            </span>
+                            <span class="upgrade-price">
+                                <small data-upgrade-level>Niv. 0/5</small>
+                                <strong data-upgrade-cost>35 pts</strong>
+                            </span>
+                        </button>
+                        <button class="upgrade-option" type="button"
+                                data-upgrade="armor">
+                            <span class="upgrade-icon" aria-hidden="true">◇</span>
+                            <span class="upgrade-copy">
+                                <strong>Armure</strong>
+                                <small>+12 bouclier au début du round</small>
+                            </span>
+                            <span class="upgrade-price">
+                                <small data-upgrade-level>Niv. 0/5</small>
+                                <strong data-upgrade-cost>45 pts</strong>
+                            </span>
+                        </button>
+                        <button class="upgrade-option" type="button"
+                                data-upgrade="scavenger">
+                            <span class="upgrade-icon" aria-hidden="true">⬡</span>
+                            <span class="upgrade-copy">
+                                <strong>Pillard</strong>
+                                <small>Butin plus fréquent et plus puissant</small>
+                            </span>
+                            <span class="upgrade-price">
+                                <small data-upgrade-level>Niv. 0/5</small>
+                                <strong data-upgrade-cost>40 pts</strong>
+                            </span>
+                        </button>
+                        <button class="upgrade-option unique-perk-upgrade dash-upgrade"
+                                type="button" data-upgrade="dash">
+                            <span class="upgrade-icon" aria-hidden="true">↠</span>
+                            <span class="upgrade-copy">
+                                <strong>Rune de dash</strong>
+                                <small>Débloque le dash avec Espace</small>
+                            </span>
+                            <span class="upgrade-price">
+                                <small data-upgrade-level>Verrouillée</small>
+                                <strong data-upgrade-cost>100 pts</strong>
+                            </span>
+                        </button>
+                        <button class="upgrade-option unique-perk-upgrade full-auto-upgrade"
+                                type="button" data-upgrade="fullAuto">
+                            <span class="upgrade-icon" aria-hidden="true">∞</span>
+                            <span class="upgrade-copy">
+                                <strong>Rune automatique</strong>
+                                <small>Maintenir le clic tire en continu</small>
+                            </span>
+                            <span class="upgrade-price">
+                                <small data-upgrade-level>Verrouillée</small>
+                                <strong data-upgrade-cost>300 pts</strong>
+                            </span>
+                        </button>
+                        <button class="upgrade-option upgrade-option-wide"
+                                type="button" data-upgrade="vision">
+                            <span class="upgrade-icon" aria-hidden="true">◎</span>
+                            <span class="upgrade-copy">
+                                <strong>Vision tactique</strong>
+                                <small>Dézoome la caméra et montre plus de terrain</small>
+                            </span>
+                            <span class="upgrade-price">
+                                <small data-upgrade-level>Niv. 0/5</small>
+                                <strong data-upgrade-cost>55 pts</strong>
+                            </span>
+                        </button>
+                    </div>
+
+                    </div>
+                    <div class="upgrade-column upgrade-build-column">
+                    <div class="elemental-build rogue-build"
+                         aria-labelledby="element-title">
+                        <div class="elemental-heading rogue-heading">
+                            <div>
+                                <p class="upgrade-section-title">
+                                    Voie roguelike
+                                </p>
+                                <strong id="element-title">
+                                    Choisis ton avatar et forge un build unique
+                                </strong>
+                            </div>
+                            <span class="talent-balance">
+                                <strong id="talent-points">0</strong>
+                                essence
+                            </span>
+                        </div>
+
+                        <div class="rogue-paths" id="rogue-paths">
+                            <button class="rogue-path path-fire" type="button"
+                                    data-element="fire">
+                                <span class="path-avatar" aria-hidden="true">
+                                    🔥
+                                </span>
+                                <span class="path-identity">
+                                    <small>Kaela · avatar offensif</small>
+                                    <strong>Voie de la Braise</strong>
+                                    <span>Les tirs embrasent les ennemis.</span>
+                                </span>
+                                <b data-path-progress>Choisir</b>
+                            </button>
+                            <button class="rogue-path path-ice" type="button"
+                                    data-element="ice">
+                                <span class="path-avatar" aria-hidden="true">
+                                    ❄
+                                </span>
+                                <span class="path-identity">
+                                    <small>Niva · avatar défensif</small>
+                                    <strong>Voie du Givre</strong>
+                                    <span>Les tirs ralentissent les ennemis.</span>
+                                </span>
+                                <b data-path-progress>Choisir</b>
+                            </button>
+                            <button class="rogue-path path-storm" type="button"
+                                    data-element="storm">
+                                <span class="path-avatar" aria-hidden="true">
+                                    ϟ
+                                </span>
+                                <span class="path-identity">
+                                    <small>Volt · avatar mobile</small>
+                                    <strong>Voie de la Tempête</strong>
+                                    <span>Les tirs ralentissent la cadence ennemie.</span>
+                                </span>
+                                <b data-path-progress>Choisir</b>
+                            </button>
+                            <button class="rogue-path path-wind locked"
+                                    type="button" data-element="wind">
+                                <span class="path-avatar" aria-hidden="true">
+                                    🜁
+                                </span>
+                                <span class="path-identity">
+                                    <small>Aeris · contrôle mobile</small>
+                                    <strong>Voie du Vent</strong>
+                                    <span>Les tirs repoussent les ennemis.</span>
+                                </span>
+                                <b data-path-progress>80 ◆</b>
+                            </button>
+                            <button class="rogue-path path-psychic locked"
+                                    type="button" data-element="psychic">
+                                <span class="path-avatar" aria-hidden="true">
+                                    ◉
+                                </span>
+                                <span class="path-identity">
+                                    <small>Myra · affaiblissement</small>
+                                    <strong>Voie Psychique</strong>
+                                    <span>Réduit les dégâts des ennemis.</span>
+                                </span>
+                                <b data-path-progress>130 ◆</b>
+                            </button>
+                            <button class="rogue-path path-vampire locked"
+                                    type="button" data-element="vampire">
+                                <span class="path-avatar" aria-hidden="true">
+                                    ♥
+                                </span>
+                                <span class="path-identity">
+                                    <small>Vesper · vol de vie</small>
+                                    <strong>Voie Vampirique</strong>
+                                    <span>Les dégâts restaurent ta santé.</span>
+                                </span>
+                                <b data-path-progress>200 ◆</b>
+                            </button>
+                        </div>
+
+                        <section class="skill-tree-panel" id="skill-tree-panel"
+                                 aria-labelledby="skill-tree-title" hidden>
+                            <div class="skill-tree-profile">
+                                <span class="path-avatar" id="skill-avatar"
+                                      aria-hidden="true">🔥</span>
+                                <span>
+                                    <small id="skill-avatar-name">Kaela</small>
+                                    <strong id="skill-tree-title">
+                                        Choix de pouvoir
+                                    </strong>
+                                    <span id="skill-passive">
+                                        Passif : les tirs embrasent les ennemis.
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="skill-tree" id="skill-tree"></div>
+                            <p class="skill-choice-help" id="skill-choice-help">
+                                Remporte un round pour recevoir une essence.
+                            </p>
+                        </section>
+                    </div>
+
+                    </div>
+                    </div>
+                    <section class="build-summary"
+                             aria-labelledby="build-summary-title">
+                        <div>
+                            <span>
+                                <p class="upgrade-section-title">
+                                    Résumé du build
+                                </p>
+                                <strong id="build-summary-title">
+                                    Pouvoirs et améliorations obtenus
+                                </strong>
+                            </span>
+                            <b id="build-summary-count">0 bonus</b>
+                        </div>
+                        <div class="build-summary-table-wrap">
+                            <table class="build-summary-table">
+                                <thead>
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Pouvoir / effet</th>
+                                        <th>Type</th>
+                                        <th>Pouvoir / effet</th>
+                                        <th>Type</th>
+                                        <th>Pouvoir / effet</th>
+                                        <th>Type</th>
+                                        <th>Pouvoir / effet</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="build-summary-list">
+                                    <tr class="empty-build">
+                                        <td colspan="8">
+                                            Choisis une voie pour commencer ton build.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <p class="shop-help" id="shop-help">
+                        Termine le premier round pour gagner tes premiers points.
+                    </p>
+                </section>
+
+                <button class="button button-battle" id="start-battle"
+                        type="button" disabled>
+                    Lancer le round 1
+                </button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <dialog class="game-settings-dialog" id="game-settings-dialog"
+            aria-labelledby="game-settings-title">
+        <div class="game-settings-card">
+            <header>
+                <div>
+                    <p class="eyebrow">Rogue Like Battle Royale</p>
+                    <h2 id="game-settings-title">Paramètres</h2>
+                </div>
+                <button class="settings-close" id="settings-close" type="button"
+                        aria-label="Fermer les paramètres">×</button>
+            </header>
+            <p class="settings-intro">
+                Ta progression permanente est enregistrée dans ce navigateur.
+            </p>
+            <section class="settings-audio"
+                     aria-labelledby="music-volume-label">
+                <label for="music-volume">
+                    <span id="music-volume-label">Volume de la musique</span>
+                    <output id="music-volume-value" for="music-volume">35 %</output>
+                </label>
+                <input id="music-volume" type="range"
+                       min="0" max="100" step="1" value="35"
+                       aria-describedby="music-volume-help">
+                <div class="settings-playlist-row">
+                    <label for="music-playlist">Playlist</label>
+                    <select id="music-playlist">
+                        {% for playlist in battle_music_playlists %}
+                            <option value="{{ playlist.id }}">
+                                {{ playlist.name }} · {{ playlist.track_count }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <p id="music-volume-help">
+                    Le volume et la playlist sont mémorisés. Ajoute un
+                    sous-dossier dans <code>music</code> pour créer
+                    automatiquement une nouvelle playlist.
+                </p>
+            </section>
+            <div class="save-summary" aria-label="Résumé de la sauvegarde">
+                <span>
+                    <small>Jetons héritage</small>
+                    <strong id="settings-legacy-credits">0</strong>
+                </span>
+                <span>
+                    <small>Skins acquis</small>
+                    <strong id="settings-skins-count">1 / 5</strong>
+                </span>
+                <span>
+                    <small>Éléments acquis</small>
+                    <strong id="settings-elements-count">3 / 6</strong>
+                </span>
+            </div>
+            <section class="settings-danger-zone"
+                     aria-labelledby="reset-save-title">
+                <div>
+                    <h3 id="reset-save-title">Réinitialiser la sauvegarde</h3>
+                    <p id="reset-save-help">
+                        Efface les jetons, skins et éléments achetés, puis
+                        restaure uniquement le skin gratuit et les trois
+                        éléments de départ.
+                    </p>
+                </div>
+                <button class="reset-save-button" id="reset-save-button"
+                        type="button">
+                    Réinitialiser ma progression
+                </button>
+            </section>
+        </div>
+    </dialog>
+
+    <p class="sr-only" id="battle-status" aria-live="polite">
+        Partie prête.
+    </p>
+
+    <audio id="battle-background-music" preload="auto" playsinline></audio>
+</section>
+
+{{ battle_music_tracks|json_script:"battle-music-tracks" }}
+<script src="{% static 'games/gpu_runtime.js' %}?v=20260731-1" defer></script>
+<script src="{% static 'games/environment_material_atlas_data.js' %}?v=20260731-27" defer></script>
+<script src="{% static 'games/battle_royale.js' %}?v=20260806-31" defer></script>
+{% endblock %}

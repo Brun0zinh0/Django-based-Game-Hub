@@ -1,0 +1,332 @@
+{
+  "source": "https://play.pokemonshowdown.com/fx/",
+  "files": {
+    "alpha": {
+      "file": "alpha.png",
+      "width": 80,
+      "height": 80
+    },
+    "angry": {
+      "file": "angry.png",
+      "width": 30,
+      "height": 30
+    },
+    "bg-space": {
+      "file": "bg-space.jpg",
+      "width": 700,
+      "height": 500
+    },
+    "blackwisp": {
+      "file": "blackwisp.png",
+      "width": 100,
+      "height": 100
+    },
+    "bluefireball": {
+      "file": "bluefireball.png",
+      "width": 32,
+      "height": 32
+    },
+    "bone": {
+      "file": "bone.png",
+      "width": 29,
+      "height": 29
+    },
+    "bottombite": {
+      "file": "bottombite.png",
+      "width": 108,
+      "height": 64
+    },
+    "caltrop": {
+      "file": "caltrop.png",
+      "width": 40,
+      "height": 40
+    },
+    "electroball": {
+      "file": "electroball.png",
+      "width": 100,
+      "height": 100
+    },
+    "energyball": {
+      "file": "energyball.png",
+      "width": 100,
+      "height": 100
+    },
+    "feather": {
+      "file": "feather.png",
+      "width": 100,
+      "height": 38
+    },
+    "fireball": {
+      "file": "fireball.png",
+      "width": 32,
+      "height": 32
+    },
+    "fist": {
+      "file": "fist.png",
+      "width": 55,
+      "height": 49
+    },
+    "fist1": {
+      "file": "fist1.png",
+      "width": 49,
+      "height": 55
+    },
+    "flareball": {
+      "file": "flareball.png",
+      "width": 100,
+      "height": 100
+    },
+    "foot": {
+      "file": "foot.png",
+      "width": 50,
+      "height": 75
+    },
+    "gear": {
+      "file": "gear.png",
+      "width": 100,
+      "height": 100
+    },
+    "greenmetal1": {
+      "file": "greenmetal1.png",
+      "width": 45,
+      "height": 45
+    },
+    "greenmetal2": {
+      "file": "greenmetal2.png",
+      "width": 49,
+      "height": 47
+    },
+    "heart": {
+      "file": "heart.png",
+      "width": 30,
+      "height": 30
+    },
+    "hitmark": {
+      "file": "hitmarker.png",
+      "width": 100,
+      "height": 100
+    },
+    "iceball": {
+      "file": "iceball.png",
+      "width": 100,
+      "height": 100
+    },
+    "icicle": {
+      "file": "icicle.png",
+      "width": 40,
+      "height": 30
+    },
+    "impact": {
+      "file": "impact.png",
+      "width": 127,
+      "height": 119
+    },
+    "leaf1": {
+      "file": "leaf1.png",
+      "width": 32,
+      "height": 26
+    },
+    "leaf2": {
+      "file": "leaf2.png",
+      "width": 40,
+      "height": 26
+    },
+    "leftchop": {
+      "file": "leftchop.png",
+      "width": 100,
+      "height": 130
+    },
+    "leftclaw": {
+      "file": "leftclaw.png",
+      "width": 44,
+      "height": 60
+    },
+    "leftslash": {
+      "file": "leftslash.png",
+      "width": 57,
+      "height": 56
+    },
+    "lightning": {
+      "file": "lightning.png",
+      "width": 82,
+      "height": 229
+    },
+    "mistball": {
+      "file": "mistball.png",
+      "width": 100,
+      "height": 100
+    },
+    "moon": {
+      "file": "moon.png",
+      "width": 100,
+      "height": 100
+    },
+    "mudwisp": {
+      "file": "mudwisp.png",
+      "width": 100,
+      "height": 100
+    },
+    "omega": {
+      "file": "omega.png",
+      "width": 80,
+      "height": 80
+    },
+    "petal": {
+      "file": "petal.png",
+      "width": 60,
+      "height": 60
+    },
+    "pinkicicle": {
+      "file": "icicle-pink.png",
+      "width": 40,
+      "height": 30
+    },
+    "pointer": {
+      "file": "pointer.png",
+      "width": 100,
+      "height": 100
+    },
+    "poisoncaltrop": {
+      "file": "poisoncaltrop.png",
+      "width": 40,
+      "height": 40
+    },
+    "poisonwisp": {
+      "file": "poisonwisp.png",
+      "width": 100,
+      "height": 100
+    },
+    "pokeball": {
+      "file": "pokeball.png",
+      "width": 24,
+      "height": 24
+    },
+    "rainbow": {
+      "file": "rainbow.png",
+      "width": 128,
+      "height": 128
+    },
+    "rightchop": {
+      "file": "rightchop.png",
+      "width": 100,
+      "height": 130
+    },
+    "rightclaw": {
+      "file": "rightclaw.png",
+      "width": 44,
+      "height": 60
+    },
+    "rightslash": {
+      "file": "rightslash.png",
+      "width": 57,
+      "height": 56
+    },
+    "rock1": {
+      "file": "rock1.png",
+      "width": 32,
+      "height": 40
+    },
+    "rock2": {
+      "file": "rock2.png",
+      "width": 33,
+      "height": 36
+    },
+    "rock3": {
+      "file": "rock3.png",
+      "width": 32,
+      "height": 40
+    },
+    "rocks": {
+      "file": "rocks.png",
+      "width": 100,
+      "height": 100
+    },
+    "shadowball": {
+      "file": "shadowball.png",
+      "width": 100,
+      "height": 100
+    },
+    "shell": {
+      "file": "shell.png",
+      "width": 200,
+      "height": 183
+    },
+    "shine": {
+      "file": "shine.png",
+      "width": 80,
+      "height": 100
+    },
+    "stare": {
+      "file": "stare.png",
+      "width": 100,
+      "height": 35
+    },
+    "sword": {
+      "file": "sword.png",
+      "width": 48,
+      "height": 100
+    },
+    "topbite": {
+      "file": "topbite.png",
+      "width": 108,
+      "height": 64
+    },
+    "ultra": {
+      "file": "ultra.png",
+      "width": 113,
+      "height": 165
+    },
+    "waterwisp": {
+      "file": "waterwisp.png",
+      "width": 100,
+      "height": 100
+    },
+    "weather-electricterrain": {
+      "file": "weather-electricterrain.png",
+      "width": 700,
+      "height": 500
+    },
+    "weather-hail": {
+      "file": "weather-hail.png",
+      "width": 700,
+      "height": 500
+    },
+    "weather-psychicterrain": {
+      "file": "weather-psychicterrain.png",
+      "width": 700,
+      "height": 500
+    },
+    "weather-raindance": {
+      "file": "weather-raindance.jpg",
+      "width": 700,
+      "height": 500
+    },
+    "weather-sunnyday": {
+      "file": "weather-sunnyday.jpg",
+      "width": 700,
+      "height": 500
+    },
+    "weather-trickroom": {
+      "file": "weather-trickroom.png",
+      "width": 700,
+      "height": 500
+    },
+    "web": {
+      "file": "web.png",
+      "width": 120,
+      "height": 122
+    },
+    "wisp": {
+      "file": "wisp.png",
+      "width": 100,
+      "height": 100
+    },
+    "zsymbol": {
+      "file": "z-symbol.png",
+      "width": 150,
+      "height": 100
+    }
+  },
+  "missing": [],
+  "spriteRefs": []
+}

@@ -1,0 +1,36 @@
+{
+  "valid": true,
+  "validated_at": "2026-08-01T18:20:02.233Z",
+  "dataset_path": "C:\\Users\\icato\\Documents\\Game making\\espace de travail codexx\\games\\static\\games\\data\\pokemon\\gen1.json",
+  "schema_version": 3,
+  "counts": {
+    "pokemon": 1343,
+    "pokemon_tags": 67,
+    "basic": 356,
+    "stage_1": 380,
+    "stage_2": 457,
+    "stage_3": 150,
+    "legendary_forms": 122,
+    "mythical_forms": 49,
+    "paradox": 22,
+    "mega_evolutions": 65,
+    "pseudo_legendary_forms": 15,
+    "palworld": 1,
+    "battle_catalog_items": 550,
+    "excluded_world_or_rpg_items": 199
+  },
+  "item_group_counts": {
+    "healing": 48,
+    "mega-stones": 64,
+    "evolution-items": 31,
+    "elemental-stones": 10,
+    "form-change-items": 89,
+    "held-items": 344,
+    "stat-boosts": 28,
+    "battle-consumables": 7,
+    "move-teaching": 120,
+    "training": 12,
+    "other": 123
+  },
+  "errors": []
+}

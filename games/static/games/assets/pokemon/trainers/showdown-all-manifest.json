@@ -1,0 +1,7511 @@
+{
+  "schema_version": 1,
+  "source": "https://play.pokemonshowdown.com/sprites/trainers/",
+  "generated_at": "2026-08-02T10:37:27.611579+00:00",
+  "discovered": 1500,
+  "downloaded": 1500,
+  "failed": {},
+  "entries": [
+    {
+      "id": "aaron",
+      "file": "aaron.png",
+      "bytes": 655
+    },
+    {
+      "id": "aarune",
+      "file": "aarune.png",
+      "bytes": 915
+    },
+    {
+      "id": "acerola-masters",
+      "file": "acerola-masters.png",
+      "bytes": 716
+    },
+    {
+      "id": "acerola-masters2",
+      "file": "acerola-masters2.png",
+      "bytes": 792
+    },
+    {
+      "id": "acerola-masters3",
+      "file": "acerola-masters3.png",
+      "bytes": 767
+    },
+    {
+      "id": "acerola",
+      "file": "acerola.png",
+      "bytes": 717
+    },
+    {
+      "id": "acetrainer-gen1",
+      "file": "acetrainer-gen1.png",
+      "bytes": 573
+    },
+    {
+      "id": "acetrainer-gen1rb",
+      "file": "acetrainer-gen1rb.png",
+      "bytes": 573
+    },
+    {
+      "id": "acetrainer-gen2",
+      "file": "acetrainer-gen2.png",
+      "bytes": 451
+    },
+    {
+      "id": "acetrainer-gen3",
+      "file": "acetrainer-gen3.png",
+      "bytes": 551
+    },
+    {
+      "id": "acetrainer-gen3jp",
+      "file": "acetrainer-gen3jp.png",
+      "bytes": 556
+    },
+    {
+      "id": "acetrainer-gen3rs",
+      "file": "acetrainer-gen3rs.png",
+      "bytes": 554
+    },
+    {
+      "id": "acetrainer-gen4",
+      "file": "acetrainer-gen4.png",
+      "bytes": 714
+    },
+    {
+      "id": "acetrainer-gen4dp",
+      "file": "acetrainer-gen4dp.png",
+      "bytes": 617
+    },
+    {
+      "id": "acetrainer-gen6",
+      "file": "acetrainer-gen6.png",
+      "bytes": 825
+    },
+    {
+      "id": "acetrainer-gen6xy",
+      "file": "acetrainer-gen6xy.png",
+      "bytes": 592
+    },
+    {
+      "id": "acetrainer-gen7",
+      "file": "acetrainer-gen7.png",
+      "bytes": 669
+    },
+    {
+      "id": "acetrainer",
+      "file": "acetrainer.png",
+      "bytes": 626
+    },
+    {
+      "id": "acetrainercouple-gen3",
+      "file": "acetrainercouple-gen3.png",
+      "bytes": 1000
+    },
+    {
+      "id": "acetrainercouple",
+      "file": "acetrainercouple.png",
+      "bytes": 1192
+    },
+    {
+      "id": "acetrainerf-gen1",
+      "file": "acetrainerf-gen1.png",
+      "bytes": 572
+    },
+    {
+      "id": "acetrainerf-gen1rb",
+      "file": "acetrainerf-gen1rb.png",
+      "bytes": 571
+    },
+    {
+      "id": "acetrainerf-gen2",
+      "file": "acetrainerf-gen2.png",
+      "bytes": 461
+    },
+    {
+      "id": "acetrainerf-gen3",
+      "file": "acetrainerf-gen3.png",
+      "bytes": 632
+    },
+    {
+      "id": "acetrainerf-gen3rs",
+      "file": "acetrainerf-gen3rs.png",
+      "bytes": 601
+    },
+    {
+      "id": "acetrainerf-gen4",
+      "file": "acetrainerf-gen4.png",
+      "bytes": 677
+    },
+    {
+      "id": "acetrainerf-gen4dp",
+      "file": "acetrainerf-gen4dp.png",
+      "bytes": 661
+    },
+    {
+      "id": "acetrainerf-gen6",
+      "file": "acetrainerf-gen6.png",
+      "bytes": 815
+    },
+    {
+      "id": "acetrainerf-gen6xy",
+      "file": "acetrainerf-gen6xy.png",
+      "bytes": 629
+    },
+    {
+      "id": "acetrainerf-gen7",
+      "file": "acetrainerf-gen7.png",
+      "bytes": 701
+    },
+    {
+      "id": "acetrainerf",
+      "file": "acetrainerf.png",
+      "bytes": 804
+    },
+    {
+      "id": "acetrainersnow",
+      "file": "acetrainersnow.png",
+      "bytes": 716
+    },
+    {
+      "id": "acetrainersnowf",
+      "file": "acetrainersnowf.png",
+      "bytes": 738
+    },
+    {
+      "id": "adaman-masters",
+      "file": "adaman-masters.png",
+      "bytes": 862
+    },
+    {
+      "id": "adaman-masters2",
+      "file": "adaman-masters2.png",
+      "bytes": 756
+    },
+    {
+      "id": "adaman",
+      "file": "adaman.png",
+      "bytes": 905
+    },
+    {
+      "id": "aetheremployee",
+      "file": "aetheremployee.png",
+      "bytes": 713
+    },
+    {
+      "id": "aetheremployeef",
+      "file": "aetheremployeef.png",
+      "bytes": 738
+    },
+    {
+      "id": "aetherfoundation",
+      "file": "aetherfoundation.png",
+      "bytes": 700
+    },
+    {
+      "id": "aetherfoundation2",
+      "file": "aetherfoundation2.png",
+      "bytes": 562
+    },
+    {
+      "id": "aetherfoundationf",
+      "file": "aetherfoundationf.png",
+      "bytes": 663
+    },
+    {
+      "id": "agatha-gen1",
+      "file": "agatha-gen1.png",
+      "bytes": 488
+    },
+    {
+      "id": "agatha-gen1rb",
+      "file": "agatha-gen1rb.png",
+      "bytes": 488
+    },
+    {
+      "id": "agatha-gen3",
+      "file": "agatha-gen3.png",
+      "bytes": 613
+    },
+    {
+      "id": "agatha-lgpe",
+      "file": "agatha-lgpe.png",
+      "bytes": 909
+    },
+    {
+      "id": "akari-isekai",
+      "file": "akari-isekai.png",
+      "bytes": 634
+    },
+    {
+      "id": "akari",
+      "file": "akari.png",
+      "bytes": 900
+    },
+    {
+      "id": "alain",
+      "file": "alain.png",
+      "bytes": 792
+    },
+    {
+      "id": "alder",
+      "file": "alder.png",
+      "bytes": 1067
+    },
+    {
+      "id": "alec-anime",
+      "file": "alec-anime.png",
+      "bytes": 851
+    },
+    {
+      "id": "allister-masters",
+      "file": "allister-masters.png",
+      "bytes": 782
+    },
+    {
+      "id": "allister-unmasked",
+      "file": "allister-unmasked.png",
+      "bytes": 622
+    },
+    {
+      "id": "allister",
+      "file": "allister.png",
+      "bytes": 836
+    },
+    {
+      "id": "amarys",
+      "file": "amarys.png",
+      "bytes": 688
+    },
+    {
+      "id": "amelia-shuffle",
+      "file": "amelia-shuffle.png",
+      "bytes": 713
+    },
+    {
+      "id": "anabel-gen3",
+      "file": "anabel-gen3.png",
+      "bytes": 601
+    },
+    {
+      "id": "anabel-gen7",
+      "file": "anabel-gen7.png",
+      "bytes": 663
+    },
+    {
+      "id": "anabel",
+      "file": "anabel.png",
+      "bytes": 707
+    },
+    {
+      "id": "ansha-cook",
+      "file": "ansha-cook.png",
+      "bytes": 627
+    },
+    {
+      "id": "ansha",
+      "file": "ansha.png",
+      "bytes": 572
+    },
+    {
+      "id": "anthe",
+      "file": "anthe.png",
+      "bytes": 665
+    },
+    {
+      "id": "anthea",
+      "file": "anthea.png",
+      "bytes": 664
+    },
+    {
+      "id": "anvin",
+      "file": "anvin.png",
+      "bytes": 738
+    },
+    {
+      "id": "aquagrunt-rse",
+      "file": "aquagrunt-rse.png",
+      "bytes": 713
+    },
+    {
+      "id": "aquagrunt",
+      "file": "aquagrunt.png",
+      "bytes": 711
+    },
+    {
+      "id": "aquagruntf-rse",
+      "file": "aquagruntf-rse.png",
+      "bytes": 698
+    },
+    {
+      "id": "aquagruntf",
+      "file": "aquagruntf.png",
+      "bytes": 722
+    },
+    {
+      "id": "aquasuit",
+      "file": "aquasuit.png",
+      "bytes": 705
+    },
+    {
+      "id": "archer",
+      "file": "archer.png",
+      "bytes": 645
+    },
+    {
+      "id": "archie-gen3",
+      "file": "archie-gen3.png",
+      "bytes": 617
+    },
+    {
+      "id": "archie-gen6",
+      "file": "archie-gen6.png",
+      "bytes": 968
+    },
+    {
+      "id": "archie-usum",
+      "file": "archie-usum.png",
+      "bytes": 812
+    },
+    {
+      "id": "arezu",
+      "file": "arezu.png",
+      "bytes": 694
+    },
+    {
+      "id": "argenta",
+      "file": "argenta.png",
+      "bytes": 559
+    },
+    {
+      "id": "ariana",
+      "file": "ariana.png",
+      "bytes": 736
+    },
+    {
+      "id": "arlo",
+      "file": "arlo.png",
+      "bytes": 682
+    },
+    {
+      "id": "aromalady-gen3",
+      "file": "aromalady-gen3.png",
+      "bytes": 677
+    },
+    {
+      "id": "aromalady-gen3rs",
+      "file": "aromalady-gen3rs.png",
+      "bytes": 556
+    },
+    {
+      "id": "aromalady-gen6",
+      "file": "aromalady-gen6.png",
+      "bytes": 720
+    },
+    {
+      "id": "aromalady",
+      "file": "aromalady.png",
+      "bytes": 674
+    },
+    {
+      "id": "artist-gen4",
+      "file": "artist-gen4.png",
+      "bytes": 839
+    },
+    {
+      "id": "artist-gen6",
+      "file": "artist-gen6.png",
+      "bytes": 793
+    },
+    {
+      "id": "artist-gen8",
+      "file": "artist-gen8.png",
+      "bytes": 792
+    },
+    {
+      "id": "artist-gen9",
+      "file": "artist-gen9.png",
+      "bytes": 803
+    },
+    {
+      "id": "artist",
+      "file": "artist.png",
+      "bytes": 799
+    },
+    {
+      "id": "artistf-gen6",
+      "file": "artistf-gen6.png",
+      "bytes": 882
+    },
+    {
+      "id": "arven-masters",
+      "file": "arven-masters.png",
+      "bytes": 712
+    },
+    {
+      "id": "arven-s",
+      "file": "arven-s.png",
+      "bytes": 873
+    },
+    {
+      "id": "arven-v",
+      "file": "arven-v.png",
+      "bytes": 902
+    },
+    {
+      "id": "ash-alola",
+      "file": "ash-alola.png",
+      "bytes": 844
+    },
+    {
+      "id": "ash-capbackward",
+      "file": "ash-capbackward.png",
+      "bytes": 819
+    },
+    {
+      "id": "ash-hoenn",
+      "file": "ash-hoenn.png",
+      "bytes": 3134
+    },
+    {
+      "id": "ash-johto",
+      "file": "ash-johto.png",
+      "bytes": 805
+    },
+    {
+      "id": "ash-kalos",
+      "file": "ash-kalos.png",
+      "bytes": 854
+    },
+    {
+      "id": "ash-sinnoh",
+      "file": "ash-sinnoh.png",
+      "bytes": 1059
+    },
+    {
+      "id": "ash-unova",
+      "file": "ash-unova.png",
+      "bytes": 1299
+    },
+    {
+      "id": "ash",
+      "file": "ash.png",
+      "bytes": 789
+    },
+    {
+      "id": "atticus",
+      "file": "atticus.png",
+      "bytes": 713
+    },
+    {
+      "id": "avery",
+      "file": "avery.png",
+      "bytes": 1131
+    },
+    {
+      "id": "az-lza",
+      "file": "az-lza.png",
+      "bytes": 891
+    },
+    {
+      "id": "az",
+      "file": "az.png",
+      "bytes": 1213
+    },
+    {
+      "id": "backers",
+      "file": "backers.png",
+      "bytes": 1222
+    },
+    {
+      "id": "backersf",
+      "file": "backersf.png",
+      "bytes": 1298
+    },
+    {
+      "id": "backpacker-gen6",
+      "file": "backpacker-gen6.png",
+      "bytes": 950
+    },
+    {
+      "id": "backpacker-gen8",
+      "file": "backpacker-gen8.png",
+      "bytes": 788
+    },
+    {
+      "id": "backpacker-gen9",
+      "file": "backpacker-gen9.png",
+      "bytes": 888
+    },
+    {
+      "id": "backpacker",
+      "file": "backpacker.png",
+      "bytes": 903
+    },
+    {
+      "id": "backpackerf",
+      "file": "backpackerf.png",
+      "bytes": 898
+    },
+    {
+      "id": "baker",
+      "file": "baker.png",
+      "bytes": 844
+    },
+    {
+      "id": "ballguy-masters",
+      "file": "ballguy-masters.png",
+      "bytes": 837
+    },
+    {
+      "id": "ballguy",
+      "file": "ballguy.png",
+      "bytes": 715
+    },
+    {
+      "id": "baoba",
+      "file": "baoba.png",
+      "bytes": 813
+    },
+    {
+      "id": "barry-masters",
+      "file": "barry-masters.png",
+      "bytes": 780
+    },
+    {
+      "id": "barry",
+      "file": "barry.png",
+      "bytes": 714
+    },
+    {
+      "id": "battlegirl-gen3",
+      "file": "battlegirl-gen3.png",
+      "bytes": 615
+    },
+    {
+      "id": "battlegirl-gen4",
+      "file": "battlegirl-gen4.png",
+      "bytes": 664
+    },
+    {
+      "id": "battlegirl-gen6",
+      "file": "battlegirl-gen6.png",
+      "bytes": 665
+    },
+    {
+      "id": "battlegirl-gen6xy",
+      "file": "battlegirl-gen6xy.png",
+      "bytes": 718
+    },
+    {
+      "id": "battlegirl",
+      "file": "battlegirl.png",
+      "bytes": 661
+    },
+    {
+      "id": "bea-masters",
+      "file": "bea-masters.png",
+      "bytes": 743
+    },
+    {
+      "id": "bea",
+      "file": "bea.png",
+      "bytes": 785
+    },
+    {
+      "id": "beauty-gen1",
+      "file": "beauty-gen1.png",
+      "bytes": 498
+    },
+    {
+      "id": "beauty-gen1rb",
+      "file": "beauty-gen1rb.png",
+      "bytes": 498
+    },
+    {
+      "id": "beauty-gen2",
+      "file": "beauty-gen2.png",
+      "bytes": 499
+    },
+    {
+      "id": "beauty-gen2jp",
+      "file": "beauty-gen2jp.png",
+      "bytes": 499
+    },
+    {
+      "id": "beauty-gen3",
+      "file": "beauty-gen3.png",
+      "bytes": 658
+    },
+    {
+      "id": "beauty-gen3rs",
+      "file": "beauty-gen3rs.png",
+      "bytes": 586
+    },
+    {
+      "id": "beauty-gen4dp",
+      "file": "beauty-gen4dp.png",
+      "bytes": 757
+    },
+    {
+      "id": "beauty-gen5bw2",
+      "file": "beauty-gen5bw2.png",
+      "bytes": 622
+    },
+    {
+      "id": "beauty-gen6",
+      "file": "beauty-gen6.png",
+      "bytes": 561
+    },
+    {
+      "id": "beauty-gen6xy",
+      "file": "beauty-gen6xy.png",
+      "bytes": 688
+    },
+    {
+      "id": "beauty-gen7",
+      "file": "beauty-gen7.png",
+      "bytes": 697
+    },
+    {
+      "id": "beauty-gen8",
+      "file": "beauty-gen8.png",
+      "bytes": 615
+    },
+    {
+      "id": "beauty-gen9",
+      "file": "beauty-gen9.png",
+      "bytes": 627
+    },
+    {
+      "id": "beauty-masters",
+      "file": "beauty-masters.png",
+      "bytes": 701
+    },
+    {
+      "id": "beauty",
+      "file": "beauty.png",
+      "bytes": 787
+    },
+    {
+      "id": "becca",
+      "file": "becca.png",
+      "bytes": 671
+    },
+    {
+      "id": "bede-leader",
+      "file": "bede-leader.png",
+      "bytes": 824
+    },
+    {
+      "id": "bede-masters",
+      "file": "bede-masters.png",
+      "bytes": 852
+    },
+    {
+      "id": "bede-masters2",
+      "file": "bede-masters2.png",
+      "bytes": 807
+    },
+    {
+      "id": "bede",
+      "file": "bede.png",
+      "bytes": 761
+    },
+    {
+      "id": "bellelba",
+      "file": "bellelba.png",
+      "bytes": 908
+    },
+    {
+      "id": "bellepa",
+      "file": "bellepa.png",
+      "bytes": 1251
+    },
+    {
+      "id": "bellhop",
+      "file": "bellhop.png",
+      "bytes": 575
+    },
+    {
+      "id": "bellis",
+      "file": "bellis.png",
+      "bytes": 719
+    },
+    {
+      "id": "benga",
+      "file": "benga.png",
+      "bytes": 984
+    },
+    {
+      "id": "beni-ninja",
+      "file": "beni-ninja.png",
+      "bytes": 802
+    },
+    {
+      "id": "beni",
+      "file": "beni.png",
+      "bytes": 737
+    },
+    {
+      "id": "bertha",
+      "file": "bertha.png",
+      "bytes": 588
+    },
+    {
+      "id": "bianca-masters",
+      "file": "bianca-masters.png",
+      "bytes": 935
+    },
+    {
+      "id": "bianca-pwt",
+      "file": "bianca-pwt.png",
+      "bytes": 674
+    },
+    {
+      "id": "bianca",
+      "file": "bianca.png",
+      "bytes": 695
+    },
+    {
+      "id": "biker-gen1",
+      "file": "biker-gen1.png",
+      "bytes": 649
+    },
+    {
+      "id": "biker-gen1rb",
+      "file": "biker-gen1rb.png",
+      "bytes": 649
+    },
+    {
+      "id": "biker-gen2",
+      "file": "biker-gen2.png",
+      "bytes": 624
+    },
+    {
+      "id": "biker-gen3",
+      "file": "biker-gen3.png",
+      "bytes": 1075
+    },
+    {
+      "id": "biker-gen4",
+      "file": "biker-gen4.png",
+      "bytes": 1309
+    },
+    {
+      "id": "biker",
+      "file": "biker.png",
+      "bytes": 1153
+    },
+    {
+      "id": "bill-gen3",
+      "file": "bill-gen3.png",
+      "bytes": 564
+    },
+    {
+      "id": "bill",
+      "file": "bill.png",
+      "bytes": 740
+    },
+    {
+      "id": "birch-gen3",
+      "file": "birch-gen3.png",
+      "bytes": 777
+    },
+    {
+      "id": "birch",
+      "file": "birch.png",
+      "bytes": 841
+    },
+    {
+      "id": "birdkeeper-gen1",
+      "file": "birdkeeper-gen1.png",
+      "bytes": 591
+    },
+    {
+      "id": "birdkeeper-gen1rb",
+      "file": "birdkeeper-gen1rb.png",
+      "bytes": 591
+    },
+    {
+      "id": "birdkeeper-gen2",
+      "file": "birdkeeper-gen2.png",
+      "bytes": 462
+    },
+    {
+      "id": "birdkeeper-gen3",
+      "file": "birdkeeper-gen3.png",
+      "bytes": 756
+    },
+    {
+      "id": "birdkeeper-gen3rs",
+      "file": "birdkeeper-gen3rs.png",
+      "bytes": 621
+    },
+    {
+      "id": "birdkeeper-gen4dp",
+      "file": "birdkeeper-gen4dp.png",
+      "bytes": 771
+    },
+    {
+      "id": "birdkeeper-gen6",
+      "file": "birdkeeper-gen6.png",
+      "bytes": 658
+    },
+    {
+      "id": "birdkeeper",
+      "file": "birdkeeper.png",
+      "bytes": 819
+    },
+    {
+      "id": "blackbelt-gen1",
+      "file": "blackbelt-gen1.png",
+      "bytes": 647
+    },
+    {
+      "id": "blackbelt-gen1rb",
+      "file": "blackbelt-gen1rb.png",
+      "bytes": 647
+    },
+    {
+      "id": "blackbelt-gen2",
+      "file": "blackbelt-gen2.png",
+      "bytes": 613
+    },
+    {
+      "id": "blackbelt-gen3",
+      "file": "blackbelt-gen3.png",
+      "bytes": 794
+    },
+    {
+      "id": "blackbelt-gen3rs",
+      "file": "blackbelt-gen3rs.png",
+      "bytes": 677
+    },
+    {
+      "id": "blackbelt-gen4",
+      "file": "blackbelt-gen4.png",
+      "bytes": 832
+    },
+    {
+      "id": "blackbelt-gen4dp",
+      "file": "blackbelt-gen4dp.png",
+      "bytes": 878
+    },
+    {
+      "id": "blackbelt-gen6",
+      "file": "blackbelt-gen6.png",
+      "bytes": 768
+    },
+    {
+      "id": "blackbelt-gen7",
+      "file": "blackbelt-gen7.png",
+      "bytes": 778
+    },
+    {
+      "id": "blackbelt-gen8",
+      "file": "blackbelt-gen8.png",
+      "bytes": 743
+    },
+    {
+      "id": "blackbelt-gen9",
+      "file": "blackbelt-gen9.png",
+      "bytes": 785
+    },
+    {
+      "id": "blackbelt",
+      "file": "blackbelt.png",
+      "bytes": 791
+    },
+    {
+      "id": "blaine-gen1",
+      "file": "blaine-gen1.png",
+      "bytes": 426
+    },
+    {
+      "id": "blaine-gen1rb",
+      "file": "blaine-gen1rb.png",
+      "bytes": 426
+    },
+    {
+      "id": "blaine-gen2",
+      "file": "blaine-gen2.png",
+      "bytes": 413
+    },
+    {
+      "id": "blaine-gen3",
+      "file": "blaine-gen3.png",
+      "bytes": 772
+    },
+    {
+      "id": "blaine-lgpe",
+      "file": "blaine-lgpe.png",
+      "bytes": 681
+    },
+    {
+      "id": "blaine",
+      "file": "blaine.png",
+      "bytes": 765
+    },
+    {
+      "id": "blanche-casual",
+      "file": "blanche-casual.png",
+      "bytes": 720
+    },
+    {
+      "id": "blanche",
+      "file": "blanche.png",
+      "bytes": 858
+    },
+    {
+      "id": "blue-gen1",
+      "file": "blue-gen1.png",
+      "bytes": 400
+    },
+    {
+      "id": "blue-gen1champion",
+      "file": "blue-gen1champion.png",
+      "bytes": 448
+    },
+    {
+      "id": "blue-gen1rb",
+      "file": "blue-gen1rb.png",
+      "bytes": 442
+    },
+    {
+      "id": "blue-gen1rbchampion",
+      "file": "blue-gen1rbchampion.png",
+      "bytes": 517
+    },
+    {
+      "id": "blue-gen1rbtwo",
+      "file": "blue-gen1rbtwo.png",
+      "bytes": 513
+    },
+    {
+      "id": "blue-gen1two",
+      "file": "blue-gen1two.png",
+      "bytes": 463
+    },
+    {
+      "id": "blue-gen2",
+      "file": "blue-gen2.png",
+      "bytes": 397
+    },
+    {
+      "id": "blue-gen3",
+      "file": "blue-gen3.png",
+      "bytes": 546
+    },
+    {
+      "id": "blue-gen3champion",
+      "file": "blue-gen3champion.png",
+      "bytes": 570
+    },
+    {
+      "id": "blue-gen3two",
+      "file": "blue-gen3two.png",
+      "bytes": 577
+    },
+    {
+      "id": "blue-gen7",
+      "file": "blue-gen7.png",
+      "bytes": 683
+    },
+    {
+      "id": "blue-lgpe",
+      "file": "blue-lgpe.png",
+      "bytes": 635
+    },
+    {
+      "id": "blue-masters",
+      "file": "blue-masters.png",
+      "bytes": 799
+    },
+    {
+      "id": "blue-masters2",
+      "file": "blue-masters2.png",
+      "bytes": 736
+    },
+    {
+      "id": "blue",
+      "file": "blue.png",
+      "bytes": 655
+    },
+    {
+      "id": "boarder-gen2",
+      "file": "boarder-gen2.png",
+      "bytes": 554
+    },
+    {
+      "id": "boarder",
+      "file": "boarder.png",
+      "bytes": 774
+    },
+    {
+      "id": "bodybuilder-gen9",
+      "file": "bodybuilder-gen9.png",
+      "bytes": 791
+    },
+    {
+      "id": "bodybuilderf-gen9",
+      "file": "bodybuilderf-gen9.png",
+      "bytes": 681
+    },
+    {
+      "id": "brandon-gen3",
+      "file": "brandon-gen3.png",
+      "bytes": 662
+    },
+    {
+      "id": "brandon",
+      "file": "brandon.png",
+      "bytes": 698
+    },
+    {
+      "id": "brassius",
+      "file": "brassius.png",
+      "bytes": 734
+    },
+    {
+      "id": "brawly-gen3",
+      "file": "brawly-gen3.png",
+      "bytes": 730
+    },
+    {
+      "id": "brawly-gen6",
+      "file": "brawly-gen6.png",
+      "bytes": 739
+    },
+    {
+      "id": "brawly",
+      "file": "brawly.png",
+      "bytes": 721
+    },
+    {
+      "id": "brendan-contest",
+      "file": "brendan-contest.png",
+      "bytes": 968
+    },
+    {
+      "id": "brendan-e",
+      "file": "brendan-e.png",
+      "bytes": 701
+    },
+    {
+      "id": "brendan-gen3",
+      "file": "brendan-gen3.png",
+      "bytes": 630
+    },
+    {
+      "id": "brendan-gen3rs",
+      "file": "brendan-gen3rs.png",
+      "bytes": 606
+    },
+    {
+      "id": "brendan-masters",
+      "file": "brendan-masters.png",
+      "bytes": 668
+    },
+    {
+      "id": "brendan-masters2",
+      "file": "brendan-masters2.png",
+      "bytes": 641
+    },
+    {
+      "id": "brendan-masters3",
+      "file": "brendan-masters3.png",
+      "bytes": 681
+    },
+    {
+      "id": "brendan-rs",
+      "file": "brendan-rs.png",
+      "bytes": 718
+    },
+    {
+      "id": "brendan",
+      "file": "brendan.png",
+      "bytes": 688
+    },
+    {
+      "id": "briar",
+      "file": "briar.png",
+      "bytes": 616
+    },
+    {
+      "id": "brigette",
+      "file": "brigette.png",
+      "bytes": 647
+    },
+    {
+      "id": "brock-gen1",
+      "file": "brock-gen1.png",
+      "bytes": 409
+    },
+    {
+      "id": "brock-gen1rb",
+      "file": "brock-gen1rb.png",
+      "bytes": 408
+    },
+    {
+      "id": "brock-gen2",
+      "file": "brock-gen2.png",
+      "bytes": 385
+    },
+    {
+      "id": "brock-gen3",
+      "file": "brock-gen3.png",
+      "bytes": 638
+    },
+    {
+      "id": "brock-lgpe",
+      "file": "brock-lgpe.png",
+      "bytes": 648
+    },
+    {
+      "id": "brock-masters",
+      "file": "brock-masters.png",
+      "bytes": 795
+    },
+    {
+      "id": "brock",
+      "file": "brock.png",
+      "bytes": 672
+    },
+    {
+      "id": "bruno-gen1",
+      "file": "bruno-gen1.png",
+      "bytes": 682
+    },
+    {
+      "id": "bruno-gen1rb",
+      "file": "bruno-gen1rb.png",
+      "bytes": 681
+    },
+    {
+      "id": "bruno-gen2",
+      "file": "bruno-gen2.png",
+      "bytes": 616
+    },
+    {
+      "id": "bruno-gen3",
+      "file": "bruno-gen3.png",
+      "bytes": 829
+    },
+    {
+      "id": "bruno",
+      "file": "bruno.png",
+      "bytes": 937
+    },
+    {
+      "id": "brycen",
+      "file": "brycen.png",
+      "bytes": 1018
+    },
+    {
+      "id": "brycenman",
+      "file": "brycenman.png",
+      "bytes": 1077
+    },
+    {
+      "id": "bryony",
+      "file": "bryony.png",
+      "bytes": 671
+    },
+    {
+      "id": "buck",
+      "file": "buck.png",
+      "bytes": 584
+    },
+    {
+      "id": "bugcatcher-gen1",
+      "file": "bugcatcher-gen1.png",
+      "bytes": 452
+    },
+    {
+      "id": "bugcatcher-gen1rb",
+      "file": "bugcatcher-gen1rb.png",
+      "bytes": 454
+    },
+    {
+      "id": "bugcatcher-gen2",
+      "file": "bugcatcher-gen2.png",
+      "bytes": 500
+    },
+    {
+      "id": "bugcatcher-gen3",
+      "file": "bugcatcher-gen3.png",
+      "bytes": 643
+    },
+    {
+      "id": "bugcatcher-gen3rs",
+      "file": "bugcatcher-gen3rs.png",
+      "bytes": 624
+    },
+    {
+      "id": "bugcatcher-gen4dp",
+      "file": "bugcatcher-gen4dp.png",
+      "bytes": 754
+    },
+    {
+      "id": "bugcatcher-gen6",
+      "file": "bugcatcher-gen6.png",
+      "bytes": 696
+    },
+    {
+      "id": "bugcatcher",
+      "file": "bugcatcher.png",
+      "bytes": 713
+    },
+    {
+      "id": "bugmaniac-gen3",
+      "file": "bugmaniac-gen3.png",
+      "bytes": 853
+    },
+    {
+      "id": "bugmaniac-gen6",
+      "file": "bugmaniac-gen6.png",
+      "bytes": 864
+    },
+    {
+      "id": "bugsy-gen2",
+      "file": "bugsy-gen2.png",
+      "bytes": 463
+    },
+    {
+      "id": "bugsy-masters",
+      "file": "bugsy-masters.png",
+      "bytes": 810
+    },
+    {
+      "id": "bugsy",
+      "file": "bugsy.png",
+      "bytes": 843
+    },
+    {
+      "id": "burgh-masters",
+      "file": "burgh-masters.png",
+      "bytes": 812
+    },
+    {
+      "id": "burgh",
+      "file": "burgh.png",
+      "bytes": 811
+    },
+    {
+      "id": "burglar-gen1",
+      "file": "burglar-gen1.png",
+      "bytes": 514
+    },
+    {
+      "id": "burglar-gen1rb",
+      "file": "burglar-gen1rb.png",
+      "bytes": 513
+    },
+    {
+      "id": "burglar-gen2",
+      "file": "burglar-gen2.png",
+      "bytes": 444
+    },
+    {
+      "id": "burglar-gen3",
+      "file": "burglar-gen3.png",
+      "bytes": 647
+    },
+    {
+      "id": "burglar-lgpe",
+      "file": "burglar-lgpe.png",
+      "bytes": 819
+    },
+    {
+      "id": "burglar",
+      "file": "burglar.png",
+      "bytes": 764
+    },
+    {
+      "id": "burnet-radar",
+      "file": "burnet-radar.png",
+      "bytes": 838
+    },
+    {
+      "id": "burnet",
+      "file": "burnet.png",
+      "bytes": 733
+    },
+    {
+      "id": "butler",
+      "file": "butler.png",
+      "bytes": 624
+    },
+    {
+      "id": "byron",
+      "file": "byron.png",
+      "bytes": 785
+    },
+    {
+      "id": "cabbie-gen9",
+      "file": "cabbie-gen9.png",
+      "bytes": 635
+    },
+    {
+      "id": "cabbie",
+      "file": "cabbie.png",
+      "bytes": 823
+    },
+    {
+      "id": "cafemaster",
+      "file": "cafemaster.png",
+      "bytes": 842
+    },
+    {
+      "id": "caitlin-gen4",
+      "file": "caitlin-gen4.png",
+      "bytes": 533
+    },
+    {
+      "id": "caitlin-masters",
+      "file": "caitlin-masters.png",
+      "bytes": 1018
+    },
+    {
+      "id": "caitlin",
+      "file": "caitlin.png",
+      "bytes": 1152
+    },
+    {
+      "id": "calaba",
+      "file": "calaba.png",
+      "bytes": 854
+    },
+    {
+      "id": "calem-masters",
+      "file": "calem-masters.png",
+      "bytes": 776
+    },
+    {
+      "id": "calem",
+      "file": "calem.png",
+      "bytes": 740
+    },
+    {
+      "id": "cameraman-gen6",
+      "file": "cameraman-gen6.png",
+      "bytes": 698
+    },
+    {
+      "id": "cameraman-gen8",
+      "file": "cameraman-gen8.png",
+      "bytes": 771
+    },
+    {
+      "id": "cameraman",
+      "file": "cameraman.png",
+      "bytes": 767
+    },
+    {
+      "id": "camper-gen2",
+      "file": "camper-gen2.png",
+      "bytes": 463
+    },
+    {
+      "id": "camper-gen3",
+      "file": "camper-gen3.png",
+      "bytes": 571
+    },
+    {
+      "id": "camper-gen3rs",
+      "file": "camper-gen3rs.png",
+      "bytes": 592
+    },
+    {
+      "id": "camper-gen6",
+      "file": "camper-gen6.png",
+      "bytes": 598
+    },
+    {
+      "id": "camper",
+      "file": "camper.png",
+      "bytes": 594
+    },
+    {
+      "id": "canari",
+      "file": "canari.png",
+      "bytes": 713
+    },
+    {
+      "id": "candela-casual",
+      "file": "candela-casual.png",
+      "bytes": 668
+    },
+    {
+      "id": "candela",
+      "file": "candela.png",
+      "bytes": 700
+    },
+    {
+      "id": "candice-masters",
+      "file": "candice-masters.png",
+      "bytes": 779
+    },
+    {
+      "id": "candice",
+      "file": "candice.png",
+      "bytes": 857
+    },
+    {
+      "id": "caraliss",
+      "file": "caraliss.png",
+      "bytes": 650
+    },
+    {
+      "id": "caretaker",
+      "file": "caretaker.png",
+      "bytes": 692
+    },
+    {
+      "id": "carmine-festival",
+      "file": "carmine-festival.png",
+      "bytes": 694
+    },
+    {
+      "id": "carmine-masters",
+      "file": "carmine-masters.png",
+      "bytes": 856
+    },
+    {
+      "id": "carmine",
+      "file": "carmine.png",
+      "bytes": 737
+    },
+    {
+      "id": "cedricjuniper",
+      "file": "cedricjuniper.png",
+      "bytes": 652
+    },
+    {
+      "id": "celio",
+      "file": "celio.png",
+      "bytes": 625
+    },
+    {
+      "id": "channeler-gen1",
+      "file": "channeler-gen1.png",
+      "bytes": 632
+    },
+    {
+      "id": "channeler-gen1rb",
+      "file": "channeler-gen1rb.png",
+      "bytes": 631
+    },
+    {
+      "id": "channeler-gen3",
+      "file": "channeler-gen3.png",
+      "bytes": 748
+    },
+    {
+      "id": "channeler-lgpe",
+      "file": "channeler-lgpe.png",
+      "bytes": 851
+    },
+    {
+      "id": "charm",
+      "file": "charm.png",
+      "bytes": 750
+    },
+    {
+      "id": "charon",
+      "file": "charon.png",
+      "bytes": 709
+    },
+    {
+      "id": "chase",
+      "file": "chase.png",
+      "bytes": 864
+    },
+    {
+      "id": "chef",
+      "file": "chef.png",
+      "bytes": 867
+    },
+    {
+      "id": "cheren-gen5bw2",
+      "file": "cheren-gen5bw2.png",
+      "bytes": 699
+    },
+    {
+      "id": "cheren-masters",
+      "file": "cheren-masters.png",
+      "bytes": 731
+    },
+    {
+      "id": "cheren",
+      "file": "cheren.png",
+      "bytes": 624
+    },
+    {
+      "id": "cheryl",
+      "file": "cheryl.png",
+      "bytes": 650
+    },
+    {
+      "id": "chili",
+      "file": "chili.png",
+      "bytes": 754
+    },
+    {
+      "id": "choy",
+      "file": "choy.png",
+      "bytes": 800
+    },
+    {
+      "id": "christoph",
+      "file": "christoph.png",
+      "bytes": 713
+    },
+    {
+      "id": "chuck-gen2",
+      "file": "chuck-gen2.png",
+      "bytes": 572
+    },
+    {
+      "id": "chuck",
+      "file": "chuck.png",
+      "bytes": 943
+    },
+    {
+      "id": "cilan",
+      "file": "cilan.png",
+      "bytes": 568
+    },
+    {
+      "id": "clair-gen2",
+      "file": "clair-gen2.png",
+      "bytes": 527
+    },
+    {
+      "id": "clair-masters",
+      "file": "clair-masters.png",
+      "bytes": 908
+    },
+    {
+      "id": "clair",
+      "file": "clair.png",
+      "bytes": 848
+    },
+    {
+      "id": "clavell-s",
+      "file": "clavell-s.png",
+      "bytes": 699
+    },
+    {
+      "id": "clay",
+      "file": "clay.png",
+      "bytes": 934
+    },
+    {
+      "id": "clemont",
+      "file": "clemont.png",
+      "bytes": 1383
+    },
+    {
+      "id": "clerk-boss",
+      "file": "clerk-boss.png",
+      "bytes": 743
+    },
+    {
+      "id": "clerk-gen8",
+      "file": "clerk-gen8.png",
+      "bytes": 587
+    },
+    {
+      "id": "clerk-unite",
+      "file": "clerk-unite.png",
+      "bytes": 719
+    },
+    {
+      "id": "clerk",
+      "file": "clerk.png",
+      "bytes": 634
+    },
+    {
+      "id": "clerkf-gen8",
+      "file": "clerkf-gen8.png",
+      "bytes": 649
+    },
+    {
+      "id": "clerkf",
+      "file": "clerkf.png",
+      "bytes": 692
+    },
+    {
+      "id": "cliff",
+      "file": "cliff.png",
+      "bytes": 820
+    },
+    {
+      "id": "clive-v",
+      "file": "clive-v.png",
+      "bytes": 827
+    },
+    {
+      "id": "clover",
+      "file": "clover.png",
+      "bytes": 872
+    },
+    {
+      "id": "clown",
+      "file": "clown.png",
+      "bytes": 871
+    },
+    {
+      "id": "cogita",
+      "file": "cogita.png",
+      "bytes": 616
+    },
+    {
+      "id": "coin",
+      "file": "coin.png",
+      "bytes": 914
+    },
+    {
+      "id": "collector-gen3",
+      "file": "collector-gen3.png",
+      "bytes": 775
+    },
+    {
+      "id": "collector-gen6",
+      "file": "collector-gen6.png",
+      "bytes": 779
+    },
+    {
+      "id": "collector-gen7",
+      "file": "collector-gen7.png",
+      "bytes": 749
+    },
+    {
+      "id": "collector-masters",
+      "file": "collector-masters.png",
+      "bytes": 810
+    },
+    {
+      "id": "collector",
+      "file": "collector.png",
+      "bytes": 801
+    },
+    {
+      "id": "colress-gen7",
+      "file": "colress-gen7.png",
+      "bytes": 752
+    },
+    {
+      "id": "colress",
+      "file": "colress.png",
+      "bytes": 863
+    },
+    {
+      "id": "colza",
+      "file": "colza.png",
+      "bytes": 726
+    },
+    {
+      "id": "concordia",
+      "file": "concordia.png",
+      "bytes": 760
+    },
+    {
+      "id": "cook-gen7",
+      "file": "cook-gen7.png",
+      "bytes": 778
+    },
+    {
+      "id": "cook-gen9",
+      "file": "cook-gen9.png",
+      "bytes": 696
+    },
+    {
+      "id": "cook",
+      "file": "cook.png",
+      "bytes": 749
+    },
+    {
+      "id": "corbeau",
+      "file": "corbeau.png",
+      "bytes": 646
+    },
+    {
+      "id": "courier",
+      "file": "courier.png",
+      "bytes": 694
+    },
+    {
+      "id": "courtney-gen3",
+      "file": "courtney-gen3.png",
+      "bytes": 706
+    },
+    {
+      "id": "courtney",
+      "file": "courtney.png",
+      "bytes": 847
+    },
+    {
+      "id": "cowgirl",
+      "file": "cowgirl.png",
+      "bytes": 752
+    },
+    {
+      "id": "crasherwake",
+      "file": "crasherwake.png",
+      "bytes": 957
+    },
+    {
+      "id": "cress",
+      "file": "cress.png",
+      "bytes": 703
+    },
+    {
+      "id": "crispin",
+      "file": "crispin.png",
+      "bytes": 868
+    },
+    {
+      "id": "crushgirl-gen3",
+      "file": "crushgirl-gen3.png",
+      "bytes": 606
+    },
+    {
+      "id": "crushkin-gen3",
+      "file": "crushkin-gen3.png",
+      "bytes": 1110
+    },
+    {
+      "id": "cueball-gen1",
+      "file": "cueball-gen1.png",
+      "bytes": 676
+    },
+    {
+      "id": "cueball-gen1rb",
+      "file": "cueball-gen1rb.png",
+      "bytes": 651
+    },
+    {
+      "id": "cueball-gen3",
+      "file": "cueball-gen3.png",
+      "bytes": 1128
+    },
+    {
+      "id": "curtis",
+      "file": "curtis.png",
+      "bytes": 664
+    },
+    {
+      "id": "cyclist-gen4",
+      "file": "cyclist-gen4.png",
+      "bytes": 889
+    },
+    {
+      "id": "cyclist",
+      "file": "cyclist.png",
+      "bytes": 1009
+    },
+    {
+      "id": "cyclistf-gen4",
+      "file": "cyclistf-gen4.png",
+      "bytes": 914
+    },
+    {
+      "id": "cyclistf",
+      "file": "cyclistf.png",
+      "bytes": 1101
+    },
+    {
+      "id": "cyllene",
+      "file": "cyllene.png",
+      "bytes": 647
+    },
+    {
+      "id": "cynthia-anime",
+      "file": "cynthia-anime.png",
+      "bytes": 936
+    },
+    {
+      "id": "cynthia-anime2",
+      "file": "cynthia-anime2.png",
+      "bytes": 707
+    },
+    {
+      "id": "cynthia-gen4",
+      "file": "cynthia-gen4.png",
+      "bytes": 703
+    },
+    {
+      "id": "cynthia-gen7",
+      "file": "cynthia-gen7.png",
+      "bytes": 912
+    },
+    {
+      "id": "cynthia-masters",
+      "file": "cynthia-masters.png",
+      "bytes": 1069
+    },
+    {
+      "id": "cynthia-masters2",
+      "file": "cynthia-masters2.png",
+      "bytes": 774
+    },
+    {
+      "id": "cynthia-masters3",
+      "file": "cynthia-masters3.png",
+      "bytes": 992
+    },
+    {
+      "id": "cynthia-masters4",
+      "file": "cynthia-masters4.png",
+      "bytes": 1315
+    },
+    {
+      "id": "cynthia-masters5",
+      "file": "cynthia-masters5.png",
+      "bytes": 924
+    },
+    {
+      "id": "cynthia",
+      "file": "cynthia.png",
+      "bytes": 798
+    },
+    {
+      "id": "cyrano",
+      "file": "cyrano.png",
+      "bytes": 680
+    },
+    {
+      "id": "cyrus-masters",
+      "file": "cyrus-masters.png",
+      "bytes": 804
+    },
+    {
+      "id": "cyrus",
+      "file": "cyrus.png",
+      "bytes": 770
+    },
+    {
+      "id": "dagero",
+      "file": "dagero.png",
+      "bytes": 907
+    },
+    {
+      "id": "dahlia",
+      "file": "dahlia.png",
+      "bytes": 643
+    },
+    {
+      "id": "daisy-gen3",
+      "file": "daisy-gen3.png",
+      "bytes": 465
+    },
+    {
+      "id": "daisy",
+      "file": "daisy.png",
+      "bytes": 569
+    },
+    {
+      "id": "dana",
+      "file": "dana.png",
+      "bytes": 871
+    },
+    {
+      "id": "dancer-gen7",
+      "file": "dancer-gen7.png",
+      "bytes": 832
+    },
+    {
+      "id": "dancer-gen8",
+      "file": "dancer-gen8.png",
+      "bytes": 746
+    },
+    {
+      "id": "dancer",
+      "file": "dancer.png",
+      "bytes": 921
+    },
+    {
+      "id": "darach-caitlin",
+      "file": "darach-caitlin.png",
+      "bytes": 1013
+    },
+    {
+      "id": "darach",
+      "file": "darach.png",
+      "bytes": 552
+    },
+    {
+      "id": "dawn-contest",
+      "file": "dawn-contest.png",
+      "bytes": 786
+    },
+    {
+      "id": "dawn-gen4pt",
+      "file": "dawn-gen4pt.png",
+      "bytes": 648
+    },
+    {
+      "id": "dawn-masters",
+      "file": "dawn-masters.png",
+      "bytes": 693
+    },
+    {
+      "id": "dawn-masters2",
+      "file": "dawn-masters2.png",
+      "bytes": 728
+    },
+    {
+      "id": "dawn-masters3",
+      "file": "dawn-masters3.png",
+      "bytes": 836
+    },
+    {
+      "id": "dawn",
+      "file": "dawn.png",
+      "bytes": 709
+    },
+    {
+      "id": "delinquent-gen9",
+      "file": "delinquent-gen9.png",
+      "bytes": 628
+    },
+    {
+      "id": "delinquent",
+      "file": "delinquent.png",
+      "bytes": 728
+    },
+    {
+      "id": "delinquentf-gen9",
+      "file": "delinquentf-gen9.png",
+      "bytes": 726
+    },
+    {
+      "id": "delinquentf2-gen9",
+      "file": "delinquentf2-gen9.png",
+      "bytes": 707
+    },
+    {
+      "id": "dendra",
+      "file": "dendra.png",
+      "bytes": 624
+    },
+    {
+      "id": "depotagent",
+      "file": "depotagent.png",
+      "bytes": 759
+    },
+    {
+      "id": "dexio-gen6",
+      "file": "dexio-gen6.png",
+      "bytes": 681
+    },
+    {
+      "id": "dexio",
+      "file": "dexio.png",
+      "bytes": 732
+    },
+    {
+      "id": "diamondclanmember",
+      "file": "diamondclanmember.png",
+      "bytes": 639
+    },
+    {
+      "id": "diantha-masters",
+      "file": "diantha-masters.png",
+      "bytes": 778
+    },
+    {
+      "id": "diantha-masters2",
+      "file": "diantha-masters2.png",
+      "bytes": 763
+    },
+    {
+      "id": "diantha",
+      "file": "diantha.png",
+      "bytes": 724
+    },
+    {
+      "id": "doctor-gen8",
+      "file": "doctor-gen8.png",
+      "bytes": 698
+    },
+    {
+      "id": "doctor",
+      "file": "doctor.png",
+      "bytes": 652
+    },
+    {
+      "id": "doctorf-gen8",
+      "file": "doctorf-gen8.png",
+      "bytes": 569
+    },
+    {
+      "id": "doubleteam",
+      "file": "doubleteam.png",
+      "bytes": 1078
+    },
+    {
+      "id": "dragontamer-gen3",
+      "file": "dragontamer-gen3.png",
+      "bytes": 602
+    },
+    {
+      "id": "dragontamer-gen6",
+      "file": "dragontamer-gen6.png",
+      "bytes": 807
+    },
+    {
+      "id": "dragontamer-gen9",
+      "file": "dragontamer-gen9.png",
+      "bytes": 754
+    },
+    {
+      "id": "dragontamer",
+      "file": "dragontamer.png",
+      "bytes": 716
+    },
+    {
+      "id": "drake-gen3",
+      "file": "drake-gen3.png",
+      "bytes": 736
+    },
+    {
+      "id": "drasna",
+      "file": "drasna.png",
+      "bytes": 940
+    },
+    {
+      "id": "drayden",
+      "file": "drayden.png",
+      "bytes": 774
+    },
+    {
+      "id": "drayton",
+      "file": "drayton.png",
+      "bytes": 813
+    },
+    {
+      "id": "dulse",
+      "file": "dulse.png",
+      "bytes": 656
+    },
+    {
+      "id": "elaine",
+      "file": "elaine.png",
+      "bytes": 960
+    },
+    {
+      "id": "elesa-gen5bw2",
+      "file": "elesa-gen5bw2.png",
+      "bytes": 894
+    },
+    {
+      "id": "elesa-masters",
+      "file": "elesa-masters.png",
+      "bytes": 1036
+    },
+    {
+      "id": "elesa-masters2",
+      "file": "elesa-masters2.png",
+      "bytes": 855
+    },
+    {
+      "id": "elesa-masters3",
+      "file": "elesa-masters3.png",
+      "bytes": 1058
+    },
+    {
+      "id": "elesa",
+      "file": "elesa.png",
+      "bytes": 704
+    },
+    {
+      "id": "elio-masters",
+      "file": "elio-masters.png",
+      "bytes": 781
+    },
+    {
+      "id": "elio-usum",
+      "file": "elio-usum.png",
+      "bytes": 736
+    },
+    {
+      "id": "elio",
+      "file": "elio.png",
+      "bytes": 649
+    },
+    {
+      "id": "elm",
+      "file": "elm.png",
+      "bytes": 792
+    },
+    {
+      "id": "emma-lza",
+      "file": "emma-lza.png",
+      "bytes": 709
+    },
+    {
+      "id": "emma",
+      "file": "emma.png",
+      "bytes": 836
+    },
+    {
+      "id": "emmet-masters",
+      "file": "emmet-masters.png",
+      "bytes": 665
+    },
+    {
+      "id": "emmet",
+      "file": "emmet.png",
+      "bytes": 918
+    },
+    {
+      "id": "engineer-gen1",
+      "file": "engineer-gen1.png",
+      "bytes": 545
+    },
+    {
+      "id": "engineer-gen1rb",
+      "file": "engineer-gen1rb.png",
+      "bytes": 545
+    },
+    {
+      "id": "engineer-gen3",
+      "file": "engineer-gen3.png",
+      "bytes": 795
+    },
+    {
+      "id": "erbie-unite",
+      "file": "erbie-unite.png",
+      "bytes": 782
+    },
+    {
+      "id": "eri",
+      "file": "eri.png",
+      "bytes": 861
+    },
+    {
+      "id": "erika-gen1",
+      "file": "erika-gen1.png",
+      "bytes": 446
+    },
+    {
+      "id": "erika-gen1rb",
+      "file": "erika-gen1rb.png",
+      "bytes": 459
+    },
+    {
+      "id": "erika-gen2",
+      "file": "erika-gen2.png",
+      "bytes": 423
+    },
+    {
+      "id": "erika-gen3",
+      "file": "erika-gen3.png",
+      "bytes": 595
+    },
+    {
+      "id": "erika-lgpe",
+      "file": "erika-lgpe.png",
+      "bytes": 687
+    },
+    {
+      "id": "erika-masters",
+      "file": "erika-masters.png",
+      "bytes": 913
+    },
+    {
+      "id": "erika-masters2",
+      "file": "erika-masters2.png",
+      "bytes": 816
+    },
+    {
+      "id": "erika-masters3",
+      "file": "erika-masters3.png",
+      "bytes": 873
+    },
+    {
+      "id": "erika",
+      "file": "erika.png",
+      "bytes": 748
+    },
+    {
+      "id": "essentia",
+      "file": "essentia.png",
+      "bytes": 595
+    },
+    {
+      "id": "ethan-gen2",
+      "file": "ethan-gen2.png",
+      "bytes": 451
+    },
+    {
+      "id": "ethan-gen2c",
+      "file": "ethan-gen2c.png",
+      "bytes": 444
+    },
+    {
+      "id": "ethan-masters",
+      "file": "ethan-masters.png",
+      "bytes": 729
+    },
+    {
+      "id": "ethan-pokeathlon",
+      "file": "ethan-pokeathlon.png",
+      "bytes": 654
+    },
+    {
+      "id": "ethan",
+      "file": "ethan.png",
+      "bytes": 690
+    },
+    {
+      "id": "eusine-gen2",
+      "file": "eusine-gen2.png",
+      "bytes": 473
+    },
+    {
+      "id": "eusine",
+      "file": "eusine.png",
+      "bytes": 842
+    },
+    {
+      "id": "evelyn",
+      "file": "evelyn.png",
+      "bytes": 976
+    },
+    {
+      "id": "expert-gen3",
+      "file": "expert-gen3.png",
+      "bytes": 646
+    },
+    {
+      "id": "expert-gen6",
+      "file": "expert-gen6.png",
+      "bytes": 678
+    },
+    {
+      "id": "expertf-gen3",
+      "file": "expertf-gen3.png",
+      "bytes": 602
+    },
+    {
+      "id": "expertf-gen6",
+      "file": "expertf-gen6.png",
+      "bytes": 634
+    },
+    {
+      "id": "faba",
+      "file": "faba.png",
+      "bytes": 750
+    },
+    {
+      "id": "fairytalegirl",
+      "file": "fairytalegirl.png",
+      "bytes": 689
+    },
+    {
+      "id": "falkner-gen2",
+      "file": "falkner-gen2.png",
+      "bytes": 484
+    },
+    {
+      "id": "falkner",
+      "file": "falkner.png",
+      "bytes": 809
+    },
+    {
+      "id": "fantina",
+      "file": "fantina.png",
+      "bytes": 851
+    },
+    {
+      "id": "fennel",
+      "file": "fennel.png",
+      "bytes": 640
+    },
+    {
+      "id": "firebreather-gen2",
+      "file": "firebreather-gen2.png",
+      "bytes": 653
+    },
+    {
+      "id": "firebreather",
+      "file": "firebreather.png",
+      "bytes": 1012
+    },
+    {
+      "id": "firefighter",
+      "file": "firefighter.png",
+      "bytes": 634
+    },
+    {
+      "id": "fisher-gen8",
+      "file": "fisher-gen8.png",
+      "bytes": 841
+    },
+    {
+      "id": "fisherman-gen1",
+      "file": "fisherman-gen1.png",
+      "bytes": 619
+    },
+    {
+      "id": "fisherman-gen1rb",
+      "file": "fisherman-gen1rb.png",
+      "bytes": 618
+    },
+    {
+      "id": "fisherman-gen2jp",
+      "file": "fisherman-gen2jp.png",
+      "bytes": 582
+    },
+    {
+      "id": "fisherman-gen3",
+      "file": "fisherman-gen3.png",
+      "bytes": 737
+    },
+    {
+      "id": "fisherman-gen3rs",
+      "file": "fisherman-gen3rs.png",
+      "bytes": 788
+    },
+    {
+      "id": "fisherman-gen4",
+      "file": "fisherman-gen4.png",
+      "bytes": 957
+    },
+    {
+      "id": "fisherman-gen6",
+      "file": "fisherman-gen6.png",
+      "bytes": 792
+    },
+    {
+      "id": "fisherman-gen6xy",
+      "file": "fisherman-gen6xy.png",
+      "bytes": 824
+    },
+    {
+      "id": "fisherman-gen7",
+      "file": "fisherman-gen7.png",
+      "bytes": 908
+    },
+    {
+      "id": "fisherman",
+      "file": "fisherman.png",
+      "bytes": 901
+    },
+    {
+      "id": "flannery-gen3",
+      "file": "flannery-gen3.png",
+      "bytes": 680
+    },
+    {
+      "id": "flannery-gen6",
+      "file": "flannery-gen6.png",
+      "bytes": 938
+    },
+    {
+      "id": "flannery",
+      "file": "flannery.png",
+      "bytes": 798
+    },
+    {
+      "id": "flaregrunt",
+      "file": "flaregrunt.png",
+      "bytes": 590
+    },
+    {
+      "id": "flaregruntf",
+      "file": "flaregruntf.png",
+      "bytes": 547
+    },
+    {
+      "id": "flint",
+      "file": "flint.png",
+      "bytes": 717
+    },
+    {
+      "id": "florian-bb",
+      "file": "florian-bb.png",
+      "bytes": 687
+    },
+    {
+      "id": "florian-festival",
+      "file": "florian-festival.png",
+      "bytes": 686
+    },
+    {
+      "id": "florian-masters",
+      "file": "florian-masters.png",
+      "bytes": 706
+    },
+    {
+      "id": "florian-s",
+      "file": "florian-s.png",
+      "bytes": 754
+    },
+    {
+      "id": "freediver",
+      "file": "freediver.png",
+      "bytes": 717
+    },
+    {
+      "id": "furisodegirl-black",
+      "file": "furisodegirl-black.png",
+      "bytes": 801
+    },
+    {
+      "id": "furisodegirl-blue",
+      "file": "furisodegirl-blue.png",
+      "bytes": 748
+    },
+    {
+      "id": "furisodegirl-pink",
+      "file": "furisodegirl-pink.png",
+      "bytes": 854
+    },
+    {
+      "id": "furisodegirl-white",
+      "file": "furisodegirl-white.png",
+      "bytes": 774
+    },
+    {
+      "id": "gaeric",
+      "file": "gaeric.png",
+      "bytes": 716
+    },
+    {
+      "id": "galacticgrunt",
+      "file": "galacticgrunt.png",
+      "bytes": 693
+    },
+    {
+      "id": "galacticgruntf",
+      "file": "galacticgruntf.png",
+      "bytes": 729
+    },
+    {
+      "id": "gambler-gen1",
+      "file": "gambler-gen1.png",
+      "bytes": 624
+    },
+    {
+      "id": "gambler-gen1rb",
+      "file": "gambler-gen1rb.png",
+      "bytes": 628
+    },
+    {
+      "id": "gambler",
+      "file": "gambler.png",
+      "bytes": 683
+    },
+    {
+      "id": "gamer-gen3",
+      "file": "gamer-gen3.png",
+      "bytes": 677
+    },
+    {
+      "id": "garcon",
+      "file": "garcon.png",
+      "bytes": 710
+    },
+    {
+      "id": "gardener",
+      "file": "gardener.png",
+      "bytes": 759
+    },
+    {
+      "id": "gardenia-masters",
+      "file": "gardenia-masters.png",
+      "bytes": 903
+    },
+    {
+      "id": "gardenia",
+      "file": "gardenia.png",
+      "bytes": 746
+    },
+    {
+      "id": "geeta",
+      "file": "geeta.png",
+      "bytes": 839
+    },
+    {
+      "id": "gentleman-gen1",
+      "file": "gentleman-gen1.png",
+      "bytes": 381
+    },
+    {
+      "id": "gentleman-gen1rb",
+      "file": "gentleman-gen1rb.png",
+      "bytes": 381
+    },
+    {
+      "id": "gentleman-gen2",
+      "file": "gentleman-gen2.png",
+      "bytes": 404
+    },
+    {
+      "id": "gentleman-gen3",
+      "file": "gentleman-gen3.png",
+      "bytes": 627
+    },
+    {
+      "id": "gentleman-gen3rs",
+      "file": "gentleman-gen3rs.png",
+      "bytes": 588
+    },
+    {
+      "id": "gentleman-gen4",
+      "file": "gentleman-gen4.png",
+      "bytes": 772
+    },
+    {
+      "id": "gentleman-gen4dp",
+      "file": "gentleman-gen4dp.png",
+      "bytes": 880
+    },
+    {
+      "id": "gentleman-gen6",
+      "file": "gentleman-gen6.png",
+      "bytes": 623
+    },
+    {
+      "id": "gentleman-gen6xy",
+      "file": "gentleman-gen6xy.png",
+      "bytes": 725
+    },
+    {
+      "id": "gentleman-gen7",
+      "file": "gentleman-gen7.png",
+      "bytes": 826
+    },
+    {
+      "id": "gentleman-gen8",
+      "file": "gentleman-gen8.png",
+      "bytes": 718
+    },
+    {
+      "id": "gentleman-lgpe",
+      "file": "gentleman-lgpe.png",
+      "bytes": 594
+    },
+    {
+      "id": "gentleman",
+      "file": "gentleman.png",
+      "bytes": 615
+    },
+    {
+      "id": "ghetsis-gen5bw",
+      "file": "ghetsis-gen5bw.png",
+      "bytes": 1150
+    },
+    {
+      "id": "ghetsis",
+      "file": "ghetsis.png",
+      "bytes": 947
+    },
+    {
+      "id": "giacomo",
+      "file": "giacomo.png",
+      "bytes": 943
+    },
+    {
+      "id": "ginchiyo-conquest",
+      "file": "ginchiyo-conquest.png",
+      "bytes": 902
+    },
+    {
+      "id": "ginter",
+      "file": "ginter.png",
+      "bytes": 854
+    },
+    {
+      "id": "giovanni-gen1",
+      "file": "giovanni-gen1.png",
+      "bytes": 390
+    },
+    {
+      "id": "giovanni-gen1rb",
+      "file": "giovanni-gen1rb.png",
+      "bytes": 390
+    },
+    {
+      "id": "giovanni-gen3",
+      "file": "giovanni-gen3.png",
+      "bytes": 583
+    },
+    {
+      "id": "giovanni-lgpe",
+      "file": "giovanni-lgpe.png",
+      "bytes": 615
+    },
+    {
+      "id": "giovanni-masters",
+      "file": "giovanni-masters.png",
+      "bytes": 780
+    },
+    {
+      "id": "giovanni-masters2",
+      "file": "giovanni-masters2.png",
+      "bytes": 772
+    },
+    {
+      "id": "giovanni",
+      "file": "giovanni.png",
+      "bytes": 630
+    },
+    {
+      "id": "glacia-gen3",
+      "file": "glacia-gen3.png",
+      "bytes": 720
+    },
+    {
+      "id": "glacia",
+      "file": "glacia.png",
+      "bytes": 713
+    },
+    {
+      "id": "gladion-masters",
+      "file": "gladion-masters.png",
+      "bytes": 715
+    },
+    {
+      "id": "gladion-masters2",
+      "file": "gladion-masters2.png",
+      "bytes": 674
+    },
+    {
+      "id": "gladion-stance",
+      "file": "gladion-stance.png",
+      "bytes": 657
+    },
+    {
+      "id": "gladion",
+      "file": "gladion.png",
+      "bytes": 617
+    },
+    {
+      "id": "gloria-dojo",
+      "file": "gloria-dojo.png",
+      "bytes": 676
+    },
+    {
+      "id": "gloria-league",
+      "file": "gloria-league.png",
+      "bytes": 639
+    },
+    {
+      "id": "gloria-masters",
+      "file": "gloria-masters.png",
+      "bytes": 777
+    },
+    {
+      "id": "gloria-masters2",
+      "file": "gloria-masters2.png",
+      "bytes": 754
+    },
+    {
+      "id": "gloria-tundra",
+      "file": "gloria-tundra.png",
+      "bytes": 750
+    },
+    {
+      "id": "gloria",
+      "file": "gloria.png",
+      "bytes": 990
+    },
+    {
+      "id": "golfer",
+      "file": "golfer.png",
+      "bytes": 705
+    },
+    {
+      "id": "gordie",
+      "file": "gordie.png",
+      "bytes": 1190
+    },
+    {
+      "id": "grace",
+      "file": "grace.png",
+      "bytes": 736
+    },
+    {
+      "id": "grant",
+      "file": "grant.png",
+      "bytes": 699
+    },
+    {
+      "id": "green",
+      "file": "green.png",
+      "bytes": 785
+    },
+    {
+      "id": "greta-gen3",
+      "file": "greta-gen3.png",
+      "bytes": 639
+    },
+    {
+      "id": "greta",
+      "file": "greta.png",
+      "bytes": 776
+    },
+    {
+      "id": "grimsley-gen7",
+      "file": "grimsley-gen7.png",
+      "bytes": 699
+    },
+    {
+      "id": "grimsley-masters",
+      "file": "grimsley-masters.png",
+      "bytes": 811
+    },
+    {
+      "id": "grimsley",
+      "file": "grimsley.png",
+      "bytes": 721
+    },
+    {
+      "id": "grisham",
+      "file": "grisham.png",
+      "bytes": 811
+    },
+    {
+      "id": "grusha",
+      "file": "grusha.png",
+      "bytes": 834
+    },
+    {
+      "id": "guitarist-gen2",
+      "file": "guitarist-gen2.png",
+      "bytes": 541
+    },
+    {
+      "id": "guitarist-gen3",
+      "file": "guitarist-gen3.png",
+      "bytes": 689
+    },
+    {
+      "id": "guitarist-gen4",
+      "file": "guitarist-gen4.png",
+      "bytes": 875
+    },
+    {
+      "id": "guitarist-gen6",
+      "file": "guitarist-gen6.png",
+      "bytes": 744
+    },
+    {
+      "id": "guitarist",
+      "file": "guitarist.png",
+      "bytes": 865
+    },
+    {
+      "id": "gurkinn",
+      "file": "gurkinn.png",
+      "bytes": 691
+    },
+    {
+      "id": "guzma-masters",
+      "file": "guzma-masters.png",
+      "bytes": 829
+    },
+    {
+      "id": "guzma",
+      "file": "guzma.png",
+      "bytes": 774
+    },
+    {
+      "id": "gwynn",
+      "file": "gwynn.png",
+      "bytes": 779
+    },
+    {
+      "id": "hala",
+      "file": "hala.png",
+      "bytes": 960
+    },
+    {
+      "id": "hanbei-conquest",
+      "file": "hanbei-conquest.png",
+      "bytes": 947
+    },
+    {
+      "id": "hapu",
+      "file": "hapu.png",
+      "bytes": 766
+    },
+    {
+      "id": "harlequin",
+      "file": "harlequin.png",
+      "bytes": 922
+    },
+    {
+      "id": "harmony",
+      "file": "harmony.png",
+      "bytes": 748
+    },
+    {
+      "id": "hassel",
+      "file": "hassel.png",
+      "bytes": 722
+    },
+    {
+      "id": "hau-masters",
+      "file": "hau-masters.png",
+      "bytes": 790
+    },
+    {
+      "id": "hau-stance",
+      "file": "hau-stance.png",
+      "bytes": 674
+    },
+    {
+      "id": "hau",
+      "file": "hau.png",
+      "bytes": 668
+    },
+    {
+      "id": "hayley",
+      "file": "hayley.png",
+      "bytes": 657
+    },
+    {
+      "id": "heath",
+      "file": "heath.png",
+      "bytes": 703
+    },
+    {
+      "id": "hero-conquest",
+      "file": "hero-conquest.png",
+      "bytes": 1060
+    },
+    {
+      "id": "hero2-conquest",
+      "file": "hero2-conquest.png",
+      "bytes": 1056
+    },
+    {
+      "id": "heroine-conquest",
+      "file": "heroine-conquest.png",
+      "bytes": 1255
+    },
+    {
+      "id": "heroine2-conquest",
+      "file": "heroine2-conquest.png",
+      "bytes": 1299
+    },
+    {
+      "id": "hexmaniac-gen3",
+      "file": "hexmaniac-gen3.png",
+      "bytes": 656
+    },
+    {
+      "id": "hexmaniac-gen3jp",
+      "file": "hexmaniac-gen3jp.png",
+      "bytes": 654
+    },
+    {
+      "id": "hexmaniac-gen6",
+      "file": "hexmaniac-gen6.png",
+      "bytes": 897
+    },
+    {
+      "id": "hiker-gen1",
+      "file": "hiker-gen1.png",
+      "bytes": 632
+    },
+    {
+      "id": "hiker-gen1rb",
+      "file": "hiker-gen1rb.png",
+      "bytes": 633
+    },
+    {
+      "id": "hiker-gen2",
+      "file": "hiker-gen2.png",
+      "bytes": 614
+    },
+    {
+      "id": "hiker-gen3",
+      "file": "hiker-gen3.png",
+      "bytes": 841
+    },
+    {
+      "id": "hiker-gen3rs",
+      "file": "hiker-gen3rs.png",
+      "bytes": 838
+    },
+    {
+      "id": "hiker-gen4",
+      "file": "hiker-gen4.png",
+      "bytes": 945
+    },
+    {
+      "id": "hiker-gen6",
+      "file": "hiker-gen6.png",
+      "bytes": 1017
+    },
+    {
+      "id": "hiker-gen7",
+      "file": "hiker-gen7.png",
+      "bytes": 998
+    },
+    {
+      "id": "hiker-gen8",
+      "file": "hiker-gen8.png",
+      "bytes": 956
+    },
+    {
+      "id": "hiker-gen9",
+      "file": "hiker-gen9.png",
+      "bytes": 745
+    },
+    {
+      "id": "hiker",
+      "file": "hiker.png",
+      "bytes": 1006
+    },
+    {
+      "id": "hilbert-masters",
+      "file": "hilbert-masters.png",
+      "bytes": 642
+    },
+    {
+      "id": "hilbert-masters2",
+      "file": "hilbert-masters2.png",
+      "bytes": 683
+    },
+    {
+      "id": "hilbert-masters3",
+      "file": "hilbert-masters3.png",
+      "bytes": 816
+    },
+    {
+      "id": "hilbert-wonderlauncher",
+      "file": "hilbert-wonderlauncher.png",
+      "bytes": 778
+    },
+    {
+      "id": "hilbert",
+      "file": "hilbert.png",
+      "bytes": 754
+    },
+    {
+      "id": "hilda-masters",
+      "file": "hilda-masters.png",
+      "bytes": 963
+    },
+    {
+      "id": "hilda-masters2",
+      "file": "hilda-masters2.png",
+      "bytes": 705
+    },
+    {
+      "id": "hilda-masters3",
+      "file": "hilda-masters3.png",
+      "bytes": 935
+    },
+    {
+      "id": "hilda-masters4",
+      "file": "hilda-masters4.png",
+      "bytes": 820
+    },
+    {
+      "id": "hilda-wonderlauncher",
+      "file": "hilda-wonderlauncher.png",
+      "bytes": 778
+    },
+    {
+      "id": "hilda",
+      "file": "hilda.png",
+      "bytes": 780
+    },
+    {
+      "id": "hooligans",
+      "file": "hooligans.png",
+      "bytes": 1500
+    },
+    {
+      "id": "hoopster",
+      "file": "hoopster.png",
+      "bytes": 707
+    },
+    {
+      "id": "hop-masters",
+      "file": "hop-masters.png",
+      "bytes": 814
+    },
+    {
+      "id": "hop",
+      "file": "hop.png",
+      "bytes": 814
+    },
+    {
+      "id": "hugh-masters",
+      "file": "hugh-masters.png",
+      "bytes": 635
+    },
+    {
+      "id": "hugh",
+      "file": "hugh.png",
+      "bytes": 773
+    },
+    {
+      "id": "hyde",
+      "file": "hyde.png",
+      "bytes": 591
+    },
+    {
+      "id": "idol",
+      "file": "idol.png",
+      "bytes": 715
+    },
+    {
+      "id": "ilima",
+      "file": "ilima.png",
+      "bytes": 686
+    },
+    {
+      "id": "infielder",
+      "file": "infielder.png",
+      "bytes": 717
+    },
+    {
+      "id": "ingo-hisui",
+      "file": "ingo-hisui.png",
+      "bytes": 794
+    },
+    {
+      "id": "ingo-masters",
+      "file": "ingo-masters.png",
+      "bytes": 612
+    },
+    {
+      "id": "ingo",
+      "file": "ingo.png",
+      "bytes": 891
+    },
+    {
+      "id": "interviewers-gen3",
+      "file": "interviewers-gen3.png",
+      "bytes": 958
+    },
+    {
+      "id": "interviewers-gen6",
+      "file": "interviewers-gen6.png",
+      "bytes": 1193
+    },
+    {
+      "id": "interviewers",
+      "file": "interviewers.png",
+      "bytes": 1188
+    },
+    {
+      "id": "iono-masters",
+      "file": "iono-masters.png",
+      "bytes": 1292
+    },
+    {
+      "id": "iono-masters2",
+      "file": "iono-masters2.png",
+      "bytes": 1178
+    },
+    {
+      "id": "iono",
+      "file": "iono.png",
+      "bytes": 1150
+    },
+    {
+      "id": "irida-masters",
+      "file": "irida-masters.png",
+      "bytes": 778
+    },
+    {
+      "id": "irida-masters2",
+      "file": "irida-masters2.png",
+      "bytes": 769
+    },
+    {
+      "id": "irida",
+      "file": "irida.png",
+      "bytes": 1020
+    },
+    {
+      "id": "iris-gen5bw2",
+      "file": "iris-gen5bw2.png",
+      "bytes": 1069
+    },
+    {
+      "id": "iris-masters",
+      "file": "iris-masters.png",
+      "bytes": 977
+    },
+    {
+      "id": "iris-masters2",
+      "file": "iris-masters2.png",
+      "bytes": 891
+    },
+    {
+      "id": "iris",
+      "file": "iris.png",
+      "bytes": 802
+    },
+    {
+      "id": "iscan",
+      "file": "iscan.png",
+      "bytes": 884
+    },
+    {
+      "id": "ivor",
+      "file": "ivor.png",
+      "bytes": 1011
+    },
+    {
+      "id": "jacinthe",
+      "file": "jacinthe.png",
+      "bytes": 1055
+    },
+    {
+      "id": "jacq",
+      "file": "jacq.png",
+      "bytes": 843
+    },
+    {
+      "id": "jamie",
+      "file": "jamie.png",
+      "bytes": 773
+    },
+    {
+      "id": "janine-gen2",
+      "file": "janine-gen2.png",
+      "bytes": 442
+    },
+    {
+      "id": "janine",
+      "file": "janine.png",
+      "bytes": 748
+    },
+    {
+      "id": "janitor-gen7",
+      "file": "janitor-gen7.png",
+      "bytes": 659
+    },
+    {
+      "id": "janitor-gen9",
+      "file": "janitor-gen9.png",
+      "bytes": 938
+    },
+    {
+      "id": "janitor",
+      "file": "janitor.png",
+      "bytes": 900
+    },
+    {
+      "id": "jasmine-contest",
+      "file": "jasmine-contest.png",
+      "bytes": 808
+    },
+    {
+      "id": "jasmine-gen2",
+      "file": "jasmine-gen2.png",
+      "bytes": 429
+    },
+    {
+      "id": "jasmine-masters",
+      "file": "jasmine-masters.png",
+      "bytes": 1011
+    },
+    {
+      "id": "jasmine-masters2",
+      "file": "jasmine-masters2.png",
+      "bytes": 745
+    },
+    {
+      "id": "jasmine-masters3",
+      "file": "jasmine-masters3.png",
+      "bytes": 705
+    },
+    {
+      "id": "jasmine",
+      "file": "jasmine.png",
+      "bytes": 691
+    },
+    {
+      "id": "jessiejames-gen1",
+      "file": "jessiejames-gen1.png",
+      "bytes": 695
+    },
+    {
+      "id": "jogger",
+      "file": "jogger.png",
+      "bytes": 651
+    },
+    {
+      "id": "johanna-contest",
+      "file": "johanna-contest.png",
+      "bytes": 678
+    },
+    {
+      "id": "johanna",
+      "file": "johanna.png",
+      "bytes": 694
+    },
+    {
+      "id": "jrtrainer-gen1",
+      "file": "jrtrainer-gen1.png",
+      "bytes": 495
+    },
+    {
+      "id": "jrtrainer-gen1rb",
+      "file": "jrtrainer-gen1rb.png",
+      "bytes": 495
+    },
+    {
+      "id": "jrtrainerf-gen1",
+      "file": "jrtrainerf-gen1.png",
+      "bytes": 481
+    },
+    {
+      "id": "jrtrainerf-gen1rb",
+      "file": "jrtrainerf-gen1rb.png",
+      "bytes": 481
+    },
+    {
+      "id": "juan-gen3",
+      "file": "juan-gen3.png",
+      "bytes": 724
+    },
+    {
+      "id": "juan",
+      "file": "juan.png",
+      "bytes": 676
+    },
+    {
+      "id": "juggler-gen1",
+      "file": "juggler-gen1.png",
+      "bytes": 666
+    },
+    {
+      "id": "juggler-gen1rb",
+      "file": "juggler-gen1rb.png",
+      "bytes": 663
+    },
+    {
+      "id": "juggler-gen2",
+      "file": "juggler-gen2.png",
+      "bytes": 539
+    },
+    {
+      "id": "juggler-gen3",
+      "file": "juggler-gen3.png",
+      "bytes": 826
+    },
+    {
+      "id": "juggler",
+      "file": "juggler.png",
+      "bytes": 900
+    },
+    {
+      "id": "juliana-bb",
+      "file": "juliana-bb.png",
+      "bytes": 676
+    },
+    {
+      "id": "juliana-festival",
+      "file": "juliana-festival.png",
+      "bytes": 673
+    },
+    {
+      "id": "juliana-masters",
+      "file": "juliana-masters.png",
+      "bytes": 776
+    },
+    {
+      "id": "juliana-s",
+      "file": "juliana-s.png",
+      "bytes": 749
+    },
+    {
+      "id": "juniper",
+      "file": "juniper.png",
+      "bytes": 780
+    },
+    {
+      "id": "jupiter",
+      "file": "jupiter.png",
+      "bytes": 657
+    },
+    {
+      "id": "kabu-masters",
+      "file": "kabu-masters.png",
+      "bytes": 772
+    },
+    {
+      "id": "kabu",
+      "file": "kabu.png",
+      "bytes": 904
+    },
+    {
+      "id": "kahili",
+      "file": "kahili.png",
+      "bytes": 881
+    },
+    {
+      "id": "kamado-armor",
+      "file": "kamado-armor.png",
+      "bytes": 880
+    },
+    {
+      "id": "kamado",
+      "file": "kamado.png",
+      "bytes": 986
+    },
+    {
+      "id": "karen-gen2",
+      "file": "karen-gen2.png",
+      "bytes": 460
+    },
+    {
+      "id": "karen",
+      "file": "karen.png",
+      "bytes": 756
+    },
+    {
+      "id": "katy",
+      "file": "katy.png",
+      "bytes": 729
+    },
+    {
+      "id": "kiawe",
+      "file": "kiawe.png",
+      "bytes": 721
+    },
+    {
+      "id": "kieran-champion",
+      "file": "kieran-champion.png",
+      "bytes": 719
+    },
+    {
+      "id": "kieran-festival",
+      "file": "kieran-festival.png",
+      "bytes": 778
+    },
+    {
+      "id": "kieran-masters",
+      "file": "kieran-masters.png",
+      "bytes": 698
+    },
+    {
+      "id": "kieran",
+      "file": "kieran.png",
+      "bytes": 649
+    },
+    {
+      "id": "kimonogirl-gen2",
+      "file": "kimonogirl-gen2.png",
+      "bytes": 561
+    },
+    {
+      "id": "kimonogirl",
+      "file": "kimonogirl.png",
+      "bytes": 802
+    },
+    {
+      "id": "kindler-gen3",
+      "file": "kindler-gen3.png",
+      "bytes": 660
+    },
+    {
+      "id": "kindler-gen6",
+      "file": "kindler-gen6.png",
+      "bytes": 1072
+    },
+    {
+      "id": "klara",
+      "file": "klara.png",
+      "bytes": 937
+    },
+    {
+      "id": "kofu",
+      "file": "kofu.png",
+      "bytes": 1007
+    },
+    {
+      "id": "koga-gen1",
+      "file": "koga-gen1.png",
+      "bytes": 555
+    },
+    {
+      "id": "koga-gen1rb",
+      "file": "koga-gen1rb.png",
+      "bytes": 555
+    },
+    {
+      "id": "koga-gen2",
+      "file": "koga-gen2.png",
+      "bytes": 454
+    },
+    {
+      "id": "koga-gen3",
+      "file": "koga-gen3.png",
+      "bytes": 634
+    },
+    {
+      "id": "koga-lgpe",
+      "file": "koga-lgpe.png",
+      "bytes": 809
+    },
+    {
+      "id": "koga",
+      "file": "koga.png",
+      "bytes": 833
+    },
+    {
+      "id": "korrina-masters",
+      "file": "korrina-masters.png",
+      "bytes": 873
+    },
+    {
+      "id": "korrina",
+      "file": "korrina.png",
+      "bytes": 968
+    },
+    {
+      "id": "kris-gen2",
+      "file": "kris-gen2.png",
+      "bytes": 464
+    },
+    {
+      "id": "kris-masters",
+      "file": "kris-masters.png",
+      "bytes": 806
+    },
+    {
+      "id": "kris-masters2",
+      "file": "kris-masters2.png",
+      "bytes": 694
+    },
+    {
+      "id": "kris",
+      "file": "kris.png",
+      "bytes": 673
+    },
+    {
+      "id": "kukui-stand",
+      "file": "kukui-stand.png",
+      "bytes": 837
+    },
+    {
+      "id": "kukui",
+      "file": "kukui.png",
+      "bytes": 806
+    },
+    {
+      "id": "kunoichi-conquest",
+      "file": "kunoichi-conquest.png",
+      "bytes": 862
+    },
+    {
+      "id": "kunoichi2-conquest",
+      "file": "kunoichi2-conquest.png",
+      "bytes": 881
+    },
+    {
+      "id": "kurt",
+      "file": "kurt.png",
+      "bytes": 734
+    },
+    {
+      "id": "lacey-masters",
+      "file": "lacey-masters.png",
+      "bytes": 760
+    },
+    {
+      "id": "lacey",
+      "file": "lacey.png",
+      "bytes": 739
+    },
+    {
+      "id": "lady-gen3",
+      "file": "lady-gen3.png",
+      "bytes": 630
+    },
+    {
+      "id": "lady-gen3rs",
+      "file": "lady-gen3rs.png",
+      "bytes": 717
+    },
+    {
+      "id": "lady-gen4",
+      "file": "lady-gen4.png",
+      "bytes": 762
+    },
+    {
+      "id": "lady-gen6",
+      "file": "lady-gen6.png",
+      "bytes": 728
+    },
+    {
+      "id": "lady-gen6oras",
+      "file": "lady-gen6oras.png",
+      "bytes": 742
+    },
+    {
+      "id": "lady",
+      "file": "lady.png",
+      "bytes": 809
+    },
+    {
+      "id": "lana-masters",
+      "file": "lana-masters.png",
+      "bytes": 734
+    },
+    {
+      "id": "lana-masters2",
+      "file": "lana-masters2.png",
+      "bytes": 826
+    },
+    {
+      "id": "lana",
+      "file": "lana.png",
+      "bytes": 694
+    },
+    {
+      "id": "lance-gen1",
+      "file": "lance-gen1.png",
+      "bytes": 504
+    },
+    {
+      "id": "lance-gen1rb",
+      "file": "lance-gen1rb.png",
+      "bytes": 505
+    },
+    {
+      "id": "lance-gen2",
+      "file": "lance-gen2.png",
+      "bytes": 570
+    },
+    {
+      "id": "lance-gen3",
+      "file": "lance-gen3.png",
+      "bytes": 733
+    },
+    {
+      "id": "lance-lgpe",
+      "file": "lance-lgpe.png",
+      "bytes": 845
+    },
+    {
+      "id": "lance-masters",
+      "file": "lance-masters.png",
+      "bytes": 834
+    },
+    {
+      "id": "lance-masters2",
+      "file": "lance-masters2.png",
+      "bytes": 1236
+    },
+    {
+      "id": "lance",
+      "file": "lance.png",
+      "bytes": 1003
+    },
+    {
+      "id": "lanette",
+      "file": "lanette.png",
+      "bytes": 538
+    },
+    {
+      "id": "larry-masters",
+      "file": "larry-masters.png",
+      "bytes": 788
+    },
+    {
+      "id": "larry-masters2",
+      "file": "larry-masters2.png",
+      "bytes": 868
+    },
+    {
+      "id": "larry",
+      "file": "larry.png",
+      "bytes": 635
+    },
+    {
+      "id": "lass-gen1",
+      "file": "lass-gen1.png",
+      "bytes": 385
+    },
+    {
+      "id": "lass-gen1rb",
+      "file": "lass-gen1rb.png",
+      "bytes": 389
+    },
+    {
+      "id": "lass-gen2",
+      "file": "lass-gen2.png",
+      "bytes": 527
+    },
+    {
+      "id": "lass-gen3",
+      "file": "lass-gen3.png",
+      "bytes": 589
+    },
+    {
+      "id": "lass-gen3rs",
+      "file": "lass-gen3rs.png",
+      "bytes": 546
+    },
+    {
+      "id": "lass-gen4",
+      "file": "lass-gen4.png",
+      "bytes": 663
+    },
+    {
+      "id": "lass-gen4dp",
+      "file": "lass-gen4dp.png",
+      "bytes": 645
+    },
+    {
+      "id": "lass-gen6",
+      "file": "lass-gen6.png",
+      "bytes": 691
+    },
+    {
+      "id": "lass-gen6oras",
+      "file": "lass-gen6oras.png",
+      "bytes": 733
+    },
+    {
+      "id": "lass-gen7",
+      "file": "lass-gen7.png",
+      "bytes": 743
+    },
+    {
+      "id": "lass-gen8",
+      "file": "lass-gen8.png",
+      "bytes": 655
+    },
+    {
+      "id": "lass",
+      "file": "lass.png",
+      "bytes": 714
+    },
+    {
+      "id": "laventon",
+      "file": "laventon.png",
+      "bytes": 743
+    },
+    {
+      "id": "laventon2",
+      "file": "laventon2.png",
+      "bytes": 701
+    },
+    {
+      "id": "leaf-gen3",
+      "file": "leaf-gen3.png",
+      "bytes": 638
+    },
+    {
+      "id": "leaf-masters",
+      "file": "leaf-masters.png",
+      "bytes": 783
+    },
+    {
+      "id": "leaf-masters2",
+      "file": "leaf-masters2.png",
+      "bytes": 681
+    },
+    {
+      "id": "leaguestaff",
+      "file": "leaguestaff.png",
+      "bytes": 792
+    },
+    {
+      "id": "leaguestafff",
+      "file": "leaguestafff.png",
+      "bytes": 716
+    },
+    {
+      "id": "lebanne",
+      "file": "lebanne.png",
+      "bytes": 923
+    },
+    {
+      "id": "lenora",
+      "file": "lenora.png",
+      "bytes": 833
+    },
+    {
+      "id": "leon-masters",
+      "file": "leon-masters.png",
+      "bytes": 1016
+    },
+    {
+      "id": "leon-masters2",
+      "file": "leon-masters2.png",
+      "bytes": 864
+    },
+    {
+      "id": "leon-tower",
+      "file": "leon-tower.png",
+      "bytes": 881
+    },
+    {
+      "id": "leon",
+      "file": "leon.png",
+      "bytes": 1474
+    },
+    {
+      "id": "li",
+      "file": "li.png",
+      "bytes": 856
+    },
+    {
+      "id": "lian",
+      "file": "lian.png",
+      "bytes": 916
+    },
+    {
+      "id": "lida",
+      "file": "lida.png",
+      "bytes": 700
+    },
+    {
+      "id": "liko",
+      "file": "liko.png",
+      "bytes": 712
+    },
+    {
+      "id": "lillie-masters",
+      "file": "lillie-masters.png",
+      "bytes": 979
+    },
+    {
+      "id": "lillie-masters2",
+      "file": "lillie-masters2.png",
+      "bytes": 829
+    },
+    {
+      "id": "lillie-masters3",
+      "file": "lillie-masters3.png",
+      "bytes": 790
+    },
+    {
+      "id": "lillie-masters4",
+      "file": "lillie-masters4.png",
+      "bytes": 815
+    },
+    {
+      "id": "lillie-masters5",
+      "file": "lillie-masters5.png",
+      "bytes": 723
+    },
+    {
+      "id": "lillie-z",
+      "file": "lillie-z.png",
+      "bytes": 703
+    },
+    {
+      "id": "lillie",
+      "file": "lillie.png",
+      "bytes": 735
+    },
+    {
+      "id": "linebacker",
+      "file": "linebacker.png",
+      "bytes": 799
+    },
+    {
+      "id": "lisia-masters",
+      "file": "lisia-masters.png",
+      "bytes": 944
+    },
+    {
+      "id": "lisia",
+      "file": "lisia.png",
+      "bytes": 1004
+    },
+    {
+      "id": "liza-gen6",
+      "file": "liza-gen6.png",
+      "bytes": 696
+    },
+    {
+      "id": "liza-masters",
+      "file": "liza-masters.png",
+      "bytes": 774
+    },
+    {
+      "id": "liza",
+      "file": "liza.png",
+      "bytes": 734
+    },
+    {
+      "id": "lorelei-gen1",
+      "file": "lorelei-gen1.png",
+      "bytes": 467
+    },
+    {
+      "id": "lorelei-gen1rb",
+      "file": "lorelei-gen1rb.png",
+      "bytes": 467
+    },
+    {
+      "id": "lorelei-gen3",
+      "file": "lorelei-gen3.png",
+      "bytes": 635
+    },
+    {
+      "id": "lorelei-lgpe",
+      "file": "lorelei-lgpe.png",
+      "bytes": 682
+    },
+    {
+      "id": "ltsurge-gen1",
+      "file": "ltsurge-gen1.png",
+      "bytes": 581
+    },
+    {
+      "id": "ltsurge-gen1rb",
+      "file": "ltsurge-gen1rb.png",
+      "bytes": 581
+    },
+    {
+      "id": "ltsurge-gen2",
+      "file": "ltsurge-gen2.png",
+      "bytes": 494
+    },
+    {
+      "id": "ltsurge-gen3",
+      "file": "ltsurge-gen3.png",
+      "bytes": 695
+    },
+    {
+      "id": "ltsurge",
+      "file": "ltsurge.png",
+      "bytes": 918
+    },
+    {
+      "id": "lucas-contest",
+      "file": "lucas-contest.png",
+      "bytes": 694
+    },
+    {
+      "id": "lucas-gen4pt",
+      "file": "lucas-gen4pt.png",
+      "bytes": 659
+    },
+    {
+      "id": "lucas",
+      "file": "lucas.png",
+      "bytes": 660
+    },
+    {
+      "id": "lucian",
+      "file": "lucian.png",
+      "bytes": 514
+    },
+    {
+      "id": "lucy-gen3",
+      "file": "lucy-gen3.png",
+      "bytes": 606
+    },
+    {
+      "id": "lucy",
+      "file": "lucy.png",
+      "bytes": 677
+    },
+    {
+      "id": "lusamine-masters",
+      "file": "lusamine-masters.png",
+      "bytes": 877
+    },
+    {
+      "id": "lusamine-nihilego",
+      "file": "lusamine-nihilego.png",
+      "bytes": 1656
+    },
+    {
+      "id": "lusamine",
+      "file": "lusamine.png",
+      "bytes": 895
+    },
+    {
+      "id": "lyra-masters",
+      "file": "lyra-masters.png",
+      "bytes": 810
+    },
+    {
+      "id": "lyra-masters2",
+      "file": "lyra-masters2.png",
+      "bytes": 792
+    },
+    {
+      "id": "lyra-pokeathlon",
+      "file": "lyra-pokeathlon.png",
+      "bytes": 601
+    },
+    {
+      "id": "lyra",
+      "file": "lyra.png",
+      "bytes": 676
+    },
+    {
+      "id": "lysandre-masters",
+      "file": "lysandre-masters.png",
+      "bytes": 877
+    },
+    {
+      "id": "lysandre",
+      "file": "lysandre.png",
+      "bytes": 716
+    },
+    {
+      "id": "mable",
+      "file": "mable.png",
+      "bytes": 818
+    },
+    {
+      "id": "madame-gen4",
+      "file": "madame-gen4.png",
+      "bytes": 597
+    },
+    {
+      "id": "madame-gen4dp",
+      "file": "madame-gen4dp.png",
+      "bytes": 596
+    },
+    {
+      "id": "madame-gen6",
+      "file": "madame-gen6.png",
+      "bytes": 667
+    },
+    {
+      "id": "madame-gen7",
+      "file": "madame-gen7.png",
+      "bytes": 671
+    },
+    {
+      "id": "madame-gen8",
+      "file": "madame-gen8.png",
+      "bytes": 585
+    },
+    {
+      "id": "madame",
+      "file": "madame.png",
+      "bytes": 597
+    },
+    {
+      "id": "magmagrunt-rse",
+      "file": "magmagrunt-rse.png",
+      "bytes": 688
+    },
+    {
+      "id": "magmagrunt",
+      "file": "magmagrunt.png",
+      "bytes": 756
+    },
+    {
+      "id": "magmagruntf-rse",
+      "file": "magmagruntf-rse.png",
+      "bytes": 677
+    },
+    {
+      "id": "magmagruntf",
+      "file": "magmagruntf.png",
+      "bytes": 727
+    },
+    {
+      "id": "magmasuit",
+      "file": "magmasuit.png",
+      "bytes": 668
+    },
+    {
+      "id": "magnolia",
+      "file": "magnolia.png",
+      "bytes": 734
+    },
+    {
+      "id": "magnus",
+      "file": "magnus.png",
+      "bytes": 748
+    },
+    {
+      "id": "mai",
+      "file": "mai.png",
+      "bytes": 742
+    },
+    {
+      "id": "maid-gen4",
+      "file": "maid-gen4.png",
+      "bytes": 575
+    },
+    {
+      "id": "maid-gen6",
+      "file": "maid-gen6.png",
+      "bytes": 629
+    },
+    {
+      "id": "maid",
+      "file": "maid.png",
+      "bytes": 670
+    },
+    {
+      "id": "mallow-masters",
+      "file": "mallow-masters.png",
+      "bytes": 758
+    },
+    {
+      "id": "mallow",
+      "file": "mallow.png",
+      "bytes": 810
+    },
+    {
+      "id": "malva",
+      "file": "malva.png",
+      "bytes": 685
+    },
+    {
+      "id": "marley-masters",
+      "file": "marley-masters.png",
+      "bytes": 731
+    },
+    {
+      "id": "marley",
+      "file": "marley.png",
+      "bytes": 589
+    },
+    {
+      "id": "marlon",
+      "file": "marlon.png",
+      "bytes": 804
+    },
+    {
+      "id": "marnie-league",
+      "file": "marnie-league.png",
+      "bytes": 808
+    },
+    {
+      "id": "marnie-masters",
+      "file": "marnie-masters.png",
+      "bytes": 757
+    },
+    {
+      "id": "marnie-masters2",
+      "file": "marnie-masters2.png",
+      "bytes": 695
+    },
+    {
+      "id": "marnie-masters3",
+      "file": "marnie-masters3.png",
+      "bytes": 811
+    },
+    {
+      "id": "marnie-masters4",
+      "file": "marnie-masters4.png",
+      "bytes": 717
+    },
+    {
+      "id": "marnie",
+      "file": "marnie.png",
+      "bytes": 715
+    },
+    {
+      "id": "mars",
+      "file": "mars.png",
+      "bytes": 621
+    },
+    {
+      "id": "marshal",
+      "file": "marshal.png",
+      "bytes": 1034
+    },
+    {
+      "id": "masamune-conquest",
+      "file": "masamune-conquest.png",
+      "bytes": 896
+    },
+    {
+      "id": "mateo",
+      "file": "mateo.png",
+      "bytes": 994
+    },
+    {
+      "id": "matt-gen3",
+      "file": "matt-gen3.png",
+      "bytes": 728
+    },
+    {
+      "id": "matt",
+      "file": "matt.png",
+      "bytes": 1032
+    },
+    {
+      "id": "maxie-gen3",
+      "file": "maxie-gen3.png",
+      "bytes": 583
+    },
+    {
+      "id": "maxie-gen6",
+      "file": "maxie-gen6.png",
+      "bytes": 709
+    },
+    {
+      "id": "may-contest",
+      "file": "may-contest.png",
+      "bytes": 990
+    },
+    {
+      "id": "may-e",
+      "file": "may-e.png",
+      "bytes": 677
+    },
+    {
+      "id": "may-gen3",
+      "file": "may-gen3.png",
+      "bytes": 629
+    },
+    {
+      "id": "may-gen3rs",
+      "file": "may-gen3rs.png",
+      "bytes": 626
+    },
+    {
+      "id": "may-masters",
+      "file": "may-masters.png",
+      "bytes": 704
+    },
+    {
+      "id": "may-masters2",
+      "file": "may-masters2.png",
+      "bytes": 830
+    },
+    {
+      "id": "may-masters3",
+      "file": "may-masters3.png",
+      "bytes": 796
+    },
+    {
+      "id": "may-masters4",
+      "file": "may-masters4.png",
+      "bytes": 763
+    },
+    {
+      "id": "may-rs",
+      "file": "may-rs.png",
+      "bytes": 701
+    },
+    {
+      "id": "may",
+      "file": "may.png",
+      "bytes": 726
+    },
+    {
+      "id": "maylene",
+      "file": "maylene.png",
+      "bytes": 660
+    },
+    {
+      "id": "medium-gen2jp",
+      "file": "medium-gen2jp.png",
+      "bytes": 621
+    },
+    {
+      "id": "medium",
+      "file": "medium.png",
+      "bytes": 891
+    },
+    {
+      "id": "mela",
+      "file": "mela.png",
+      "bytes": 1044
+    },
+    {
+      "id": "melli",
+      "file": "melli.png",
+      "bytes": 761
+    },
+    {
+      "id": "melony",
+      "file": "melony.png",
+      "bytes": 810
+    },
+    {
+      "id": "miku-fairy",
+      "file": "miku-fairy.png",
+      "bytes": 947
+    },
+    {
+      "id": "miku-fire",
+      "file": "miku-fire.png",
+      "bytes": 1054
+    },
+    {
+      "id": "miku-flying",
+      "file": "miku-flying.png",
+      "bytes": 974
+    },
+    {
+      "id": "miku-ghost",
+      "file": "miku-ghost.png",
+      "bytes": 1088
+    },
+    {
+      "id": "miku-grass",
+      "file": "miku-grass.png",
+      "bytes": 1054
+    },
+    {
+      "id": "miku-ground",
+      "file": "miku-ground.png",
+      "bytes": 1236
+    },
+    {
+      "id": "miku-ice",
+      "file": "miku-ice.png",
+      "bytes": 1116
+    },
+    {
+      "id": "miku-psychic",
+      "file": "miku-psychic.png",
+      "bytes": 1075
+    },
+    {
+      "id": "miku-water",
+      "file": "miku-water.png",
+      "bytes": 1116
+    },
+    {
+      "id": "milo",
+      "file": "milo.png",
+      "bytes": 984
+    },
+    {
+      "id": "mina-lgpe",
+      "file": "mina-lgpe.png",
+      "bytes": 795
+    },
+    {
+      "id": "mina-masters",
+      "file": "mina-masters.png",
+      "bytes": 770
+    },
+    {
+      "id": "mina",
+      "file": "mina.png",
+      "bytes": 884
+    },
+    {
+      "id": "mira",
+      "file": "mira.png",
+      "bytes": 680
+    },
+    {
+      "id": "miriam",
+      "file": "miriam.png",
+      "bytes": 795
+    },
+    {
+      "id": "mirror",
+      "file": "mirror.png",
+      "bytes": 801
+    },
+    {
+      "id": "misty-gen1",
+      "file": "misty-gen1.png",
+      "bytes": 433
+    },
+    {
+      "id": "misty-gen1rb",
+      "file": "misty-gen1rb.png",
+      "bytes": 399
+    },
+    {
+      "id": "misty-gen2",
+      "file": "misty-gen2.png",
+      "bytes": 426
+    },
+    {
+      "id": "misty-gen3",
+      "file": "misty-gen3.png",
+      "bytes": 589
+    },
+    {
+      "id": "misty-lgpe",
+      "file": "misty-lgpe.png",
+      "bytes": 639
+    },
+    {
+      "id": "misty-masters",
+      "file": "misty-masters.png",
+      "bytes": 888
+    },
+    {
+      "id": "misty",
+      "file": "misty.png",
+      "bytes": 754
+    },
+    {
+      "id": "model-gen8",
+      "file": "model-gen8.png",
+      "bytes": 620
+    },
+    {
+      "id": "mohn-anime",
+      "file": "mohn-anime.png",
+      "bytes": 691
+    },
+    {
+      "id": "mohn",
+      "file": "mohn.png",
+      "bytes": 832
+    },
+    {
+      "id": "molayne",
+      "file": "molayne.png",
+      "bytes": 751
+    },
+    {
+      "id": "mom-alola",
+      "file": "mom-alola.png",
+      "bytes": 778
+    },
+    {
+      "id": "mom-hoenn",
+      "file": "mom-hoenn.png",
+      "bytes": 620
+    },
+    {
+      "id": "mom-johto",
+      "file": "mom-johto.png",
+      "bytes": 655
+    },
+    {
+      "id": "mom-paldea",
+      "file": "mom-paldea.png",
+      "bytes": 598
+    },
+    {
+      "id": "mom-unova",
+      "file": "mom-unova.png",
+      "bytes": 681
+    },
+    {
+      "id": "mom-unova2",
+      "file": "mom-unova2.png",
+      "bytes": 640
+    },
+    {
+      "id": "morgan",
+      "file": "morgan.png",
+      "bytes": 996
+    },
+    {
+      "id": "morty-gen2",
+      "file": "morty-gen2.png",
+      "bytes": 441
+    },
+    {
+      "id": "morty-masters",
+      "file": "morty-masters.png",
+      "bytes": 736
+    },
+    {
+      "id": "morty-masters2",
+      "file": "morty-masters2.png",
+      "bytes": 667
+    },
+    {
+      "id": "morty-masters3",
+      "file": "morty-masters3.png",
+      "bytes": 719
+    },
+    {
+      "id": "morty",
+      "file": "morty.png",
+      "bytes": 695
+    },
+    {
+      "id": "mrbriney",
+      "file": "mrbriney.png",
+      "bytes": 703
+    },
+    {
+      "id": "mrfuji-gen3",
+      "file": "mrfuji-gen3.png",
+      "bytes": 651
+    },
+    {
+      "id": "mrstone",
+      "file": "mrstone.png",
+      "bytes": 709
+    },
+    {
+      "id": "musician-gen8",
+      "file": "musician-gen8.png",
+      "bytes": 760
+    },
+    {
+      "id": "musician-gen9",
+      "file": "musician-gen9.png",
+      "bytes": 922
+    },
+    {
+      "id": "musician",
+      "file": "musician.png",
+      "bytes": 830
+    },
+    {
+      "id": "mustard-champion",
+      "file": "mustard-champion.png",
+      "bytes": 1045
+    },
+    {
+      "id": "mustard-master",
+      "file": "mustard-master.png",
+      "bytes": 836
+    },
+    {
+      "id": "mustard",
+      "file": "mustard.png",
+      "bytes": 892
+    },
+    {
+      "id": "n-masters",
+      "file": "n-masters.png",
+      "bytes": 896
+    },
+    {
+      "id": "n-masters2",
+      "file": "n-masters2.png",
+      "bytes": 854
+    },
+    {
+      "id": "n-masters3",
+      "file": "n-masters3.png",
+      "bytes": 736
+    },
+    {
+      "id": "n",
+      "file": "n.png",
+      "bytes": 780
+    },
+    {
+      "id": "nancy",
+      "file": "nancy.png",
+      "bytes": 823
+    },
+    {
+      "id": "nanu",
+      "file": "nanu.png",
+      "bytes": 654
+    },
+    {
+      "id": "nate-masters",
+      "file": "nate-masters.png",
+      "bytes": 770
+    },
+    {
+      "id": "nate-pokestar",
+      "file": "nate-pokestar.png",
+      "bytes": 697
+    },
+    {
+      "id": "nate-pokestar3",
+      "file": "nate-pokestar3.png",
+      "bytes": 711
+    },
+    {
+      "id": "nate-wonderlauncher",
+      "file": "nate-wonderlauncher.png",
+      "bytes": 855
+    },
+    {
+      "id": "nate",
+      "file": "nate.png",
+      "bytes": 816
+    },
+    {
+      "id": "naveen",
+      "file": "naveen.png",
+      "bytes": 815
+    },
+    {
+      "id": "nemona-masters",
+      "file": "nemona-masters.png",
+      "bytes": 760
+    },
+    {
+      "id": "nemona-s",
+      "file": "nemona-s.png",
+      "bytes": 709
+    },
+    {
+      "id": "nemona-v",
+      "file": "nemona-v.png",
+      "bytes": 717
+    },
+    {
+      "id": "neroli",
+      "file": "neroli.png",
+      "bytes": 968
+    },
+    {
+      "id": "nessa-masters",
+      "file": "nessa-masters.png",
+      "bytes": 754
+    },
+    {
+      "id": "nessa",
+      "file": "nessa.png",
+      "bytes": 1041
+    },
+    {
+      "id": "ninjaboy-gen3",
+      "file": "ninjaboy-gen3.png",
+      "bytes": 576
+    },
+    {
+      "id": "ninjaboy-gen6",
+      "file": "ninjaboy-gen6.png",
+      "bytes": 636
+    },
+    {
+      "id": "ninjaboy",
+      "file": "ninjaboy.png",
+      "bytes": 565
+    },
+    {
+      "id": "nita",
+      "file": "nita.png",
+      "bytes": 1033
+    },
+    {
+      "id": "nobunaga-conquest",
+      "file": "nobunaga-conquest.png",
+      "bytes": 1031
+    },
+    {
+      "id": "noland-gen3",
+      "file": "noland-gen3.png",
+      "bytes": 656
+    },
+    {
+      "id": "noland",
+      "file": "noland.png",
+      "bytes": 747
+    },
+    {
+      "id": "norman-gen3",
+      "file": "norman-gen3.png",
+      "bytes": 612
+    },
+    {
+      "id": "norman-gen6",
+      "file": "norman-gen6.png",
+      "bytes": 707
+    },
+    {
+      "id": "norman",
+      "file": "norman.png",
+      "bytes": 776
+    },
+    {
+      "id": "nurse",
+      "file": "nurse.png",
+      "bytes": 605
+    },
+    {
+      "id": "nurseryaide",
+      "file": "nurseryaide.png",
+      "bytes": 757
+    },
+    {
+      "id": "oak-gen1",
+      "file": "oak-gen1.png",
+      "bytes": 463
+    },
+    {
+      "id": "oak-gen1rb",
+      "file": "oak-gen1rb.png",
+      "bytes": 463
+    },
+    {
+      "id": "oak-gen2",
+      "file": "oak-gen2.png",
+      "bytes": 468
+    },
+    {
+      "id": "oak-gen3",
+      "file": "oak-gen3.png",
+      "bytes": 694
+    },
+    {
+      "id": "oak",
+      "file": "oak.png",
+      "bytes": 736
+    },
+    {
+      "id": "officer-gen2",
+      "file": "officer-gen2.png",
+      "bytes": 415
+    },
+    {
+      "id": "officeworker-gen9",
+      "file": "officeworker-gen9.png",
+      "bytes": 593
+    },
+    {
+      "id": "officeworker",
+      "file": "officeworker.png",
+      "bytes": 727
+    },
+    {
+      "id": "officeworkerf-gen9",
+      "file": "officeworkerf-gen9.png",
+      "bytes": 569
+    },
+    {
+      "id": "officeworkerf",
+      "file": "officeworkerf.png",
+      "bytes": 581
+    },
+    {
+      "id": "ogreclan",
+      "file": "ogreclan.png",
+      "bytes": 788
+    },
+    {
+      "id": "oichi-conquest",
+      "file": "oichi-conquest.png",
+      "bytes": 1092
+    },
+    {
+      "id": "oldcouple-gen3",
+      "file": "oldcouple-gen3.png",
+      "bytes": 1011
+    },
+    {
+      "id": "oleana",
+      "file": "oleana.png",
+      "bytes": 987
+    },
+    {
+      "id": "olivia",
+      "file": "olivia.png",
+      "bytes": 792
+    },
+    {
+      "id": "olympia",
+      "file": "olympia.png",
+      "bytes": 1052
+    },
+    {
+      "id": "opal",
+      "file": "opal.png",
+      "bytes": 964
+    },
+    {
+      "id": "ortega",
+      "file": "ortega.png",
+      "bytes": 854
+    },
+    {
+      "id": "owner",
+      "file": "owner.png",
+      "bytes": 790
+    },
+    {
+      "id": "painter-gen3",
+      "file": "painter-gen3.png",
+      "bytes": 560
+    },
+    {
+      "id": "palina",
+      "file": "palina.png",
+      "bytes": 720
+    },
+    {
+      "id": "palmer",
+      "file": "palmer.png",
+      "bytes": 726
+    },
+    {
+      "id": "parasollady-gen3",
+      "file": "parasollady-gen3.png",
+      "bytes": 630
+    },
+    {
+      "id": "parasollady-gen4",
+      "file": "parasollady-gen4.png",
+      "bytes": 729
+    },
+    {
+      "id": "parasollady-gen6",
+      "file": "parasollady-gen6.png",
+      "bytes": 774
+    },
+    {
+      "id": "parasollady",
+      "file": "parasollady.png",
+      "bytes": 771
+    },
+    {
+      "id": "paulo-masters",
+      "file": "paulo-masters.png",
+      "bytes": 583
+    },
+    {
+      "id": "paxton",
+      "file": "paxton.png",
+      "bytes": 665
+    },
+    {
+      "id": "pearlclanmember",
+      "file": "pearlclanmember.png",
+      "bytes": 648
+    },
+    {
+      "id": "penny",
+      "file": "penny.png",
+      "bytes": 878
+    },
+    {
+      "id": "peonia",
+      "file": "peonia.png",
+      "bytes": 781
+    },
+    {
+      "id": "peony-league",
+      "file": "peony-league.png",
+      "bytes": 771
+    },
+    {
+      "id": "peony",
+      "file": "peony.png",
+      "bytes": 1128
+    },
+    {
+      "id": "perrin-masters",
+      "file": "perrin-masters.png",
+      "bytes": 770
+    },
+    {
+      "id": "perrin",
+      "file": "perrin.png",
+      "bytes": 677
+    },
+    {
+      "id": "pesselle",
+      "file": "pesselle.png",
+      "bytes": 675
+    },
+    {
+      "id": "petrel",
+      "file": "petrel.png",
+      "bytes": 728
+    },
+    {
+      "id": "phil",
+      "file": "phil.png",
+      "bytes": 712
+    },
+    {
+      "id": "phillipe",
+      "file": "phillipe.png",
+      "bytes": 721
+    },
+    {
+      "id": "phoebe-gen3",
+      "file": "phoebe-gen3.png",
+      "bytes": 601
+    },
+    {
+      "id": "phoebe-gen6",
+      "file": "phoebe-gen6.png",
+      "bytes": 924
+    },
+    {
+      "id": "phoebe-masters",
+      "file": "phoebe-masters.png",
+      "bytes": 1068
+    },
+    {
+      "id": "phorus-unite",
+      "file": "phorus-unite.png",
+      "bytes": 985
+    },
+    {
+      "id": "phyco",
+      "file": "phyco.png",
+      "bytes": 728
+    },
+    {
+      "id": "picnicker-gen2",
+      "file": "picnicker-gen2.png",
+      "bytes": 418
+    },
+    {
+      "id": "picnicker-gen3",
+      "file": "picnicker-gen3.png",
+      "bytes": 569
+    },
+    {
+      "id": "picnicker-gen3rs",
+      "file": "picnicker-gen3rs.png",
+      "bytes": 569
+    },
+    {
+      "id": "picnicker-gen6",
+      "file": "picnicker-gen6.png",
+      "bytes": 560
+    },
+    {
+      "id": "picnicker",
+      "file": "picnicker.png",
+      "bytes": 541
+    },
+    {
+      "id": "piers-league",
+      "file": "piers-league.png",
+      "bytes": 648
+    },
+    {
+      "id": "piers-masters",
+      "file": "piers-masters.png",
+      "bytes": 876
+    },
+    {
+      "id": "piers",
+      "file": "piers.png",
+      "bytes": 1200
+    },
+    {
+      "id": "pilot",
+      "file": "pilot.png",
+      "bytes": 714
+    },
+    {
+      "id": "plasmagrunt-gen5bw",
+      "file": "plasmagrunt-gen5bw.png",
+      "bytes": 810
+    },
+    {
+      "id": "plasmagrunt",
+      "file": "plasmagrunt.png",
+      "bytes": 685
+    },
+    {
+      "id": "plasmagruntf-gen5bw",
+      "file": "plasmagruntf-gen5bw.png",
+      "bytes": 675
+    },
+    {
+      "id": "plasmagruntf",
+      "file": "plasmagruntf.png",
+      "bytes": 615
+    },
+    {
+      "id": "player-go",
+      "file": "player-go.png",
+      "bytes": 756
+    },
+    {
+      "id": "playerf-go",
+      "file": "playerf-go.png",
+      "bytes": 735
+    },
+    {
+      "id": "plumeria-league",
+      "file": "plumeria-league.png",
+      "bytes": 781
+    },
+    {
+      "id": "plumeria",
+      "file": "plumeria.png",
+      "bytes": 862
+    },
+    {
+      "id": "pokefan-gen2",
+      "file": "pokefan-gen2.png",
+      "bytes": 584
+    },
+    {
+      "id": "pokefan-gen3",
+      "file": "pokefan-gen3.png",
+      "bytes": 695
+    },
+    {
+      "id": "pokefan-gen4",
+      "file": "pokefan-gen4.png",
+      "bytes": 755
+    },
+    {
+      "id": "pokefan-gen6",
+      "file": "pokefan-gen6.png",
+      "bytes": 904
+    },
+    {
+      "id": "pokefan-gen6xy",
+      "file": "pokefan-gen6xy.png",
+      "bytes": 881
+    },
+    {
+      "id": "pokefan",
+      "file": "pokefan.png",
+      "bytes": 887
+    },
+    {
+      "id": "pokefanf-gen2",
+      "file": "pokefanf-gen2.png",
+      "bytes": 537
+    },
+    {
+      "id": "pokefanf-gen3",
+      "file": "pokefanf-gen3.png",
+      "bytes": 753
+    },
+    {
+      "id": "pokefanf-gen4",
+      "file": "pokefanf-gen4.png",
+      "bytes": 779
+    },
+    {
+      "id": "pokefanf-gen6",
+      "file": "pokefanf-gen6.png",
+      "bytes": 649
+    },
+    {
+      "id": "pokefanf-gen6xy",
+      "file": "pokefanf-gen6xy.png",
+      "bytes": 779
+    },
+    {
+      "id": "pokefanf",
+      "file": "pokefanf.png",
+      "bytes": 707
+    },
+    {
+      "id": "pokekid-gen8",
+      "file": "pokekid-gen8.png",
+      "bytes": 543
+    },
+    {
+      "id": "pokekid",
+      "file": "pokekid.png",
+      "bytes": 562
+    },
+    {
+      "id": "pokekidf-gen8",
+      "file": "pokekidf-gen8.png",
+      "bytes": 559
+    },
+    {
+      "id": "pokemaniac-gen1",
+      "file": "pokemaniac-gen1.png",
+      "bytes": 495
+    },
+    {
+      "id": "pokemaniac-gen1rb",
+      "file": "pokemaniac-gen1rb.png",
+      "bytes": 483
+    },
+    {
+      "id": "pokemaniac-gen2",
+      "file": "pokemaniac-gen2.png",
+      "bytes": 537
+    },
+    {
+      "id": "pokemaniac-gen3",
+      "file": "pokemaniac-gen3.png",
+      "bytes": 741
+    },
+    {
+      "id": "pokemaniac-gen3rs",
+      "file": "pokemaniac-gen3rs.png",
+      "bytes": 686
+    },
+    {
+      "id": "pokemaniac-gen6",
+      "file": "pokemaniac-gen6.png",
+      "bytes": 818
+    },
+    {
+      "id": "pokemaniac-gen9",
+      "file": "pokemaniac-gen9.png",
+      "bytes": 791
+    },
+    {
+      "id": "pokemaniac",
+      "file": "pokemaniac.png",
+      "bytes": 925
+    },
+    {
+      "id": "pokemonbreeder-gen3",
+      "file": "pokemonbreeder-gen3.png",
+      "bytes": 617
+    },
+    {
+      "id": "pokemonbreeder-gen4",
+      "file": "pokemonbreeder-gen4.png",
+      "bytes": 767
+    },
+    {
+      "id": "pokemonbreeder-gen6",
+      "file": "pokemonbreeder-gen6.png",
+      "bytes": 828
+    },
+    {
+      "id": "pokemonbreeder-gen6xy",
+      "file": "pokemonbreeder-gen6xy.png",
+      "bytes": 770
+    },
+    {
+      "id": "pokemonbreeder-gen7",
+      "file": "pokemonbreeder-gen7.png",
+      "bytes": 904
+    },
+    {
+      "id": "pokemonbreeder-gen8",
+      "file": "pokemonbreeder-gen8.png",
+      "bytes": 620
+    },
+    {
+      "id": "pokemonbreeder",
+      "file": "pokemonbreeder.png",
+      "bytes": 763
+    },
+    {
+      "id": "pokemonbreederf-gen3",
+      "file": "pokemonbreederf-gen3.png",
+      "bytes": 642
+    },
+    {
+      "id": "pokemonbreederf-gen3frlg",
+      "file": "pokemonbreederf-gen3frlg.png",
+      "bytes": 635
+    },
+    {
+      "id": "pokemonbreederf-gen4",
+      "file": "pokemonbreederf-gen4.png",
+      "bytes": 670
+    },
+    {
+      "id": "pokemonbreederf-gen6",
+      "file": "pokemonbreederf-gen6.png",
+      "bytes": 767
+    },
+    {
+      "id": "pokemonbreederf-gen6xy",
+      "file": "pokemonbreederf-gen6xy.png",
+      "bytes": 723
+    },
+    {
+      "id": "pokemonbreederf-gen7",
+      "file": "pokemonbreederf-gen7.png",
+      "bytes": 789
+    },
+    {
+      "id": "pokemonbreederf-gen8",
+      "file": "pokemonbreederf-gen8.png",
+      "bytes": 720
+    },
+    {
+      "id": "pokemonbreederf",
+      "file": "pokemonbreederf.png",
+      "bytes": 736
+    },
+    {
+      "id": "pokemoncenterlady",
+      "file": "pokemoncenterlady.png",
+      "bytes": 653
+    },
+    {
+      "id": "pokemonranger-gen3",
+      "file": "pokemonranger-gen3.png",
+      "bytes": 669
+    },
+    {
+      "id": "pokemonranger-gen3rs",
+      "file": "pokemonranger-gen3rs.png",
+      "bytes": 641
+    },
+    {
+      "id": "pokemonranger-gen4",
+      "file": "pokemonranger-gen4.png",
+      "bytes": 664
+    },
+    {
+      "id": "pokemonranger-gen6",
+      "file": "pokemonranger-gen6.png",
+      "bytes": 701
+    },
+    {
+      "id": "pokemonranger-gen6xy",
+      "file": "pokemonranger-gen6xy.png",
+      "bytes": 604
+    },
+    {
+      "id": "pokemonranger",
+      "file": "pokemonranger.png",
+      "bytes": 854
+    },
+    {
+      "id": "pokemonrangerf-gen3",
+      "file": "pokemonrangerf-gen3.png",
+      "bytes": 649
+    },
+    {
+      "id": "pokemonrangerf-gen3rs",
+      "file": "pokemonrangerf-gen3rs.png",
+      "bytes": 627
+    },
+    {
+      "id": "pokemonrangerf-gen4",
+      "file": "pokemonrangerf-gen4.png",
+      "bytes": 677
+    },
+    {
+      "id": "pokemonrangerf-gen6",
+      "file": "pokemonrangerf-gen6.png",
+      "bytes": 757
+    },
+    {
+      "id": "pokemonrangerf-gen6xy",
+      "file": "pokemonrangerf-gen6xy.png",
+      "bytes": 669
+    },
+    {
+      "id": "pokemonrangerf",
+      "file": "pokemonrangerf.png",
+      "bytes": 793
+    },
+    {
+      "id": "policeman-gen4",
+      "file": "policeman-gen4.png",
+      "bytes": 641
+    },
+    {
+      "id": "policeman-gen7",
+      "file": "policeman-gen7.png",
+      "bytes": 636
+    },
+    {
+      "id": "policeman-gen8",
+      "file": "policeman-gen8.png",
+      "bytes": 777
+    },
+    {
+      "id": "policeman",
+      "file": "policeman.png",
+      "bytes": 965
+    },
+    {
+      "id": "poppy-masters",
+      "file": "poppy-masters.png",
+      "bytes": 631
+    },
+    {
+      "id": "poppy",
+      "file": "poppy.png",
+      "bytes": 569
+    },
+    {
+      "id": "postman",
+      "file": "postman.png",
+      "bytes": 777
+    },
+    {
+      "id": "preschooler-gen6",
+      "file": "preschooler-gen6.png",
+      "bytes": 511
+    },
+    {
+      "id": "preschooler-gen7",
+      "file": "preschooler-gen7.png",
+      "bytes": 484
+    },
+    {
+      "id": "preschooler",
+      "file": "preschooler.png",
+      "bytes": 528
+    },
+    {
+      "id": "preschoolerf-gen6",
+      "file": "preschoolerf-gen6.png",
+      "bytes": 538
+    },
+    {
+      "id": "preschoolerf-gen7",
+      "file": "preschoolerf-gen7.png",
+      "bytes": 508
+    },
+    {
+      "id": "preschoolerf",
+      "file": "preschoolerf.png",
+      "bytes": 449
+    },
+    {
+      "id": "preschoolers",
+      "file": "preschoolers.png",
+      "bytes": 925
+    },
+    {
+      "id": "proton",
+      "file": "proton.png",
+      "bytes": 670
+    },
+    {
+      "id": "pryce-gen2",
+      "file": "pryce-gen2.png",
+      "bytes": 401
+    },
+    {
+      "id": "pryce",
+      "file": "pryce.png",
+      "bytes": 733
+    },
+    {
+      "id": "psychic-gen1",
+      "file": "psychic-gen1.png",
+      "bytes": 448
+    },
+    {
+      "id": "psychic-gen1rb",
+      "file": "psychic-gen1rb.png",
+      "bytes": 448
+    },
+    {
+      "id": "psychic-gen2",
+      "file": "psychic-gen2.png",
+      "bytes": 418
+    },
+    {
+      "id": "psychic-gen3",
+      "file": "psychic-gen3.png",
+      "bytes": 664
+    },
+    {
+      "id": "psychic-gen3rs",
+      "file": "psychic-gen3rs.png",
+      "bytes": 608
+    },
+    {
+      "id": "psychic-gen4",
+      "file": "psychic-gen4.png",
+      "bytes": 759
+    },
+    {
+      "id": "psychic-gen6",
+      "file": "psychic-gen6.png",
+      "bytes": 830
+    },
+    {
+      "id": "psychic-lgpe",
+      "file": "psychic-lgpe.png",
+      "bytes": 753
+    },
+    {
+      "id": "psychic",
+      "file": "psychic.png",
+      "bytes": 668
+    },
+    {
+      "id": "psychicf-gen3",
+      "file": "psychicf-gen3.png",
+      "bytes": 738
+    },
+    {
+      "id": "psychicf-gen3rs",
+      "file": "psychicf-gen3rs.png",
+      "bytes": 597
+    },
+    {
+      "id": "psychicf-gen4",
+      "file": "psychicf-gen4.png",
+      "bytes": 775
+    },
+    {
+      "id": "psychicf",
+      "file": "psychicf.png",
+      "bytes": 759
+    },
+    {
+      "id": "psychicfjp-gen3",
+      "file": "psychicfjp-gen3.png",
+      "bytes": 565
+    },
+    {
+      "id": "punkgirl-gen7",
+      "file": "punkgirl-gen7.png",
+      "bytes": 567
+    },
+    {
+      "id": "punkgirl-masters",
+      "file": "punkgirl-masters.png",
+      "bytes": 825
+    },
+    {
+      "id": "punkgirl",
+      "file": "punkgirl.png",
+      "bytes": 809
+    },
+    {
+      "id": "punkguy-gen7",
+      "file": "punkguy-gen7.png",
+      "bytes": 623
+    },
+    {
+      "id": "punkguy",
+      "file": "punkguy.png",
+      "bytes": 736
+    },
+    {
+      "id": "raifort",
+      "file": "raifort.png",
+      "bytes": 827
+    },
+    {
+      "id": "raihan-masters",
+      "file": "raihan-masters.png",
+      "bytes": 733
+    },
+    {
+      "id": "raihan",
+      "file": "raihan.png",
+      "bytes": 1141
+    },
+    {
+      "id": "railstaff",
+      "file": "railstaff.png",
+      "bytes": 648
+    },
+    {
+      "id": "rainbowrocketgrunt",
+      "file": "rainbowrocketgrunt.png",
+      "bytes": 641
+    },
+    {
+      "id": "rainbowrocketgruntf",
+      "file": "rainbowrocketgruntf.png",
+      "bytes": 676
+    },
+    {
+      "id": "ramos",
+      "file": "ramos.png",
+      "bytes": 941
+    },
+    {
+      "id": "rancher",
+      "file": "rancher.png",
+      "bytes": 779
+    },
+    {
+      "id": "ranmaru-conquest",
+      "file": "ranmaru-conquest.png",
+      "bytes": 864
+    },
+    {
+      "id": "red-gen1",
+      "file": "red-gen1.png",
+      "bytes": 430
+    },
+    {
+      "id": "red-gen1main",
+      "file": "red-gen1main.png",
+      "bytes": 432
+    },
+    {
+      "id": "red-gen1rb",
+      "file": "red-gen1rb.png",
+      "bytes": 484
+    },
+    {
+      "id": "red-gen1title",
+      "file": "red-gen1title.png",
+      "bytes": 468
+    },
+    {
+      "id": "red-gen2",
+      "file": "red-gen2.png",
+      "bytes": 431
+    },
+    {
+      "id": "red-gen3",
+      "file": "red-gen3.png",
+      "bytes": 606
+    },
+    {
+      "id": "red-gen7",
+      "file": "red-gen7.png",
+      "bytes": 753
+    },
+    {
+      "id": "red-lgpe",
+      "file": "red-lgpe.png",
+      "bytes": 647
+    },
+    {
+      "id": "red-masters",
+      "file": "red-masters.png",
+      "bytes": 770
+    },
+    {
+      "id": "red-masters2",
+      "file": "red-masters2.png",
+      "bytes": 685
+    },
+    {
+      "id": "red-masters3",
+      "file": "red-masters3.png",
+      "bytes": 696
+    },
+    {
+      "id": "red-masters4",
+      "file": "red-masters4.png",
+      "bytes": 924
+    },
+    {
+      "id": "red",
+      "file": "red.png",
+      "bytes": 691
+    },
+    {
+      "id": "rei-isekai",
+      "file": "rei-isekai.png",
+      "bytes": 627
+    },
+    {
+      "id": "rei-masters",
+      "file": "rei-masters.png",
+      "bytes": 712
+    },
+    {
+      "id": "rei",
+      "file": "rei.png",
+      "bytes": 787
+    },
+    {
+      "id": "reporter-gen6",
+      "file": "reporter-gen6.png",
+      "bytes": 581
+    },
+    {
+      "id": "reporter-gen8",
+      "file": "reporter-gen8.png",
+      "bytes": 712
+    },
+    {
+      "id": "reporter",
+      "file": "reporter.png",
+      "bytes": 614
+    },
+    {
+      "id": "rhi",
+      "file": "rhi.png",
+      "bytes": 645
+    },
+    {
+      "id": "richboy-gen3",
+      "file": "richboy-gen3.png",
+      "bytes": 530
+    },
+    {
+      "id": "richboy-gen4",
+      "file": "richboy-gen4.png",
+      "bytes": 570
+    },
+    {
+      "id": "richboy-gen6",
+      "file": "richboy-gen6.png",
+      "bytes": 644
+    },
+    {
+      "id": "richboy-gen6xy",
+      "file": "richboy-gen6xy.png",
+      "bytes": 593
+    },
+    {
+      "id": "richboy",
+      "file": "richboy.png",
+      "bytes": 618
+    },
+    {
+      "id": "rika-masters",
+      "file": "rika-masters.png",
+      "bytes": 701
+    },
+    {
+      "id": "rika",
+      "file": "rika.png",
+      "bytes": 638
+    },
+    {
+      "id": "riley",
+      "file": "riley.png",
+      "bytes": 663
+    },
+    {
+      "id": "risingstar-gen6",
+      "file": "risingstar-gen6.png",
+      "bytes": 641
+    },
+    {
+      "id": "risingstar",
+      "file": "risingstar.png",
+      "bytes": 741
+    },
+    {
+      "id": "risingstarf-gen6",
+      "file": "risingstarf-gen6.png",
+      "bytes": 642
+    },
+    {
+      "id": "risingstarf",
+      "file": "risingstarf.png",
+      "bytes": 786
+    },
+    {
+      "id": "rita",
+      "file": "rita.png",
+      "bytes": 679
+    },
+    {
+      "id": "river",
+      "file": "river.png",
+      "bytes": 787
+    },
+    {
+      "id": "roark",
+      "file": "roark.png",
+      "bytes": 802
+    },
+    {
+      "id": "rocker-gen1",
+      "file": "rocker-gen1.png",
+      "bytes": 501
+    },
+    {
+      "id": "rocker-gen1rb",
+      "file": "rocker-gen1rb.png",
+      "bytes": 501
+    },
+    {
+      "id": "rocker-gen3",
+      "file": "rocker-gen3.png",
+      "bytes": 880
+    },
+    {
+      "id": "rocket-gen1",
+      "file": "rocket-gen1.png",
+      "bytes": 596
+    },
+    {
+      "id": "rocket-gen1rb",
+      "file": "rocket-gen1rb.png",
+      "bytes": 596
+    },
+    {
+      "id": "rocketexecutive-gen2",
+      "file": "rocketexecutive-gen2.png",
+      "bytes": 394
+    },
+    {
+      "id": "rocketexecutivef-gen2",
+      "file": "rocketexecutivef-gen2.png",
+      "bytes": 397
+    },
+    {
+      "id": "rocketgrunt-gen2",
+      "file": "rocketgrunt-gen2.png",
+      "bytes": 442
+    },
+    {
+      "id": "rocketgrunt",
+      "file": "rocketgrunt.png",
+      "bytes": 608
+    },
+    {
+      "id": "rocketgruntf-gen2",
+      "file": "rocketgruntf-gen2.png",
+      "bytes": 443
+    },
+    {
+      "id": "rocketgruntf",
+      "file": "rocketgruntf.png",
+      "bytes": 647
+    },
+    {
+      "id": "rollerskater",
+      "file": "rollerskater.png",
+      "bytes": 666
+    },
+    {
+      "id": "rollerskaterf",
+      "file": "rollerskaterf.png",
+      "bytes": 720
+    },
+    {
+      "id": "rood",
+      "file": "rood.png",
+      "bytes": 851
+    },
+    {
+      "id": "rosa-masters",
+      "file": "rosa-masters.png",
+      "bytes": 770
+    },
+    {
+      "id": "rosa-masters2",
+      "file": "rosa-masters2.png",
+      "bytes": 783
+    },
+    {
+      "id": "rosa-masters3",
+      "file": "rosa-masters3.png",
+      "bytes": 918
+    },
+    {
+      "id": "rosa-masters4",
+      "file": "rosa-masters4.png",
+      "bytes": 793
+    },
+    {
+      "id": "rosa-pokestar",
+      "file": "rosa-pokestar.png",
+      "bytes": 806
+    },
+    {
+      "id": "rosa-pokestar2",
+      "file": "rosa-pokestar2.png",
+      "bytes": 937
+    },
+    {
+      "id": "rosa-pokestar3",
+      "file": "rosa-pokestar3.png",
+      "bytes": 694
+    },
+    {
+      "id": "rosa-wonderlauncher",
+      "file": "rosa-wonderlauncher.png",
+      "bytes": 740
+    },
+    {
+      "id": "rosa",
+      "file": "rosa.png",
+      "bytes": 774
+    },
+    {
+      "id": "rose-zerosuit",
+      "file": "rose-zerosuit.png",
+      "bytes": 747
+    },
+    {
+      "id": "rose",
+      "file": "rose.png",
+      "bytes": 747
+    },
+    {
+      "id": "roughneck-gen4",
+      "file": "roughneck-gen4.png",
+      "bytes": 906
+    },
+    {
+      "id": "roughneck",
+      "file": "roughneck.png",
+      "bytes": 688
+    },
+    {
+      "id": "rowan",
+      "file": "rowan.png",
+      "bytes": 786
+    },
+    {
+      "id": "roxanne-gen3",
+      "file": "roxanne-gen3.png",
+      "bytes": 587
+    },
+    {
+      "id": "roxanne-gen6",
+      "file": "roxanne-gen6.png",
+      "bytes": 636
+    },
+    {
+      "id": "roxanne-masters",
+      "file": "roxanne-masters.png",
+      "bytes": 698
+    },
+    {
+      "id": "roxanne",
+      "file": "roxanne.png",
+      "bytes": 721
+    },
+    {
+      "id": "roxie-masters",
+      "file": "roxie-masters.png",
+      "bytes": 1093
+    },
+    {
+      "id": "roxie",
+      "file": "roxie.png",
+      "bytes": 939
+    },
+    {
+      "id": "roy",
+      "file": "roy.png",
+      "bytes": 668
+    },
+    {
+      "id": "ruffian",
+      "file": "ruffian.png",
+      "bytes": 661
+    },
+    {
+      "id": "ruinmaniac-gen3",
+      "file": "ruinmaniac-gen3.png",
+      "bytes": 791
+    },
+    {
+      "id": "ruinmaniac-gen3rs",
+      "file": "ruinmaniac-gen3rs.png",
+      "bytes": 711
+    },
+    {
+      "id": "ruinmaniac-gen6",
+      "file": "ruinmaniac-gen6.png",
+      "bytes": 680
+    },
+    {
+      "id": "ruinmaniac",
+      "file": "ruinmaniac.png",
+      "bytes": 853
+    },
+    {
+      "id": "rye",
+      "file": "rye.png",
+      "bytes": 683
+    },
+    {
+      "id": "ryme",
+      "file": "ryme.png",
+      "bytes": 766
+    },
+    {
+      "id": "ryuki",
+      "file": "ryuki.png",
+      "bytes": 917
+    },
+    {
+      "id": "sabi",
+      "file": "sabi.png",
+      "bytes": 764
+    },
+    {
+      "id": "sabrina-frlg",
+      "file": "sabrina-frlg.png",
+      "bytes": 769
+    },
+    {
+      "id": "sabrina-gen1",
+      "file": "sabrina-gen1.png",
+      "bytes": 571
+    },
+    {
+      "id": "sabrina-gen1rb",
+      "file": "sabrina-gen1rb.png",
+      "bytes": 571
+    },
+    {
+      "id": "sabrina-gen2",
+      "file": "sabrina-gen2.png",
+      "bytes": 459
+    },
+    {
+      "id": "sabrina-gen3",
+      "file": "sabrina-gen3.png",
+      "bytes": 626
+    },
+    {
+      "id": "sabrina-lgpe",
+      "file": "sabrina-lgpe.png",
+      "bytes": 756
+    },
+    {
+      "id": "sabrina-masters",
+      "file": "sabrina-masters.png",
+      "bytes": 765
+    },
+    {
+      "id": "sabrina",
+      "file": "sabrina.png",
+      "bytes": 796
+    },
+    {
+      "id": "sada-ai",
+      "file": "sada-ai.png",
+      "bytes": 1096
+    },
+    {
+      "id": "sada",
+      "file": "sada.png",
+      "bytes": 865
+    },
+    {
+      "id": "sage-gen2",
+      "file": "sage-gen2.png",
+      "bytes": 364
+    },
+    {
+      "id": "sage-gen2jp",
+      "file": "sage-gen2jp.png",
+      "bytes": 369
+    },
+    {
+      "id": "sage",
+      "file": "sage.png",
+      "bytes": 904
+    },
+    {
+      "id": "saguaro",
+      "file": "saguaro.png",
+      "bytes": 885
+    },
+    {
+      "id": "sailor-gen1",
+      "file": "sailor-gen1.png",
+      "bytes": 537
+    },
+    {
+      "id": "sailor-gen1rb",
+      "file": "sailor-gen1rb.png",
+      "bytes": 537
+    },
+    {
+      "id": "sailor-gen2",
+      "file": "sailor-gen2.png",
+      "bytes": 490
+    },
+    {
+      "id": "sailor-gen3",
+      "file": "sailor-gen3.png",
+      "bytes": 596
+    },
+    {
+      "id": "sailor-gen3jp",
+      "file": "sailor-gen3jp.png",
+      "bytes": 689
+    },
+    {
+      "id": "sailor-gen3rs",
+      "file": "sailor-gen3rs.png",
+      "bytes": 715
+    },
+    {
+      "id": "sailor-gen6",
+      "file": "sailor-gen6.png",
+      "bytes": 799
+    },
+    {
+      "id": "sailor",
+      "file": "sailor.png",
+      "bytes": 672
+    },
+    {
+      "id": "salvatore",
+      "file": "salvatore.png",
+      "bytes": 616
+    },
+    {
+      "id": "samsonoak",
+      "file": "samsonoak.png",
+      "bytes": 805
+    },
+    {
+      "id": "sanqua",
+      "file": "sanqua.png",
+      "bytes": 769
+    },
+    {
+      "id": "saturn",
+      "file": "saturn.png",
+      "bytes": 689
+    },
+    {
+      "id": "sbcmember",
+      "file": "sbcmember.png",
+      "bytes": 654
+    },
+    {
+      "id": "schoolboy-gen2",
+      "file": "schoolboy-gen2.png",
+      "bytes": 440
+    },
+    {
+      "id": "schoolboy",
+      "file": "schoolboy.png",
+      "bytes": 551
+    },
+    {
+      "id": "schoolgirl",
+      "file": "schoolgirl.png",
+      "bytes": 625
+    },
+    {
+      "id": "schoolkid-gen3",
+      "file": "schoolkid-gen3.png",
+      "bytes": 544
+    },
+    {
+      "id": "schoolkid-gen4",
+      "file": "schoolkid-gen4.png",
+      "bytes": 627
+    },
+    {
+      "id": "schoolkid-gen4dp",
+      "file": "schoolkid-gen4dp.png",
+      "bytes": 554
+    },
+    {
+      "id": "schoolkid-gen6",
+      "file": "schoolkid-gen6.png",
+      "bytes": 580
+    },
+    {
+      "id": "schoolkid-gen8",
+      "file": "schoolkid-gen8.png",
+      "bytes": 505
+    },
+    {
+      "id": "schoolkid",
+      "file": "schoolkid.png",
+      "bytes": 573
+    },
+    {
+      "id": "schoolkidf-gen3",
+      "file": "schoolkidf-gen3.png",
+      "bytes": 495
+    },
+    {
+      "id": "schoolkidf-gen4",
+      "file": "schoolkidf-gen4.png",
+      "bytes": 522
+    },
+    {
+      "id": "schoolkidf-gen6",
+      "file": "schoolkidf-gen6.png",
+      "bytes": 631
+    },
+    {
+      "id": "schoolkidf-gen8",
+      "file": "schoolkidf-gen8.png",
+      "bytes": 610
+    },
+    {
+      "id": "schoolkidf",
+      "file": "schoolkidf.png",
+      "bytes": 506
+    },
+    {
+      "id": "scientist-gen1",
+      "file": "scientist-gen1.png",
+      "bytes": 542
+    },
+    {
+      "id": "scientist-gen1rb",
+      "file": "scientist-gen1rb.png",
+      "bytes": 511
+    },
+    {
+      "id": "scientist-gen2",
+      "file": "scientist-gen2.png",
+      "bytes": 500
+    },
+    {
+      "id": "scientist-gen3",
+      "file": "scientist-gen3.png",
+      "bytes": 766
+    },
+    {
+      "id": "scientist-gen4",
+      "file": "scientist-gen4.png",
+      "bytes": 808
+    },
+    {
+      "id": "scientist-gen4dp",
+      "file": "scientist-gen4dp.png",
+      "bytes": 787
+    },
+    {
+      "id": "scientist-gen6",
+      "file": "scientist-gen6.png",
+      "bytes": 766
+    },
+    {
+      "id": "scientist-gen7",
+      "file": "scientist-gen7.png",
+      "bytes": 705
+    },
+    {
+      "id": "scientist-gen9",
+      "file": "scientist-gen9.png",
+      "bytes": 786
+    },
+    {
+      "id": "scientist",
+      "file": "scientist.png",
+      "bytes": 720
+    },
+    {
+      "id": "scientistf-gen6",
+      "file": "scientistf-gen6.png",
+      "bytes": 690
+    },
+    {
+      "id": "scientistf",
+      "file": "scientistf.png",
+      "bytes": 719
+    },
+    {
+      "id": "scott",
+      "file": "scott.png",
+      "bytes": 802
+    },
+    {
+      "id": "scottie-masters",
+      "file": "scottie-masters.png",
+      "bytes": 774
+    },
+    {
+      "id": "scubadiver",
+      "file": "scubadiver.png",
+      "bytes": 847
+    },
+    {
+      "id": "securitycorps",
+      "file": "securitycorps.png",
+      "bytes": 833
+    },
+    {
+      "id": "securitycorpsf",
+      "file": "securitycorpsf.png",
+      "bytes": 771
+    },
+    {
+      "id": "selene-masters",
+      "file": "selene-masters.png",
+      "bytes": 716
+    },
+    {
+      "id": "selene-masters2",
+      "file": "selene-masters2.png",
+      "bytes": 774
+    },
+    {
+      "id": "selene-usum",
+      "file": "selene-usum.png",
+      "bytes": 799
+    },
+    {
+      "id": "selene",
+      "file": "selene.png",
+      "bytes": 737
+    },
+    {
+      "id": "serena-anime",
+      "file": "serena-anime.png",
+      "bytes": 740
+    },
+    {
+      "id": "serena-masters",
+      "file": "serena-masters.png",
+      "bytes": 784
+    },
+    {
+      "id": "serena-masters2",
+      "file": "serena-masters2.png",
+      "bytes": 680
+    },
+    {
+      "id": "serena-masters3",
+      "file": "serena-masters3.png",
+      "bytes": 761
+    },
+    {
+      "id": "serena",
+      "file": "serena.png",
+      "bytes": 707
+    },
+    {
+      "id": "shadowtriad",
+      "file": "shadowtriad.png",
+      "bytes": 681
+    },
+    {
+      "id": "shauna-masters",
+      "file": "shauna-masters.png",
+      "bytes": 790
+    },
+    {
+      "id": "shauna",
+      "file": "shauna.png",
+      "bytes": 796
+    },
+    {
+      "id": "shauntal-masters",
+      "file": "shauntal-masters.png",
+      "bytes": 800
+    },
+    {
+      "id": "shauntal",
+      "file": "shauntal.png",
+      "bytes": 680
+    },
+    {
+      "id": "shelly-gen3",
+      "file": "shelly-gen3.png",
+      "bytes": 757
+    },
+    {
+      "id": "shelly",
+      "file": "shelly.png",
+      "bytes": 865
+    },
+    {
+      "id": "shielbert",
+      "file": "shielbert.png",
+      "bytes": 683
+    },
+    {
+      "id": "sidney-gen3",
+      "file": "sidney-gen3.png",
+      "bytes": 615
+    },
+    {
+      "id": "sidney",
+      "file": "sidney.png",
+      "bytes": 681
+    },
+    {
+      "id": "siebold-masters",
+      "file": "siebold-masters.png",
+      "bytes": 686
+    },
+    {
+      "id": "siebold",
+      "file": "siebold.png",
+      "bytes": 1056
+    },
+    {
+      "id": "sierra",
+      "file": "sierra.png",
+      "bytes": 725
+    },
+    {
+      "id": "sightseer",
+      "file": "sightseer.png",
+      "bytes": 835
+    },
+    {
+      "id": "sightseerf",
+      "file": "sightseerf.png",
+      "bytes": 807
+    },
+    {
+      "id": "silver-gen2",
+      "file": "silver-gen2.png",
+      "bytes": 465
+    },
+    {
+      "id": "silver-gen2kanto",
+      "file": "silver-gen2kanto.png",
+      "bytes": 395
+    },
+    {
+      "id": "silver-masters",
+      "file": "silver-masters.png",
+      "bytes": 791
+    },
+    {
+      "id": "silver-masters2",
+      "file": "silver-masters2.png",
+      "bytes": 740
+    },
+    {
+      "id": "silver",
+      "file": "silver.png",
+      "bytes": 654
+    },
+    {
+      "id": "sina-gen6",
+      "file": "sina-gen6.png",
+      "bytes": 715
+    },
+    {
+      "id": "sina",
+      "file": "sina.png",
+      "bytes": 752
+    },
+    {
+      "id": "sisandbro-gen3",
+      "file": "sisandbro-gen3.png",
+      "bytes": 883
+    },
+    {
+      "id": "sisandbro-gen3rs",
+      "file": "sisandbro-gen3rs.png",
+      "bytes": 889
+    },
+    {
+      "id": "sisandbro",
+      "file": "sisandbro.png",
+      "bytes": 911
+    },
+    {
+      "id": "skier-gen2",
+      "file": "skier-gen2.png",
+      "bytes": 532
+    },
+    {
+      "id": "skier",
+      "file": "skier.png",
+      "bytes": 799
+    },
+    {
+      "id": "skierf-gen4dp",
+      "file": "skierf-gen4dp.png",
+      "bytes": 812
+    },
+    {
+      "id": "skierf",
+      "file": "skierf.png",
+      "bytes": 858
+    },
+    {
+      "id": "skullgrunt",
+      "file": "skullgrunt.png",
+      "bytes": 621
+    },
+    {
+      "id": "skullgruntf",
+      "file": "skullgruntf.png",
+      "bytes": 692
+    },
+    {
+      "id": "skyla-masters",
+      "file": "skyla-masters.png",
+      "bytes": 829
+    },
+    {
+      "id": "skyla-masters2",
+      "file": "skyla-masters2.png",
+      "bytes": 944
+    },
+    {
+      "id": "skyla-masters3",
+      "file": "skyla-masters3.png",
+      "bytes": 774
+    },
+    {
+      "id": "skyla",
+      "file": "skyla.png",
+      "bytes": 798
+    },
+    {
+      "id": "skytrainer",
+      "file": "skytrainer.png",
+      "bytes": 722
+    },
+    {
+      "id": "skytrainerf",
+      "file": "skytrainerf.png",
+      "bytes": 807
+    },
+    {
+      "id": "smasher",
+      "file": "smasher.png",
+      "bytes": 841
+    },
+    {
+      "id": "soliera",
+      "file": "soliera.png",
+      "bytes": 588
+    },
+    {
+      "id": "sonia-masters",
+      "file": "sonia-masters.png",
+      "bytes": 912
+    },
+    {
+      "id": "sonia-masters2",
+      "file": "sonia-masters2.png",
+      "bytes": 786
+    },
+    {
+      "id": "sonia-professor",
+      "file": "sonia-professor.png",
+      "bytes": 873
+    },
+    {
+      "id": "sonia",
+      "file": "sonia.png",
+      "bytes": 908
+    },
+    {
+      "id": "sophocles",
+      "file": "sophocles.png",
+      "bytes": 795
+    },
+    {
+      "id": "sordward-shielbert",
+      "file": "sordward-shielbert.png",
+      "bytes": 1159
+    },
+    {
+      "id": "sordward",
+      "file": "sordward.png",
+      "bytes": 691
+    },
+    {
+      "id": "spark-casual",
+      "file": "spark-casual.png",
+      "bytes": 728
+    },
+    {
+      "id": "spark",
+      "file": "spark.png",
+      "bytes": 709
+    },
+    {
+      "id": "spenser-gen3",
+      "file": "spenser-gen3.png",
+      "bytes": 735
+    },
+    {
+      "id": "spenser",
+      "file": "spenser.png",
+      "bytes": 804
+    },
+    {
+      "id": "srandjr-gen3",
+      "file": "srandjr-gen3.png",
+      "bytes": 935
+    },
+    {
+      "id": "stargrunt-s",
+      "file": "stargrunt-s.png",
+      "bytes": 726
+    },
+    {
+      "id": "stargrunt-v",
+      "file": "stargrunt-v.png",
+      "bytes": 679
+    },
+    {
+      "id": "stargruntf-s",
+      "file": "stargruntf-s.png",
+      "bytes": 692
+    },
+    {
+      "id": "stargruntf-v",
+      "file": "stargruntf-v.png",
+      "bytes": 637
+    },
+    {
+      "id": "steven-gen3",
+      "file": "steven-gen3.png",
+      "bytes": 881
+    },
+    {
+      "id": "steven-gen6",
+      "file": "steven-gen6.png",
+      "bytes": 884
+    },
+    {
+      "id": "steven-masters",
+      "file": "steven-masters.png",
+      "bytes": 732
+    },
+    {
+      "id": "steven-masters2",
+      "file": "steven-masters2.png",
+      "bytes": 697
+    },
+    {
+      "id": "steven-masters3",
+      "file": "steven-masters3.png",
+      "bytes": 711
+    },
+    {
+      "id": "steven-masters4",
+      "file": "steven-masters4.png",
+      "bytes": 715
+    },
+    {
+      "id": "steven-masters5",
+      "file": "steven-masters5.png",
+      "bytes": 962
+    },
+    {
+      "id": "steven",
+      "file": "steven.png",
+      "bytes": 731
+    },
+    {
+      "id": "streetthug-masters",
+      "file": "streetthug-masters.png",
+      "bytes": 795
+    },
+    {
+      "id": "streetthug",
+      "file": "streetthug.png",
+      "bytes": 923
+    },
+    {
+      "id": "striker",
+      "file": "striker.png",
+      "bytes": 810
+    },
+    {
+      "id": "supernerd-gen1",
+      "file": "supernerd-gen1.png",
+      "bytes": 383
+    },
+    {
+      "id": "supernerd-gen1rb",
+      "file": "supernerd-gen1rb.png",
+      "bytes": 386
+    },
+    {
+      "id": "supernerd-gen2",
+      "file": "supernerd-gen2.png",
+      "bytes": 432
+    },
+    {
+      "id": "supernerd-gen3",
+      "file": "supernerd-gen3.png",
+      "bytes": 604
+    },
+    {
+      "id": "supernerd",
+      "file": "supernerd.png",
+      "bytes": 822
+    },
+    {
+      "id": "surfer",
+      "file": "surfer.png",
+      "bytes": 826
+    },
+    {
+      "id": "swimmer-gen1",
+      "file": "swimmer-gen1.png",
+      "bytes": 424
+    },
+    {
+      "id": "swimmer-gen1rb",
+      "file": "swimmer-gen1rb.png",
+      "bytes": 424
+    },
+    {
+      "id": "swimmer-gen4",
+      "file": "swimmer-gen4.png",
+      "bytes": 595
+    },
+    {
+      "id": "swimmer-gen4dp",
+      "file": "swimmer-gen4dp.png",
+      "bytes": 556
+    },
+    {
+      "id": "swimmer-gen4jp",
+      "file": "swimmer-gen4jp.png",
+      "bytes": 583
+    },
+    {
+      "id": "swimmer-gen6",
+      "file": "swimmer-gen6.png",
+      "bytes": 644
+    },
+    {
+      "id": "swimmer-gen7",
+      "file": "swimmer-gen7.png",
+      "bytes": 635
+    },
+    {
+      "id": "swimmer-gen8",
+      "file": "swimmer-gen8.png",
+      "bytes": 726
+    },
+    {
+      "id": "swimmer-masters",
+      "file": "swimmer-masters.png",
+      "bytes": 664
+    },
+    {
+      "id": "swimmer",
+      "file": "swimmer.png",
+      "bytes": 596
+    },
+    {
+      "id": "swimmerf-gen2",
+      "file": "swimmerf-gen2.png",
+      "bytes": 453
+    },
+    {
+      "id": "swimmerf-gen3",
+      "file": "swimmerf-gen3.png",
+      "bytes": 576
+    },
+    {
+      "id": "swimmerf-gen3rs",
+      "file": "swimmerf-gen3rs.png",
+      "bytes": 564
+    },
+    {
+      "id": "swimmerf-gen4",
+      "file": "swimmerf-gen4.png",
+      "bytes": 620
+    },
+    {
+      "id": "swimmerf-gen4dp",
+      "file": "swimmerf-gen4dp.png",
+      "bytes": 630
+    },
+    {
+      "id": "swimmerf-gen6",
+      "file": "swimmerf-gen6.png",
+      "bytes": 579
+    },
+    {
+      "id": "swimmerf-gen7",
+      "file": "swimmerf-gen7.png",
+      "bytes": 572
+    },
+    {
+      "id": "swimmerf-gen8",
+      "file": "swimmerf-gen8.png",
+      "bytes": 613
+    },
+    {
+      "id": "swimmerf",
+      "file": "swimmerf.png",
+      "bytes": 639
+    },
+    {
+      "id": "swimmerf2-gen6",
+      "file": "swimmerf2-gen6.png",
+      "bytes": 616
+    },
+    {
+      "id": "swimmerf2-gen7",
+      "file": "swimmerf2-gen7.png",
+      "bytes": 630
+    },
+    {
+      "id": "swimmerfjp-gen2",
+      "file": "swimmerfjp-gen2.png",
+      "bytes": 454
+    },
+    {
+      "id": "swimmerm-gen2",
+      "file": "swimmerm-gen2.png",
+      "bytes": 442
+    },
+    {
+      "id": "swimmerm-gen3",
+      "file": "swimmerm-gen3.png",
+      "bytes": 539
+    },
+    {
+      "id": "swimmerm-gen3rs",
+      "file": "swimmerm-gen3rs.png",
+      "bytes": 518
+    },
+    {
+      "id": "sycamore-masters",
+      "file": "sycamore-masters.png",
+      "bytes": 679
+    },
+    {
+      "id": "sycamore",
+      "file": "sycamore.png",
+      "bytes": 806
+    },
+    {
+      "id": "tabitha-gen3",
+      "file": "tabitha-gen3.png",
+      "bytes": 755
+    },
+    {
+      "id": "tabitha",
+      "file": "tabitha.png",
+      "bytes": 845
+    },
+    {
+      "id": "tamer-gen1",
+      "file": "tamer-gen1.png",
+      "bytes": 600
+    },
+    {
+      "id": "tamer-gen1rb",
+      "file": "tamer-gen1rb.png",
+      "bytes": 600
+    },
+    {
+      "id": "tamer-gen3",
+      "file": "tamer-gen3.png",
+      "bytes": 752
+    },
+    {
+      "id": "taohua",
+      "file": "taohua.png",
+      "bytes": 691
+    },
+    {
+      "id": "tarragon",
+      "file": "tarragon.png",
+      "bytes": 839
+    },
+    {
+      "id": "tate-gen6",
+      "file": "tate-gen6.png",
+      "bytes": 679
+    },
+    {
+      "id": "tate-masters",
+      "file": "tate-masters.png",
+      "bytes": 781
+    },
+    {
+      "id": "tate",
+      "file": "tate.png",
+      "bytes": 716
+    },
+    {
+      "id": "tateandliza-gen3",
+      "file": "tateandliza-gen3.png",
+      "bytes": 880
+    },
+    {
+      "id": "tateandliza-gen6",
+      "file": "tateandliza-gen6.png",
+      "bytes": 1110
+    },
+    {
+      "id": "taunie",
+      "file": "taunie.png",
+      "bytes": 637
+    },
+    {
+      "id": "teacher-gen2",
+      "file": "teacher-gen2.png",
+      "bytes": 471
+    },
+    {
+      "id": "teacher-gen7",
+      "file": "teacher-gen7.png",
+      "bytes": 666
+    },
+    {
+      "id": "teacher",
+      "file": "teacher.png",
+      "bytes": 682
+    },
+    {
+      "id": "teamaquabeta-gen3",
+      "file": "teamaquabeta-gen3.png",
+      "bytes": 672
+    },
+    {
+      "id": "teamaquagruntf-gen3",
+      "file": "teamaquagruntf-gen3.png",
+      "bytes": 646
+    },
+    {
+      "id": "teamaquagruntm-gen3",
+      "file": "teamaquagruntm-gen3.png",
+      "bytes": 640
+    },
+    {
+      "id": "teammagmagruntf-gen3",
+      "file": "teammagmagruntf-gen3.png",
+      "bytes": 705
+    },
+    {
+      "id": "teammagmagruntm-gen3",
+      "file": "teammagmagruntm-gen3.png",
+      "bytes": 664
+    },
+    {
+      "id": "teammates",
+      "file": "teammates.png",
+      "bytes": 1094
+    },
+    {
+      "id": "teamrocket",
+      "file": "teamrocket.png",
+      "bytes": 1816
+    },
+    {
+      "id": "teamrocketgruntf-gen3",
+      "file": "teamrocketgruntf-gen3.png",
+      "bytes": 599
+    },
+    {
+      "id": "teamrocketgruntm-gen3",
+      "file": "teamrocketgruntm-gen3.png",
+      "bytes": 602
+    },
+    {
+      "id": "theroyal",
+      "file": "theroyal.png",
+      "bytes": 789
+    },
+    {
+      "id": "thorton",
+      "file": "thorton.png",
+      "bytes": 589
+    },
+    {
+      "id": "tierno",
+      "file": "tierno.png",
+      "bytes": 795
+    },
+    {
+      "id": "tina-masters",
+      "file": "tina-masters.png",
+      "bytes": 655
+    },
+    {
+      "id": "toddsnap",
+      "file": "toddsnap.png",
+      "bytes": 693
+    },
+    {
+      "id": "toddsnap2",
+      "file": "toddsnap2.png",
+      "bytes": 830
+    },
+    {
+      "id": "tourist",
+      "file": "tourist.png",
+      "bytes": 750
+    },
+    {
+      "id": "touristf",
+      "file": "touristf.png",
+      "bytes": 707
+    },
+    {
+      "id": "touristf2",
+      "file": "touristf2.png",
+      "bytes": 992
+    },
+    {
+      "id": "trace",
+      "file": "trace.png",
+      "bytes": 600
+    },
+    {
+      "id": "trevor",
+      "file": "trevor.png",
+      "bytes": 613
+    },
+    {
+      "id": "trialguide",
+      "file": "trialguide.png",
+      "bytes": 775
+    },
+    {
+      "id": "trialguidef",
+      "file": "trialguidef.png",
+      "bytes": 662
+    },
+    {
+      "id": "triathletebiker-gen6",
+      "file": "triathletebiker-gen6.png",
+      "bytes": 834
+    },
+    {
+      "id": "triathletebikerf-gen3",
+      "file": "triathletebikerf-gen3.png",
+      "bytes": 831
+    },
+    {
+      "id": "triathletebikerm-gen3",
+      "file": "triathletebikerm-gen3.png",
+      "bytes": 820
+    },
+    {
+      "id": "triathleterunner-gen6",
+      "file": "triathleterunner-gen6.png",
+      "bytes": 649
+    },
+    {
+      "id": "triathleterunnerf-gen3",
+      "file": "triathleterunnerf-gen3.png",
+      "bytes": 525
+    },
+    {
+      "id": "triathleterunnerm-gen3",
+      "file": "triathleterunnerm-gen3.png",
+      "bytes": 520
+    },
+    {
+      "id": "triathleteswimmer-gen6",
+      "file": "triathleteswimmer-gen6.png",
+      "bytes": 664
+    },
+    {
+      "id": "triathleteswimmerf-gen3",
+      "file": "triathleteswimmerf-gen3.png",
+      "bytes": 563
+    },
+    {
+      "id": "triathleteswimmerm-gen3",
+      "file": "triathleteswimmerm-gen3.png",
+      "bytes": 614
+    },
+    {
+      "id": "tricia-masters",
+      "file": "tricia-masters.png",
+      "bytes": 586
+    },
+    {
+      "id": "trinnia-masters",
+      "file": "trinnia-masters.png",
+      "bytes": 653
+    },
+    {
+      "id": "trista-masters",
+      "file": "trista-masters.png",
+      "bytes": 641
+    },
+    {
+      "id": "tuber-gen3",
+      "file": "tuber-gen3.png",
+      "bytes": 495
+    },
+    {
+      "id": "tuber-gen6",
+      "file": "tuber-gen6.png",
+      "bytes": 722
+    },
+    {
+      "id": "tuber",
+      "file": "tuber.png",
+      "bytes": 529
+    },
+    {
+      "id": "tuberf-gen3",
+      "file": "tuberf-gen3.png",
+      "bytes": 582
+    },
+    {
+      "id": "tuberf-gen3rs",
+      "file": "tuberf-gen3rs.png",
+      "bytes": 517
+    },
+    {
+      "id": "tuberf-gen6",
+      "file": "tuberf-gen6.png",
+      "bytes": 643
+    },
+    {
+      "id": "tuberf",
+      "file": "tuberf.png",
+      "bytes": 524
+    },
+    {
+      "id": "tucker-gen3",
+      "file": "tucker-gen3.png",
+      "bytes": 813
+    },
+    {
+      "id": "tucker",
+      "file": "tucker.png",
+      "bytes": 996
+    },
+    {
+      "id": "tuli",
+      "file": "tuli.png",
+      "bytes": 818
+    },
+    {
+      "id": "tulip",
+      "file": "tulip.png",
+      "bytes": 762
+    },
+    {
+      "id": "turo-ai",
+      "file": "turo-ai.png",
+      "bytes": 1016
+    },
+    {
+      "id": "turo",
+      "file": "turo.png",
+      "bytes": 774
+    },
+    {
+      "id": "twins-gen2",
+      "file": "twins-gen2.png",
+      "bytes": 502
+    },
+    {
+      "id": "twins-gen3",
+      "file": "twins-gen3.png",
+      "bytes": 655
+    },
+    {
+      "id": "twins-gen3rs",
+      "file": "twins-gen3rs.png",
+      "bytes": 762
+    },
+    {
+      "id": "twins-gen4",
+      "file": "twins-gen4.png",
+      "bytes": 708
+    },
+    {
+      "id": "twins-gen4dp",
+      "file": "twins-gen4dp.png",
+      "bytes": 780
+    },
+    {
+      "id": "twins-gen6",
+      "file": "twins-gen6.png",
+      "bytes": 746
+    },
+    {
+      "id": "twins",
+      "file": "twins.png",
+      "bytes": 641
+    },
+    {
+      "id": "tyme",
+      "file": "tyme.png",
+      "bytes": 674
+    },
+    {
+      "id": "ultraforestkartenvoy",
+      "file": "ultraforestkartenvoy.png",
+      "bytes": 666
+    },
+    {
+      "id": "unknown-flipped",
+      "file": "unknown-flipped.png",
+      "bytes": 483
+    },
+    {
+      "id": "unknown",
+      "file": "unknown.png",
+      "bytes": 485
+    },
+    {
+      "id": "unknownf-flipped",
+      "file": "unknownf-flipped.png",
+      "bytes": 473
+    },
+    {
+      "id": "unknownf",
+      "file": "unknownf.png",
+      "bytes": 435
+    },
+    {
+      "id": "urbain",
+      "file": "urbain.png",
+      "bytes": 754
+    },
+    {
+      "id": "valerie",
+      "file": "valerie.png",
+      "bytes": 1135
+    },
+    {
+      "id": "vessa",
+      "file": "vessa.png",
+      "bytes": 658
+    },
+    {
+      "id": "veteran-gen4",
+      "file": "veteran-gen4.png",
+      "bytes": 709
+    },
+    {
+      "id": "veteran-gen6",
+      "file": "veteran-gen6.png",
+      "bytes": 673
+    },
+    {
+      "id": "veteran-gen7",
+      "file": "veteran-gen7.png",
+      "bytes": 852
+    },
+    {
+      "id": "veteran",
+      "file": "veteran.png",
+      "bytes": 791
+    },
+    {
+      "id": "veteranf-gen6",
+      "file": "veteranf-gen6.png",
+      "bytes": 768
+    },
+    {
+      "id": "veteranf-gen7",
+      "file": "veteranf-gen7.png",
+      "bytes": 604
+    },
+    {
+      "id": "veteranf",
+      "file": "veteranf.png",
+      "bytes": 722
+    },
+    {
+      "id": "victor-dojo",
+      "file": "victor-dojo.png",
+      "bytes": 818
+    },
+    {
+      "id": "victor-league",
+      "file": "victor-league.png",
+      "bytes": 631
+    },
+    {
+      "id": "victor-masters",
+      "file": "victor-masters.png",
+      "bytes": 709
+    },
+    {
+      "id": "victor-tundra",
+      "file": "victor-tundra.png",
+      "bytes": 704
+    },
+    {
+      "id": "victor",
+      "file": "victor.png",
+      "bytes": 958
+    },
+    {
+      "id": "vince",
+      "file": "vince.png",
+      "bytes": 1030
+    },
+    {
+      "id": "viola-masters",
+      "file": "viola-masters.png",
+      "bytes": 829
+    },
+    {
+      "id": "viola",
+      "file": "viola.png",
+      "bytes": 672
+    },
+    {
+      "id": "volkner-masters",
+      "file": "volkner-masters.png",
+      "bytes": 820
+    },
+    {
+      "id": "volkner",
+      "file": "volkner.png",
+      "bytes": 652
+    },
+    {
+      "id": "volo-ginkgo",
+      "file": "volo-ginkgo.png",
+      "bytes": 801
+    },
+    {
+      "id": "volo",
+      "file": "volo.png",
+      "bytes": 947
+    },
+    {
+      "id": "waiter-gen4",
+      "file": "waiter-gen4.png",
+      "bytes": 661
+    },
+    {
+      "id": "waiter-gen4dp",
+      "file": "waiter-gen4dp.png",
+      "bytes": 661
+    },
+    {
+      "id": "waiter-gen9",
+      "file": "waiter-gen9.png",
+      "bytes": 665
+    },
+    {
+      "id": "waiter",
+      "file": "waiter.png",
+      "bytes": 685
+    },
+    {
+      "id": "waitress-gen4",
+      "file": "waitress-gen4.png",
+      "bytes": 689
+    },
+    {
+      "id": "waitress-gen6",
+      "file": "waitress-gen6.png",
+      "bytes": 585
+    },
+    {
+      "id": "waitress-gen9",
+      "file": "waitress-gen9.png",
+      "bytes": 748
+    },
+    {
+      "id": "waitress",
+      "file": "waitress.png",
+      "bytes": 789
+    },
+    {
+      "id": "wallace-gen3",
+      "file": "wallace-gen3.png",
+      "bytes": 865
+    },
+    {
+      "id": "wallace-gen3rs",
+      "file": "wallace-gen3rs.png",
+      "bytes": 715
+    },
+    {
+      "id": "wallace-gen6",
+      "file": "wallace-gen6.png",
+      "bytes": 956
+    },
+    {
+      "id": "wallace-masters",
+      "file": "wallace-masters.png",
+      "bytes": 1061
+    },
+    {
+      "id": "wallace",
+      "file": "wallace.png",
+      "bytes": 843
+    },
+    {
+      "id": "wally-gen3",
+      "file": "wally-gen3.png",
+      "bytes": 546
+    },
+    {
+      "id": "wally-masters",
+      "file": "wally-masters.png",
+      "bytes": 693
+    },
+    {
+      "id": "wally-rse",
+      "file": "wally-rse.png",
+      "bytes": 633
+    },
+    {
+      "id": "wally",
+      "file": "wally.png",
+      "bytes": 652
+    },
+    {
+      "id": "wattson-gen3",
+      "file": "wattson-gen3.png",
+      "bytes": 629
+    },
+    {
+      "id": "wattson",
+      "file": "wattson.png",
+      "bytes": 764
+    },
+    {
+      "id": "whitney-gen2",
+      "file": "whitney-gen2.png",
+      "bytes": 440
+    },
+    {
+      "id": "whitney-masters",
+      "file": "whitney-masters.png",
+      "bytes": 812
+    },
+    {
+      "id": "whitney",
+      "file": "whitney.png",
+      "bytes": 701
+    },
+    {
+      "id": "wicke",
+      "file": "wicke.png",
+      "bytes": 790
+    },
+    {
+      "id": "wikstrom",
+      "file": "wikstrom.png",
+      "bytes": 1085
+    },
+    {
+      "id": "will-gen2",
+      "file": "will-gen2.png",
+      "bytes": 429
+    },
+    {
+      "id": "will",
+      "file": "will.png",
+      "bytes": 756
+    },
+    {
+      "id": "willem",
+      "file": "willem.png",
+      "bytes": 656
+    },
+    {
+      "id": "willow-casual",
+      "file": "willow-casual.png",
+      "bytes": 744
+    },
+    {
+      "id": "willow",
+      "file": "willow.png",
+      "bytes": 914
+    },
+    {
+      "id": "winona-gen3",
+      "file": "winona-gen3.png",
+      "bytes": 712
+    },
+    {
+      "id": "winona-gen6",
+      "file": "winona-gen6.png",
+      "bytes": 811
+    },
+    {
+      "id": "winona",
+      "file": "winona.png",
+      "bytes": 687
+    },
+    {
+      "id": "worker-gen4",
+      "file": "worker-gen4.png",
+      "bytes": 682
+    },
+    {
+      "id": "worker-gen6",
+      "file": "worker-gen6.png",
+      "bytes": 812
+    },
+    {
+      "id": "worker-gen7",
+      "file": "worker-gen7.png",
+      "bytes": 651
+    },
+    {
+      "id": "worker-gen8",
+      "file": "worker-gen8.png",
+      "bytes": 664
+    },
+    {
+      "id": "worker-gen9",
+      "file": "worker-gen9.png",
+      "bytes": 780
+    },
+    {
+      "id": "worker-lgpe",
+      "file": "worker-lgpe.png",
+      "bytes": 778
+    },
+    {
+      "id": "worker",
+      "file": "worker.png",
+      "bytes": 808
+    },
+    {
+      "id": "worker2-gen6",
+      "file": "worker2-gen6.png",
+      "bytes": 709
+    },
+    {
+      "id": "workerf-gen8",
+      "file": "workerf-gen8.png",
+      "bytes": 804
+    },
+    {
+      "id": "workerice",
+      "file": "workerice.png",
+      "bytes": 674
+    },
+    {
+      "id": "wulfric",
+      "file": "wulfric.png",
+      "bytes": 1109
+    },
+    {
+      "id": "xerosic",
+      "file": "xerosic.png",
+      "bytes": 789
+    },
+    {
+      "id": "yancy",
+      "file": "yancy.png",
+      "bytes": 644
+    },
+    {
+      "id": "yellgrunt",
+      "file": "yellgrunt.png",
+      "bytes": 1226
+    },
+    {
+      "id": "yellgruntf",
+      "file": "yellgruntf.png",
+      "bytes": 960
+    },
+    {
+      "id": "yellow",
+      "file": "yellow.png",
+      "bytes": 872
+    },
+    {
+      "id": "youngathlete",
+      "file": "youngathlete.png",
+      "bytes": 700
+    },
+    {
+      "id": "youngathletef",
+      "file": "youngathletef.png",
+      "bytes": 739
+    },
+    {
+      "id": "youngcouple-gen3",
+      "file": "youngcouple-gen3.png",
+      "bytes": 882
+    },
+    {
+      "id": "youngcouple-gen3rs",
+      "file": "youngcouple-gen3rs.png",
+      "bytes": 714
+    },
+    {
+      "id": "youngcouple-gen4dp",
+      "file": "youngcouple-gen4dp.png",
+      "bytes": 919
+    },
+    {
+      "id": "youngcouple-gen6",
+      "file": "youngcouple-gen6.png",
+      "bytes": 952
+    },
+    {
+      "id": "youngcouple",
+      "file": "youngcouple.png",
+      "bytes": 909
+    },
+    {
+      "id": "youngn",
+      "file": "youngn.png",
+      "bytes": 539
+    },
+    {
+      "id": "youngster-gen1",
+      "file": "youngster-gen1.png",
+      "bytes": 352
+    },
+    {
+      "id": "youngster-gen1rb",
+      "file": "youngster-gen1rb.png",
+      "bytes": 353
+    },
+    {
+      "id": "youngster-gen2",
+      "file": "youngster-gen2.png",
+      "bytes": 431
+    },
+    {
+      "id": "youngster-gen3",
+      "file": "youngster-gen3.png",
+      "bytes": 526
+    },
+    {
+      "id": "youngster-gen3rs",
+      "file": "youngster-gen3rs.png",
+      "bytes": 510
+    },
+    {
+      "id": "youngster-gen4",
+      "file": "youngster-gen4.png",
+      "bytes": 581
+    },
+    {
+      "id": "youngster-gen4dp",
+      "file": "youngster-gen4dp.png",
+      "bytes": 581
+    },
+    {
+      "id": "youngster-gen6",
+      "file": "youngster-gen6.png",
+      "bytes": 607
+    },
+    {
+      "id": "youngster-gen6xy",
+      "file": "youngster-gen6xy.png",
+      "bytes": 626
+    },
+    {
+      "id": "youngster-gen7",
+      "file": "youngster-gen7.png",
+      "bytes": 627
+    },
+    {
+      "id": "youngster-gen8",
+      "file": "youngster-gen8.png",
+      "bytes": 693
+    },
+    {
+      "id": "youngster-gen9",
+      "file": "youngster-gen9.png",
+      "bytes": 640
+    },
+    {
+      "id": "youngster-masters",
+      "file": "youngster-masters.png",
+      "bytes": 651
+    },
+    {
+      "id": "youngster",
+      "file": "youngster.png",
+      "bytes": 635
+    },
+    {
+      "id": "yukito-hideko",
+      "file": "yukito-hideko.png",
+      "bytes": 1070
+    },
+    {
+      "id": "zinnia-masters",
+      "file": "zinnia-masters.png",
+      "bytes": 785
+    },
+    {
+      "id": "zinnia",
+      "file": "zinnia.png",
+      "bytes": 1021
+    },
+    {
+      "id": "zinzolin",
+      "file": "zinzolin.png",
+      "bytes": 937
+    },
+    {
+      "id": "zirco-unite",
+      "file": "zirco-unite.png",
+      "bytes": 953
+    },
+    {
+      "id": "zisu",
+      "file": "zisu.png",
+      "bytes": 849
+    },
+    {
+      "id": "zossie",
+      "file": "zossie.png",
+      "bytes": 678
+    }
+  ],
+  "runtime_policy": "Archive only. Battles continue to load the small categorized trainers.json roster on demand."
+}

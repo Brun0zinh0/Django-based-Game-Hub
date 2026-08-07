@@ -1,0 +1,20 @@
+.venv/
+__pycache__/
+*.py[cod]
+db.sqlite3
+.idea/
+.vscode/
+
+# Commercial ROM used as an asset source. Not ours to redistribute, and the
+# build scripts only need it when regenerating sprites or battlebacks.
+*.gba
+
+# Regenerable caches from the asset-fetch scripts.
+.rhh-battle-env-cache/
+tmp/
+*.nds
+
+# Raw artwork downloads. Regenerable with the fetch scripts, and the
+# originals are the artists' to distribute, not this repo's.
+.battleback-source/
+.deviantart-source/

@@ -1,0 +1,596 @@
+{
+  "schema_version": 1,
+  "source": "https://github.com/rh-hideout/pokeemerald-expansion graphics/battle_anims/sprites/",
+  "credit": "RHH (Rom Hacking Hideout) and the pokeemerald-expansion contributors",
+  "layout_note": "Vertical strip of square frames unless frames == 1. frameWidth/frameHeight must match the values declared in games/static/games/pokemon_move_effects.js.",
+  "sprites": {
+    "air_slash": {
+      "file": "air_slash.png",
+      "bytes": 259,
+      "frameWidth": 16,
+      "frameHeight": 16,
+      "frames": 3
+    },
+    "beam": {
+      "file": "beam.png",
+      "bytes": 383,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frames": 1
+    },
+    "bent_spoon": {
+      "file": "bent_spoon.png",
+      "bytes": 405,
+      "frameWidth": 16,
+      "frameHeight": 16,
+      "frames": 12
+    },
+    "big_rock": {
+      "file": "big_rock.png",
+      "bytes": 727,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frames": 1
+    },
+    "black_ball": {
+      "file": "black_ball.png",
+      "bytes": 149,
+      "frameWidth": 8,
+      "frameHeight": 8,
+      "frames": 1
+    },
+    "chop": {
+      "file": "chop.png",
+      "bytes": 222,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 1
+    },
+    "claw_slash": {
+      "file": "claw_slash.png",
+      "bytes": 590,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 5
+    },
+    "claw_slash_2": {
+      "file": "claw_slash_2.png",
+      "bytes": 386,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 4
+    },
+    "colored_orbs": {
+      "file": "colored_orbs.png",
+      "bytes": 432,
+      "frameWidth": 16,
+      "frameHeight": 16,
+      "frames": 6
+    },
+    "cut": {
+      "file": "cut.png",
+      "bytes": 234,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 4
+    },
+    "dirt_mound": {
+      "file": "dirt_mound.png",
+      "bytes": 399,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 1
+    },
+    "dragon_pulse": {
+      "file": "dragon_pulse.png",
+      "bytes": 223,
+      "frameWidth": 32,
+      "frameHeight": 16,
+      "frames": 1
+    },
+    "drill": {
+      "file": "drill.png",
+      "bytes": 1151,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frames": 1
+    },
+    "electric_orbs": {
+      "file": "electric_orbs.png",
+      "bytes": 190,
+      "frameWidth": 8,
+      "frameHeight": 8,
+      "frames": 4
+    },
+    "electricity": {
+      "file": "electricity.png",
+      "bytes": 501,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 4
+    },
+    "embers": {
+      "file": "embers.png",
+      "bytes": 557,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 5
+    },
+    "explosion": {
+      "file": "explosion.png",
+      "bytes": 845,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 4
+    },
+    "explosion_2": {
+      "file": "explosion_2.png",
+      "bytes": 1101,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 6
+    },
+    "eye_sparkle": {
+      "file": "eye_sparkle.png",
+      "bytes": 239,
+      "frameWidth": 16,
+      "frameHeight": 16,
+      "frames": 4
+    },
+    "fangs": {
+      "file": "fangs.png",
+      "bytes": 427,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 2
+    },
+    "fire": {
+      "file": "fire.png",
+      "bytes": 1916,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 8
+    },
+    "fire_plume": {
+      "file": "fire_plume.png",
+      "bytes": 721,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 5
+    },
+    "flying_dirt": {
+      "file": "flying_dirt.png",
+      "bytes": 378,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 1
+    },
+    "gear": {
+      "file": "gear.png",
+      "bytes": 271,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 1
+    },
+    "ghostly_spirit": {
+      "file": "ghostly_spirit.png",
+      "bytes": 333,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 1
+    },
+    "gold_stars": {
+      "file": "gold_stars.png",
+      "bytes": 213,
+      "frameWidth": 16,
+      "frameHeight": 24,
+      "frames": 1
+    },
+    "gust": {
+      "file": "gust.png",
+      "bytes": 635,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 2
+    },
+    "hit": {
+      "file": "hit.png",
+      "bytes": 671,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 5
+    },
+    "horn_hit": {
+      "file": "horn_hit.png",
+      "bytes": 260,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 1
+    },
+    "humanoid_foot": {
+      "file": "humanoid_foot.png",
+      "bytes": 225,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 1
+    },
+    "hydro_pump": {
+      "file": "hydro_pump.png",
+      "bytes": 244,
+      "frameWidth": 16,
+      "frameHeight": 16,
+      "frames": 4
+    },
+    "ice_chunk": {
+      "file": "ice_chunk.png",
+      "bytes": 864,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 5
+    },
+    "ice_spikes": {
+      "file": "ice_spikes.png",
+      "bytes": 191,
+      "frameWidth": 8,
+      "frameHeight": 8,
+      "frames": 8
+    },
+    "icicle_spear": {
+      "file": "icicle_spear.png",
+      "bytes": 249,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 1
+    },
+    "impact": {
+      "file": "impact.png",
+      "bytes": 243,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 1
+    },
+    "impact_2": {
+      "file": "impact_2.png",
+      "bytes": 587,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 6
+    },
+    "leaf": {
+      "file": "leaf.png",
+      "bytes": 414,
+      "frameWidth": 16,
+      "frameHeight": 16,
+      "frames": 9
+    },
+    "leaves": {
+      "file": "leaves.png",
+      "bytes": 503,
+      "frameWidth": 48,
+      "frameHeight": 48,
+      "frames": 1
+    },
+    "lightning": {
+      "file": "lightning.png",
+      "bytes": 645,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 5
+    },
+    "magenta_heart": {
+      "file": "magenta_heart.png",
+      "bytes": 200,
+      "frameWidth": 16,
+      "frameHeight": 16,
+      "frames": 1
+    },
+    "mega_particles": {
+      "file": "mega_particles.png",
+      "bytes": 510,
+      "frameWidth": 16,
+      "frameHeight": 16,
+      "frames": 3
+    },
+    "mega_stone": {
+      "file": "mega_stone.png",
+      "bytes": 1051,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frames": 1
+    },
+    "mega_symbol": {
+      "file": "mega_symbol.png",
+      "bytes": 487,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 1
+    },
+    "metal_ball": {
+      "file": "metal_ball.png",
+      "bytes": 200,
+      "frameWidth": 16,
+      "frameHeight": 16,
+      "frames": 1
+    },
+    "mud_bomb": {
+      "file": "mud_bomb.png",
+      "bytes": 525,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frames": 1
+    },
+    "music_notes": {
+      "file": "music_notes.png",
+      "bytes": 277,
+      "frameWidth": 16,
+      "frameHeight": 16,
+      "frames": 6
+    },
+    "petal": {
+      "file": "petal.png",
+      "bytes": 356,
+      "frameWidth": 16,
+      "frameHeight": 16,
+      "frames": 7
+    },
+    "poison_bubble": {
+      "file": "poison_bubble.png",
+      "bytes": 259,
+      "frameWidth": 16,
+      "frameHeight": 16,
+      "frames": 3
+    },
+    "poison_column": {
+      "file": "poison_column.png",
+      "bytes": 904,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 16
+    },
+    "poison_jab": {
+      "file": "poison_jab.png",
+      "bytes": 205,
+      "frameWidth": 16,
+      "frameHeight": 16,
+      "frames": 1
+    },
+    "psycho_cut": {
+      "file": "psycho_cut.png",
+      "bytes": 215,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 1
+    },
+    "punch_impact": {
+      "file": "punch_impact.png",
+      "bytes": 390,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 1
+    },
+    "razor_leaf": {
+      "file": "razor_leaf.png",
+      "bytes": 219,
+      "frameWidth": 32,
+      "frameHeight": 16,
+      "frames": 1
+    },
+    "red_fist": {
+      "file": "red_fist.png",
+      "bytes": 242,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 1
+    },
+    "rocks": {
+      "file": "rocks.png",
+      "bytes": 818,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 6
+    },
+    "scratch": {
+      "file": "scratch.png",
+      "bytes": 377,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 5
+    },
+    "seed": {
+      "file": "seed.png",
+      "bytes": 275,
+      "frameWidth": 16,
+      "frameHeight": 16,
+      "frames": 3
+    },
+    "shadow_ball": {
+      "file": "shadow_ball.png",
+      "bytes": 330,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 1
+    },
+    "sharp_teeth": {
+      "file": "sharp_teeth.png",
+      "bytes": 299,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frames": 1
+    },
+    "shock": {
+      "file": "shock.png",
+      "bytes": 880,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 6
+    },
+    "slam_hit": {
+      "file": "slam_hit.png",
+      "bytes": 862,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 8
+    },
+    "slash": {
+      "file": "slash.png",
+      "bytes": 546,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 4
+    },
+    "small_ember": {
+      "file": "small_ember.png",
+      "bytes": 537,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 5
+    },
+    "snowflakes": {
+      "file": "snowflakes.png",
+      "bytes": 6037,
+      "frameWidth": 16,
+      "frameHeight": 16,
+      "frames": 14
+    },
+    "spark_0": {
+      "file": "spark_0.png",
+      "bytes": 178,
+      "frameWidth": 8,
+      "frameHeight": 8,
+      "frames": 8
+    },
+    "sparkle_1": {
+      "file": "sparkle_1.png",
+      "bytes": 666,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 8
+    },
+    "sparkle_3": {
+      "file": "sparkle_3.png",
+      "bytes": 195,
+      "frameWidth": 16,
+      "frameHeight": 16,
+      "frames": 4
+    },
+    "speed_dust": {
+      "file": "speed_dust.png",
+      "bytes": 262,
+      "frameWidth": 16,
+      "frameHeight": 16,
+      "frames": 3
+    },
+    "spinning_fire": {
+      "file": "spinning_fire.png",
+      "bytes": 850,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 4
+    },
+    "splash": {
+      "file": "splash.png",
+      "bytes": 384,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frames": 1
+    },
+    "stone_edge": {
+      "file": "stone_edge.png",
+      "bytes": 474,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 5
+    },
+    "straight_beam": {
+      "file": "straight_beam.png",
+      "bytes": 152,
+      "frameWidth": 16,
+      "frameHeight": 16,
+      "frames": 3
+    },
+    "sword": {
+      "file": "sword.png",
+      "bytes": 200,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 2
+    },
+    "teeth": {
+      "file": "teeth.png",
+      "bytes": 296,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 4
+    },
+    "tornado": {
+      "file": "tornado.png",
+      "bytes": 1608,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frames": 3
+    },
+    "toxic_bubble": {
+      "file": "toxic_bubble.png",
+      "bytes": 239,
+      "frameWidth": 16,
+      "frameHeight": 16,
+      "frames": 8
+    },
+    "vine": {
+      "file": "vine.png",
+      "bytes": 488,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 5
+    },
+    "water_column": {
+      "file": "water_column.png",
+      "bytes": 586,
+      "frameWidth": 16,
+      "frameHeight": 16,
+      "frames": 8
+    },
+    "water_gun": {
+      "file": "water_gun.png",
+      "bytes": 214,
+      "frameWidth": 16,
+      "frameHeight": 16,
+      "frames": 3
+    },
+    "water_impact": {
+      "file": "water_impact.png",
+      "bytes": 259,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 1
+    },
+    "water_orb": {
+      "file": "water_orb.png",
+      "bytes": 233,
+      "frameWidth": 16,
+      "frameHeight": 16,
+      "frames": 4
+    },
+    "web": {
+      "file": "web.png",
+      "bytes": 328,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 1
+    },
+    "whirlwind": {
+      "file": "whirlwind.png",
+      "bytes": 500,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frames": 1
+    },
+    "wisp_fire": {
+      "file": "wisp_fire.png",
+      "bytes": 1085,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": 4
+    }
+  }
+}

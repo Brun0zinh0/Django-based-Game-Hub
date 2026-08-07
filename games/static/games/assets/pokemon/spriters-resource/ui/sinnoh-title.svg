@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 150" role="img" aria-label="Pokemon Sinnoh League wordmark">
+  <!-- Hand-authored Platinum-style plate, following the Johto precedent:
+       no clean 2D rip of the Diamond/Pearl/Platinum logo exists on the
+       archives this project uses, so Sinnoh's wordmark is drawn in the
+       era's platinum-on-slate treatment. -->
+  <defs>
+    <linearGradient id="platinum" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.45" stop-color="#dfe7ee"/>
+      <stop offset="0.55" stop-color="#aab9c7"/>
+      <stop offset="1" stop-color="#6d7f90"/>
+    </linearGradient>
+    <linearGradient id="slate" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9fb4ff"/>
+      <stop offset="0.5" stop-color="#5d74c4"/>
+      <stop offset="1" stop-color="#2c3a72"/>
+    </linearGradient>
+  </defs>
+  <text x="230" y="62" text-anchor="middle"
+        font-family="'Trebuchet MS', Arial, sans-serif" font-size="58" font-weight="900"
+        fill="url(#platinum)" stroke="#1c2233" stroke-width="3" paint-order="stroke"
+        letter-spacing="2">SINNOH</text>
+  <text x="230" y="118" text-anchor="middle"
+        font-family="'Trebuchet MS', Arial, sans-serif" font-size="44" font-weight="900"
+        fill="url(#slate)" stroke="#101527" stroke-width="3" paint-order="stroke"
+        letter-spacing="6">LEAGUE</text>
+</svg>
