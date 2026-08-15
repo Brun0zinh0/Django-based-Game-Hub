@@ -53,6 +53,61 @@ manage.py           commandes Django
 requirements.txt    dépendances Python
 ```
 
+## Crédits
+
+Projet personnel et non commercial. Presque toutes les images viennent
+d’ailleurs, et voici d’où. La provenance fichier par fichier est conservée
+à côté des assets eux-mêmes, dans les `SOURCES.md` et les `manifest.json` :
+ce qui suit en est le résumé.
+
+### Terra Boss
+
+- **Terraria** — © [Re-Logic](https://re-logic.com/). Les noms, les
+  statistiques, les boss et le comportement des armes viennent du jeu ; les
+  sprites aussi.
+- **[The Spriters Resource](https://www.spriters-resource.com/pc_computer/terraria/)**
+  — d’où les 19 planches de sprites ont été téléchargées. L’identifiant et
+  l’URL de chaque planche sont dans
+  `games/static/games/assets/terra/sprites/manifest.json`. Merci aux
+  personnes qui les ont extraites et mises en ligne.
+- **[Calamity Mod](https://calamitymod.wiki.gg/)** — par la Calamity Mod
+  Team. Le pack de contenu optionnel en reprend les noms, les statistiques
+  et le comportement, **mais aucune image** : chaque entrée pointe vers un
+  sprite que le jeu possède déjà.
+- Les dix arrière-plans d’arène et le clip du menu ont été fournis par
+  l’auteur du projet.
+
+### Pokémon Rogue
+
+- **Pokémon** — © Nintendo / Creatures Inc. / GAME FREAK. Jeu de fan.
+- **[Pokémon Showdown](https://play.pokemonshowdown.com/)** — sprites
+  animés, sprites de dresseurs et animations d’attaques. Showdown précise
+  que beaucoup de sprites de dresseurs sont l’œuvre de la communauté et
+  doivent être crédités individuellement : la page source fait foi, et les
+  fichiers ne sont pas modifiés ici.
+- **[RHH pokeemerald-expansion](https://github.com/rh-hideout/pokeemerald-expansion)**
+  — sprites d’effets de combat. *Based off RHH’s pokeemerald-expansion.*
+- **The Spriters Resource** — planches créditées à FrenchOrange,
+  yoursavior, fabnt, tsuka, mufasakong, Barubary et redblueyellow ; le
+  détail par planche est dans
+  `games/static/games/assets/pokemon/spriters-resource/SOURCES.md`.
+- **DeviantArt** — arrière-plans de combat par
+  [carchagui](https://deviantart.com/carchagui) et
+  [Princess-Phoenix](https://deviantart.com/princess-phoenix).
+- **[Radical Red Pokédex](https://github.com/JwowSquared/Radical-Red-Pokedex)**
+  — table de données utilisée en développement.
+
+### Technique
+
+- **[Phaser 3.90](https://phaser.io/)** — moteur des jeux, inclus dans
+  `games/static/games/vendor/`.
+- **[Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P)** —
+  police, via Google Fonts.
+
+Aucun des projets ci-dessus n’est affilié à celui-ci. Si vous êtes l’auteur
+d’un asset et que vous souhaitez un crédit différent ou son retrait,
+ouvrez une issue.
+
 ## Lancer le projet
 
 ```bash
@@ -71,10 +126,3 @@ pendant le developpement ne sont pas redistribuees ici. Les deux premiers
 jeux fonctionnent sans, et `sounds/README.md` explique ou deposer vos
 propres fichiers pour retrouver les playlists. Terra Boss genere ses sons
 dans le navigateur et n'a besoin d'aucun fichier.
-
-### Credits
-
-Terra Boss est un hommage a **Terraria** (Re-Logic) et reprend les noms,
-les statistiques et le comportement de ses boss et de son equipement. Le
-pack de contenu optionnel fait de meme pour le **Calamity Mod**. Ni l'un
-ni l'autre n'est affilie a ce projet.

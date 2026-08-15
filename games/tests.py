@@ -2328,6 +2328,44 @@ class AssetPipelineTests(TestCase):
         self.assertEqual(atlas.width, atlas.height)
         self.assertEqual(atlas.width % 3, 0)
 
+    def test_the_readme_credits_everyone_the_assets_came_from(self):
+        """Almost none of the art here is ours, and crediting it is the
+        condition it is used under. A source that loses its line in the README
+        is the kind of thing nobody notices, so the uploader names are read
+        back out of the register beside the assets rather than hardcoded:
+        add a sheet and forget the README, and this fails.
+        """
+        import json
+
+        root = Path(__file__).resolve().parent.parent
+        readme = (root / "README.md").read_text(encoding="utf-8")
+
+        self.assertIn("## Crédits", readme, "the README has no credits section")
+
+        # Whoever ripped and uploaded each Pokemon sheet, per the register.
+        register = (
+            self.static_dir / "assets" / "pokemon" / "spriters-resource" / "SOURCES.md"
+        ).read_text(encoding="utf-8")
+        uploaders = set(re.findall(r"(?:Uploaded by|contributed by) (\w+)", register))
+        self.assertGreaterEqual(len(uploaders), 5, "the register stopped naming uploaders")
+        for who in sorted(uploaders):
+            self.assertIn(who, readme, f"{who} ripped a sheet we ship and is not credited")
+
+        # Where the Terraria art came from, per its own manifest.
+        manifest = json.loads(
+            (self.static_dir / "assets" / "terra" / "sprites" / "manifest.json")
+            .read_text(encoding="utf-8")
+        )
+        self.assertIn("The Spriters Resource", manifest["source"])
+        self.assertIn("spriters-resource.com", readme,
+                      "the Terraria sprites' source is not in the README")
+
+        # And the rights holders and projects the games lean on.
+        for owed in ("Re-Logic", "Calamity", "Pokémon Showdown",
+                     "pokeemerald-expansion", "carchagui", "Princess-Phoenix",
+                     "Phaser"):
+            self.assertIn(owed, readme, f"{owed} is not credited")
+
     def test_material_ids_cover_all_nine_tiles(self):
         source = (
             self.static_dir / "battle_royale.js"
