@@ -664,7 +664,8 @@
           463,
           465,
           175,
-          467
+          467,
+          524
         ]
       },
       {
@@ -713,7 +714,8 @@
           193,
           114,
           509,
-          511
+          511,
+          132
         ]
       },
       {
@@ -729,7 +731,8 @@
           113,
           493,
           190,
-          239
+          239,
+          132
         ]
       },
       {
@@ -831,26 +834,27 @@
       "healing": 350,
       "evolution": 1100,
       "held": 900,
-      "mega-stone": 2400
+      "mega-stone": 2400,
+      "vitamin": 900
     },
     "price_variance": 0.18,
     "sell_ratio": 0.5,
     "slots_by_round": [
       {
         "from_duel": 1,
-        "slots": 3
-      },
-      {
-        "from_duel": 4,
         "slots": 4
       },
       {
+        "from_duel": 4,
+        "slots": 6
+      },
+      {
         "from_duel": 9,
-        "slots": 5
+        "slots": 8
       },
       {
         "from_duel": 15,
-        "slots": 6
+        "slots": 10
       }
     ],
     "rarity_weights_by_round": [
@@ -921,25 +925,37 @@
         "20": "epic"
       },
       "evolution": "rare",
-      "mega-stone": "epic"
+      "mega-stone": "epic",
+      "vitamin": "uncommon"
     },
     "category_weights": {
       "capture": 22,
       "healing": 30,
       "held": 30,
       "evolution": 12,
-      "mega-stone": 6
+      "mega-stone": 6,
+      "vitamin": 16
     },
     "max_per_category": {
-      "held": 2,
+      "held": 4,
       "evolution": 1,
-      "mega-stone": 1
+      "mega-stone": 1,
+      "vitamin": 2,
+      "healing": 4
     },
     "refresh": {
       "fee_base": 400,
       "fee_growth_per_duel": 80,
-      "fee_multiplier_per_use": 1.75
-    }
+      "fee_multiplier_per_use": 1.25
+    },
+    "general_vitamin_item_ids": [
+      63,
+      64,
+      65,
+      66,
+      67,
+      70
+    ]
   },
   "hard_mode": {
     "enemy_held_item_chance": 0.28,

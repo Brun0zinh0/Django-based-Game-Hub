@@ -1,0 +1,197 @@
+{
+  "source": "The Spriters Resource - Terraria (PC / Computer)",
+  "sourceUrl": "https://www.spriters-resource.com/pc_computer/terraria/",
+  "note": "Sheets are 2x scale (matches Terraria's native files). Raw, unsliced.",
+  "sheets": {
+    "guide": {
+      "file": "raw/guide.png",
+      "assetId": 179318,
+      "assetUrl": "https://www.spriters-resource.com/pc_computer/terraria/asset/179318/",
+      "size": [
+        529,
+        199
+      ],
+      "mode": "RGBA"
+    },
+    "arms-dealer": {
+      "file": "raw/arms-dealer.png",
+      "assetId": 162053,
+      "assetUrl": "https://www.spriters-resource.com/pc_computer/terraria/asset/162053/",
+      "size": [
+        278,
+        817
+      ],
+      "mode": "RGBA"
+    },
+    "nurse": {
+      "file": "raw/nurse.png",
+      "assetId": 162038,
+      "assetUrl": "https://www.spriters-resource.com/pc_computer/terraria/asset/162038/",
+      "size": [
+        381,
+        817
+      ],
+      "mode": "RGBA"
+    },
+    "demolitionist": {
+      "file": "raw/demolitionist.png",
+      "assetId": 179316,
+      "assetUrl": "https://www.spriters-resource.com/pc_computer/terraria/asset/179316/",
+      "size": [
+        689,
+        367
+      ],
+      "mode": "RGBA"
+    },
+    "goblin-tinkerer": {
+      "file": "raw/goblin-tinkerer.png",
+      "assetId": 179317,
+      "assetUrl": "https://www.spriters-resource.com/pc_computer/terraria/asset/179317/",
+      "size": [
+        499,
+        203
+      ],
+      "mode": "RGBA"
+    },
+    "clothier": {
+      "file": "raw/clothier.png",
+      "assetId": 179331,
+      "assetUrl": "https://www.spriters-resource.com/pc_computer/terraria/asset/179331/",
+      "size": [
+        621,
+        495
+      ],
+      "mode": "RGBA"
+    },
+    "king-slime": {
+      "file": "raw/king-slime.png",
+      "assetId": 161596,
+      "assetUrl": "https://www.spriters-resource.com/pc_computer/terraria/asset/161596/",
+      "size": [
+        800,
+        260
+      ],
+      "mode": "RGBA"
+    },
+    "eye-of-cthulhu": {
+      "file": "raw/eye-of-cthulhu.png",
+      "assetId": 161650,
+      "assetUrl": "https://www.spriters-resource.com/pc_computer/terraria/asset/161650/",
+      "size": [
+        1200,
+        728
+      ],
+      "mode": "P"
+    },
+    "skeletron": {
+      "file": "raw/skeletron.png",
+      "assetId": 161476,
+      "assetUrl": "https://www.spriters-resource.com/pc_computer/terraria/asset/161476/",
+      "size": [
+        760,
+        456
+      ],
+      "mode": "RGBA"
+    },
+    "slimes": {
+      "file": "raw/slimes.png",
+      "assetId": 161647,
+      "assetUrl": "https://www.spriters-resource.com/pc_computer/terraria/asset/161647/",
+      "size": [
+        800,
+        800
+      ],
+      "mode": "RGBA"
+    },
+    "zombies": {
+      "file": "raw/zombies.png",
+      "assetId": 180542,
+      "assetUrl": "https://www.spriters-resource.com/pc_computer/terraria/asset/180542/",
+      "size": [
+        595,
+        791
+      ],
+      "mode": "RGBA"
+    },
+    "demon-eyes": {
+      "file": "raw/demon-eyes.png",
+      "assetId": 180516,
+      "assetUrl": "https://www.spriters-resource.com/pc_computer/terraria/asset/180516/",
+      "size": [
+        424,
+        125
+      ],
+      "mode": "RGBA"
+    },
+    "wall-of-flesh": {
+      "file": "raw/wall-of-flesh.png",
+      "assetId": 161444,
+      "assetUrl": "https://www.spriters-resource.com/pc_computer/terraria/asset/161444/",
+      "size": [
+        800,
+        439
+      ],
+      "mode": "RGBA"
+    },
+    "eater-destroyer": {
+      "file": "raw/eater-destroyer.png",
+      "assetId": 161630,
+      "assetUrl": "https://www.spriters-resource.com/pc_computer/terraria/asset/161630/",
+      "size": [
+        446,
+        299
+      ],
+      "mode": "RGBA"
+    },
+    "plantera": {
+      "file": "raw/plantera.png",
+      "assetId": 208785,
+      "assetUrl": "https://www.spriters-resource.com/pc_computer/terraria/asset/208785/",
+      "size": [
+        776,
+        776
+      ],
+      "mode": "P"
+    },
+    "golem": {
+      "file": "raw/golem.png",
+      "assetId": 168160,
+      "assetUrl": "https://www.spriters-resource.com/pc_computer/terraria/asset/168160/",
+      "size": [
+        1059,
+        1245
+      ],
+      "mode": "RGBA"
+    },
+    "duke-fishron": {
+      "file": "raw/duke-fishron.png",
+      "assetId": 196540,
+      "assetUrl": "https://www.spriters-resource.com/pc_computer/terraria/asset/196540/",
+      "size": [
+        1226,
+        693
+      ],
+      "mode": "P"
+    },
+    "lunatic-cultist": {
+      "file": "raw/lunatic-cultist.png",
+      "assetId": 196203,
+      "assetUrl": "https://www.spriters-resource.com/pc_computer/terraria/asset/196203/",
+      "size": [
+        974,
+        1024
+      ],
+      "mode": "P"
+    },
+    "moon-lord": {
+      "file": "raw/moon-lord.png",
+      "assetId": 161442,
+      "assetUrl": "https://www.spriters-resource.com/pc_computer/terraria/asset/161442/",
+      "size": [
+        2472,
+        2248
+      ],
+      "mode": "RGBA"
+    }
+  }
+}

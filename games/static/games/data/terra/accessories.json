@@ -1,0 +1,324 @@
+{
+  "comment": "Accessories fill five slots. Every entry carries a tier so the shop gates them the way it gates weapons and armour; effects are the wiki's numbers, restricted to ranged categories where Terraria's bonus covers every damage type.",
+  "maxEquipped": 5,
+  "accessories": [
+    {
+      "id": "cloud-in-a-bottle",
+      "name": "Cloud in a Bottle",
+      "rarity": "common",
+      "price": 20,
+      "sprite": "items/cloud-in-a-bottle.png",
+      "description": "Grants a double jump.",
+      "effects": {
+        "extraJumps": 1
+      },
+      "tier": 1
+    },
+    {
+      "id": "hermes-boots",
+      "name": "Hermes Boots",
+      "rarity": "common",
+      "price": 20,
+      "sprite": "items/hermes-boots.png",
+      "description": "+25% move speed.",
+      "effects": {
+        "moveSpeedMultiplier": 1.25
+      },
+      "tier": 1,
+      "exclusive": "boots"
+    },
+    {
+      "id": "shiny-red-balloon",
+      "name": "Shiny Red Balloon",
+      "tier": 1,
+      "price": 24,
+      "sprite": "items/shiny-red-balloon.png",
+      "description": "Jump noticeably higher.",
+      "effects": {
+        "jumpMultiplier": 1.25
+      }
+    },
+    {
+      "id": "band-of-regeneration",
+      "name": "Band of Regeneration",
+      "rarity": "common",
+      "price": 24,
+      "sprite": "items/band-of-regeneration.png",
+      "description": "Slowly regenerate life.",
+      "effects": {
+        "regenPerSecond": 0.5
+      },
+      "tier": 2
+    },
+    {
+      "id": "cobalt-shield",
+      "name": "Cobalt Shield",
+      "tier": 2,
+      "price": 26,
+      "sprite": "items/cobalt-shield.png",
+      "description": "+1 defense and you no longer get knocked around.",
+      "effects": {
+        "defense": 1
+      },
+      "exclusive": "shield"
+    },
+    {
+      "id": "blizzard-in-a-bottle",
+      "name": "Blizzard in a Bottle",
+      "tier": 3,
+      "price": 40,
+      "sprite": "items/blizzard-in-a-bottle.png",
+      "description": "A double jump that climbs higher than the cloud.",
+      "effects": {
+        "extraJumps": 1,
+        "jumpMultiplier": 1.1
+      }
+    },
+    {
+      "id": "spectre-boots",
+      "name": "Spectre Boots",
+      "tier": 3,
+      "price": 46,
+      "sprite": "items/spectre-boots.png",
+      "description": "+35% move speed and a short burst of flight.",
+      "effects": {
+        "moveSpeedMultiplier": 1.35,
+        "flight": {
+          "durationMs": 550,
+          "speed": 210,
+          "glideFallSpeed": 300
+        }
+      },
+      "exclusive": "boots"
+    },
+    {
+      "id": "magic-quiver",
+      "name": "Magic Quiver",
+      "rarity": "rare",
+      "price": 60,
+      "sprite": "items/magic-quiver.png",
+      "description": "+15% bow damage, arrows fly faster.",
+      "effects": {
+        "damageMultiplier": {
+          "bow": 1.15
+        },
+        "projectileSpeedMultiplier": {
+          "bow": 1.2
+        }
+      },
+      "tier": 3
+    },
+    {
+      "id": "obsidian-shield",
+      "name": "Obsidian Shield",
+      "tier": 4,
+      "price": 52,
+      "sprite": "items/obsidian-shield.png",
+      "description": "+2 defense and immunity to knockback.",
+      "effects": {
+        "defense": 2
+      },
+      "exclusive": "shield"
+    },
+    {
+      "id": "shield-of-cthulhu",
+      "name": "Shield of Cthulhu",
+      "rarity": "rare",
+      "price": 55,
+      "sprite": "items/shield-of-cthulhu.png",
+      "description": "Double-tap to dash through enemies.",
+      "effects": {
+        "dash": {
+          "speed": 900,
+          "cooldownMs": 1200
+        }
+      },
+      "tier": 4
+    },
+    {
+      "id": "ranger-emblem",
+      "name": "Ranger Emblem",
+      "tier": 4,
+      "price": 64,
+      "sprite": "items/ranger-emblem.png",
+      "description": "+15% ranged damage.",
+      "effects": {
+        "damageMultiplier": {
+          "bow": 1.15,
+          "gun": 1.15,
+          "launcher": 1.15,
+          "throwable": 1.15
+        }
+      }
+    },
+    {
+      "id": "leaf-wings",
+      "name": "Leaf Wings",
+      "rarity": "rare",
+      "price": 70,
+      "sprite": "items/leaf-wings.png",
+      "description": "Hold jump in the air to fly. Recharges on landing.",
+      "effects": {
+        "flight": {
+          "durationMs": 900,
+          "speed": 235,
+          "glideFallSpeed": 260
+        },
+        "wings": "leaf-wings"
+      },
+      "tier": 4,
+      "exclusive": "wings"
+    },
+    {
+      "id": "lightning-boots",
+      "name": "Lightning Boots",
+      "tier": 5,
+      "price": 78,
+      "sprite": "items/lightning-boots.png",
+      "description": "+50% move speed and flight.",
+      "effects": {
+        "moveSpeedMultiplier": 1.5,
+        "flight": {
+          "durationMs": 650,
+          "speed": 240,
+          "glideFallSpeed": 300
+        }
+      },
+      "exclusive": "boots"
+    },
+    {
+      "id": "eye-of-the-golem",
+      "name": "Eye of the Golem",
+      "tier": 5,
+      "price": 84,
+      "sprite": "items/eye-of-the-golem.png",
+      "description": "+10% critical strike chance.",
+      "effects": {
+        "critBonus": {
+          "bow": 0.1,
+          "gun": 0.1,
+          "launcher": 0.1,
+          "throwable": 0.1
+        }
+      }
+    },
+    {
+      "id": "worm-scarf",
+      "name": "Worm Scarf",
+      "tier": 5,
+      "price": 88,
+      "sprite": "items/worm-scarf.png",
+      "description": "Take 17% less damage from everything.",
+      "effects": {
+        "damageTakenMultiplier": 0.83
+      }
+    },
+    {
+      "id": "fairy-wings",
+      "name": "Fairy Wings",
+      "rarity": "epic",
+      "price": 110,
+      "sprite": "items/fairy-wings.png",
+      "description": "Longer flight and a gentler fall.",
+      "effects": {
+        "flight": {
+          "durationMs": 1500,
+          "speed": 265,
+          "glideFallSpeed": 200
+        },
+        "wings": "fairy-wings"
+      },
+      "tier": 5,
+      "exclusive": "wings"
+    },
+    {
+      "id": "frostspark-boots",
+      "name": "Frostspark Boots",
+      "tier": 6,
+      "price": 105,
+      "sprite": "items/frostspark-boots.png",
+      "description": "+58% move speed and the longest flight of any boots.",
+      "effects": {
+        "moveSpeedMultiplier": 1.58,
+        "flight": {
+          "durationMs": 750,
+          "speed": 255,
+          "glideFallSpeed": 290
+        }
+      },
+      "exclusive": "boots"
+    },
+    {
+      "id": "sniper-scope",
+      "name": "Sniper Scope",
+      "tier": 6,
+      "price": 120,
+      "sprite": "items/sniper-scope.png",
+      "description": "+10% ranged damage and +10% critical strike chance.",
+      "effects": {
+        "damageMultiplier": {
+          "bow": 1.1,
+          "gun": 1.1,
+          "launcher": 1.1,
+          "throwable": 1.1
+        },
+        "critBonus": {
+          "bow": 0.1,
+          "gun": 0.1,
+          "launcher": 0.1,
+          "throwable": 0.1
+        }
+      }
+    },
+    {
+      "id": "stalkers-quiver",
+      "name": "Stalker's Quiver",
+      "tier": 6,
+      "price": 125,
+      "sprite": "items/stalkers-quiver.png",
+      "description": "+10% bow damage and arrows fly 25% faster.",
+      "effects": {
+        "damageMultiplier": {
+          "bow": 1.1
+        },
+        "projectileSpeedMultiplier": {
+          "bow": 1.25
+        }
+      }
+    },
+    {
+      "id": "destroyer-emblem",
+      "name": "Destroyer Emblem",
+      "tier": 6,
+      "price": 130,
+      "sprite": "items/destroyer-emblem.png",
+      "description": "+10% damage and +8% critical strike chance.",
+      "effects": {
+        "damageMultiplier": {
+          "bow": 1.1,
+          "gun": 1.1,
+          "launcher": 1.1,
+          "throwable": 1.1
+        },
+        "critBonus": {
+          "bow": 0.08,
+          "gun": 0.08,
+          "launcher": 0.08,
+          "throwable": 0.08
+        }
+      }
+    },
+    {
+      "id": "ankh-shield",
+      "name": "Ankh Shield",
+      "tier": 6,
+      "price": 140,
+      "sprite": "items/ankh-shield.png",
+      "description": "+4 defense and immunity to knockback.",
+      "effects": {
+        "defense": 4
+      },
+      "exclusive": "shield"
+    }
+  ]
+}

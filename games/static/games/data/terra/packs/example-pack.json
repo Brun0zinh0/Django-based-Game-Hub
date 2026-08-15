@@ -1,0 +1,78 @@
+{
+  "comment": "A worked example of every key a content pack can use. Entries are added to the base game; an entry that reuses an existing id replaces it instead, which is how a pack rebalances rather than only extends. Sprites here are ones the game already ships, so the pack needs no art of its own; to add your own, drop the files under assets/terra/sprites/ and describe them in itemSprites or frameSprites.",
+
+  "weapons": [
+    {
+      "id": "example-splitbow",
+      "name": "Splitbow",
+      "category": "bow",
+      "tier": 4,
+      "damage": 18,
+      "fireRateMs": 520,
+      "projectileSpeed": 430,
+      "projectileGravity": true,
+      "shots": 3,
+      "spreadDeg": 14,
+      "price": 62,
+      "sprite": "items/demon-bow.png"
+    },
+    {
+      "id": "example-siege-mortar",
+      "name": "Siege Mortar",
+      "category": "launcher",
+      "tier": 5,
+      "damage": 58,
+      "fireRateMs": 1500,
+      "projectileSpeed": 520,
+      "projectileGravity": true,
+      "splashRadius": 168,
+      "price": 95,
+      "sprite": "items/grenade-launcher.png"
+    }
+  ],
+
+  "mobs": [
+    {
+      "id": "example-cinder-wisp",
+      "name": "Cinder Wisp",
+      "hp": 48,
+      "contactDamage": 13,
+      "coins": 7,
+      "weight": 5,
+      "minRound": 8,
+      "maxRound": 999,
+      "color": "#ff9a4a",
+      "sizePx": 28,
+      "behavior": "caster",
+      "speed": 130,
+      "standoff": 250,
+      "shoot": { "everyMs": 2300, "count": 1, "speed": 320, "damage": 11 },
+      "skin": { "id": "base-slime", "useColor": true },
+      "biomes": ["underworld", "crimson"]
+    }
+  ],
+
+  "accessories": [
+    {
+      "id": "example-gunners-charm",
+      "name": "Gunner's Charm",
+      "tier": 4,
+      "price": 66,
+      "sprite": "items/magic-quiver.png",
+      "description": "+12% gun damage and bullets fly faster.",
+      "effects": {
+        "damageMultiplier": { "gun": 1.12 },
+        "projectileSpeedMultiplier": { "gun": 1.2 }
+      }
+    }
+  ],
+
+  "achievements": [
+    {
+      "id": "example-splitbow-carried",
+      "name": "Three at Once",
+      "description": "Carry the Splitbow into a round.",
+      "condition": { "weaponsCarried": 1 }
+    }
+  ]
+}

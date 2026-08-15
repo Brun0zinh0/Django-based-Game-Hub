@@ -1,0 +1,991 @@
+{
+  "schema_version": 1,
+  "league": {
+    "id": "unova",
+    "number": 5,
+    "name": "Unova League",
+    "generation": 5,
+    "dex_range": [
+      494,
+      649
+    ],
+    "duels": 24,
+    "battle_format": {
+      "active_per_side": 2,
+      "maximum_party_size": 6,
+      "pc_enabled": true
+    }
+  },
+  "starter_rules": {
+    "count": 2,
+    "choice_pool_size": 4,
+    "level": 5,
+    "featured_starter_count": 1,
+    "featured_starter_ids": [
+      548,
+      551,
+      554
+    ],
+    "early_game_species_ids": [
+      557,
+      559,
+      562,
+      572,
+      570,
+      575,
+      577,
+      580,
+      588,
+      593,
+      596,
+      599
+    ],
+    "allowed_evolution_tags": [
+      "basic",
+      "stage-1"
+    ],
+    "excluded_tags": [
+      "legendary",
+      "mythical",
+      "mega-evolution",
+      "regional-form",
+      "battle-form"
+    ]
+  },
+  "opponent_scaling": {
+    "match_player_party_size": false,
+    "minimum_team_size": 2,
+    "maximum_team_size": 6,
+    "opening_team_size": 2,
+    "team_size_variation_from_duel": 3,
+    "team_size_offsets_by_strength": {
+      "weak": [
+        -1,
+        0
+      ],
+      "mid": [
+        -1,
+        0,
+        1
+      ],
+      "strong": [
+        0,
+        1
+      ],
+      "boss": [
+        0,
+        1
+      ]
+    },
+    "minimum_level": 5,
+    "level_lag": 0.35,
+    "progression_bonus_per_duel": 0.08,
+    "opening_pool_until_duel": 3,
+    "opening_level_until_duel": 1,
+    "opening_level": 4,
+    "opening_species_ids": [
+      557,
+      559,
+      562,
+      572,
+      570,
+      593,
+      588
+    ],
+    "base_stat_total_caps": [
+      {
+        "through_duel": 3,
+        "maximum": 330
+      },
+      {
+        "through_duel": 4,
+        "maximum": 440
+      },
+      {
+        "through_duel": 5,
+        "maximum": 480
+      }
+    ],
+    "allow_stage_2_from_duel": 4,
+    "allow_fully_evolved_from_duel": 8,
+    "excluded_tags": [
+      "legendary",
+      "mythical",
+      "mega-evolution",
+      "regional-form",
+      "battle-form"
+    ],
+    "team_size_by_round": [
+      {
+        "from_duel": 1,
+        "size": 2
+      },
+      {
+        "from_duel": 5,
+        "size": 3
+      },
+      {
+        "from_duel": 10,
+        "size": 4
+      },
+      {
+        "from_duel": 16,
+        "size": 5
+      },
+      {
+        "from_duel": 22,
+        "size": 6
+      }
+    ],
+    "team_size_growth_every_duels": 5,
+    "level_spread": 2
+  },
+  "trainer_rules": {
+    "catalog_generations": [
+      5
+    ],
+    "type_team_bias": 0.75,
+    "boss_every_rounds": 0,
+    "boss_schedule": {},
+    "strength_progression": [
+      {
+        "from_round": 1,
+        "strength": "weak"
+      },
+      {
+        "from_round": 3,
+        "strength": "mid"
+      },
+      {
+        "from_round": 6,
+        "strength": "strong"
+      }
+    ]
+  },
+  "battle_scenes": {
+    "asset_root": "games/assets/pokemon/spriters-resource/battle-scenes/unova/",
+    "default": "route",
+    "scenes": [
+      "route",
+      "grass",
+      "water",
+      "rock",
+      "cave",
+      "pond",
+      "ice",
+      "sand",
+      "gym",
+      "psychic",
+      "rocket",
+      "league",
+      "mountain",
+      "sea",
+      "lake",
+      "autumn-forest",
+      "woodland",
+      "dark-cave",
+      "dune-cave",
+      "glacier",
+      "volcano"
+    ],
+    "specialty_scenes": {
+      "normal": "route",
+      "bug": "autumn-forest",
+      "grass": "woodland",
+      "flying": "mountain",
+      "water": "sea",
+      "rock": "mountain",
+      "ground": "dune-cave",
+      "ghost": "dark-cave",
+      "poison": "dark-cave",
+      "ice": "glacier",
+      "fire": "volcano",
+      "electric": "gym",
+      "steel": "gym",
+      "fighting": "gym",
+      "psychic": "psychic",
+      "fairy": "psychic",
+      "dark": "dark-cave",
+      "dragon": "mountain",
+      "mixed": "route"
+    },
+    "milestone_scenes": {
+      "trio-badge": "gym",
+      "basic-badge": "gym",
+      "insect-badge": "gym",
+      "bolt-badge": "gym",
+      "quake-badge": "gym",
+      "jet-badge": "gym",
+      "freeze-badge": "gym",
+      "legend-badge": "gym",
+      "plasma-dragonspiral-tower": "rocket",
+      "elite-shauntal": "league",
+      "elite-grimsley": "league",
+      "elite-caitlin": "league",
+      "elite-marshal": "league",
+      "unova-champion": "league"
+    },
+    "wild_area_scenes": {
+      "route-1-dreamyard": "route",
+      "pinwheel-forest": "grass",
+      "wellspring-cave-route-3": "cave",
+      "desert-resort": "sand",
+      "chargestone-cave": "cave",
+      "lostlorn-route-16": "grass",
+      "celestial-tower-route-7": "psychic",
+      "mistralton-cave-twist-mountain": "rock",
+      "dragonspiral-tower": "pond",
+      "victory-road-unova": "cave",
+      "giant-chasm": "ice"
+    }
+  },
+  "story_route": {
+    "mode": "level-gated",
+    "minimum_random_duels_before_first_boss": 2,
+    "unlock_hard_mode_on_completion": true,
+    "unlock_next_league_on_completion": true,
+    "unlock_legendary_wilds_on_completion": true,
+    "next_league": {
+      "id": "kalos",
+      "number": 6,
+      "name": "Kalos League"
+    },
+    "milestones": [
+      {
+        "id": "trio-badge",
+        "chapter": "Striaton Gym",
+        "title": "Trio Badge",
+        "trainer_id": "cilan",
+        "trainer_class": "Gym Leader",
+        "minimum_average_level": 8,
+        "minimum_random_duels_after_previous": 1,
+        "team_species_ids": [
+          557,
+          559,
+          564
+        ],
+        "intro_line": "Welcome! Which of us three you face was decided the moment you chose your partner."
+      },
+      {
+        "id": "basic-badge",
+        "chapter": "Nacrene Gym",
+        "title": "Basic Badge",
+        "trainer_id": "lenora",
+        "trainer_class": "Gym Leader",
+        "minimum_average_level": 12,
+        "minimum_random_duels_after_previous": 1,
+        "team_species_ids": [
+          557,
+          560,
+          558
+        ],
+        "intro_line": "A librarian reads her opponents like books. Yours is a quick read!"
+      },
+      {
+        "id": "insect-badge",
+        "chapter": "Castelia Gym",
+        "title": "Insect Badge",
+        "trainer_id": "burgh",
+        "trainer_class": "Gym Leader",
+        "minimum_average_level": 16,
+        "minimum_random_duels_after_previous": 1,
+        "team_species_ids": [
+          597,
+          610,
+          595
+        ],
+        "intro_line": "My bug Pokemon are living works of art. Try not to smudge them!"
+      },
+      {
+        "id": "bolt-badge",
+        "chapter": "Nimbasa Gym",
+        "title": "Bolt Badge",
+        "trainer_id": "elesa",
+        "trainer_class": "Gym Leader",
+        "minimum_average_level": 20,
+        "minimum_random_duels_after_previous": 1,
+        "team_species_ids": [
+          640,
+          575,
+          576
+        ],
+        "intro_line": "You're about to be part of my show. Try to shine, at least a little!"
+      },
+      {
+        "id": "quake-badge",
+        "chapter": "Driftveil Gym",
+        "title": "Quake Badge",
+        "trainer_id": "clay",
+        "trainer_class": "Gym Leader",
+        "minimum_average_level": 24,
+        "minimum_random_duels_after_previous": 1,
+        "team_species_ids": [
+          605,
+          589,
+          583
+        ],
+        "intro_line": "In business and in battle, I dig up everything my opponent buried!"
+      },
+      {
+        "id": "jet-badge",
+        "chapter": "Mistralton Gym",
+        "title": "Jet Badge",
+        "trainer_id": "skyla",
+        "trainer_class": "Gym Leader",
+        "minimum_average_level": 28,
+        "minimum_random_duels_after_previous": 1,
+        "team_species_ids": [
+          581,
+          574,
+          634
+        ],
+        "intro_line": "The runway's clear! Let's see if you can handle turbulence!"
+      },
+      {
+        "id": "freeze-badge",
+        "chapter": "Icirrus Gym",
+        "title": "Freeze Badge",
+        "trainer_id": "brycen",
+        "trainer_class": "Gym Leader",
+        "minimum_average_level": 32,
+        "minimum_random_duels_after_previous": 1,
+        "team_species_ids": [
+          636,
+          668,
+          667
+        ],
+        "intro_line": "I gave up the silver screen for this ice. It has never once melted for a challenger."
+      },
+      {
+        "id": "legend-badge",
+        "chapter": "Opelucid Gym",
+        "title": "Legend Badge",
+        "trainer_id": "drayden",
+        "trainer_class": "Gym Leader",
+        "minimum_average_level": 36,
+        "minimum_random_duels_after_previous": 1,
+        "team_species_ids": [
+          664,
+          674,
+          665
+        ],
+        "intro_line": "Dragons demand truth from those who face them. Show me yours!"
+      },
+      {
+        "id": "plasma-dragonspiral-tower",
+        "chapter": "Dragonspiral Tower",
+        "title": "Team Plasma Showdown",
+        "trainer_id": "n",
+        "trainer_class": "Plasma King",
+        "minimum_average_level": 40,
+        "minimum_random_duels_after_previous": 1,
+        "team_species_ids": [
+          624,
+          618,
+          620,
+          637,
+          654
+        ],
+        "level_offset": 1,
+        "intro_line": "The hero of legend has answered me. Can your ideals stand before it?"
+      },
+      {
+        "id": "elite-shauntal",
+        "chapter": "Elite Four",
+        "title": "Elite Shauntal",
+        "trainer_id": "shauntal",
+        "trainer_class": "Elite Four",
+        "minimum_average_level": 44,
+        "minimum_random_duels_after_previous": 1,
+        "team_species_ids": [
+          616,
+          479,
+          646,
+          676,
+          662
+        ],
+        "level_offset": 1,
+        "intro_line": "Ah! A challenger walks in - what a marvelous opening line for my next novel!"
+      },
+      {
+        "id": "elite-grimsley",
+        "chapter": "Elite Four",
+        "title": "Elite Grimsley",
+        "trainer_id": "grimsley",
+        "trainer_class": "Elite Four",
+        "minimum_average_level": 47,
+        "minimum_random_duels_after_previous": 0,
+        "team_species_ids": [
+          613,
+          606,
+          563,
+          483,
+          678
+        ],
+        "level_offset": 1,
+        "intro_line": "Fortune is a blade that cuts both ways. Shall we see which of us it favours?"
+      },
+      {
+        "id": "elite-caitlin",
+        "chapter": "Elite Four",
+        "title": "Elite Caitlin",
+        "trainer_id": "caitlin",
+        "trainer_class": "Elite Four",
+        "minimum_average_level": 50,
+        "minimum_random_duels_after_previous": 0,
+        "team_species_ids": [
+          571,
+          614,
+          581,
+          629,
+          632
+        ],
+        "level_offset": 1,
+        "intro_line": "You woke me from a lovely dream. This had better be worth it."
+      },
+      {
+        "id": "elite-marshal",
+        "chapter": "Elite Four",
+        "title": "Elite Marshal",
+        "trainer_id": "marshal",
+        "trainer_class": "Elite Four",
+        "minimum_average_level": 53,
+        "minimum_random_duels_after_previous": 0,
+        "team_species_ids": [
+          591,
+          592,
+          613,
+          673,
+          587
+        ],
+        "level_offset": 1,
+        "intro_line": "My master taught me to meet strength with respect. Prepare yourself!"
+      },
+      {
+        "id": "unova-champion",
+        "chapter": "Champion's Room",
+        "title": "Unova Champion",
+        "trainer_id": "alder",
+        "trainer_class": "League Champion",
+        "minimum_average_level": 56,
+        "minimum_random_duels_after_previous": 0,
+        "team_species_ids": [
+          670,
+          679,
+          674,
+          637,
+          642,
+          690
+        ],
+        "level_offset": 2,
+        "finale": true,
+        "intro_line": "You've fought your way to the top of Unova. Let's make this a battle worth the climb!"
+      }
+    ]
+  },
+  "progression": {
+    "experience_share": true,
+    "base_experience_per_duel": 420,
+    "experience_growth_per_duel": 105,
+    "experience_to_next_level_base": 45,
+    "experience_to_next_level_growth": 12,
+    "bench_experience_share": 0.5,
+    "knockout_experience_bonus": 0.2
+  },
+  "item_quality_progression": {
+    "capture": [
+      {
+        "from_duel": 1,
+        "item_ids": [
+          4
+        ]
+      },
+      {
+        "from_duel": 2,
+        "item_ids": [
+          4,
+          3
+        ]
+      },
+      {
+        "from_duel": 5,
+        "item_ids": [
+          4,
+          3,
+          2
+        ]
+      }
+    ],
+    "healing": [
+      {
+        "from_duel": 1,
+        "item_ids": [
+          13,
+          22,
+          24,
+          26
+        ]
+      },
+      {
+        "from_duel": 3,
+        "item_ids": [
+          13,
+          22,
+          24,
+          26,
+          27,
+          28
+        ]
+      },
+      {
+        "from_duel": 5,
+        "item_ids": [
+          13,
+          22,
+          24,
+          26,
+          27,
+          28,
+          21,
+          29
+        ]
+      },
+      {
+        "from_duel": 8,
+        "item_ids": [
+          22,
+          24,
+          25,
+          21,
+          29,
+          19,
+          20
+        ]
+      }
+    ]
+  },
+  "league_progression": {
+    "hard_mode_unlock_rounds": 23,
+    "legendary_wild_unlock_rounds": 23,
+    "mew_species_id": 547,
+    "mew_mastery_excluded_species_ids": [
+      547
+    ]
+  },
+  "between_duel_recovery": {
+    "normal": {
+      "heal_hp": true,
+      "revive_fainted": true,
+      "clear_status": true,
+      "restore_pp": true
+    },
+    "hard": {
+      "heal_hp": false,
+      "heal_hp_ratio": 0.5,
+      "revive_fainted": false,
+      "revive_choice_count": 1,
+      "revive_hp_ratio": 0.5,
+      "clear_status": true,
+      "restore_pp": true,
+      "block_battle_healing": true
+    }
+  },
+  "duel_rewards": {
+    "money_base": 650,
+    "money_growth_per_duel": 125,
+    "legacy_base": 2,
+    "legacy_growth_every": 3,
+    "drop_count_min": 2,
+    "drop_count_max": 4,
+    "capture_item_ids": [
+      4,
+      3,
+      2
+    ],
+    "healing_item_ids": [
+      13,
+      22,
+      21,
+      24
+    ]
+  },
+  "wild_encounter": {
+    "fee_base": 300,
+    "fee_growth_per_duel": 40,
+    "level_lag": 0,
+    "legendary_chance_by_mode": {
+      "normal": 0.04,
+      "hard": 0.12
+    },
+    "mew_chance": 0.04,
+    "area_progression": [
+      {
+        "id": "route-1-dreamyard",
+        "name": "Route 1 · Dreamyard",
+        "short_name": "Route 1",
+        "from_milestone": 0,
+        "species_ids": [
+          557,
+          559,
+          562,
+          570,
+          584
+        ]
+      },
+      {
+        "id": "pinwheel-forest",
+        "name": "Pinwheel Forest",
+        "short_name": "Pinwheel",
+        "from_milestone": 1,
+        "species_ids": [
+          593,
+          596,
+          599,
+          601,
+          572,
+          585,
+          588
+        ]
+      },
+      {
+        "id": "wellspring-cave-route-3",
+        "name": "Wellspring Cave · Route 3",
+        "short_name": "Wellspring",
+        "from_milestone": 2,
+        "species_ids": [
+          577,
+          580,
+          582,
+          575,
+          566,
+          568,
+          669,
+          641
+        ]
+      },
+      {
+        "id": "desert-resort",
+        "name": "Desert Resort",
+        "short_name": "Desert Resort",
+        "from_milestone": 3,
+        "species_ids": [
+          604,
+          607,
+          610,
+          612,
+          609,
+          614,
+          615,
+          564,
+          623
+        ]
+      },
+      {
+        "id": "chargestone-cave",
+        "name": "Chargestone Cave",
+        "short_name": "Chargestone",
+        "from_milestone": 4,
+        "species_ids": [
+          648,
+          652,
+          650,
+          655,
+          578,
+          645
+        ]
+      },
+      {
+        "id": "lostlorn-route-16",
+        "name": "Lostlorn Forest · Route 16",
+        "short_name": "Lostlorn",
+        "from_milestone": 5,
+        "species_ids": [
+          625,
+          621,
+          563,
+          630,
+          627,
+          638,
+          677,
+          617
+        ]
+      },
+      {
+        "id": "celestial-tower-route-7",
+        "name": "Celestial Tower · Route 7",
+        "short_name": "Celestial",
+        "from_milestone": 6,
+        "species_ids": [
+          660,
+          658,
+          633,
+          643,
+          640,
+          558,
+          689
+        ]
+      },
+      {
+        "id": "mistralton-cave-twist-mountain",
+        "name": "Mistralton Cave · Twist Mountain",
+        "short_name": "Twist Mtn.",
+        "from_milestone": 7,
+        "species_ids": [
+          663,
+          586,
+          578,
+          666,
+          672,
+          619,
+          603
+        ]
+      },
+      {
+        "id": "dragonspiral-tower",
+        "name": "Dragonspiral Tower",
+        "short_name": "Dragonspiral",
+        "from_milestone": 8,
+        "species_ids": [
+          675,
+          674,
+          639,
+          667,
+          635,
+          592
+        ]
+      },
+      {
+        "id": "victory-road-unova",
+        "name": "Victory Road",
+        "short_name": "Victory Road",
+        "from_milestone": 9,
+        "species_ids": [
+          686,
+          664,
+          685,
+          684,
+          578,
+          586,
+          672,
+          647,
+          671
+        ]
+      },
+      {
+        "id": "giant-chasm",
+        "name": "Giant Chasm",
+        "short_name": "Giant Chasm",
+        "from_milestone": 10,
+        "species_ids": [
+          668,
+          676,
+          682,
+          680,
+          679,
+          584,
+          591
+        ]
+      }
+    ],
+    "excluded_tags": [
+      "legendary",
+      "mythical",
+      "mega-evolution",
+      "regional-form",
+      "battle-form"
+    ]
+  },
+  "shop": {
+    "offer_count": 5,
+    "general_offer_count": 3,
+    "evolution_item_chance": 0.25,
+    "held_item_chance": 0.55,
+    "mega_stone_chance": 0.16,
+    "mega_stones_from_duel": 5,
+    "general_capture_item_ids": [
+      4,
+      3,
+      2
+    ],
+    "general_healing_item_ids": [
+      13,
+      22,
+      21,
+      20,
+      24
+    ],
+    "price_by_category": {
+      "capture": 250,
+      "healing": 350,
+      "evolution": 1100,
+      "held": 900,
+      "mega-stone": 2400,
+      "vitamin": 900
+    },
+    "price_variance": 0.18,
+    "sell_ratio": 0.5,
+    "slots_by_round": [
+      {
+        "from_duel": 1,
+        "slots": 4
+      },
+      {
+        "from_duel": 4,
+        "slots": 6
+      },
+      {
+        "from_duel": 9,
+        "slots": 8
+      },
+      {
+        "from_duel": 15,
+        "slots": 10
+      }
+    ],
+    "rarity_weights_by_round": [
+      {
+        "from_duel": 1,
+        "weights": {
+          "common": 72,
+          "uncommon": 25,
+          "rare": 3,
+          "epic": 0
+        }
+      },
+      {
+        "from_duel": 4,
+        "weights": {
+          "common": 52,
+          "uncommon": 32,
+          "rare": 14,
+          "epic": 2
+        }
+      },
+      {
+        "from_duel": 9,
+        "weights": {
+          "common": 34,
+          "uncommon": 34,
+          "rare": 27,
+          "epic": 5
+        }
+      },
+      {
+        "from_duel": 15,
+        "weights": {
+          "common": 20,
+          "uncommon": 30,
+          "rare": 38,
+          "epic": 12
+        }
+      }
+    ],
+    "price_by_rarity": {
+      "common": 1,
+      "uncommon": 1.6,
+      "rare": 2.8,
+      "epic": 4.5
+    },
+    "guaranteed_categories": [
+      "healing"
+    ],
+    "item_rarity": {
+      "capture": {
+        "4": "common",
+        "3": "uncommon",
+        "2": "rare",
+        "1": "epic"
+      },
+      "healing": {
+        "13": "common",
+        "22": "common",
+        "26": "common",
+        "24": "uncommon",
+        "27": "uncommon",
+        "28": "uncommon",
+        "21": "rare",
+        "29": "rare",
+        "25": "rare",
+        "19": "rare",
+        "20": "epic"
+      },
+      "evolution": "rare",
+      "mega-stone": "epic",
+      "vitamin": "uncommon"
+    },
+    "category_weights": {
+      "capture": 22,
+      "healing": 30,
+      "held": 30,
+      "evolution": 12,
+      "mega-stone": 6,
+      "vitamin": 16
+    },
+    "max_per_category": {
+      "held": 4,
+      "evolution": 1,
+      "mega-stone": 1,
+      "vitamin": 2,
+      "healing": 4
+    },
+    "refresh": {
+      "fee_base": 400,
+      "fee_growth_per_duel": 80,
+      "fee_multiplier_per_use": 1.25
+    },
+    "general_vitamin_item_ids": [
+      63,
+      64,
+      65,
+      66,
+      67,
+      70
+    ]
+  },
+  "hard_mode": {
+    "enemy_held_item_chance": 0.28,
+    "boss_held_item_chance": 0.7,
+    "boss_mega_chance": 0.75,
+    "experience_multiplier": 0.7,
+    "item_rarity": {
+      "mega-stone": "rare"
+    },
+    "enemy_items_from_duel": 3
+  },
+  "rival": {
+    "name": "Cheren",
+    "trainer_class": "Rival",
+    "sprite": "games/assets/pokemon/trainers/showdown-all/cheren.png",
+    "intro_line": "I have to know why I'm strong. Beating you is part of the answer.",
+    "rounds": [
+      4,
+      10,
+      16
+    ],
+    "level_offsets": [
+      0,
+      1,
+      2
+    ],
+    "teams": [
+      [
+        562,
+        572,
+        548
+      ],
+      [
+        563,
+        573,
+        560,
+        549
+      ],
+      [
+        563,
+        574,
+        561,
+        558,
+        550
+      ]
+    ]
+  }
+}

@@ -6,29 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#0e1828">
     <title>Pokemon Rogue · Double Battle</title>
-    <link rel="stylesheet" href="{% static 'games/pokemon_rogue.css' %}?v=20260808-9">
+    <link rel="stylesheet" href="{% static 'games/pokemon_rogue.css' %}?v=20260809-3">
     <script defer src="{% static 'games/vendor/phaser-3.90.0.min.js' %}"></script>
     <script defer src="{% static 'games/pokemon_battle_abilities.js' %}?v=20260807-8"></script>
     <script defer src="{% static 'games/pokemon_multi_turn_moves.js' %}?v=20260804-2"></script>
     <script defer src="{% static 'games/pokemon_battle_field.js' %}?v=20260804-2"></script>
     <script defer src="{% static 'games/pokemon_held_items.js' %}?v=20260804-3"></script>
-    <script defer src="{% static 'games/pokemon_battle_simulation.js' %}?v=20260808-7"></script>
-    <script defer src="{% static 'games/pokemon_run_simulation.js' %}?v=20260808-6"></script>
+    <script defer src="{% static 'games/pokemon_battle_simulation.js' %}?v=20260809-2"></script>
+    <script defer src="{% static 'games/pokemon_run_simulation.js' %}?v=20260809-1"></script>
     <script defer src="{% static 'games/pokemon_move_effects.js' %}?v=20260803-2"></script>
     <script defer src="{% static 'games/pokemon_battle_audio.js' %}?v=20260807-6"></script>
     <script defer src="{% static 'games/pokemon_showdown_move_anims.js' %}?v=20260806-1"></script>
-    <script defer src="{% static 'games/pokemon_showdown_anim_adapter.js' %}?v=20260808-2"></script>
-    <script defer src="{% static 'games/pokemon_battle_scene.js' %}?v=20260808-7"></script>
-    <script defer src="{% static 'games/pokemon_rogue.js' %}?v=20260808-7"></script>
+    <script defer src="{% static 'games/pokemon_showdown_anim_adapter.js' %}?v=20260808-8"></script>
+    <script defer src="{% static 'games/pokemon_battle_scene.js' %}?v=20260809-6"></script>
+    <script defer src="{% static 'games/pokemon_rogue.js' %}?v=20260809-4"></script>
 </head>
 <body>
+    <div class="console-viewport">
+    <div class="console-fit">
     <main
         id="pokemon-rogue-app"
-        class="pokemon-battle-page"
+        class="pokemon-battle-page console-stage"
         data-data-url="{% static 'games/data/pokemon/gen1.json' %}?v=20260802-1"
-        data-league-url="{% static 'games/data/pokemon/leagues/kanto.json' %}?v=20260808-3"
-        data-league-urls='{"1": "{% static "games/data/pokemon/leagues/kanto.json" %}?v=20260808-3", "2": "{% static "games/data/pokemon/leagues/johto.json" %}?v=20260808-3", "3": "{% static "games/data/pokemon/leagues/hoenn.json" %}?v=20260808-3", "4": "{% static "games/data/pokemon/leagues/sinnoh.json" %}?v=20260808-3"}'
-        data-trainers-url="{% static 'games/data/pokemon/trainers.json' %}?v=20260808-1"
+        data-league-url="{% static 'games/data/pokemon/leagues/kanto.json' %}?v=20260809-2"
+        data-league-urls='{"1": "{% static "games/data/pokemon/leagues/kanto.json" %}?v=20260809-2", "2": "{% static "games/data/pokemon/leagues/johto.json" %}?v=20260809-2", "3": "{% static "games/data/pokemon/leagues/hoenn.json" %}?v=20260809-2", "4": "{% static "games/data/pokemon/leagues/sinnoh.json" %}?v=20260809-2", "5": "{% static "games/data/pokemon/leagues/unova.json" %}?v=20260809-2", "6": "{% static "games/data/pokemon/leagues/kalos.json" %}?v=20260809-2"}'
+        data-trainers-url="{% static 'games/data/pokemon/trainers.json' %}?v=20260809-1"
         data-gender-url="{% static 'games/data/pokemon/gender.json' %}?v=20260803-1"
         data-sprites-url="{% static 'games/assets/pokemon/showdown/manifest.json' %}?v=20260808-1"
         data-static-prefix="{% static '' %}"
@@ -92,12 +94,6 @@
                 </div>
                 <span id="league-dex-pill" class="league-dex-pill">DEX 001—151</span>
             </header>
-            <div class="league-rules-strip">
-                <span><strong>2</strong> STARTERS</span>
-                <span><strong>Lv.5</strong> START</span>
-                <span><strong>2v2</strong> BATTLES</span>
-                <span><strong>6</strong> PARTY MAX</span>
-            </div>
             <section class="league-career" aria-label="Kanto League progression">
                 <div class="league-career-grid">
                     <button id="open-league-dex" class="career-card dex-career-card" type="button">
@@ -116,7 +112,7 @@
                         <em id="mew-status">Mew mastery locked</em>
                     </article>
                 </div>
-                <div class="league-milestone">
+                <div id="league-milestone" class="league-milestone">
                     <div>
                         <strong id="league-milestone-label">KANTO STORY · 0 / 14</strong>
                         <span id="league-milestone-copy">Defeat the Champion to unlock Hard Mode + Johto League</span>
@@ -298,10 +294,6 @@
                     role="img"
                     aria-label="Pokemon battlefield"
                 ></div>
-                <button id="mega-trigger" class="mega-trigger" type="button" hidden>
-                    <span class="mega-trigger-icon" aria-hidden="true">◆</span>
-                    <span class="mega-trigger-copy"><b>MEGA</b><small id="mega-trigger-hint">EVOLVE</small></span>
-                </button>
             </div>
 
             <div class="battle-console">
@@ -335,6 +327,10 @@
                     <section id="battle-submenu" class="battle-submenu" aria-label="Command details" hidden>
                         <div class="submenu-heading">
                             <h2 id="submenu-title">Choose</h2>
+                            <button id="mega-trigger" class="mega-trigger" type="button" aria-pressed="false" hidden>
+                                <span class="mega-trigger-icon" aria-hidden="true">◆</span>
+                                <span class="mega-trigger-copy"><b>MEGA</b><small id="mega-trigger-hint">EVOLVE</small></span>
+                            </button>
                             <button id="submenu-back" class="submenu-back" type="button">BACK</button>
                         </div>
                         <div id="submenu-content" class="submenu-content"></div>
@@ -479,5 +475,7 @@
         <audio id="pokemon-background-music" preload="auto" playsinline></audio>
         {{ pokemon_music_tracks|json_script:"pokemon-music-tracks" }}
     </main>
+    </div>
+    </div>
 </body>
 </html>

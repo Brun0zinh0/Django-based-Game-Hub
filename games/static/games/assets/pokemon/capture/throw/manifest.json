@@ -117,5 +117,59 @@
     ],
     "rowFrames": 5,
     "source": "spriters-resource asset 41995 (HGSS trainer backsprites, ETHAN|LYRA band)"
+  },
+  "hilbert": {
+    "frames": 5,
+    "sizes": [
+      [
+        52,
+        108
+      ],
+      [
+        64,
+        117
+      ],
+      [
+        64,
+        117
+      ],
+      [
+        69,
+        89
+      ],
+      [
+        69,
+        89
+      ]
+    ],
+    "poses": 3,
+    "source": "bw-trainers-back.png (Barubary rip)"
+  },
+  "hilda": {
+    "frames": 5,
+    "sizes": [
+      [
+        54,
+        117
+      ],
+      [
+        64,
+        112
+      ],
+      [
+        64,
+        112
+      ],
+      [
+        72,
+        98
+      ],
+      [
+        72,
+        98
+      ]
+    ],
+    "poses": 3,
+    "source": "bw-trainers-back.png (Barubary rip)"
   }
 }

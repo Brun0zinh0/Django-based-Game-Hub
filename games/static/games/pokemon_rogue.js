@@ -55,6 +55,7 @@
         openLeagueDex: document.getElementById("open-league-dex"),
         leagueDexCount: document.getElementById("league-dex-count"),
         leagueBestRound: document.getElementById("league-best-round"),
+        leagueMilestone: document.getElementById("league-milestone"),
         leagueMilestoneLabel: document.getElementById("league-milestone-label"),
         leagueMilestoneCopy: document.getElementById("league-milestone-copy"),
         leagueMilestoneBar: document.getElementById("league-milestone-bar"),
@@ -359,6 +360,25 @@
                     document.removeEventListener("pointerdown", unlock);
                     document.removeEventListener("keydown", unlock);
                 }, { once: true });
+                // Only the tab you are looking at makes a sound. A hidden one
+                // used to keep playing, so a second window of the game -- or
+                // the Battle Royale, which ships the same nine tracks -- laid
+                // another copy of the same song over the first, a minute or so
+                // out of step. It resumes only if hiding is what stopped it,
+                // so a tab that never got its first click stays silent.
+                let pausedByHiding = false;
+                document.addEventListener("visibilitychange", () => {
+                    if (!audio) return;
+                    if (document.hidden) {
+                        if (!audio.paused) {
+                            pausedByHiding = true;
+                            audio.pause();
+                        }
+                    } else if (pausedByHiding) {
+                        pausedByHiding = false;
+                        attemptPlayback();
+                    }
+                });
                 appliedPlaylist = gameSettings.musicPlaylist;
                 audio.volume = gameSettings.musicVolume;
                 applyPlaylist(appliedPlaylist, true);
@@ -675,7 +695,7 @@
         changes.forEach((change) => {
             const row = document.createElement("article");
             row.className = "team-report-row";
-            row.classList.toggle("is-benched", !change.participated);
+            row.classList.toggle("is-benched", !change.participated && !change.appeared);
 
             const name = document.createElement("span");
             name.className = "team-report-name";
@@ -686,12 +706,17 @@
 
             const gain = document.createElement("span");
             gain.className = "team-report-exp";
-            gain.textContent = change.participated
-                ? `+${change.experience} EXP${change.knockouts ? ` · ${change.knockouts} KO` : ""}`
-                : `+${change.experience} EXP · benched`;
+            gain.textContent = change.appeared
+                ? "JOINED THE TEAM"
+                : change.participated
+                    ? `+${change.experience} EXP${change.knockouts ? ` · ${change.knockouts} KO` : ""}`
+                    : `+${change.experience} EXP · benched`;
             row.append(gain);
 
             const notes = [];
+            if (change.appeared) {
+                notes.push(`Left behind by ${change.appeared.from}! · Lv.${change.appeared.level}`);
+            }
             if (change.leveledUp) notes.push(`Lv.${change.fromLevel} → Lv.${change.toLevel}`);
             if (change.evolution) notes.push("Evolved!");
             if (change.learnedMoves?.length) notes.push(`Learned ${change.learnedMoves.join(", ")}`);
@@ -979,6 +1004,10 @@
             ? `Hard Mode${nextLeagueName ? ` and the ${nextLeagueName}` : ""} ${nextLeagueName ? "are" : "is"} unlocked`
             : `Defeat the Champion to unlock Hard Mode${nextLeagueName ? ` + ${nextLeagueName}` : ""}`;
         ui.leagueMilestoneBar.style.width = `${percentage}%`;
+        // The tracker earns its place while the story is running. Once the
+        // Champion is beaten it only restates a finished thing, so it goes --
+        // same reasoning that removed the rules strip above it.
+        ui.leagueMilestone.hidden = Boolean(progress.leagueCompleted);
         ui.legendaryStatus.textContent = progress.legendaryWildUnlocked ? "LEGENDARY WILDS UNLOCKED" : "LEGENDARIES LOCKED";
         ui.mewStatus.textContent = progress.mewWildUnlocked
             ? "Mew can now appear in the wild"
@@ -1123,6 +1152,8 @@
         2: { file: "ui/johto-title.svg", alt: "Johto League wordmark in the HeartGold style" },
         3: { file: "ui/hoenn-title.svg", alt: "Pokemon Emerald wordmark" },
         4: { file: "ui/sinnoh-title.svg", alt: "Sinnoh League wordmark in the Platinum style" },
+        5: { file: "ui/unova-title.svg", alt: "Unova League wordmark in the Black and White style" },
+        6: { file: "ui/kalos-title.svg", alt: "Kalos League wordmark in the X and Y style" },
     };
 
     // The region map behind the league screens. Leagues with no map of their
@@ -1378,7 +1409,7 @@
         // Which back sprite throws the ball, and which trainer stands on the
         // far platform during the intro. Wild battles have no enemy trainer.
         const intro = {
-            playerThrowCharacter: ({ 1: "red", 2: "ethan", 3: "lyra", 4: "lucas" })[Number(leagueConfig.league.number)] || "red",
+            playerThrowCharacter: ({ 1: "red", 2: "ethan", 3: "lyra", 4: "lucas", 5: "hilbert", 6: "hilda" })[Number(leagueConfig.league.number)] || "red",
             enemyTrainerSpriteUrl: battleMode === "wild" ? null : spriteUrl(activeTrainer?.sprite || ""),
             wild: battleMode === "wild",
         };
@@ -1389,9 +1420,12 @@
         await scene.playIntro?.();
         locked = false;
         renderStatus();
+        // The openers used to explain the format and re-ask the question
+        // that promptNextCommand asks a moment later -- 128 characters for
+        // the wild one. They now announce and stop; the prompt follows.
         const opening = battleMode === "wild"
-            ? `A wild ${engine.teams.enemy[0].name} appeared in ${leagueRun.state.wildEncounter?.area?.name || regionName()}! This is a 1 vs 1 encounter: weaken it or throw a Poke Ball from the Bag.`
-            : `${trainerLabel(activeTrainer)} sent out ${engine.teams.enemy.slice(0, 2).map((pokemon) => pokemon.name).join(" and ")}! What will ${engine.teams.player[0].name} and its ally do?`;
+            ? `A wild ${engine.teams.enemy[0].name} appeared!`
+            : `${trainerLabel(activeTrainer)} sent out ${engine.teams.enemy.slice(0, 2).map((pokemon) => pokemon.name).join(" and ")}!`;
         setMessage(opening, "prompt");
         ui.attack.focus();
     }
@@ -1701,7 +1735,7 @@
     }
 
     function showMegaTrigger() {
-        if (!ui.mega || !ui.stageFrame) return;
+        if (!ui.mega) return;
         const actor = currentActor();
         if (!actor || locked || engine.result || typeof engine.megaUsability !== "function") {
             hideMegaTrigger();
@@ -1712,45 +1746,41 @@
             return;
         }
         const usability = engine.megaUsability("player", actor.teamIndex);
-        ui.mega.hidden = false;
-        ui.mega.disabled = !usability.usable;
-        ui.mega.title = usability.usable
-            ? `Mega Evolve into ${window.PokemonBattleSimulation.megaDisplayName(actor.pokemon.megaTarget.species)}`
-            : usability.reason;
-        if (ui.megaHint) {
-            ui.megaHint.textContent = usability.usable
-                ? window.PokemonBattleSimulation.megaDisplayName(actor.pokemon.megaTarget.species).toUpperCase()
-                : "UNAVAILABLE";
+        // Armed means this Pokemon already declared its Mega for the turn.
+        const armed = Boolean(engine.pendingMega?.player
+            && engine.pendingMega.player.actorSlot === actor.slot);
+        // The button exists only while the choice does: usable right now, or
+        // already declared this turn. A stone whose Mega is spent for the
+        // battle -- or blocked for any other reason -- hides it rather than
+        // leaving a greyed UNAVAILABLE ghost in the heading.
+        if (!usability.usable && !armed) {
+            hideMegaTrigger();
+            return;
         }
-        positionMegaTrigger(actor.slot);
-    }
-
-    // The HP cards are drawn inside the canvas, which is scaled to whatever
-    // width the container has, so the card's canvas coordinates are converted
-    // into CSS pixels before the button is placed.
-    function positionMegaTrigger(slot) {
-        const canvas = ui.renderer?.querySelector("canvas");
-        if (!canvas || !ui.mega) return;
-        const CANVAS_WIDTH = 960;
-        const CANVAS_HEIGHT = 480;
-        // Matches POSITIONS.player[...] cardX / cardY in the battle scene.
-        const cardX = 598;
-        const cardY = slot === 1 ? 364 : 284;
-        const scaleX = canvas.clientWidth / CANVAS_WIDTH;
-        const scaleY = canvas.clientHeight / CANVAS_HEIGHT;
-        const frame = ui.stageFrame.getBoundingClientRect();
-        const canvasBox = canvas.getBoundingClientRect();
-        const offsetX = canvasBox.left - frame.left;
-        const offsetY = canvasBox.top - frame.top;
-        // Tucked against the card's top-left corner, just above it.
-        ui.mega.style.left = `${offsetX + cardX * scaleX}px`;
-        ui.mega.style.top = `${offsetY + (cardY - 26) * scaleY}px`;
+        const formName = window.PokemonBattleSimulation
+            .megaDisplayName(actor.pokemon.megaTarget.species);
+        ui.mega.hidden = false;
+        ui.mega.disabled = false;
+        ui.mega.classList.toggle("is-armed", armed);
+        ui.mega.setAttribute("aria-pressed", armed ? "true" : "false");
+        ui.mega.title = armed
+            ? `${formName} this turn`
+            : `Mega Evolve into ${formName}`;
+        if (ui.megaHint) {
+            // The button already says MEGA; the hint names the form.
+            ui.megaHint.textContent = armed
+                ? "READY THIS TURN"
+                : formName.replace(/^Mega\s+/i, "").toUpperCase();
+        }
     }
 
     function triggerMega() {
         if (locked || engine.result) return;
         const actor = currentActor();
         if (!actor) return;
+        // Already declared: the gold state is the answer, and clicking it
+        // again is not an error worth reporting.
+        if (engine.pendingMega?.player && engine.pendingMega.player.actorSlot === actor.slot) return;
         try {
             engine.queueMega(actor.slot);
             // Mega Evolving is not this Pokemon's action any more -- it
@@ -1758,7 +1788,9 @@
             // so the command menu stays on it, waiting for a move.
             const name = window.PokemonBattleSimulation
                 .megaDisplayName(actor.pokemon.megaTarget.species);
-            setMessage(`${actor.pokemon.name} will Mega Evolve into ${name}. Now choose its move.`, "prompt");
+            // The gold button already says READY THIS TURN, and the command
+            // prompt asks for the move next.
+            setMessage(`${actor.pokemon.name} will Mega Evolve into ${name}!`, "prompt");
             showMegaTrigger();
             renderStatus();
         } catch (error) {
@@ -1766,10 +1798,19 @@
         }
     }
 
-    function showSubmenu(title) {
+    // `dismissable: false` is for a choice the battle will not go on without.
+    // BACK there closed the only menu that could answer the prompt and left
+    // every command button disabled, with nothing but a page reload to
+    // recover -- so the forced replacement after a faint hides it.
+    function showSubmenu(title, { dismissable = true } = {}) {
+        // The trigger belongs to the move list alone; showMoves re-shows it
+        // right after this. Without the reset it lingered into the team and
+        // item views.
+        hideMegaTrigger();
         ui.submenu.hidden = false;
         ui.commandPanel.classList.add("is-submenu-open");
         ui.submenuTitle.textContent = title;
+        ui.submenuBack.hidden = !dismissable;
         ui.submenuContent.replaceChildren();
     }
 
@@ -1870,29 +1911,70 @@
     function showSelfSwitchChoices(actor, moveIndex, targetSlot) {
         const move = actor.pokemon.moves[moveIndex];
         showSubmenu(`Who comes in after ${move.displayName}?`);
+        ui.submenuContent.append(renderPartyChoices({
+            eligible: engine.selfSwitchChoices(actor.slot),
+            roleLabel: "COMES IN",
+            onPick: (teamIndex) => {
+                try {
+                    const ready = engine.queueMove(actor.slot, moveIndex, targetSlot, teamIndex);
+                    actionQueued(ready);
+                } catch (error) {
+                    setMessage(error.message, "danger");
+                }
+            },
+        }));
+    }
+
+    // Picking a switch-in, naming a successor for U-turn and sending out the
+    // next Pokemon after a faint are the same question asked three times, so
+    // they share one card: sprite, name, level, HP and status. The whole
+    // party is always listed, with the ones that cannot come in dimmed
+    // rather than dropped -- how much bench is left is most of what the
+    // choice turns on, and after a faint it is the thing you most want to see.
+    function renderPartyChoices({ eligible, roleLabel, onPick }) {
+        const allowed = new Set(eligible.map((entry) => entry.teamIndex));
         const grid = document.createElement("div");
-        grid.className = "target-grid";
-        engine.selfSwitchChoices(actor.slot).forEach(({ pokemon, teamIndex }) => {
-            const button = makeButton(
-                `${pokemon.name} · ${pokemon.hp}/${pokemon.maxHp} HP`,
-                "target-choice target-ally",
-                () => {
-                    try {
-                        const ready = engine.queueMove(actor.slot, moveIndex, targetSlot, teamIndex);
-                        actionQueued(ready);
-                    } catch (error) {
-                        setMessage(error.message, "danger");
-                    }
-                },
-            );
-            const icon = document.createElement("span");
-            applyPokemonIcon(icon, pokemon);
-            button.prepend(icon);
-            const badges = renderStatusBadges(pokemon, "status-badges");
-            if (badges) button.append(badges);
+        grid.className = "battle-team-grid";
+        engine.teams.player.forEach((pokemon, teamIndex) => {
+            const activeSlot = engine.active.player.indexOf(teamIndex);
+            const isActive = activeSlot >= 0;
+            const canPick = allowed.has(teamIndex);
+            const button = makeButton("", "battle-team-choice", () => onPick(teamIndex));
+            button.disabled = !canPick;
+            button.classList.toggle("is-active", isActive && !pokemon.fainted);
+            button.classList.toggle("is-fainted", pokemon.fainted);
+            const sprite = document.createElement("img");
+            sprite.alt = "";
+            sprite.src = spriteUrl(pokemon.sprites.front);
+            const copy = document.createElement("span");
+            const heading = document.createElement("strong");
+            heading.textContent = `${pokemon.name}${genderSymbol(pokemon)} · Lv.${pokemon.level}`;
+            if (pokemon.ability?.name) heading.title = `Ability: ${pokemon.ability.name}`;
+            const status = document.createElement("small");
+            status.textContent = pokemon.fainted ? "FAINTED" : `${pokemon.hp}/${pokemon.maxHp} HP`;
+            if (!pokemon.fainted) {
+                const badges = renderStatusBadges(pokemon, "status-badges");
+                if (badges) {
+                    status.append(" ");
+                    status.append(badges);
+                    button.title = statusSummary(pokemon);
+                }
+            }
+            copy.append(heading, status);
+            // The fainted one still occupies its slot while you choose, so it
+            // is not labelled ACTIVE -- its HP line already says FAINTED.
+            const role = pokemon.fainted
+                ? ""
+                : (isActive ? `ACTIVE ${activeSlot + 1}` : (canPick ? roleLabel : "UNABLE"));
+            if (role) {
+                const roleLine = document.createElement("em");
+                roleLine.textContent = role;
+                copy.append(roleLine);
+            }
+            button.append(sprite, copy);
             grid.append(button);
         });
-        ui.submenuContent.append(grid);
+        return grid;
     }
 
     function showPokemonTeam() {
@@ -1903,47 +1985,21 @@
         ui.pokemon.setAttribute("aria-pressed", "true");
         ui.item.setAttribute("aria-pressed", "false");
         showSubmenu(`Team · switch ${actor.pokemon.name}`);
-        const grid = document.createElement("div");
-        grid.className = "battle-team-grid";
-        engine.teams.player.forEach((pokemon, teamIndex) => {
-            const activeSlot = engine.active.player.indexOf(teamIndex);
-            const isActive = activeSlot >= 0;
-            const button = makeButton("", "battle-team-choice", () => {
+        const occupied = new Set(engine.active.player);
+        ui.submenuContent.append(renderPartyChoices({
+            eligible: engine.teams.player
+                .map((pokemon, teamIndex) => ({ pokemon, teamIndex }))
+                .filter(({ pokemon, teamIndex }) => !occupied.has(teamIndex) && !pokemon.fainted),
+            roleLabel: "SWITCH IN",
+            onPick: (teamIndex) => {
                 try {
                     const ready = engine.queueSwitch(actor.slot, teamIndex);
                     actionQueued(ready);
                 } catch (error) {
                     setMessage(error.message, "danger");
                 }
-            });
-            button.disabled = isActive || pokemon.fainted;
-            button.classList.toggle("is-active", isActive);
-            button.classList.toggle("is-fainted", pokemon.fainted);
-            const sprite = document.createElement("img");
-            sprite.alt = "";
-            sprite.src = spriteUrl(pokemon.sprites.front);
-            const copy = document.createElement("span");
-            const heading = document.createElement("strong");
-            heading.textContent = `${pokemon.name}${genderSymbol(pokemon)} · Lv.${pokemon.level}`;
-            if (pokemon.ability?.name) heading.title = `Ability: ${pokemon.ability.name}`;
-            const status = document.createElement("small");
-            status.textContent = pokemon.fainted
-                ? "FAINTED"
-                : `${pokemon.hp}/${pokemon.maxHp} HP`;
-            if (!pokemon.fainted) {
-                const badges = renderStatusBadges(pokemon, "status-badges");
-                if (badges) {
-                    status.append(" ");
-                    status.append(badges);
-                }
-            }
-            const role = document.createElement("em");
-            role.textContent = isActive ? `ACTIVE ${activeSlot + 1}` : "SWITCH IN";
-            copy.append(heading, status, role);
-            button.append(sprite, copy);
-            grid.append(button);
-        });
-        ui.submenuContent.append(grid);
+            },
+        }));
     }
 
     function showItems() {
@@ -2116,23 +2172,12 @@
         const slot = slots[0];
         const remaining = slots.length > 1 ? ` (${slots.length} slots to fill)` : "";
         setMessage(`Choose the next Pokemon${remaining}.`, "prompt");
-        showSubmenu("Send out which Pokemon?");
-        const grid = document.createElement("div");
-        grid.className = "target-grid";
-        engine.replacementChoices().forEach(({ pokemon, teamIndex }) => {
-            const button = makeButton(
-                `${pokemon.name}${genderSymbol(pokemon)} · Lv.${pokemon.level} · ${pokemon.hp}/${pokemon.maxHp} HP`,
-                "target-choice target-ally",
-                () => sendReplacement(slot, teamIndex),
-            );
-            const badges = renderStatusBadges(pokemon, "status-badges");
-            if (badges) {
-                button.append(badges);
-                button.title = statusSummary(pokemon);
-            }
-            grid.append(button);
-        });
-        ui.submenuContent.append(grid);
+        showSubmenu("Send out which Pokemon?", { dismissable: false });
+        ui.submenuContent.append(renderPartyChoices({
+            eligible: engine.replacementChoices(),
+            roleLabel: "SEND OUT",
+            onPick: (teamIndex) => sendReplacement(slot, teamIndex),
+        }));
     }
 
     async function sendReplacement(slot, teamIndex) {
@@ -2182,24 +2227,22 @@
         icon.src = itemSpriteUrl(offer.item);
         iconWrap.append(icon);
         name.textContent = offer.item.name;
-        const category = offer.category.replace("-", " ").toUpperCase();
-        const owned = runState.inventory[offer.item.key]?.quantity || 0;
-        blurb.textContent = `${category} · Owned: ${owned}${offer.stock === 1 ? " · LAST ONE" : ""}`;
-        // Rarity is what drives price and availability now, so it is shown.
-        if (offer.rarity) {
-            card.dataset.rarity = offer.rarity;
-            const gem = document.createElement("span");
-            gem.className = "shop-rarity";
-            gem.textContent = offer.rarity.toUpperCase();
-            copy.append(gem);
-        }
+        // No rarity tier, category or owned count. Rarity still sets what a
+        // thing costs and how often it appears, but naming the tier told the
+        // player nothing they could act on; the icon already says what the
+        // item is, and the Bag already says how many they hold. What is left
+        // is the one fact that changes a decision at the counter.
+        blurb.textContent = offer.stock === 1 ? "LAST ONE" : "";
         const showDescription = offer.category === "held"
             || offer.category === "mega-stone"
             || String(offer.item.name).toLowerCase().includes("berry");
         card.classList.toggle("is-pokemon", offer.category === "evolution" || offer.category === "mega-stone");
         card.classList.toggle("has-description", showDescription);
         buy.disabled = offer.stock <= 0 || runState.money < offer.price;
-        copy.append(name, blurb);
+        copy.append(name);
+        // An empty line would still take its margin, so it only exists when
+        // there is something to say.
+        if (blurb.textContent) copy.append(blurb);
         if (showDescription) {
             const description = document.createElement("small");
             description.className = "shop-card-description";
@@ -2245,7 +2288,10 @@
 
             const order = document.createElement("span");
             order.className = "room-pokemon-order";
-            order.textContent = index < 2 ? `LEAD ${index + 1}` : `#${index + 1}`;
+            // "LEAD 1" ran 56px wide on a 161px card -- a third of it, sitting
+            // over the name. The slot number is already the card's position in
+            // this list, so the badge only has to say which two are leading.
+            order.textContent = index < 2 ? "LEAD" : `#${index + 1}`;
 
             const sprite = document.createElement("img");
             sprite.alt = "";
@@ -2282,13 +2328,9 @@
                 chip.textContent = type.toUpperCase();
                 types.append(chip);
             });
-            if (pokemon.ability?.name) {
-                const abilityChip = document.createElement("span");
-                abilityChip.className = "room-ability";
-                abilityChip.textContent = pokemon.ability.name.toUpperCase();
-                abilityChip.title = abilityDescription(pokemon.ability.slug) || `Ability: ${pokemon.ability.name}`;
-                types.append(abilityChip);
-            }
+            // No ability chip here. These cards are 161px wide and the name,
+            // level, HP, EXP and types already fill them; the ability is on
+            // the Pokemon's own summary where there is room to read it.
             details.append(heading, track, hp, types);
             card.append(order, sprite, details);
             attachTeamCardBehaviour(card, index, pokemon);
@@ -2441,25 +2483,6 @@
         ui.roomDialogContent.append(grid);
     }
 
-    function showHealingTargets(item) {
-        const canUse = (location, index, pokemon) => item.effect.type === "revive"
-            ? pokemon.fainted
-            : !pokemon.fainted && pokemon.hp < pokemon.maxHp;
-        showPokemonTargets(`Use ${item.name}`, canUse, (location, index, pokemon) => {
-            if (item.quantity <= 0) return;
-            if (item.effect.type === "revive") {
-                pokemon.fainted = false;
-                pokemon.hp = Math.max(1, Math.floor(pokemon.maxHp * item.effect.ratio));
-            } else {
-                pokemon.hp = Math.min(pokemon.maxHp, pokemon.hp + item.effect.amount);
-            }
-            item.quantity -= 1;
-            ui.roomDialog.close();
-            setRoomFeedback(`${item.name} restored ${pokemon.name}.`, "success");
-            renderBetweenRounds();
-        });
-    }
-
     function showEvolutionTargets(item) {
         const groupName = item.category === "mega-stone" ? "mega-stones" : "evolution-items";
         const canUse = (location, index, pokemon) => Boolean(leagueRun.evolutionForItem(pokemon, item.id, groupName));
@@ -2503,11 +2526,12 @@
             quantity.textContent = `×${item.quantity}`;
             const actions = document.createElement("span");
             actions.className = "bag-actions";
-            if (item.effect || item.category === "evolution" || item.category === "mega-stone") {
-                const use = makeButton("USE", "inventory-button", () => {
-                    if (item.effect) showHealingTargets(item);
-                    else showEvolutionTargets(item);
-                });
+            // Evolution items and mega stones only. Healing and reviving get
+            // their own USE below, which goes through the run engine; this
+            // condition used to include item.effect as well, so every potion
+            // grew a second USE button beside the first.
+            if (item.category === "evolution" || item.category === "mega-stone") {
+                const use = makeButton("USE", "inventory-button", () => showEvolutionTargets(item));
                 actions.append(use);
             }
             const sellControl = document.createElement("span");
@@ -2531,31 +2555,47 @@
                     setRoomFeedback(error.message, "danger");
                 }
             };
-            const usable = item.effect?.type === "heal" || item.effect?.type === "revive";
+            const effectType = item.effect?.type;
+            const usable = effectType === "heal" || effectType === "revive" || effectType === "vitamin";
             if (usable) {
                 const use = makeButton("USE", "inventory-button inventory-use", () => {
+                    const canTake = ({ pokemon }) => {
+                        if (effectType === "revive") return pokemon.fainted;
+                        // A drink works on a fainted Pokemon too -- it raises a
+                        // stat rather than treating anything.
+                        if (effectType === "vitamin") return leagueRun.canTakeVitamin(pokemon, item.effect.stat);
+                        return !pokemon.fainted && pokemon.hp < pokemon.maxHp;
+                    };
                     const targets = runState.party
                         .map((pokemon, index) => ({ pokemon, index }))
-                        .filter(({ pokemon }) => item.effect.type === "revive"
-                            ? pokemon.fainted
-                            : !pokemon.fainted && pokemon.hp < pokemon.maxHp);
+                        .filter(canTake);
                     if (!targets.length) {
-                        showBagDialog(item.effect.type === "revive"
-                            ? "No fainted Pokemon to revive." : "Everyone is already healthy.");
+                        showBagDialog({
+                            revive: "No fainted Pokemon to revive.",
+                            vitamin: `Everyone has had all the ${item.name} they can take.`,
+                        }[effectType] || "Everyone is already healthy.");
                         return;
                     }
                     openRoomDialog("BAG", `Use ${item.name} on...`, "bag");
                     const grid = document.createElement("div");
                     grid.className = "target-grid team-target-grid";
                     targets.forEach(({ pokemon, index }) => {
+                        // A drink is a running total, so the count is what the
+                        // player needs to see, not the HP bar.
+                        const label = effectType === "vitamin"
+                            ? `${pokemon.name} · ${item.effect.label} ${leagueRun.vitaminCount(pokemon, item.effect.stat)}/10`
+                            : `${pokemon.name} · ${pokemon.fainted ? "FAINTED" : `${pokemon.hp}/${pokemon.maxHp} HP`}`;
                         const pickTarget = makeButton(
-                            `${pokemon.name} · ${pokemon.fainted ? "FAINTED" : `${pokemon.hp}/${pokemon.maxHp} HP`}`,
+                            label,
                             "target-choice", () => {
                                 try {
                                     const used = leagueRun.useItemFromBag(item.key, "party", index);
-                                    setRoomFeedback(`${used.item.name} used on ${used.pokemon.name}.`, "success");
+                                    const note = used.stat
+                                        ? `${used.item.name} raised ${used.pokemon.name}'s ${used.stat}. (${used.taken}/10)`
+                                        : `${used.item.name} used on ${used.pokemon.name}.`;
+                                    setRoomFeedback(note, "success");
                                     renderBetweenRounds();
-                                    showBagDialog(`${used.item.name} used on ${used.pokemon.name}.`);
+                                    showBagDialog(note);
                                 } catch (error) {
                                     setRoomFeedback(error.message, "danger");
                                     showBagDialog(error.message);
@@ -2567,9 +2607,16 @@
                 });
                 actions.append(use);
             }
-            const sell = makeButton("SELL", "inventory-button inventory-sell", () => sellQuantity(amount.value));
-            const sellAll = makeButton(`SELL ALL · ₽${item.sellPrice * item.quantity}`, "inventory-button inventory-sell inventory-sell-all", () => sellQuantity(item.quantity));
-            sellControl.append(amount, sell, sellAll);
+            // With one in the bag, "SELL" and "SELL ALL" are the same button
+            // twice and the stepper can only be 1. Show a single price then.
+            if (item.quantity === 1) {
+                sellControl.append(makeButton(`SELL · ₽${item.sellPrice}`,
+                    "inventory-button inventory-sell", () => sellQuantity(1)));
+            } else {
+                const sell = makeButton("SELL", "inventory-button inventory-sell", () => sellQuantity(amount.value));
+                const sellAll = makeButton(`SELL ALL · ₽${item.sellPrice * item.quantity}`, "inventory-button inventory-sell inventory-sell-all", () => sellQuantity(item.quantity));
+                sellControl.append(amount, sell, sellAll);
+            }
             actions.append(sellControl);
             row.append(sprite, copy, quantity, actions);
             list.append(row);
@@ -3006,7 +3053,7 @@
         const leave = makeButton("LEAVE ENCOUNTER", "dialog-button dialog-button-danger", () => {
             leagueRun.leaveWildEncounter();
             ui.roomDialog.close();
-            setRoomFeedback("The wild Pokemon escaped. The encounter is used for this round.");
+            setRoomFeedback("The wild Pokemon escaped.");
             renderBetweenRounds();
         });
         ui.roomDialogContent.append(card, balls, leave);
@@ -3063,7 +3110,7 @@
         const storyGuidance = story.nextReady
             ? `${milestoneTrainerName(story.next)} is ready for a story battle at ${story.next.chapter}.`
             : story.next
-                ? `Next milestone: ${story.next.title} at average Lv.${story.requiredLevel}. Random Trainers fill the road between bosses.`
+                ? `Next: ${story.next.title} at avg Lv.${story.requiredLevel}.`
                 : "The regional story is complete.";
         // A wild encounter is not a duel: completeDuel never runs, so nothing
         // is healed and nothing is paid. Report what actually happened rather
@@ -3074,7 +3121,7 @@
             ? `${wildSummary} ${storyGuidance}`
             : runState.mode === "hard"
                 ? `Hard Mode: HP and KOs persist. ${storyGuidance}`
-                : `Your team fully recovered. ${storyGuidance}`);
+                : `Team recovered. ${storyGuidance}`);
         ui.wildEncounter.focus();
     }
 
@@ -3260,6 +3307,209 @@
         renderStatus();
     }
 
+    // --- animation viewer -------------------------------------------------
+    // Dev mode: /pokemon-rogue/?anim-viewer=1 boots the same data the game
+    // uses, then mounts a fixed 1v1 battle whose only job is to play a named
+    // move. window.AnimViewer.capture(slug) returns a contact sheet of real
+    // rendered frames as a data URL, so an animation is looked at before it
+    // ships. Add &headless=1 to drive Phaser's loop from timers, which lets
+    // frames render even when the tab never composites.
+    async function startAnimViewer(params) {
+        if (params.has("headless")) {
+            window.requestAnimationFrame = (cb) => window.setTimeout(() => cb(performance.now()), 16);
+            window.cancelAnimationFrame = (id) => window.clearTimeout(id);
+        }
+        const SIM = window.PokemonBattleSimulation;
+        const speciesOf = (id) => dataset.pokemon.find((entry) => Number(entry.id) === id);
+        const mk = (id) => SIM.createCombatant(speciesOf(id), dataset.moves, { level: 50 });
+        const viewerEngine = new SIM.BattleEngine({
+            playerTeam: [mk(3), mk(6)],
+            enemyTeam: [mk(9), mk(59)],
+            inventory: {},
+            movesById: dataset.moves,
+            activePerSide: { player: 1, enemy: 1 },
+            aiProfile: "wild",
+        });
+        ui.loading.hidden = true;
+        ui.shell.hidden = false;
+        const view = await window.PokemonBattleView.createGame(
+            "battle-renderer", viewerEngine, app.dataset.staticPrefix, null, null);
+        const findMove = (raw) => {
+            const wanted = String(raw || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+            return Object.values(dataset.moves).find((move) =>
+                String(move.slug || move.name || "").replace(/[^a-z0-9]/g, "") === wanted) || null;
+        };
+        const snap = () => new Promise((resolve) => view.game.renderer.snapshot((image) => resolve(image)));
+        // The game stages a move's DS pieces in preload, which is enough
+        // there because a fielded Pokemon always knows the moves it uses.
+        // The viewer plays anything, so it stages them on demand -- without
+        // this, a scripted move whose art was never loaded throws, falls
+        // back, and the viewer reviews the fallback instead of the move.
+        const ensureDsTextures = (slugRaw) => new Promise((resolve) => {
+            const slug = String(slugRaw).replace(/-/g, "");
+            const entry = (view.scene.dsParticles?.moves || {})[slug];
+            const set = entry?.textures?.length ? entry.textures
+                : (entry?.texture ? [{ file: entry.texture }] : []);
+            const pieces = set.slice(0, 3); // DS_TEXTURES_PER_MOVE
+            const missing = pieces.some((piece, index) => !view.scene.textures.exists(`dsp-${slug}-${index}`));
+            if (!missing) {
+                resolve();
+                return;
+            }
+            pieces.forEach((piece, index) => {
+                const key = `dsp-${slug}-${index}`;
+                if (!view.scene.textures.exists(key)) {
+                    view.scene.load.image(key,
+                        view.scene.spriteUrl(`games/assets/pokemon/ds-particles/${piece.file}?v=4`));
+                }
+            });
+            view.scene.load.once(Phaser.Loader.Events.COMPLETE, resolve);
+            view.scene.load.start();
+        });
+        window.AnimViewer = {
+            scene: view.scene,
+            game: view.game,
+            async play(raw) {
+                const move = findMove(raw);
+                if (!move) throw new Error(`No move called "${raw}"`);
+                await ensureDsTextures(String(move.slug || move.name || ""));
+                await view.scene.playEvents([{
+                    type: "move",
+                    side: "player",
+                    actorIndex: 0,
+                    targetSide: "enemy",
+                    targetIndex: 0,
+                    moveId: move.id,
+                    moveName: move.display_name || move.name,
+                    moveSlug: move.slug || move.name,
+                    moveType: move.type,
+                    movePower: move.power,
+                    damageClass: move.damage_class || "physical",
+                    priority: 0,
+                    targetNumber: 0,
+                    spreadFollowUp: false,
+                    hits: 1,
+                    message: "",
+                }], () => {}, async () => {});
+            },
+            // A two-column strip of timestamped frames, as one data URL.
+            // `pace: "melee"` samples fast and early. A lunge-and-mark move
+            // is over in half a second, so at the default interval the strip
+            // catches the field before and after it and nothing in between --
+            // three separate moves looked broken that way before a live probe
+            // showed they were fine.
+            async capture(raw, options) {
+                const config = options || {};
+                const melee = config.pace === "melee";
+                const frames = config.frames || (melee ? 8 : 10);
+                const everyMs = config.everyMs || (melee ? 70 : 180);
+                const scale = config.scale || 0.42;
+                const shots = [];
+                const playing = this.play(raw);
+                for (let index = 0; index < frames; index += 1) {
+                    shots.push({ atMs: Math.round(index * everyMs), image: await snap() });
+                    await new Promise((resolve) => setTimeout(resolve, everyMs));
+                }
+                await playing;
+                const width = Math.max(1, Math.round(shots[0].image.width * scale));
+                const height = Math.max(1, Math.round(shots[0].image.height * scale));
+                const columns = 2;
+                const canvas = document.createElement("canvas");
+                canvas.width = columns * width;
+                canvas.height = Math.ceil(shots.length / columns) * height;
+                const context = canvas.getContext("2d");
+                context.fillStyle = "#232830";
+                context.fillRect(0, 0, canvas.width, canvas.height);
+                shots.forEach((shot, index) => {
+                    const x = (index % columns) * width;
+                    const y = Math.floor(index / columns) * height;
+                    context.drawImage(shot.image, x, y, width, height);
+                    context.fillStyle = "#f2f6fb";
+                    context.font = "12px monospace";
+                    context.fillText(`${shot.atMs}ms`, x + 6, y + 16);
+                });
+                return canvas.toDataURL("image/png");
+            },
+            // Capture straight to tmp/anim-captures/<name>.png. Handing a
+            // sheet back through the console meant several round trips and a
+            // size ceiling that silently dropped the tail of the last one;
+            // the file is one read instead.
+            async captureToFile(raw, name, options) {
+                const dataUrl = await this.capture(raw, options);
+                const response = await fetch("/anim-capture/", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ name: name || String(raw).replace(/[^A-Za-z0-9_-]/g, ""), dataUrl }),
+                });
+                if (!response.ok) throw new Error(`capture save failed: ${response.status}`);
+                return response.json();
+            },
+            // A labelled strip of several moves, saved as one file.
+            async captureSheet(slugs, name, options) {
+                const config = options || {};
+                const urls = [];
+                for (const slug of slugs) {
+                    urls.push({ slug, url: await this.capture(slug, config) });
+                    await new Promise((resolve) => setTimeout(resolve, 250));
+                }
+                const images = await Promise.all(urls.map((entry) => new Promise((resolve) => {
+                    const image = new Image();
+                    image.onload = () => resolve(image);
+                    image.src = entry.url;
+                })));
+                const sheet = document.createElement("canvas");
+                sheet.width = images.reduce((total, image) => total + image.width, 0) + 16;
+                sheet.height = Math.max(...images.map((image) => image.height)) + 20;
+                const context = sheet.getContext("2d");
+                context.fillStyle = "#191d24";
+                context.fillRect(0, 0, sheet.width, sheet.height);
+                let x = 0;
+                images.forEach((image, index) => {
+                    context.drawImage(image, x, 20);
+                    context.fillStyle = "#8fd8a0";
+                    context.font = "bold 13px monospace";
+                    context.fillText(urls[index].slug.toUpperCase(), x + 5, 14);
+                    x += image.width + 8;
+                });
+                const response = await fetch("/anim-capture/", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ name, dataUrl: sheet.toDataURL("image/png") }),
+                });
+                if (!response.ok) throw new Error(`sheet save failed: ${response.status}`);
+                return response.json();
+            },
+        };
+        // A small bar for reviewing by hand; capture() is what the scripted
+        // review drives.
+        const bar = document.createElement("div");
+        bar.style.cssText = "position:fixed;top:10px;left:10px;z-index:99;display:flex;gap:6px;"
+            + "padding:8px;border-radius:8px;background:rgba(10,22,36,0.92);";
+        const input = document.createElement("input");
+        input.placeholder = "move, e.g. razor-leaf";
+        input.style.cssText = "width:190px;padding:4px 8px;font:inherit;";
+        const button = document.createElement("button");
+        button.type = "button";
+        button.textContent = "PLAY";
+        const sheet = document.createElement("img");
+        sheet.alt = "";
+        sheet.style.cssText = "position:fixed;bottom:10px;left:10px;z-index:99;max-width:44vw;"
+            + "max-height:70vh;border:2px solid #33475c;border-radius:6px;";
+        button.addEventListener("click", async () => {
+            button.disabled = true;
+            try {
+                sheet.src = await window.AnimViewer.capture(input.value);
+            } catch (error) {
+                console.warn(error);
+                input.value = error.message;
+            } finally {
+                button.disabled = false;
+            }
+        });
+        bar.append(input, button);
+        document.body.append(bar, sheet);
+    }
+
     async function boot() {
         try {
             ui.loadingText.textContent = "Loading league rules and Radical Red data...";
@@ -3321,7 +3571,9 @@
             const params = new URLSearchParams(window.location.search);
             selectedRunMode = params.get("mode") === "hard" && leagueRun.progress.hardModeUnlocked ? "hard" : "normal";
             renderProgressUi();
-            if (params.get("screen") === "room") {
+            if (params.has("anim-viewer")) {
+                await startAnimViewer(params);
+            } else if (params.get("screen") === "room") {
                 const previewStarters = leagueRun.getStarterPool().slice(0, leagueConfig.starter_rules.count);
                 leagueRun.start(previewStarters.map((pokemon) => pokemon.id), selectedRunMode);
                 engine = createEngine(runState.party, runState.inventory, leagueRun.buildEnemyTeam());
@@ -3346,6 +3598,57 @@
         }
     }
 
+    // The game is one fixed-size console scaled to fit the window, so every
+    // screen paints identically instead of each one sizing itself off the
+    // viewport. CSS can hold a fixed stage but cannot scale it to fit on both
+    // axes at once, so the factor is worked out here and handed back as a
+    // custom property. The breakpoint matches the one in pokemon_rogue.css:
+    // below it the responsive layout takes over, because a 1240px stage on a
+    // phone would scale to under a third and be unreadable.
+    const CONSOLE_QUERY = "(min-width: 880px) and (min-height: 640px)";
+    function fitConsole() {
+        const stage = document.querySelector(".console-stage");
+        if (!stage) return;
+        const root = document.documentElement;
+        const active = window.matchMedia(CONSOLE_QUERY).matches;
+        document.body.classList.toggle("console-scaled", active);
+        if (!active) {
+            root.style.removeProperty("--console-scale");
+            return;
+        }
+        const styles = getComputedStyle(root);
+        const width = parseFloat(styles.getPropertyValue("--console-width")) || 1240;
+        const height = parseFloat(styles.getPropertyValue("--console-height")) || 900;
+        const scale = Math.min(window.innerWidth / width, window.innerHeight / height);
+        root.style.setProperty("--console-scale", String(Math.round(scale * 1000) / 1000));
+    }
+
+    // A scale left over from a different window size is not a cosmetic
+    // problem: the console ends up taller than the window, and the row of
+    // buttons along the bottom -- the one that starts the next fight included
+    // -- sits under the edge where nothing can click it. So recompute on
+    // everything that can change the window, not just `resize`: a page
+    // restored from the back/forward cache never fires one, and a window
+    // resized while the tab was hidden may not either.
+    // Deliberately synchronous. Coalescing these into a requestAnimationFrame
+    // looked tidier and quietly reintroduced the same failure: a tab that is
+    // not compositing never runs the callback, so the scale stayed stale and
+    // the console stayed too big for its window. The work is a few style
+    // reads; a burst of resize events can afford it.
+    function scheduleFitConsole() {
+        fitConsole();
+    }
+    window.addEventListener("resize", scheduleFitConsole);
+    window.addEventListener("orientationchange", scheduleFitConsole);
+    window.addEventListener("pageshow", scheduleFitConsole);
+    document.addEventListener("visibilitychange", scheduleFitConsole);
+    window.visualViewport?.addEventListener("resize", scheduleFitConsole);
+    if (typeof ResizeObserver === "function") {
+        new ResizeObserver(scheduleFitConsole).observe(document.documentElement);
+    }
+    document.fonts?.ready.then(scheduleFitConsole).catch(() => {});
+    fitConsole();
+
     ui.attack.addEventListener("click", showMoves);
     ui.mega?.addEventListener("click", triggerMega);
     ui.pokemon.addEventListener("click", showPokemonTeam);
@@ -3366,8 +3669,7 @@
         try {
             const { fee, nextFee } = leagueRun.refreshShopOffers();
             setRoomFeedback(
-                `The counter was restocked for ₽${fee.toLocaleString("en-US")}. `
-                + `The next restock costs ₽${nextFee.toLocaleString("en-US")}.`,
+                `Restocked for ₽${fee.toLocaleString("en-US")} · next ₽${nextFee.toLocaleString("en-US")}.`,
                 "success",
             );
             renderBetweenRounds();

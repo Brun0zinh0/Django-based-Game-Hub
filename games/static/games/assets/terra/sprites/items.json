@@ -1,0 +1,1834 @@
+{
+ "wooden-bow": {
+  "file": "items/wooden-bow.png",
+  "source": "Item_39",
+  "size": [
+   16,
+   32
+  ]
+ },
+ "copper-bow": {
+  "file": "items/copper-bow.png",
+  "source": "Item_3504",
+  "size": [
+   16,
+   32
+  ]
+ },
+ "flintlock-pistol": {
+  "file": "items/flintlock-pistol.png",
+  "source": "Item_95",
+  "size": [
+   36,
+   22
+  ]
+ },
+ "musket": {
+  "file": "items/musket.png",
+  "source": "Item_96",
+  "size": [
+   56,
+   18
+  ]
+ },
+ "grenade": {
+  "file": "items/grenade.png",
+  "source": "Item_168",
+  "size": [
+   14,
+   20
+  ]
+ },
+ "wooden-yoyo": {
+  "file": "items/wooden-yoyo.png",
+  "source": "Item_3278",
+  "size": [
+   30,
+   26
+  ]
+ },
+ "grenade-launcher": {
+  "file": "items/grenade-launcher.png",
+  "source": "Item_758",
+  "size": [
+   56,
+   22
+  ]
+ },
+ "amethyst-staff": {
+  "file": "items/amethyst-staff.png",
+  "source": "Item_739",
+  "size": [
+   42,
+   40
+  ]
+ },
+ "cloud-in-a-bottle": {
+  "file": "items/cloud-in-a-bottle.png",
+  "source": "Item_53",
+  "size": [
+   20,
+   26
+  ]
+ },
+ "hermes-boots": {
+  "file": "items/hermes-boots.png",
+  "source": "Item_54",
+  "size": [
+   34,
+   28
+  ]
+ },
+ "band-of-regeneration": {
+  "file": "items/band-of-regeneration.png",
+  "source": "Item_49",
+  "size": [
+   28,
+   20
+  ]
+ },
+ "shield-of-cthulhu": {
+  "file": "items/shield-of-cthulhu.png",
+  "source": "Item_3097",
+  "size": [
+   30,
+   32
+  ]
+ },
+ "magic-quiver": {
+  "file": "items/magic-quiver.png",
+  "source": "Item_1321",
+  "size": [
+   30,
+   30
+  ]
+ },
+ "wood-helmet": {
+  "file": "items/wood-helmet.png",
+  "source": "Item_727",
+  "size": [
+   22,
+   16
+  ]
+ },
+ "wood-breastplate": {
+  "file": "items/wood-breastplate.png",
+  "source": "Item_728",
+  "size": [
+   30,
+   20
+  ]
+ },
+ "wood-greaves": {
+  "file": "items/wood-greaves.png",
+  "source": "Item_729",
+  "size": [
+   22,
+   18
+  ]
+ },
+ "copper-helmet": {
+  "file": "items/copper-helmet.png",
+  "source": "Item_89",
+  "size": [
+   24,
+   16
+  ]
+ },
+ "copper-chainmail": {
+  "file": "items/copper-chainmail.png",
+  "source": "Item_80",
+  "size": [
+   30,
+   20
+  ]
+ },
+ "copper-greaves": {
+  "file": "items/copper-greaves.png",
+  "source": "Item_76",
+  "size": [
+   22,
+   18
+  ]
+ },
+ "fossil-helmet": {
+  "file": "items/fossil-helmet.png",
+  "source": "Item_3374",
+  "size": [
+   26,
+   20
+  ]
+ },
+ "fossil-plate": {
+  "file": "items/fossil-plate.png",
+  "source": "Item_3375",
+  "size": [
+   26,
+   22
+  ]
+ },
+ "fossil-greaves": {
+  "file": "items/fossil-greaves.png",
+  "source": "Item_3376",
+  "size": [
+   22,
+   18
+  ]
+ },
+ "heart": {
+  "file": "items/heart.png",
+  "source": "Item_58",
+  "size": [
+   18,
+   18
+  ]
+ },
+ "gold-coin": {
+  "file": "items/gold-coin.png",
+  "source": "Item_73",
+  "size": [
+   12,
+   16
+  ]
+ },
+ "arrow": {
+  "file": "items/arrow.png",
+  "source": "Projectile_1",
+  "size": [
+   14,
+   32
+  ]
+ },
+ "bullet": {
+  "file": "items/bullet.png",
+  "source": "Projectile_14",
+  "size": [
+   2,
+   20
+  ]
+ },
+ "leaf-wings": {
+  "file": "items/leaf-wings.png",
+  "source": "Wings_13",
+  "size": [
+   72,
+   36
+  ]
+ },
+ "fairy-wings": {
+  "file": "items/fairy-wings.png",
+  "source": "Wings_5",
+  "size": [
+   46,
+   56
+  ]
+ },
+ "iron-bow": {
+  "file": "items/iron-bow.png",
+  "source": "Item_99",
+  "size": [
+   16,
+   32
+  ]
+ },
+ "silver-bow": {
+  "file": "items/silver-bow.png",
+  "source": "Item_3510",
+  "size": [
+   16,
+   32
+  ]
+ },
+ "gold-bow": {
+  "file": "items/gold-bow.png",
+  "source": "Item_3516",
+  "size": [
+   16,
+   32
+  ]
+ },
+ "demon-bow": {
+  "file": "items/demon-bow.png",
+  "source": "Item_44",
+  "size": [
+   18,
+   40
+  ]
+ },
+ "tendon-bow": {
+  "file": "items/tendon-bow.png",
+  "source": "Item_796",
+  "size": [
+   22,
+   40
+  ]
+ },
+ "ice-bow": {
+  "file": "items/ice-bow.png",
+  "source": "Item_725",
+  "size": [
+   18,
+   36
+  ]
+ },
+ "shadowflame-bow": {
+  "file": "items/shadowflame-bow.png",
+  "source": "Item_3052",
+  "size": [
+   20,
+   40
+  ]
+ },
+ "life-crystal": {
+  "file": "items/life-crystal.png",
+  "source": "Item_29",
+  "size": [
+   22,
+   22
+  ]
+ },
+ "mana-crystal": {
+  "file": "items/mana-crystal.png",
+  "source": "Item_109",
+  "size": [
+   22,
+   24
+  ]
+ },
+ "blowpipe": {
+  "file": "items/blowpipe.png",
+  "source": "Item_281",
+  "size": [
+   38,
+   8
+  ]
+ },
+ "red-ryder": {
+  "file": "items/red-ryder.png",
+  "source": "Item_1870",
+  "size": [
+   56,
+   18
+  ]
+ },
+ "the-undertaker": {
+  "file": "items/the-undertaker.png",
+  "source": "Item_800",
+  "size": [
+   46,
+   26
+  ]
+ },
+ "minishark": {
+  "file": "items/minishark.png",
+  "source": "Item_98",
+  "size": [
+   56,
+   20
+  ]
+ },
+ "boomstick": {
+  "file": "items/boomstick.png",
+  "source": "Item_964",
+  "size": [
+   40,
+   16
+  ]
+ },
+ "handgun": {
+  "file": "items/handgun.png",
+  "source": "Item_164",
+  "size": [
+   42,
+   30
+  ]
+ },
+ "phoenix-blaster": {
+  "file": "items/phoenix-blaster.png",
+  "source": "Item_219",
+  "size": [
+   42,
+   30
+  ]
+ },
+ "shotgun": {
+  "file": "items/shotgun.png",
+  "source": "Item_534",
+  "size": [
+   40,
+   16
+  ]
+ },
+ "megashark": {
+  "file": "items/megashark.png",
+  "source": "Item_533",
+  "size": [
+   70,
+   28
+  ]
+ },
+ "venus-magnum": {
+  "file": "items/venus-magnum.png",
+  "source": "Item_1255",
+  "size": [
+   52,
+   28
+  ]
+ },
+ "sniper-rifle": {
+  "file": "items/sniper-rifle.png",
+  "source": "Item_1254",
+  "size": [
+   62,
+   24
+  ]
+ },
+ "chain-gun": {
+  "file": "items/chain-gun.png",
+  "source": "Item_1929",
+  "size": [
+   52,
+   32
+  ]
+ },
+ "stynger": {
+  "file": "items/stynger.png",
+  "source": "Item_1258",
+  "size": [
+   46,
+   26
+  ]
+ },
+ "rocket-launcher": {
+  "file": "items/rocket-launcher.png",
+  "source": "Item_759",
+  "size": [
+   52,
+   22
+  ]
+ },
+ "snowman-cannon": {
+  "file": "items/snowman-cannon.png",
+  "source": "Item_1946",
+  "size": [
+   58,
+   32
+  ]
+ },
+ "jack-o-lantern-launcher": {
+  "file": "items/jack-o-lantern-launcher.png",
+  "source": "Item_1784",
+  "size": [
+   48,
+   34
+  ]
+ },
+ "nail-gun": {
+  "file": "items/nail-gun.png",
+  "source": "Item_3107",
+  "size": [
+   44,
+   22
+  ]
+ },
+ "celebration-mk2": {
+  "file": "items/celebration-mk2.png",
+  "source": "Item_3930",
+  "size": [
+   80,
+   32
+  ]
+ },
+ "shuriken": {
+  "file": "items/shuriken.png",
+  "source": "Item_42",
+  "size": [
+   22,
+   22
+  ]
+ },
+ "throwing-knife": {
+  "file": "items/throwing-knife.png",
+  "source": "Item_279",
+  "size": [
+   10,
+   24
+  ]
+ },
+ "spiky-ball": {
+  "file": "items/spiky-ball.png",
+  "source": "Item_161",
+  "size": [
+   14,
+   14
+  ]
+ },
+ "javelin": {
+  "file": "items/javelin.png",
+  "source": "Item_3094",
+  "size": [
+   40,
+   40
+  ]
+ },
+ "frost-daggerfish": {
+  "file": "items/frost-daggerfish.png",
+  "source": "Item_3197",
+  "size": [
+   34,
+   34
+  ]
+ },
+ "bone-javelin": {
+  "file": "items/bone-javelin.png",
+  "source": "Item_3378",
+  "size": [
+   42,
+   42
+  ]
+ },
+ "molotov-cocktail": {
+  "file": "items/molotov-cocktail.png",
+  "source": "Item_2590",
+  "size": [
+   36,
+   36
+  ]
+ },
+ "happy-grenade": {
+  "file": "items/happy-grenade.png",
+  "source": "Item_3548",
+  "size": [
+   14,
+   20
+  ]
+ },
+ "bomb": {
+  "file": "items/bomb.png",
+  "source": "Item_166",
+  "size": [
+   22,
+   30
+  ]
+ },
+ "dynamite": {
+  "file": "items/dynamite.png",
+  "source": "Item_167",
+  "size": [
+   10,
+   32
+  ]
+ },
+ "topaz-staff": {
+  "file": "items/topaz-staff.png",
+  "source": "Item_740",
+  "size": [
+   42,
+   40
+  ]
+ },
+ "sapphire-staff": {
+  "file": "items/sapphire-staff.png",
+  "source": "Item_741",
+  "size": [
+   42,
+   40
+  ]
+ },
+ "emerald-staff": {
+  "file": "items/emerald-staff.png",
+  "source": "Item_742",
+  "size": [
+   42,
+   40
+  ]
+ },
+ "amber-staff": {
+  "file": "items/amber-staff.png",
+  "source": "Item_3377",
+  "size": [
+   40,
+   38
+  ]
+ },
+ "ruby-staff": {
+  "file": "items/ruby-staff.png",
+  "source": "Item_743",
+  "size": [
+   42,
+   40
+  ]
+ },
+ "diamond-staff": {
+  "file": "items/diamond-staff.png",
+  "source": "Item_744",
+  "size": [
+   42,
+   40
+  ]
+ },
+ "golden-shower": {
+  "file": "items/golden-shower.png",
+  "source": "Item_1336",
+  "size": [
+   28,
+   30
+  ]
+ },
+ "demon-scythe": {
+  "file": "items/demon-scythe.png",
+  "source": "Item_272",
+  "size": [
+   28,
+   32
+  ]
+ },
+ "sky-fracture": {
+  "file": "items/sky-fracture.png",
+  "source": "Item_3787",
+  "size": [
+   46,
+   46
+  ]
+ },
+ "frost-staff": {
+  "file": "items/frost-staff.png",
+  "source": "Item_726",
+  "size": [
+   42,
+   42
+  ]
+ },
+ "spectre-staff": {
+  "file": "items/spectre-staff.png",
+  "source": "Item_1446",
+  "size": [
+   44,
+   48
+  ]
+ },
+ "razorblade-typhoon": {
+  "file": "items/razorblade-typhoon.png",
+  "source": "Item_2622",
+  "size": [
+   28,
+   30
+  ]
+ },
+ "rally": {
+  "file": "items/rally.png",
+  "source": "Item_3285",
+  "size": [
+   30,
+   26
+  ]
+ },
+ "artery": {
+  "file": "items/artery.png",
+  "source": "Item_3280",
+  "size": [
+   30,
+   26
+  ]
+ },
+ "code-1": {
+  "file": "items/code-1.png",
+  "source": "Item_3262",
+  "size": [
+   30,
+   26
+  ]
+ },
+ "cascade": {
+  "file": "items/cascade.png",
+  "source": "Item_3282",
+  "size": [
+   30,
+   26
+  ]
+ },
+ "valor": {
+  "file": "items/valor.png",
+  "source": "Item_3317",
+  "size": [
+   30,
+   26
+  ]
+ },
+ "amarok": {
+  "file": "items/amarok.png",
+  "source": "Item_3289",
+  "size": [
+   30,
+   26
+  ]
+ },
+ "yelets": {
+  "file": "items/yelets.png",
+  "source": "Item_3286",
+  "size": [
+   30,
+   26
+  ]
+ },
+ "kraken": {
+  "file": "items/kraken.png",
+  "source": "Item_3291",
+  "size": [
+   30,
+   26
+  ]
+ },
+ "the-eye-of-cthulhu": {
+  "file": "items/the-eye-of-cthulhu.png",
+  "source": "Item_3292",
+  "size": [
+   30,
+   26
+  ]
+ },
+ "silver-helmet": {
+  "file": "items/silver-helmet.png",
+  "source": "Item_91",
+  "size": [
+   24,
+   22
+  ]
+ },
+ "silver-chainmail": {
+  "file": "items/silver-chainmail.png",
+  "source": "Item_82",
+  "size": [
+   30,
+   18
+  ]
+ },
+ "silver-greaves": {
+  "file": "items/silver-greaves.png",
+  "source": "Item_78",
+  "size": [
+   22,
+   18
+  ]
+ },
+ "gold-helmet": {
+  "file": "items/gold-helmet.png",
+  "source": "Item_92",
+  "size": [
+   26,
+   22
+  ]
+ },
+ "gold-chainmail": {
+  "file": "items/gold-chainmail.png",
+  "source": "Item_83",
+  "size": [
+   30,
+   18
+  ]
+ },
+ "gold-greaves": {
+  "file": "items/gold-greaves.png",
+  "source": "Item_79",
+  "size": [
+   22,
+   18
+  ]
+ },
+ "platinum-helmet": {
+  "file": "items/platinum-helmet.png",
+  "source": "Item_696",
+  "size": [
+   28,
+   24
+  ]
+ },
+ "platinum-chainmail": {
+  "file": "items/platinum-chainmail.png",
+  "source": "Item_697",
+  "size": [
+   30,
+   18
+  ]
+ },
+ "platinum-greaves": {
+  "file": "items/platinum-greaves.png",
+  "source": "Item_698",
+  "size": [
+   22,
+   18
+  ]
+ },
+ "necro-helmet": {
+  "file": "items/necro-helmet.png",
+  "source": "Item_151",
+  "size": [
+   26,
+   28
+  ]
+ },
+ "necro-breastplate": {
+  "file": "items/necro-breastplate.png",
+  "source": "Item_152",
+  "size": [
+   26,
+   18
+  ]
+ },
+ "necro-greaves": {
+  "file": "items/necro-greaves.png",
+  "source": "Item_153",
+  "size": [
+   22,
+   18
+  ]
+ },
+ "frost-helmet": {
+  "file": "items/frost-helmet.png",
+  "source": "Item_684",
+  "size": [
+   28,
+   24
+  ]
+ },
+ "frost-breastplate": {
+  "file": "items/frost-breastplate.png",
+  "source": "Item_685",
+  "size": [
+   30,
+   20
+  ]
+ },
+ "frost-leggings": {
+  "file": "items/frost-leggings.png",
+  "source": "Item_686",
+  "size": [
+   22,
+   18
+  ]
+ },
+ "shroomite-mask": {
+  "file": "items/shroomite-mask.png",
+  "source": "Item_1547",
+  "size": [
+   18,
+   22
+  ]
+ },
+ "shroomite-breastplate": {
+  "file": "items/shroomite-breastplate.png",
+  "source": "Item_1549",
+  "size": [
+   34,
+   24
+  ]
+ },
+ "shroomite-leggings": {
+  "file": "items/shroomite-leggings.png",
+  "source": "Item_1550",
+  "size": [
+   22,
+   18
+  ]
+ },
+ "shiny-red-balloon": {
+  "file": "items/shiny-red-balloon.png",
+  "source": "Item_159",
+  "size": [
+   18,
+   32
+  ]
+ },
+ "cobalt-shield": {
+  "file": "items/cobalt-shield.png",
+  "source": "Item_156",
+  "size": [
+   30,
+   28
+  ]
+ },
+ "blizzard-in-a-bottle": {
+  "file": "items/blizzard-in-a-bottle.png",
+  "source": "Item_987",
+  "size": [
+   20,
+   26
+  ]
+ },
+ "spectre-boots": {
+  "file": "items/spectre-boots.png",
+  "source": "Item_405",
+  "size": [
+   34,
+   28
+  ]
+ },
+ "obsidian-shield": {
+  "file": "items/obsidian-shield.png",
+  "source": "Item_397",
+  "size": [
+   28,
+   32
+  ]
+ },
+ "ranger-emblem": {
+  "file": "items/ranger-emblem.png",
+  "source": "Item_491",
+  "size": [
+   28,
+   28
+  ]
+ },
+ "lightning-boots": {
+  "file": "items/lightning-boots.png",
+  "source": "Item_898",
+  "size": [
+   32,
+   28
+  ]
+ },
+ "worm-scarf": {
+  "file": "items/worm-scarf.png",
+  "source": "Item_3224",
+  "size": [
+   28,
+   28
+  ]
+ },
+ "eye-of-the-golem": {
+  "file": "items/eye-of-the-golem.png",
+  "source": "Item_1248",
+  "size": [
+   30,
+   30
+  ]
+ },
+ "frostspark-boots": {
+  "file": "items/frostspark-boots.png",
+  "source": "Item_1862",
+  "size": [
+   32,
+   32
+  ]
+ },
+ "sniper-scope": {
+  "file": "items/sniper-scope.png",
+  "source": "Item_1858",
+  "size": [
+   32,
+   32
+  ]
+ },
+ "destroyer-emblem": {
+  "file": "items/destroyer-emblem.png",
+  "source": "Item_1301",
+  "size": [
+   28,
+   28
+  ]
+ },
+ "stalkers-quiver": {
+  "file": "items/stalkers-quiver.png",
+  "source": "Item_4006",
+  "size": [
+   36,
+   38
+  ]
+ },
+ "ankh-shield": {
+  "file": "items/ankh-shield.png",
+  "source": "Item_1613",
+  "size": [
+   30,
+   34
+  ]
+ },
+ "weapon-forge": {
+  "file": "items/weapon-forge.png",
+  "source": "Item_1071",
+  "size": [
+   26,
+   26
+  ]
+ },
+ "tin-bow": {
+  "file": "items/tin-bow.png",
+  "source": "Item_3498",
+  "size": [
+   16,
+   32
+  ]
+ },
+ "lead-bow": {
+  "file": "items/lead-bow.png",
+  "source": "Item_3492",
+  "size": [
+   16,
+   32
+  ]
+ },
+ "tungsten-bow": {
+  "file": "items/tungsten-bow.png",
+  "source": "Item_3486",
+  "size": [
+   16,
+   32
+  ]
+ },
+ "platinum-bow": {
+  "file": "items/platinum-bow.png",
+  "source": "Item_3480",
+  "size": [
+   16,
+   32
+  ]
+ },
+ "boreal-wood-bow": {
+  "file": "items/boreal-wood-bow.png",
+  "source": "Item_2747",
+  "size": [
+   16,
+   32
+  ]
+ },
+ "palm-wood-bow": {
+  "file": "items/palm-wood-bow.png",
+  "source": "Item_2515",
+  "size": [
+   16,
+   32
+  ]
+ },
+ "rich-mahogany-bow": {
+  "file": "items/rich-mahogany-bow.png",
+  "source": "Item_658",
+  "size": [
+   16,
+   32
+  ]
+ },
+ "ebonwood-bow": {
+  "file": "items/ebonwood-bow.png",
+  "source": "Item_655",
+  "size": [
+   16,
+   32
+  ]
+ },
+ "shadewood-bow": {
+  "file": "items/shadewood-bow.png",
+  "source": "Item_923",
+  "size": [
+   16,
+   32
+  ]
+ },
+ "ash-wood-bow": {
+  "file": "items/ash-wood-bow.png",
+  "source": "Item_5282",
+  "size": [
+   16,
+   34
+  ]
+ },
+ "pearlwood-bow": {
+  "file": "items/pearlwood-bow.png",
+  "source": "Item_661",
+  "size": [
+   16,
+   32
+  ]
+ },
+ "blood-rain-bow": {
+  "file": "items/blood-rain-bow.png",
+  "source": "Item_4381",
+  "size": [
+   20,
+   42
+  ]
+ },
+ "hellwing-bow": {
+  "file": "items/hellwing-bow.png",
+  "source": "Item_3019",
+  "size": [
+   18,
+   46
+  ]
+ },
+ "the-bees-knees": {
+  "file": "items/the-bees-knees.png",
+  "source": "Item_2888",
+  "size": [
+   30,
+   56
+  ]
+ },
+ "molten-fury": {
+  "file": "items/molten-fury.png",
+  "source": "Item_120",
+  "size": [
+   18,
+   36
+  ]
+ },
+ "daedalus-stormbow": {
+  "file": "items/daedalus-stormbow.png",
+  "source": "Item_3029",
+  "size": [
+   30,
+   62
+  ]
+ },
+ "marrow": {
+  "file": "items/marrow.png",
+  "source": "Item_682",
+  "size": [
+   22,
+   36
+  ]
+ },
+ "phantom-phoenix": {
+  "file": "items/phantom-phoenix.png",
+  "source": "Item_3854",
+  "size": [
+   28,
+   58
+  ]
+ },
+ "aerial-bane": {
+  "file": "items/aerial-bane.png",
+  "source": "Item_3859",
+  "size": [
+   28,
+   58
+  ]
+ },
+ "eventide": {
+  "file": "items/eventide.png",
+  "source": "Item_4953",
+  "size": [
+   28,
+   70
+  ]
+ },
+ "tsunami": {
+  "file": "items/tsunami.png",
+  "source": "Item_2624",
+  "size": [
+   28,
+   58
+  ]
+ },
+ "phantasm": {
+  "file": "items/phantasm.png",
+  "source": "Item_3540",
+  "size": [
+   32,
+   54
+  ]
+ },
+ "pulse-bow": {
+  "file": "items/pulse-bow.png",
+  "source": "Item_2223",
+  "size": [
+   28,
+   46
+  ]
+ },
+ "cobalt-repeater": {
+  "file": "items/cobalt-repeater.png",
+  "source": "Item_435",
+  "size": [
+   56,
+   24
+  ]
+ },
+ "palladium-repeater": {
+  "file": "items/palladium-repeater.png",
+  "source": "Item_1187",
+  "size": [
+   58,
+   34
+  ]
+ },
+ "mythril-repeater": {
+  "file": "items/mythril-repeater.png",
+  "source": "Item_436",
+  "size": [
+   56,
+   24
+  ]
+ },
+ "orichalcum-repeater": {
+  "file": "items/orichalcum-repeater.png",
+  "source": "Item_1194",
+  "size": [
+   56,
+   30
+  ]
+ },
+ "adamantite-repeater": {
+  "file": "items/adamantite-repeater.png",
+  "source": "Item_481",
+  "size": [
+   52,
+   20
+  ]
+ },
+ "titanium-repeater": {
+  "file": "items/titanium-repeater.png",
+  "source": "Item_1201",
+  "size": [
+   58,
+   28
+  ]
+ },
+ "hallowed-repeater": {
+  "file": "items/hallowed-repeater.png",
+  "source": "Item_578",
+  "size": [
+   52,
+   20
+  ]
+ },
+ "chlorophyte-shotbow": {
+  "file": "items/chlorophyte-shotbow.png",
+  "source": "Item_1229",
+  "size": [
+   54,
+   24
+  ]
+ },
+ "vulcan-repeater": {
+  "file": "items/vulcan-repeater.png",
+  "source": "Item_5014",
+  "size": [
+   30,
+   28
+  ]
+ },
+ "stake-launcher": {
+  "file": "items/stake-launcher.png",
+  "source": "Item_1835",
+  "size": [
+   56,
+   24
+  ]
+ },
+ "revolver": {
+  "file": "items/revolver.png",
+  "source": "Item_2269",
+  "size": [
+   52,
+   26
+  ]
+ },
+ "gatligator": {
+  "file": "items/gatligator.png",
+  "source": "Item_2270",
+  "size": [
+   54,
+   22
+  ]
+ },
+ "clockwork-assault-rifle": {
+  "file": "items/clockwork-assault-rifle.png",
+  "source": "Item_434",
+  "size": [
+   56,
+   20
+  ]
+ },
+ "quad-barrel-shotgun": {
+  "file": "items/quad-barrel-shotgun.png",
+  "source": "Item_4703",
+  "size": [
+   44,
+   18
+  ]
+ },
+ "onyx-blaster": {
+  "file": "items/onyx-blaster.png",
+  "source": "Item_3788",
+  "size": [
+   60,
+   26
+  ]
+ },
+ "tactical-shotgun": {
+  "file": "items/tactical-shotgun.png",
+  "source": "Item_679",
+  "size": [
+   46,
+   26
+  ]
+ },
+ "uzi": {
+  "file": "items/uzi.png",
+  "source": "Item_1265",
+  "size": [
+   48,
+   36
+  ]
+ },
+ "sandgun": {
+  "file": "items/sandgun.png",
+  "source": "Item_266",
+  "size": [
+   44,
+   24
+  ]
+ },
+ "snowball-cannon": {
+  "file": "items/snowball-cannon.png",
+  "source": "Item_1319",
+  "size": [
+   50,
+   26
+  ]
+ },
+ "blowgun": {
+  "file": "items/blowgun.png",
+  "source": "Item_986",
+  "size": [
+   48,
+   24
+  ]
+ },
+ "dart-pistol": {
+  "file": "items/dart-pistol.png",
+  "source": "Item_3007",
+  "size": [
+   54,
+   28
+  ]
+ },
+ "dart-rifle": {
+  "file": "items/dart-rifle.png",
+  "source": "Item_3008",
+  "size": [
+   62,
+   32
+  ]
+ },
+ "star-cannon": {
+  "file": "items/star-cannon.png",
+  "source": "Item_197",
+  "size": [
+   52,
+   18
+  ]
+ },
+ "super-star-shooter": {
+  "file": "items/super-star-shooter.png",
+  "source": "Item_4060",
+  "size": [
+   56,
+   22
+  ]
+ },
+ "candy-corn-rifle": {
+  "file": "items/candy-corn-rifle.png",
+  "source": "Item_1782",
+  "size": [
+   42,
+   24
+  ]
+ },
+ "pew-matic-horn": {
+  "file": "items/pew-matic-horn.png",
+  "source": "Item_5117",
+  "size": [
+   28,
+   26
+  ]
+ },
+ "flamethrower": {
+  "file": "items/flamethrower.png",
+  "source": "Item_506",
+  "size": [
+   54,
+   16
+  ]
+ },
+ "elf-melter": {
+  "file": "items/elf-melter.png",
+  "source": "Item_1910",
+  "size": [
+   58,
+   20
+  ]
+ },
+ "xenopopper": {
+  "file": "items/xenopopper.png",
+  "source": "Item_2797",
+  "size": [
+   42,
+   22
+  ]
+ },
+ "vortex-beater": {
+  "file": "items/vortex-beater.png",
+  "source": "Item_3475",
+  "size": [
+   66,
+   28
+  ]
+ },
+ "sdmg": {
+  "file": "items/sdmg.png",
+  "source": "Item_1553",
+  "size": [
+   66,
+   32
+  ]
+ },
+ "celebration": {
+  "file": "items/celebration.png",
+  "source": "Item_3546",
+  "size": [
+   34,
+   22
+  ]
+ },
+ "electrosphere-launcher": {
+  "file": "items/electrosphere-launcher.png",
+  "source": "Item_2796",
+  "size": [
+   74,
+   32
+  ]
+ },
+ "proximity-mine-launcher": {
+  "file": "items/proximity-mine-launcher.png",
+  "source": "Item_760",
+  "size": [
+   52,
+   26
+  ]
+ },
+ "malaise": {
+  "file": "items/malaise.png",
+  "source": "Item_3279",
+  "size": [
+   30,
+   26
+  ]
+ },
+ "amazon": {
+  "file": "items/amazon.png",
+  "source": "Item_3281",
+  "size": [
+   30,
+   26
+  ]
+ },
+ "hive-five": {
+  "file": "items/hive-five.png",
+  "source": "Item_5294",
+  "size": [
+   30,
+   26
+  ]
+ },
+ "format-c": {
+  "file": "items/format-c.png",
+  "source": "Item_3315",
+  "size": [
+   30,
+   26
+  ]
+ },
+ "chik": {
+  "file": "items/chik.png",
+  "source": "Item_3283",
+  "size": [
+   30,
+   26
+  ]
+ },
+ "hel-fire": {
+  "file": "items/hel-fire.png",
+  "source": "Item_3290",
+  "size": [
+   30,
+   26
+  ]
+ },
+ "gradient": {
+  "file": "items/gradient.png",
+  "source": "Item_3316",
+  "size": [
+   30,
+   26
+  ]
+ },
+ "code-2": {
+  "file": "items/code-2.png",
+  "source": "Item_3284",
+  "size": [
+   30,
+   26
+  ]
+ },
+ "reds-throw": {
+  "file": "items/reds-throw.png",
+  "source": "Item_3287",
+  "size": [
+   30,
+   26
+  ]
+ },
+ "valkyrie-yoyo": {
+  "file": "items/valkyrie-yoyo.png",
+  "source": "Item_3288",
+  "size": [
+   30,
+   26
+  ]
+ },
+ "terrarian": {
+  "file": "items/terrarian.png",
+  "source": "Item_3389",
+  "size": [
+   30,
+   26
+  ]
+ },
+ "water-bolt": {
+  "file": "items/water-bolt.png",
+  "source": "Item_165",
+  "size": [
+   28,
+   32
+  ]
+ },
+ "space-gun": {
+  "file": "items/space-gun.png",
+  "source": "Item_127",
+  "size": [
+   36,
+   24
+  ]
+ },
+ "magic-missile": {
+  "file": "items/magic-missile.png",
+  "source": "Item_113",
+  "size": [
+   26,
+   26
+  ]
+ },
+ "crystal-storm": {
+  "file": "items/crystal-storm.png",
+  "source": "Item_518",
+  "size": [
+   28,
+   32
+  ]
+ },
+ "bat-scepter": {
+  "file": "items/bat-scepter.png",
+  "source": "Item_1801",
+  "size": [
+   30,
+   30
+  ]
+ },
+ "rainbow-rod": {
+  "file": "items/rainbow-rod.png",
+  "source": "Item_495",
+  "size": [
+   30,
+   30
+  ]
+ },
+ "shadowbeam-staff": {
+  "file": "items/shadowbeam-staff.png",
+  "source": "Item_1444",
+  "size": [
+   48,
+   48
+  ]
+ },
+ "nebula-blaze": {
+  "file": "items/nebula-blaze.png",
+  "source": "Item_3542",
+  "size": [
+   26,
+   26
+  ]
+ },
+ "ironskin-potion": {
+  "file": "items/ironskin-potion.png",
+  "source": "drawn:ironskin-potion",
+  "size": [
+   24,
+   28
+  ]
+ },
+ "regeneration-potion": {
+  "file": "items/regeneration-potion.png",
+  "source": "drawn:regeneration-potion",
+  "size": [
+   24,
+   28
+  ]
+ },
+ "swiftness-potion": {
+  "file": "items/swiftness-potion.png",
+  "source": "drawn:swiftness-potion",
+  "size": [
+   24,
+   28
+  ]
+ },
+ "archery-potion": {
+  "file": "items/archery-potion.png",
+  "source": "drawn:archery-potion",
+  "size": [
+   24,
+   28
+  ]
+ },
+ "endurance-potion": {
+  "file": "items/endurance-potion.png",
+  "source": "drawn:endurance-potion",
+  "size": [
+   24,
+   28
+  ]
+ },
+ "wrath-potion": {
+  "file": "items/wrath-potion.png",
+  "source": "drawn:wrath-potion",
+  "size": [
+   24,
+   28
+  ]
+ },
+ "rage-potion": {
+  "file": "items/rage-potion.png",
+  "source": "drawn:rage-potion",
+  "size": [
+   24,
+   28
+  ]
+ },
+ "magic-power-potion": {
+  "file": "items/magic-power-potion.png",
+  "source": "drawn:magic-power-potion",
+  "size": [
+   24,
+   28
+  ]
+ },
+ "mana-regeneration-potion": {
+  "file": "items/mana-regeneration-potion.png",
+  "source": "drawn:mana-regeneration-potion",
+  "size": [
+   24,
+   28
+  ]
+ },
+ "thorns-potion": {
+  "file": "items/thorns-potion.png",
+  "source": "drawn:thorns-potion",
+  "size": [
+   24,
+   28
+  ]
+ },
+ "lifeforce-potion": {
+  "file": "items/lifeforce-potion.png",
+  "source": "drawn:lifeforce-potion",
+  "size": [
+   24,
+   28
+  ]
+ },
+ "featherfall-potion": {
+  "file": "items/featherfall-potion.png",
+  "source": "drawn:featherfall-potion",
+  "size": [
+   24,
+   28
+  ]
+ },
+ "heartreach-potion": {
+  "file": "items/heartreach-potion.png",
+  "source": "drawn:heartreach-potion",
+  "size": [
+   24,
+   28
+  ]
+ },
+ "battle-potion": {
+  "file": "items/battle-potion.png",
+  "source": "drawn:battle-potion",
+  "size": [
+   24,
+   28
+  ]
+ },
+ "treasure-bag": {
+  "file": "items/treasure-bag.png",
+  "source": "drawn:treasure-bag",
+  "size": [
+   26,
+   26
+  ]
+ },
+ "wooden-arrow": {
+  "file": "items/wooden-arrow.png",
+  "source": "ammo:wooden-arrow",
+  "size": [
+   14,
+   32
+  ]
+ },
+ "flaming-arrow": {
+  "file": "items/flaming-arrow.png",
+  "source": "ammo:flaming-arrow",
+  "size": [
+   14,
+   32
+  ]
+ },
+ "frostburn-arrow": {
+  "file": "items/frostburn-arrow.png",
+  "source": "ammo:frostburn-arrow",
+  "size": [
+   14,
+   32
+  ]
+ },
+ "unholy-arrow": {
+  "file": "items/unholy-arrow.png",
+  "source": "ammo:unholy-arrow",
+  "size": [
+   14,
+   32
+  ]
+ },
+ "jesters-arrow": {
+  "file": "items/jesters-arrow.png",
+  "source": "ammo:jesters-arrow",
+  "size": [
+   14,
+   32
+  ]
+ },
+ "hellfire-arrow": {
+  "file": "items/hellfire-arrow.png",
+  "source": "ammo:hellfire-arrow",
+  "size": [
+   14,
+   32
+  ]
+ },
+ "holy-arrow": {
+  "file": "items/holy-arrow.png",
+  "source": "ammo:holy-arrow",
+  "size": [
+   14,
+   32
+  ]
+ },
+ "chlorophyte-arrow": {
+  "file": "items/chlorophyte-arrow.png",
+  "source": "ammo:chlorophyte-arrow",
+  "size": [
+   14,
+   32
+  ]
+ },
+ "luminite-arrow": {
+  "file": "items/luminite-arrow.png",
+  "source": "ammo:luminite-arrow",
+  "size": [
+   14,
+   32
+  ]
+ },
+ "musket-ball": {
+  "file": "items/musket-ball.png",
+  "source": "ammo:musket-ball",
+  "size": [
+   12,
+   20
+  ]
+ },
+ "silver-bullet": {
+  "file": "items/silver-bullet.png",
+  "source": "ammo:silver-bullet",
+  "size": [
+   12,
+   20
+  ]
+ },
+ "meteor-shot": {
+  "file": "items/meteor-shot.png",
+  "source": "ammo:meteor-shot",
+  "size": [
+   12,
+   20
+  ]
+ },
+ "crystal-bullet": {
+  "file": "items/crystal-bullet.png",
+  "source": "ammo:crystal-bullet",
+  "size": [
+   12,
+   20
+  ]
+ },
+ "high-velocity-bullet": {
+  "file": "items/high-velocity-bullet.png",
+  "source": "ammo:high-velocity-bullet",
+  "size": [
+   12,
+   20
+  ]
+ },
+ "chlorophyte-bullet": {
+  "file": "items/chlorophyte-bullet.png",
+  "source": "ammo:chlorophyte-bullet",
+  "size": [
+   12,
+   20
+  ]
+ },
+ "luminite-bullet": {
+  "file": "items/luminite-bullet.png",
+  "source": "ammo:luminite-bullet",
+  "size": [
+   12,
+   20
+  ]
+ },
+ "rocket-i": {
+  "file": "items/rocket-i.png",
+  "source": "ammo:rocket-i",
+  "size": [
+   12,
+   24
+  ]
+ },
+ "rocket-iii": {
+  "file": "items/rocket-iii.png",
+  "source": "ammo:rocket-iii",
+  "size": [
+   12,
+   24
+  ]
+ },
+ "mini-nuke": {
+  "file": "items/mini-nuke.png",
+  "source": "ammo:mini-nuke",
+  "size": [
+   12,
+   24
+  ]
+ }
+}

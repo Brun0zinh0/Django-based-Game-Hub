@@ -10,3 +10,6 @@ settings menu.
 
 Both games run fine with this folder empty -- they simply play no music.
 The tracks used during development are not redistributed here.
+
+Terra Boss does not read this folder: its sound is generated in the
+browser, so it needs no files.

@@ -1,0 +1,334 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Matches --tb-bg. Left green behind when the palette changed, which
+         showed as a green browser bar around an indigo page on mobile. -->
+    <meta name="theme-color" content="#0e1020">
+    <title>Terra Boss · Endless Boss Rush</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+    <link rel="stylesheet" href="{% static 'games/terra_boss.css' %}?v=20260815-13">
+    <script defer src="{% static 'games/vendor/phaser-3.90.0.min.js' %}"></script>
+    <script defer src="{% static 'games/terra_boss_audio.js' %}?v=20260809-1"></script>
+    <script defer src="{% static 'games/terra_boss.js' %}?v=20260815-15"></script>
+</head>
+<body>
+<main
+    id="terra-boss-app"
+    data-weapons-url="{% static 'games/data/terra/weapons.json' %}?v=20260809-11"
+    data-armor-url="{% static 'games/data/terra/armor.json' %}?v=20260809-2"
+    data-accessories-url="{% static 'games/data/terra/accessories.json' %}?v=20260809-3"
+    data-characters-url="{% static 'games/data/terra/characters.json' %}?v=20260809-7"
+    data-bosses-url="{% static 'games/data/terra/bosses.json' %}?v=20260814-10"
+    data-rounds-url="{% static 'games/data/terra/rounds.json' %}?v=20260815-1"
+    data-biomes-url="{% static 'games/data/terra/biomes.json' %}?v=20260815-1"
+    data-achievements-url="{% static 'games/data/terra/achievements.json' %}?v=20260809-1"
+    data-packs-url="{% static 'games/data/terra/packs/index.json' %}?v=20260815-12"
+    data-difficulties-url="{% static 'games/data/terra/difficulties.json' %}?v=20260809-1"
+    data-modifiers-url="{% static 'games/data/terra/modifiers.json' %}?v=20260809-1"
+    data-events-url="{% static 'games/data/terra/events.json' %}?v=20260814-1"
+    data-potions-url="{% static 'games/data/terra/potions.json' %}?v=20260814-1"
+    data-ammo-url="{% static 'games/data/terra/ammo.json' %}?v=20260814-2"
+    data-debuffs-url="{% static 'games/data/terra/debuffs.json' %}?v=20260814-1"
+    data-decor-url="{% static 'games/assets/terra/sprites/decor.json' %}?v=20260809-1"
+    data-frames-url="{% static 'games/assets/terra/sprites/frames.json' %}?v=20260809-7"
+    data-items-url="{% static 'games/assets/terra/sprites/items.json' %}?v=20260809-11"
+    data-tiles-url="{% static 'games/assets/terra/sprites/tiles.json' %}?v=20260809-1"
+    data-worn-armor-url="{% static 'games/assets/terra/sprites/armor.json' %}?v=20260809-2"
+    data-gore-url="{% static 'games/assets/terra/sprites/gore.json' %}?v=20260809-5"
+    data-wings-url="{% static 'games/assets/terra/sprites/wings.json' %}?v=20260808-1"
+    {# Bump when any sprite file is re-cut, or browsers serve the old art. #}
+    data-asset-version="20260815-1"
+    data-static-prefix="{% static '' %}"
+>
+    <header class="tb-topbar">
+        <a class="tb-back" href="{% url 'games:home' %}">
+            <span aria-hidden="true">←</span> Game hub
+        </a>
+        <div class="tb-title-group">
+            <p>Terra Boss</p>
+            <h1>Endless Boss Rush</h1>
+        </div>
+        <div class="tb-topbar-right">
+            <span class="tb-souls-chip" title="Souls">☄ <span id="tb-souls-value">0</span></span>
+            <button id="tb-mute" class="tb-mute" type="button" aria-pressed="false" title="Sound on">🔊</button>
+        </div>
+    </header>
+
+    <section id="tb-loading" class="tb-panel tb-loading" aria-live="polite">
+        <div>
+            <div class="tb-loading-pick" aria-hidden="true">⚒</div>
+            <p id="tb-loading-text">Digging up game data...</p>
+            <button id="tb-loading-retry" class="tb-button" hidden>Retry</button>
+        </div>
+    </section>
+
+    <section id="tb-menu" class="tb-panel tb-menu" hidden aria-labelledby="tb-menu-title">
+        <div class="tb-menu-card">
+            <figure class="tb-menu-art">
+                <video
+                    id="tb-menu-animation"
+                    autoplay
+                    loop
+                    muted
+                    playsinline
+                    poster="{% static 'games/assets/hub/terra-boss-cover.jpg' %}"
+                    aria-hidden="true"
+                >
+                    <source src="{% static 'games/assets/terra/menu-animation.mp4' %}?v=20260808-1" type="video/mp4">
+                </video>
+            </figure>
+            <div class="tb-menu-body">
+                <h2 id="tb-menu-title">TERRA<br><span>BOSS</span></h2>
+                <p class="tb-menu-copy">
+                    Endless rounds of hordes and bosses. Ranged weapons only.
+                    How deep can you go?
+                </p>
+                <div class="tb-menu-actions">
+                    <button id="tb-start-run" class="tb-button tb-button-primary">Start Run</button>
+                    <button id="tb-difficulty" class="tb-button" type="button"
+                            title="Cycle difficulty">Difficulty: Journey</button>
+                    <button id="tb-open-characters" class="tb-button">Characters</button>
+                    <button id="tb-open-unlocks" class="tb-button">Unlocks</button>
+                <button id="tb-open-packs" class="tb-button">Packs</button>
+                    <div class="tb-menu-actions-row">
+                        <button id="tb-open-bestiary" class="tb-button">Bestiary</button>
+                        <button id="tb-open-weaponry" class="tb-button">Weaponry</button>
+                        <button id="tb-open-feats" class="tb-button">Feats</button>
+                    </div>
+                </div>
+                <p class="tb-menu-best" id="tb-menu-best" hidden></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="tb-characters" class="tb-panel tb-overlay" hidden aria-labelledby="tb-characters-title">
+        <div class="tb-overlay-card">
+            <header class="tb-overlay-head">
+                <h2 id="tb-characters-title">Characters</h2>
+                <button class="tb-button tb-close" data-close>✕</button>
+            </header>
+            <p class="tb-overlay-hint">Pick who fights. Locked NPCs are unlocked with Souls ☄ or feats.</p>
+            <ul id="tb-character-list" class="tb-card-list"></ul>
+        </div>
+    </section>
+
+    {# Which content packs are installed, what each adds, and a switch. #}
+    <section id="tb-packs" class="tb-panel tb-overlay" hidden aria-labelledby="tb-packs-title">
+        <div class="tb-overlay-card">
+            <header class="tb-overlay-head">
+                <h2 id="tb-packs-title">Content Packs</h2>
+                <button class="tb-button tb-close" data-close>✕</button>
+            </header>
+            <p class="tb-overlay-hint">
+                Extra content merged into the game at load. Switching one on or
+                off reloads, because content is merged before a run starts.
+            </p>
+            <ul id="tb-pack-list" class="tb-card-list"></ul>
+        </div>
+    </section>
+
+    <section id="tb-unlocks" class="tb-panel tb-overlay" hidden aria-labelledby="tb-unlocks-title">
+        <div class="tb-overlay-card">
+            <header class="tb-overlay-head">
+                <h2 id="tb-unlocks-title">Weapon Categories</h2>
+                <button class="tb-button tb-close" data-close>✕</button>
+            </header>
+            <p class="tb-overlay-hint">Unlocked categories can appear in the between-round shop.</p>
+            <ul id="tb-unlock-list" class="tb-card-list"></ul>
+        </div>
+    </section>
+
+    <section id="tb-bestiary" class="tb-panel tb-overlay" hidden aria-labelledby="tb-bestiary-title">
+        <div class="tb-overlay-card">
+            <header class="tb-overlay-head">
+                <h2 id="tb-bestiary-title">Bestiary</h2>
+                <button class="tb-button tb-close" data-close>✕</button>
+            </header>
+            <p class="tb-overlay-hint">
+                Everything you have put down. Silhouettes are still out there.
+                <span class="tb-codex-progress" id="tb-bestiary-progress"></span>
+            </p>
+            <h3 class="tb-codex-heading">Bosses</h3>
+            <ul id="tb-bestiary-bosses" class="tb-codex-grid"></ul>
+            <h3 class="tb-codex-heading">Creatures</h3>
+            <ul id="tb-bestiary-mobs" class="tb-codex-grid"></ul>
+        </div>
+    </section>
+
+    <section id="tb-weaponry" class="tb-panel tb-overlay" hidden aria-labelledby="tb-weaponry-title">
+        <div class="tb-overlay-card">
+            <header class="tb-overlay-head">
+                <h2 id="tb-weaponry-title">Weaponry</h2>
+                <button class="tb-button tb-close" data-close>✕</button>
+            </header>
+            <p class="tb-overlay-hint">
+                Every weapon you have carried. Locked categories never reach
+                the shop.
+                <span class="tb-codex-progress" id="tb-weaponry-progress"></span>
+            </p>
+            <div id="tb-weaponry-groups"></div>
+        </div>
+    </section>
+
+    <section id="tb-feats" class="tb-panel tb-overlay" hidden aria-labelledby="tb-feats-title">
+        <div class="tb-overlay-card">
+            <header class="tb-overlay-head">
+                <h2 id="tb-feats-title">Feats</h2>
+                <button class="tb-button tb-close" data-close>✕</button>
+            </header>
+            <p class="tb-overlay-hint">
+                What you have managed so far. Some characters only answer to a feat.
+                <span class="tb-codex-progress" id="tb-feats-progress"></span>
+            </p>
+            <ul id="tb-feat-list" class="tb-card-list"></ul>
+        </div>
+    </section>
+
+    <section id="tb-summary" class="tb-panel tb-overlay" hidden aria-labelledby="tb-summary-title">
+        <div class="tb-overlay-card tb-summary-card">
+            <h2 id="tb-summary-title">Run Over</h2>
+            <dl class="tb-summary-stats">
+                <div><dt>Rounds survived</dt><dd id="tb-summary-rounds">0</dd></div>
+                <div><dt>Kills</dt><dd id="tb-summary-kills">0</dd></div>
+                <div><dt>Coins earned</dt><dd id="tb-summary-coins">0</dd></div>
+                <div><dt>Souls gained</dt><dd id="tb-summary-souls">+0 ☄</dd></div>
+            </dl>
+            <button id="tb-summary-back" class="tb-button tb-button-primary">Back to Menu</button>
+        </div>
+    </section>
+
+    {# Between rounds: vendor above the inventory, equipment alongside. #}
+    <section id="tb-shop" class="tb-panel tb-overlay" hidden aria-labelledby="tb-shop-title">
+        <div class="tb-between">
+            <div class="tb-between-main">
+                <div class="tb-overlay-card tb-between-shop">
+                    <header class="tb-overlay-head">
+                        <h2 id="tb-shop-title">Shop</h2>
+                        <span class="tb-shop-coins">🪙 <b id="tb-shop-coins-value">0</b></span>
+                    </header>
+                    <p class="tb-overlay-hint" id="tb-shop-hint">
+                        Bought gear equips into a free slot, or drops into your inventory.
+                    </p>
+                    <ul id="tb-shop-list" class="tb-card-list"></ul>
+                    <div class="tb-shop-actions">
+                        <button id="tb-shop-reroll" class="tb-button">Reroll</button>
+                        <button id="tb-shop-continue" class="tb-button tb-button-primary">Next Round →</button>
+                    </div>
+                </div>
+                <div class="tb-overlay-card tb-between-inventory" id="tb-inventory-dock-shop"></div>
+            </div>
+            <div class="tb-overlay-card tb-between-gear" id="tb-gear-dock-shop"></div>
+        </div>
+    </section>
+
+    {# A boss kill drops a bag; walking over it deals three of its pool face #}
+    {# up. One is yours, the other two are gone -- that is the whole point. #}
+    <section id="tb-bag" class="tb-panel tb-overlay" hidden aria-labelledby="tb-bag-title">
+        <div class="tb-overlay-card tb-bag-card">
+            <header class="tb-overlay-head">
+                <h2 id="tb-bag-title">Treasure Bag</h2>
+            </header>
+            <p class="tb-overlay-hint" id="tb-bag-hint">Take one.</p>
+            <ul id="tb-bag-list" class="tb-card-list"></ul>
+        </div>
+    </section>
+
+    {# Mid-run the same two panels stack instead of flanking the shop. #}
+    <section id="tb-gear" class="tb-panel tb-overlay" hidden aria-labelledby="tb-gear-title">
+        <div class="tb-between">
+            <div class="tb-overlay-card" id="tb-gear-dock-solo"></div>
+            <div class="tb-overlay-card" id="tb-inventory-dock-solo"></div>
+        </div>
+    </section>
+
+    {# Both panels move between docks: one set of controls, two homes. #}
+    <div id="tb-gear-panel">
+        <header class="tb-overlay-head">
+            <h2 id="tb-gear-title">Gear</h2>
+            <button id="tb-gear-close" class="tb-button tb-close">✕</button>
+        </header>
+        <p class="tb-overlay-hint">Click a slot to take that piece off.</p>
+        <div class="tb-gear-layout">
+            <div class="tb-gear-column">
+                <h3 class="tb-codex-heading">Weapons</h3>
+                <ul id="tb-gear-weapons" class="tb-slot-list"></ul>
+            </div>
+            <div class="tb-gear-column">
+                <h3 class="tb-codex-heading">Armor</h3>
+                <ul id="tb-gear-armor" class="tb-slot-list"></ul>
+            </div>
+            <div class="tb-gear-column">
+                <h3 class="tb-codex-heading">Accessories</h3>
+                <ul id="tb-gear-accessories" class="tb-slot-list"></ul>
+            </div>
+            <div class="tb-gear-column">
+                <h3 class="tb-codex-heading">Ammo</h3>
+                <ul id="tb-gear-ammo" class="tb-slot-list"></ul>
+            </div>
+        </div>
+        <h3 class="tb-codex-heading">Stats</h3>
+        <dl id="tb-gear-stats" class="tb-gear-stats"></dl>
+    </div>
+
+    <div id="tb-inventory-panel">
+        <header class="tb-overlay-head">
+            <h2>Inventory</h2>
+            <span class="tb-shop-coins" id="tb-inventory-coins">🪙 <b>0</b></span>
+        </header>
+        <p class="tb-overlay-hint" id="tb-inventory-hint">
+            Click an item to equip it.
+        </p>
+        <ul id="tb-gear-stash" class="tb-slot-grid"></ul>
+    </div>
+
+    <section id="tb-game" class="tb-game" hidden>
+        <div id="tb-canvas" class="tb-canvas"></div>
+
+        {# HUD overlays the arena, Terraria style: hotbar left, life right. #}
+        <div class="tb-hud tb-hud-left">
+            <div class="tb-hotbar">
+                <span class="tb-hud-slot" id="tb-hud-weapon">Wooden Bow</span>
+                <span class="tb-hud-slot" id="tb-hud-weapon2" hidden>—</span>
+            </div>
+            <div class="tb-hud-row">
+                <span class="tb-hud-chip">Round <b id="tb-hud-round">1</b></span>
+                <span class="tb-hud-chip">🪙 <b id="tb-hud-coins">0</b></span>
+                {# Shown from the round the world turns, and not before. #}
+                <span class="tb-hud-chip tb-hud-hardmode" id="tb-hud-hardmode" hidden>HARDMODE</span>
+            </div>
+            {# The belt sits under the hotbar because it is more of the same #}
+            {# idea: things you carry and pick with a number key. #}
+            <div class="tb-belt" id="tb-hud-belt" hidden></div>
+        </div>
+
+        <div class="tb-hud tb-hud-right">
+            <div class="tb-hearts" id="tb-hud-hearts"></div>
+            {# Active buffs, the way Terraria stacks them under the life bar. #}
+            <div class="tb-buffs" id="tb-hud-buffs" hidden></div>
+            <div class="tb-hud-row tb-hud-row-end">
+                <span class="tb-hud-chip" id="tb-hud-defense" hidden>🛡 <b id="tb-hud-defense-value">0</b></span>
+                <span class="tb-hud-chip" id="tb-hud-mana" hidden>✦ <b id="tb-hud-mana-value">100</b></span>
+                {# The barrier soaks hits before health does, so it needs its #}
+                {# own readout: at zero you are taking damage again. #}
+                <span class="tb-hud-chip tb-hud-barrier" id="tb-hud-barrier" hidden>
+                    ◈<span class="tb-barrier-bar"><b id="tb-hud-barrier-fill"></b></span>
+                </span>
+                <span class="tb-hud-chip tb-hud-flight" id="tb-hud-flight" hidden>
+                    🪽<span class="tb-flight-bar"><b id="tb-hud-flight-fill"></b></span>
+                </span>
+            </div>
+        </div>
+
+        <div class="tb-hud tb-hud-actions">
+            <button id="tb-open-gear" class="tb-button">Equipment (I)</button>
+            <button id="tb-quit-run" class="tb-button tb-hud-quit">Abandon</button>
+        </div>
+    </section>
+</main>
+</body>
+</html>

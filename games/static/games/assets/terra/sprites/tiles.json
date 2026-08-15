@@ -1,0 +1,269 @@
+{
+  "ground-grass": {
+    "file": "tiles/ground-grass.png",
+    "tileSize": 16,
+    "size": [
+      48,
+      16
+    ],
+    "croppedToContent": false
+  },
+  "ground-dirt": {
+    "file": "tiles/ground-dirt.png",
+    "tileSize": 16,
+    "size": [
+      48,
+      16
+    ],
+    "croppedToContent": false
+  },
+  "platform-wood": {
+    "file": "tiles/platform-wood.png",
+    "tileSize": 16,
+    "size": [
+      96,
+      8
+    ],
+    "croppedToContent": true
+  },
+  "forest-surface": {
+    "file": "tiles/forest-surface.png",
+    "tileSize": 16,
+    "size": [
+      48,
+      16
+    ]
+  },
+  "forest-fill": {
+    "file": "tiles/forest-fill.png",
+    "tileSize": 16,
+    "size": [
+      48,
+      16
+    ]
+  },
+  "forest-platform": {
+    "file": "tiles/forest-platform.png",
+    "tileSize": 16,
+    "size": [
+      48,
+      8
+    ]
+  },
+  "snow-surface": {
+    "file": "tiles/snow-surface.png",
+    "tileSize": 16,
+    "size": [
+      48,
+      16
+    ]
+  },
+  "snow-fill": {
+    "file": "tiles/snow-fill.png",
+    "tileSize": 16,
+    "size": [
+      48,
+      16
+    ]
+  },
+  "snow-platform": {
+    "file": "tiles/snow-platform.png",
+    "tileSize": 16,
+    "size": [
+      48,
+      8
+    ]
+  },
+  "crimson-surface": {
+    "file": "tiles/crimson-surface.png",
+    "tileSize": 16,
+    "size": [
+      48,
+      16
+    ]
+  },
+  "crimson-fill": {
+    "file": "tiles/crimson-fill.png",
+    "tileSize": 16,
+    "size": [
+      48,
+      16
+    ]
+  },
+  "crimson-platform": {
+    "file": "tiles/crimson-platform.png",
+    "tileSize": 16,
+    "size": [
+      48,
+      8
+    ]
+  },
+  "corruption-surface": {
+    "file": "tiles/corruption-surface.png",
+    "tileSize": 16,
+    "size": [
+      48,
+      16
+    ]
+  },
+  "corruption-fill": {
+    "file": "tiles/corruption-fill.png",
+    "tileSize": 16,
+    "size": [
+      48,
+      16
+    ]
+  },
+  "corruption-platform": {
+    "file": "tiles/corruption-platform.png",
+    "tileSize": 16,
+    "size": [
+      48,
+      8
+    ]
+  },
+  "ice-surface": {
+    "file": "tiles/ice-surface.png",
+    "tileSize": 16,
+    "size": [
+      48,
+      16
+    ]
+  },
+  "ice-fill": {
+    "file": "tiles/ice-fill.png",
+    "tileSize": 16,
+    "size": [
+      48,
+      16
+    ]
+  },
+  "ice-platform": {
+    "file": "tiles/ice-platform.png",
+    "tileSize": 16,
+    "size": [
+      48,
+      8
+    ]
+  },
+  "hallow-surface": {
+    "file": "tiles/hallow-surface.png",
+    "tileSize": 16,
+    "size": [
+      48,
+      16
+    ]
+  },
+  "hallow-fill": {
+    "file": "tiles/hallow-fill.png",
+    "tileSize": 16,
+    "size": [
+      48,
+      16
+    ]
+  },
+  "hallow-platform": {
+    "file": "tiles/hallow-platform.png",
+    "tileSize": 16,
+    "size": [
+      48,
+      8
+    ]
+  },
+  "mushroom-surface": {
+    "file": "tiles/mushroom-surface.png",
+    "tileSize": 16,
+    "size": [
+      48,
+      16
+    ]
+  },
+  "mushroom-fill": {
+    "file": "tiles/mushroom-fill.png",
+    "tileSize": 16,
+    "size": [
+      48,
+      16
+    ]
+  },
+  "mushroom-platform": {
+    "file": "tiles/mushroom-platform.png",
+    "tileSize": 16,
+    "size": [
+      48,
+      8
+    ]
+  },
+  "jungle-surface": {
+    "file": "tiles/jungle-surface.png",
+    "tileSize": 16,
+    "size": [
+      48,
+      16
+    ]
+  },
+  "jungle-fill": {
+    "file": "tiles/jungle-fill.png",
+    "tileSize": 16,
+    "size": [
+      48,
+      16
+    ]
+  },
+  "jungle-platform": {
+    "file": "tiles/jungle-platform.png",
+    "tileSize": 16,
+    "size": [
+      48,
+      8
+    ]
+  },
+  "sky-surface": {
+    "file": "tiles/sky-surface.png",
+    "tileSize": 16,
+    "size": [
+      48,
+      16
+    ]
+  },
+  "sky-fill": {
+    "file": "tiles/sky-fill.png",
+    "tileSize": 16,
+    "size": [
+      48,
+      16
+    ]
+  },
+  "sky-platform": {
+    "file": "tiles/sky-platform.png",
+    "tileSize": 16,
+    "size": [
+      48,
+      8
+    ]
+  },
+  "underworld-surface": {
+    "file": "tiles/underworld-surface.png",
+    "tileSize": 16,
+    "size": [
+      48,
+      16
+    ]
+  },
+  "underworld-fill": {
+    "file": "tiles/underworld-fill.png",
+    "tileSize": 16,
+    "size": [
+      48,
+      16
+    ]
+  },
+  "underworld-platform": {
+    "file": "tiles/underworld-platform.png",
+    "tileSize": 16,
+    "size": [
+      48,
+      8
+    ]
+  }
+}

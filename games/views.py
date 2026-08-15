@@ -1,10 +1,17 @@
+import base64
+import json
+import re
 from pathlib import Path
 
-from django.http import Http404
+from django.conf import settings
+from django.http import Http404, JsonResponse
 from django.shortcuts import render
 from django.templatetags.static import static
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 
 SOUNDS_DIRECTORY = Path(__file__).resolve().parent.parent / "sounds"
+CAPTURE_DIRECTORY = Path(__file__).resolve().parent.parent / "tmp" / "anim-captures"
 BATTLE_MUSIC_DIRECTORY = SOUNDS_DIRECTORY / "RogueLike Batle royal" / "music"
 POKEMON_MUSIC_DIRECTORY = SOUNDS_DIRECTORY / "Pokerogue" / "music"
 AUDIO_EXTENSIONS = {".mp3", ".ogg", ".wav", ".m4a"}
@@ -55,9 +62,26 @@ ARCADE_GAMES = {
         "title": "Pokémon Rogue",
         "icon": "◓",
         "theme": "violet",
+        "cover": "games/assets/hub/pokemon-rogue-cover.jpg",
+        "url_name": "games:pokemon_rogue",
         "description": (
             "Une future aventure roguelike de capture, d’équipe et de "
             "combats avec des parcours différents à chaque tentative."
+        ),
+        "available": True,
+    },
+    "terra-boss": {
+        "slug": "terra-boss",
+        "number": 3,
+        "title": "Terra Boss",
+        "icon": "⚒",
+        "theme": "terra",
+        "cover": "games/assets/hub/terra-boss-cover.jpg",
+        "url_name": "games:terra_boss",
+        "description": (
+            "Roguelike de boss inspiré de Terraria : survis à des manches "
+            "sans fin, achète des armes à distance entre les vagues et "
+            "débloque de nouveaux personnages."
         ),
         "available": True,
     },
@@ -111,6 +135,11 @@ def pokemon_rogue(request):
     )
 
 
+def terra_boss(request):
+    """Display the Terraria-inspired endless boss-rush roguelike."""
+    return render(request, "games/terra_boss.html")
+
+
 def battle_royale(request):
     """Affiche le jeu d'action 2D exécuté dans le navigateur."""
     tracks, playlist_names = collect_music_tracks(
@@ -135,3 +164,42 @@ def arcade_game(request, game_slug):
         raise Http404("Ce jeu n'existe pas.")
 
     return render(request, "games/arcade_game.html", {"game": game})
+
+@csrf_exempt
+@require_POST
+def save_anim_capture(request):
+    """Write an animation-viewer capture to tmp/anim-captures/<name>.png.
+
+    The viewer used to hand its contact sheets back as base64 through the
+    console, which meant five round trips per sheet and a size ceiling that
+    quietly truncated the last one. Writing the file here makes reviewing a
+    capture a single file read.
+
+    DEBUG only: it accepts a filename and image bytes, so it has no business
+    existing on a served site.
+    """
+    if not settings.DEBUG:
+        raise Http404
+
+    try:
+        payload = json.loads(request.body.decode("utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError):
+        return JsonResponse({"error": "expected a JSON body"}, status=400)
+
+    # The name is ours to choose, so keep it to a safe, flat basename.
+    name = re.sub(r"[^A-Za-z0-9_-]", "", str(payload.get("name", "")))[:64]
+    data_url = str(payload.get("dataUrl", ""))
+    prefix = "data:image/png;base64,"
+    if not name or not data_url.startswith(prefix):
+        return JsonResponse({"error": "need a name and a PNG data URL"}, status=400)
+
+    try:
+        image = base64.b64decode(data_url[len(prefix):], validate=True)
+    except (ValueError, TypeError):
+        return JsonResponse({"error": "the image data did not decode"}, status=400)
+
+    CAPTURE_DIRECTORY.mkdir(parents=True, exist_ok=True)
+    path = CAPTURE_DIRECTORY / f"{name}.png"
+    path.write_bytes(image)
+    return JsonResponse({"path": str(path), "bytes": len(image)})
+

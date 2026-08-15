@@ -1,10 +1,13 @@
 # Mini-jeux Django
 
-Projet de jeux Web construit avec Django. Le hub contient actuellement deux
+Projet de jeux Web construit avec Django. Le hub contient actuellement trois
 jeux actifs :
 
 - **Rogue Like Battle Royale**, un jeu d’action 2D avec progression roguelike ;
-- **Pokémon Rogue**, une aventure 2v2 organisée par ligues régionales.
+- **Pokémon Rogue**, une aventure 2v2 organisée par ligues régionales ;
+- **Terra Boss**, un roguelike de boss sans fin inspiré de Terraria : des
+  manches qui ne s’arrêtent jamais, une boutique entre les vagues, et des
+  packs de contenu qu’on peut activer depuis le menu.
 
 Boss Rush Protocol et Space Racer ont été retirés du projet. Leurs anciennes
 URLs renvoient désormais une page 404 et leurs fichiers dédiés ne font plus
@@ -64,6 +67,14 @@ vivent dans le navigateur.
 ### Musique
 
 Le dossier `sounds/` est volontairement vide : les musiques utilisees
-pendant le developpement ne sont pas redistribuees ici. Les deux jeux
-fonctionnent sans, et `sounds/README.md` explique ou deposer vos propres
-fichiers pour retrouver les playlists.
+pendant le developpement ne sont pas redistribuees ici. Les deux premiers
+jeux fonctionnent sans, et `sounds/README.md` explique ou deposer vos
+propres fichiers pour retrouver les playlists. Terra Boss genere ses sons
+dans le navigateur et n'a besoin d'aucun fichier.
+
+### Credits
+
+Terra Boss est un hommage a **Terraria** (Re-Logic) et reprend les noms,
+les statistiques et le comportement de ses boss et de son equipement. Le
+pack de contenu optionnel fait de meme pour le **Calamity Mod**. Ni l'un
+ni l'autre n'est affilie a ce projet.

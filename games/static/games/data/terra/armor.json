@@ -1,0 +1,378 @@
+{
+  "comment": "Armor pieces bought in the shop. Wearing every piece of one set grants the set bonus.",
+  "slots": [
+    "head",
+    "chest",
+    "legs"
+  ],
+  "sets": [
+    {
+      "id": "wood",
+      "name": "Wood Armor",
+      "tier": 1,
+      "pieces": [
+        {
+          "id": "wood-helmet",
+          "name": "Wood Helmet",
+          "slot": "head",
+          "defense": 1,
+          "price": 8,
+          "sprite": "items/wood-helmet.png"
+        },
+        {
+          "id": "wood-breastplate",
+          "name": "Wood Breastplate",
+          "slot": "chest",
+          "defense": 2,
+          "price": 12,
+          "sprite": "items/wood-breastplate.png"
+        },
+        {
+          "id": "wood-greaves",
+          "name": "Wood Greaves",
+          "slot": "legs",
+          "defense": 1,
+          "price": 8,
+          "sprite": "items/wood-greaves.png"
+        }
+      ],
+      "setBonus": {
+        "description": "+1 defense",
+        "effects": {
+          "defense": 1
+        }
+      }
+    },
+    {
+      "id": "copper",
+      "name": "Copper Armor",
+      "tier": 2,
+      "pieces": [
+        {
+          "id": "copper-helmet",
+          "name": "Copper Helmet",
+          "slot": "head",
+          "defense": 2,
+          "price": 16,
+          "sprite": "items/copper-helmet.png"
+        },
+        {
+          "id": "copper-chainmail",
+          "name": "Copper Chainmail",
+          "slot": "chest",
+          "defense": 3,
+          "price": 22,
+          "sprite": "items/copper-chainmail.png"
+        },
+        {
+          "id": "copper-greaves",
+          "name": "Copper Greaves",
+          "slot": "legs",
+          "defense": 2,
+          "price": 16,
+          "sprite": "items/copper-greaves.png"
+        }
+      ],
+      "setBonus": {
+        "description": "+2 defense",
+        "effects": {
+          "defense": 2
+        }
+      }
+    },
+    {
+      "id": "silver",
+      "name": "Silver Armor",
+      "tier": 3,
+      "pieces": [
+        {
+          "id": "silver-helmet",
+          "name": "Silver Helmet",
+          "slot": "head",
+          "defense": 3,
+          "price": 30,
+          "sprite": "items/silver-helmet.png"
+        },
+        {
+          "id": "silver-chainmail",
+          "name": "Silver Chainmail",
+          "slot": "chest",
+          "defense": 4,
+          "price": 38,
+          "sprite": "items/silver-chainmail.png"
+        },
+        {
+          "id": "silver-greaves",
+          "name": "Silver Greaves",
+          "slot": "legs",
+          "defense": 3,
+          "price": 30,
+          "sprite": "items/silver-greaves.png"
+        }
+      ],
+      "setBonus": {
+        "description": "+3 defense",
+        "effects": {
+          "defense": 3
+        }
+      }
+    },
+    {
+      "id": "fossil",
+      "name": "Fossil Armor",
+      "tier": 3,
+      "pieces": [
+        {
+          "id": "fossil-helmet",
+          "name": "Fossil Helmet",
+          "slot": "head",
+          "defense": 4,
+          "price": 34,
+          "sprite": "items/fossil-helmet.png"
+        },
+        {
+          "id": "fossil-plate",
+          "name": "Fossil Plate",
+          "slot": "chest",
+          "defense": 5,
+          "price": 44,
+          "sprite": "items/fossil-plate.png"
+        },
+        {
+          "id": "fossil-greaves",
+          "name": "Fossil Greaves",
+          "slot": "legs",
+          "defense": 4,
+          "price": 34,
+          "sprite": "items/fossil-greaves.png"
+        }
+      ],
+      "setBonus": {
+        "description": "+20% throwable damage, throwables pierce once",
+        "effects": {
+          "damageMultiplier": {
+            "throwable": 1.2
+          },
+          "pierceBonus": {
+            "throwable": 1
+          }
+        }
+      }
+    },
+    {
+      "id": "gold",
+      "name": "Gold Armor",
+      "tier": 3,
+      "pieces": [
+        {
+          "id": "gold-helmet",
+          "name": "Gold Helmet",
+          "slot": "head",
+          "defense": 4,
+          "price": 36,
+          "sprite": "items/gold-helmet.png"
+        },
+        {
+          "id": "gold-chainmail",
+          "name": "Gold Chainmail",
+          "slot": "chest",
+          "defense": 5,
+          "price": 46,
+          "sprite": "items/gold-chainmail.png"
+        },
+        {
+          "id": "gold-greaves",
+          "name": "Gold Greaves",
+          "slot": "legs",
+          "defense": 4,
+          "price": 36,
+          "sprite": "items/gold-greaves.png"
+        }
+      ],
+      "setBonus": {
+        "description": "+3 defense",
+        "effects": {
+          "defense": 3
+        }
+      }
+    },
+    {
+      "id": "platinum",
+      "name": "Platinum Armor",
+      "tier": 4,
+      "pieces": [
+        {
+          "id": "platinum-helmet",
+          "name": "Platinum Helmet",
+          "slot": "head",
+          "defense": 5,
+          "price": 48,
+          "sprite": "items/platinum-helmet.png"
+        },
+        {
+          "id": "platinum-chainmail",
+          "name": "Platinum Chainmail",
+          "slot": "chest",
+          "defense": 6,
+          "price": 60,
+          "sprite": "items/platinum-chainmail.png"
+        },
+        {
+          "id": "platinum-greaves",
+          "name": "Platinum Greaves",
+          "slot": "legs",
+          "defense": 5,
+          "price": 48,
+          "sprite": "items/platinum-greaves.png"
+        }
+      ],
+      "setBonus": {
+        "description": "+4 defense",
+        "effects": {
+          "defense": 4
+        }
+      }
+    },
+    {
+      "id": "necro",
+      "name": "Necro Armor",
+      "tier": 4,
+      "pieces": [
+        {
+          "id": "necro-helmet",
+          "name": "Necro Helmet",
+          "slot": "head",
+          "defense": 6,
+          "price": 52,
+          "sprite": "items/necro-helmet.png"
+        },
+        {
+          "id": "necro-breastplate",
+          "name": "Necro Breastplate",
+          "slot": "chest",
+          "defense": 7,
+          "price": 66,
+          "sprite": "items/necro-breastplate.png"
+        },
+        {
+          "id": "necro-greaves",
+          "name": "Necro Greaves",
+          "slot": "legs",
+          "defense": 6,
+          "price": 52,
+          "sprite": "items/necro-greaves.png"
+        }
+      ],
+      "setBonus": {
+        "description": "+15% ranged damage, +10% crit with bows and guns",
+        "effects": {
+          "damageMultiplier": {
+            "bow": 1.15,
+            "gun": 1.15,
+            "launcher": 1.15
+          },
+          "critBonus": {
+            "bow": 0.1,
+            "gun": 0.1,
+            "launcher": 0.1
+          }
+        }
+      }
+    },
+    {
+      "id": "frost",
+      "name": "Frost Armor",
+      "tier": 5,
+      "pieces": [
+        {
+          "id": "frost-helmet",
+          "name": "Frost Helmet",
+          "slot": "head",
+          "defense": 10,
+          "price": 80,
+          "sprite": "items/frost-helmet.png"
+        },
+        {
+          "id": "frost-breastplate",
+          "name": "Frost Breastplate",
+          "slot": "chest",
+          "defense": 20,
+          "price": 100,
+          "sprite": "items/frost-breastplate.png"
+        },
+        {
+          "id": "frost-leggings",
+          "name": "Frost Leggings",
+          "slot": "legs",
+          "defense": 13,
+          "price": 80,
+          "sprite": "items/frost-leggings.png"
+        }
+      ],
+      "setBonus": {
+        "description": "+16% ranged damage, +11% crit with bows and guns",
+        "effects": {
+          "damageMultiplier": {
+            "bow": 1.16,
+            "gun": 1.16,
+            "launcher": 1.16
+          },
+          "critBonus": {
+            "bow": 0.11,
+            "gun": 0.11,
+            "launcher": 0.11
+          }
+        }
+      }
+    },
+    {
+      "id": "shroomite",
+      "name": "Shroomite Armor",
+      "tier": 6,
+      "pieces": [
+        {
+          "id": "shroomite-mask",
+          "name": "Shroomite Mask",
+          "slot": "head",
+          "defense": 11,
+          "price": 110,
+          "sprite": "items/shroomite-mask.png"
+        },
+        {
+          "id": "shroomite-breastplate",
+          "name": "Shroomite Breastplate",
+          "slot": "chest",
+          "defense": 24,
+          "price": 140,
+          "sprite": "items/shroomite-breastplate.png"
+        },
+        {
+          "id": "shroomite-leggings",
+          "name": "Shroomite Leggings",
+          "slot": "legs",
+          "defense": 16,
+          "price": 110,
+          "sprite": "items/shroomite-leggings.png"
+        }
+      ],
+      "setBonus": {
+        "description": "+13% ranged damage, +25% ranged crit, +12% move speed",
+        "effects": {
+          "damageMultiplier": {
+            "bow": 1.13,
+            "gun": 1.13,
+            "launcher": 1.13,
+            "throwable": 1.13
+          },
+          "critBonus": {
+            "bow": 0.25,
+            "gun": 0.25,
+            "launcher": 0.25,
+            "throwable": 0.25
+          },
+          "moveSpeedMultiplier": 1.12
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,842 @@
+{
+ "comment": "Boss roster in progression order. Every 5th round spawns the next boss; after the last, the list loops with the loopMultiplier applied to hp/damage. Patterns: kingslime, charger, worm, shooter, stomper, wall. Each boss names the biomes it is fought in; the arena moves to one of them when it appears. Each boss also names the arena it is fought in, chosen for how it moves rather than its theme: worms and the wall get a bare corridor because terrain only traps you, chargers get open sky, and the stomper gets a low roof. Each boss also carries 'phases': thresholds where it changes how it fights, the way Terraria's bosses all do. A phase merges its 'config' over the pattern config, may replace 'shoot' outright, and may switch 'pattern' entirely (Plantera stops hovering and gives chase). Thresholds are fractions of maximum health, listed high to low, and a fight never goes back up a phase. Each boss also carries 'drops': the pool its treasure bag offers. A kill drops a bag, and walking over it deals three of these face up to choose from -- one free, and the other two lost. Pools are real Terraria drops wherever the item exists here, tier matched to the round the boss is actually beaten on.",
+ "loopMultiplier": {
+  "hp": 1.6,
+  "damage": 1.35
+ },
+ "bosses": [
+  {
+   "id": "king-slime",
+   "name": "King Slime",
+   "hp": 320,
+   "contactDamage": 12,
+   "color": "#4f86e0",
+   "sizePx": 96,
+   "pattern": "kingslime",
+   "patternConfig": {
+    "bigHopEvery": 4,
+    "bigHopAirTimeMs": 950,
+    "minScale": 0.6,
+    "summonEveryHpFraction": 0.25,
+    "summonMob": "green-slime"
+   },
+   "achievementOnKill": "defeat-king-slime",
+   "skin": {
+    "id": "king-slime",
+    "tint": "#b9d6f2",
+    "alpha": 0.96
+   },
+   "biomes": [
+    "forest",
+    "hallow"
+   ],
+   "arena": "stair",
+   "phases": [
+    {
+     "atHp": 0.6,
+     "name": "Shrinking",
+     "say": "It sheds mass and speeds up.",
+     "config": {
+      "bigHopEvery": 3,
+      "bigHopAirTimeMs": 820,
+      "summonEveryHpFraction": 0.15
+     }
+    },
+    {
+     "atHp": 0.25,
+     "name": "Frantic",
+     "say": "Barely a crown left, and twice as quick.",
+     "config": {
+      "bigHopEvery": 2,
+      "bigHopAirTimeMs": 700
+     }
+    }
+   ],
+   "drops": [
+    {
+     "kind": "weapon",
+     "id": "rally"
+    },
+    {
+     "kind": "weapon",
+     "id": "spiky-ball"
+    },
+    {
+     "kind": "accessory",
+     "id": "shiny-red-balloon"
+    },
+    {
+     "kind": "accessory",
+     "id": "cloud-in-a-bottle"
+    },
+    {
+     "kind": "ammo",
+     "id": "flaming-arrow"
+    }
+   ]
+  },
+  {
+   "id": "eye-of-cthulhu",
+   "name": "Eye of Cthulhu",
+   "hp": 520,
+   "contactDamage": 15,
+   "color": "#d4524b",
+   "sizePx": 88,
+   "pattern": "charger",
+   "patternConfig": {
+    "hoverHeight": 175,
+    "hoverMs": 2300,
+    "telegraphMs": 450,
+    "dashSpeed": 580,
+    "dashMs": 620,
+    "dashCount": 3,
+    "enrageAtHp": 0.5,
+    "servantsAtHpFractions": [
+     0.66,
+     0.33
+    ],
+    "servantMob": "demon-eye",
+    "servantCount": 2
+   },
+   "achievementOnKill": "defeat-eye-of-cthulhu",
+   "skin": {
+    "id": "eye-of-cthulhu",
+    "facePlayer": true,
+    "enrageAnim": true
+   },
+   "biomes": [
+    "forest",
+    "corruption",
+    "crimson"
+   ],
+   "arena": "open-sky",
+   "phases": [
+    {
+     "atHp": 0.5,
+     "name": "Second Form",
+     "say": "The eye splits open and stops waiting.",
+     "config": {
+      "hoverMs": 900,
+      "telegraphMs": 260,
+      "dashSpeed": 720,
+      "dashMs": 520,
+      "dashCount": 5,
+      "servantsAtHpFractions": []
+     }
+    }
+   ],
+   "drops": [
+    {
+     "kind": "weapon",
+     "id": "demon-bow"
+    },
+    {
+     "kind": "weapon",
+     "id": "code-1"
+    },
+    {
+     "kind": "accessory",
+     "id": "shield-of-cthulhu"
+    },
+    {
+     "kind": "ammo",
+     "id": "frostburn-arrow"
+    }
+   ]
+  },
+  {
+   "id": "eater-of-worlds",
+   "name": "Eater of Worlds",
+   "hp": 700,
+   "contactDamage": 17,
+   "color": "#8a6f9e",
+   "sizePx": 74,
+   "pattern": "worm",
+   "patternConfig": {
+    "speed": 175,
+    "segments": 7,
+    "servantsAtHpFractions": [
+     0.5
+    ],
+    "servantMob": "demon-eye",
+    "servantCount": 2
+   },
+   "achievementOnKill": "defeat-eater-of-worlds",
+   "skin": {
+    "id": "eater-of-worlds"
+   },
+   "biomes": [
+    "corruption"
+   ],
+   "arena": "corridor",
+   "phases": [
+    {
+     "atHp": 0.6,
+     "name": "Writhing",
+     "say": "The worm coils tighter.",
+     "config": {
+      "speed": 235
+     }
+    },
+    {
+     "atHp": 0.3,
+     "name": "Frenzy",
+     "say": "All of it comes at once.",
+     "config": {
+      "speed": 300,
+      "servantCount": 3
+     }
+    }
+   ],
+   "drops": [
+    {
+     "kind": "weapon",
+     "id": "malaise"
+    },
+    {
+     "kind": "weapon",
+     "id": "tendon-bow"
+    },
+    {
+     "kind": "accessory",
+     "id": "band-of-regeneration"
+    },
+    {
+     "kind": "ammo",
+     "id": "unholy-arrow"
+    }
+   ]
+  },
+  {
+   "id": "skeletron",
+   "name": "Skeletron",
+   "hp": 900,
+   "contactDamage": 20,
+   "color": "#cfc9b8",
+   "sizePx": 104,
+   "pattern": "spinner",
+   "patternConfig": {
+    "hoverHeight": 40,
+    "servantsAtHpFractions": [
+     0.5
+    ],
+    "servantMob": "zombie",
+    "servantCount": 2,
+    "orbitRadius": 200,
+    "orbitSpeed": 1.9,
+    "followX": 3.4,
+    "shoot": {
+     "everyMs": 1700,
+     "count": 2,
+     "spreadDeg": 24,
+     "speed": 300,
+     "damage": 14
+    }
+   },
+   "achievementOnKill": "defeat-skeletron",
+   "skin": {
+    "id": "skeletron",
+    "spinOnDash": true
+   },
+   "biomes": [
+    "corruption",
+    "crimson",
+    "ice"
+   ],
+   "arena": "open-sky",
+   "phases": [
+    {
+     "atHp": 0.5,
+     "name": "Hands Down",
+     "say": "The hands fall away. The skull spins up.",
+     "config": {
+      "orbitSpeed": 3.1,
+      "followX": 4.6
+     },
+     "shoot": {
+      "everyMs": 1000,
+      "count": 3,
+      "spreadDeg": 34,
+      "speed": 360,
+      "damage": 16
+     }
+    }
+   ],
+   "drops": [
+    {
+     "kind": "weapon",
+     "id": "water-bolt"
+    },
+    {
+     "kind": "weapon",
+     "id": "bone-javelin"
+    },
+    {
+     "kind": "weapon",
+     "id": "the-undertaker"
+    },
+    {
+     "kind": "accessory",
+     "id": "cobalt-shield"
+    }
+   ]
+  },
+  {
+   "id": "wall-of-flesh",
+   "name": "Wall of Flesh",
+   "hp": 1300,
+   "contactDamage": 26,
+   "color": "#b0424b",
+   "sizePx": 190,
+   "pattern": "wall",
+   "patternConfig": {
+    "marchSpeed": 100,
+    "shoot": {
+     "everyMs": 1500,
+     "count": 3,
+     "spreadDeg": 40,
+     "speed": 300,
+     "damage": 14
+    },
+    "servantsAtHpFractions": [
+     0.66,
+     0.33
+    ],
+    "servantMob": "zombie",
+    "servantCount": 2
+   },
+   "achievementOnKill": "defeat-wall-of-flesh",
+   "skin": {
+    "id": "wall-of-flesh"
+   },
+   "biomes": [
+    "underworld"
+   ],
+   "arena": "corridor",
+   "phases": [
+    {
+     "atHp": 0.66,
+     "name": "Closing In",
+     "say": "The wall picks up pace.",
+     "config": {
+      "marchSpeed": 140
+     },
+     "shoot": {
+      "everyMs": 1200,
+      "count": 4,
+      "spreadDeg": 46,
+      "speed": 330,
+      "damage": 16
+     }
+    },
+    {
+     "atHp": 0.33,
+     "name": "Stampede",
+     "say": "Nowhere left to back into.",
+     "config": {
+      "marchSpeed": 195,
+      "servantCount": 3
+     },
+     "shoot": {
+      "everyMs": 900,
+      "count": 5,
+      "spreadDeg": 52,
+      "speed": 360,
+      "damage": 18
+     }
+    }
+   ],
+   "drops": [
+    {
+     "kind": "accessory",
+     "id": "ranger-emblem"
+    },
+    {
+     "kind": "weapon",
+     "id": "molten-fury"
+    },
+    {
+     "kind": "weapon",
+     "id": "hel-fire"
+    },
+    {
+     "kind": "ammo",
+     "id": "hellfire-arrow"
+    }
+   ]
+  },
+  {
+   "id": "destroyer",
+   "name": "The Destroyer",
+   "hp": 1800,
+   "contactDamage": 28,
+   "color": "#9aa3ad",
+   "sizePx": 70,
+   "pattern": "worm",
+   "patternConfig": {
+    "speed": 235,
+    "segments": 9,
+    "shoot": {
+     "everyMs": 2200,
+     "count": 2,
+     "spreadDeg": 30,
+     "speed": 340,
+     "damage": 15
+    }
+   },
+   "achievementOnKill": "defeat-destroyer",
+   "skin": {
+    "id": "destroyer"
+   },
+   "biomes": [
+    "forest",
+    "corruption",
+    "snow"
+   ],
+   "arena": "corridor",
+   "phases": [
+    {
+     "atHp": 0.5,
+     "name": "Probes Loose",
+     "say": "The probes detach and open fire.",
+     "config": {
+      "speed": 300
+     },
+     "shoot": {
+      "everyMs": 1100,
+      "count": 4,
+      "spreadDeg": 44,
+      "speed": 400,
+      "damage": 17
+     }
+    }
+   ],
+   "drops": [
+    {
+     "kind": "weapon",
+     "id": "megashark"
+    },
+    {
+     "kind": "weapon",
+     "id": "hallowed-repeater"
+    },
+    {
+     "kind": "accessory",
+     "id": "destroyer-emblem"
+    },
+    {
+     "kind": "ammo",
+     "id": "crystal-bullet"
+    }
+   ]
+  },
+  {
+   "id": "plantera",
+   "name": "Plantera",
+   "hp": 2300,
+   "contactDamage": 30,
+   "color": "#d357a8",
+   "sizePx": 120,
+   "pattern": "shooter",
+   "patternConfig": {
+    "hoverHeight": 150,
+    "orbitRadius": 200,
+    "driftMs": 1500,
+    "enrageAtHp": 0.5,
+    "shoot": {
+     "everyMs": 1300,
+     "count": 4,
+     "spreadDeg": 55,
+     "speed": 330,
+     "damage": 16
+    },
+    "servantsAtHpFractions": [
+     0.5
+    ],
+    "servantMob": "demon-eye",
+    "servantCount": 3
+   },
+   "achievementOnKill": "defeat-plantera",
+   "skin": {
+    "id": "plantera",
+    "enrageAnim": true
+   },
+   "biomes": [
+    "jungle"
+   ],
+   "arena": "canopy",
+   "phases": [
+    {
+     "atHp": 0.5,
+     "name": "Hooked",
+     "say": "The bulb tears open and gives chase.",
+     "pattern": "charger",
+     "config": {
+      "hoverHeight": 120,
+      "hoverMs": 1100,
+      "telegraphMs": 300,
+      "dashSpeed": 620,
+      "dashMs": 560,
+      "dashCount": 4
+     },
+     "shoot": {
+      "everyMs": 1500,
+      "count": 3,
+      "spreadDeg": 40,
+      "speed": 340,
+      "damage": 18
+     }
+    }
+   ],
+   "drops": [
+    {
+     "kind": "weapon",
+     "id": "venus-magnum"
+    },
+    {
+     "kind": "weapon",
+     "id": "grenade-launcher"
+    },
+    {
+     "kind": "weapon",
+     "id": "chlorophyte-shotbow"
+    },
+    {
+     "kind": "ammo",
+     "id": "chlorophyte-arrow"
+    },
+    {
+     "kind": "ammo",
+     "id": "chlorophyte-bullet"
+    }
+   ]
+  },
+  {
+   "id": "golem",
+   "name": "Golem",
+   "hp": 2900,
+   "contactDamage": 34,
+   "color": "#c87a34",
+   "sizePx": 128,
+   "pattern": "stomper",
+   "patternConfig": {
+    "slamEveryMs": 2300,
+    "leapPower": 820,
+    "leapLead": 1.15,
+    "walkSpeed": 80,
+    "shockRadius": 165,
+    "shockDamage": 22,
+    "shoot": {
+     "everyMs": 2600,
+     "count": 2,
+     "spreadDeg": 24,
+     "speed": 300,
+     "damage": 17
+    }
+   },
+   "achievementOnKill": "defeat-golem",
+   "skin": {
+    "id": "golem"
+   },
+   "biomes": [
+    "jungle"
+   ],
+   "arena": "temple",
+   "phases": [
+    {
+     "atHp": 0.45,
+     "name": "Head Free",
+     "say": "The head comes loose and the fists speed up.",
+     "config": {
+      "slamEveryMs": 1500,
+      "leapPower": 940,
+      "walkSpeed": 115,
+      "shockRadius": 195
+     },
+     "shoot": {
+      "everyMs": 1700,
+      "count": 3,
+      "spreadDeg": 32,
+      "speed": 340,
+      "damage": 19
+     }
+    }
+   ],
+   "drops": [
+    {
+     "kind": "weapon",
+     "id": "stynger"
+    },
+    {
+     "kind": "accessory",
+     "id": "eye-of-the-golem"
+    },
+    {
+     "kind": "weapon",
+     "id": "nail-gun"
+    },
+    {
+     "kind": "ammo",
+     "id": "holy-arrow"
+    }
+   ]
+  },
+  {
+   "id": "duke-fishron",
+   "name": "Duke Fishron",
+   "hp": 3500,
+   "contactDamage": 38,
+   "color": "#3fd6a8",
+   "sizePx": 130,
+   "pattern": "charger",
+   "patternConfig": {
+    "hoverHeight": 165,
+    "hoverMs": 1500,
+    "telegraphMs": 330,
+    "dashSpeed": 720,
+    "dashMs": 520,
+    "dashCount": 4,
+    "shoot": {
+     "everyMs": 2000,
+     "count": 3,
+     "spreadDeg": 35,
+     "speed": 360,
+     "damage": 18
+    }
+   },
+   "achievementOnKill": "defeat-duke-fishron",
+   "skin": {
+    "id": "duke-fishron",
+    "facePlayer": true
+   },
+   "biomes": [
+    "sky",
+    "snow"
+   ],
+   "arena": "open-sky",
+   "phases": [
+    {
+     "atHp": 0.66,
+     "name": "Second Wind",
+     "say": "The dashes come closer together.",
+     "config": {
+      "hoverMs": 1100,
+      "telegraphMs": 260,
+      "dashSpeed": 830,
+      "dashCount": 5
+     }
+    },
+    {
+     "atHp": 0.3,
+     "name": "Tempest",
+     "say": "It stops telegraphing almost entirely.",
+     "config": {
+      "hoverMs": 700,
+      "telegraphMs": 180,
+      "dashSpeed": 940,
+      "dashMs": 460,
+      "dashCount": 6
+     },
+     "shoot": {
+      "everyMs": 1400,
+      "count": 4,
+      "spreadDeg": 44,
+      "speed": 400,
+      "damage": 20
+     }
+    }
+   ],
+   "drops": [
+    {
+     "kind": "weapon",
+     "id": "tsunami"
+    },
+    {
+     "kind": "weapon",
+     "id": "razorblade-typhoon"
+    },
+    {
+     "kind": "weapon",
+     "id": "kraken"
+    },
+    {
+     "kind": "ammo",
+     "id": "high-velocity-bullet"
+    }
+   ]
+  },
+  {
+   "id": "lunatic-cultist",
+   "name": "Lunatic Cultist",
+   "hp": 4200,
+   "contactDamage": 40,
+   "color": "#4b6fd4",
+   "sizePx": 100,
+   "pattern": "teleporter",
+   "patternConfig": {
+    "shoot": {
+     "everyMs": 1100,
+     "count": 5,
+     "spreadDeg": 70,
+     "speed": 380,
+     "damage": 19
+    },
+    "servantsAtHpFractions": [
+     0.66,
+     0.33
+    ],
+    "servantMob": "demon-eye",
+    "servantCount": 3,
+    "blinkEveryMs": 2400,
+    "telegraphMs": 420,
+    "blinkRadius": 215,
+    "arriveShotDelayMs": 200
+   },
+   "achievementOnKill": "defeat-lunatic-cultist",
+   "skin": {
+    "id": "lunatic-cultist"
+   },
+   "biomes": [
+    "hallow",
+    "sky"
+   ],
+   "arena": "pillars",
+   "phases": [
+    {
+     "atHp": 0.5,
+     "name": "Ritual",
+     "say": "The illusions come faster than the caster.",
+     "config": {
+      "blinkEveryMs": 1500,
+      "telegraphMs": 260,
+      "arriveShotDelayMs": 120,
+      "servantCount": 4
+     },
+     "shoot": {
+      "everyMs": 800,
+      "count": 6,
+      "spreadDeg": 84,
+      "speed": 420,
+      "damage": 21
+     }
+    }
+   ],
+   "drops": [
+    {
+     "kind": "weapon",
+     "id": "shadowbeam-staff"
+    },
+    {
+     "kind": "weapon",
+     "id": "nebula-blaze"
+    },
+    {
+     "kind": "accessory",
+     "id": "ankh-shield"
+    },
+    {
+     "kind": "ammo",
+     "id": "luminite-arrow"
+    }
+   ]
+  },
+  {
+   "id": "moon-lord",
+   "name": "Moon Lord",
+   "hp": 5600,
+   "contactDamage": 45,
+   "color": "#7fd6c0",
+   "sizePx": 200,
+   "pattern": "shooter",
+   "patternConfig": {
+    "hoverHeight": 170,
+    "orbitRadius": 150,
+    "driftMs": 2200,
+    "followX": 1.1,
+    "followY": 1.2,
+    "shoot": {
+     "everyMs": 900,
+     "count": 6,
+     "spreadDeg": 80,
+     "speed": 400,
+     "damage": 22
+    },
+    "servantsAtHpFractions": [
+     0.75,
+     0.5,
+     0.25
+    ],
+    "servantMob": "demon-eye",
+    "servantCount": 3
+   },
+   "achievementOnKill": "defeat-moon-lord",
+   "skin": {
+    "id": "moon-lord"
+   },
+   "biomes": [
+    "sky",
+    "underworld"
+   ],
+   "arena": "canopy",
+   "phases": [
+    {
+     "atHp": 0.6,
+     "name": "Eyes Open",
+     "say": "Every eye finds you at once.",
+     "config": {
+      "driftMs": 1600,
+      "followX": 1.5,
+      "followY": 1.6
+     },
+     "shoot": {
+      "everyMs": 700,
+      "count": 7,
+      "spreadDeg": 92,
+      "speed": 430,
+      "damage": 24
+     }
+    },
+    {
+     "atHp": 0.25,
+     "name": "Core Exposed",
+     "say": "The core opens. It stops missing.",
+     "config": {
+      "orbitRadius": 110,
+      "driftMs": 1200,
+      "followX": 2.0,
+      "followY": 2.1
+     },
+     "shoot": {
+      "everyMs": 520,
+      "count": 8,
+      "spreadDeg": 104,
+      "speed": 470,
+      "damage": 26
+     }
+    }
+   ],
+   "drops": [
+    {
+     "kind": "weapon",
+     "id": "sdmg"
+    },
+    {
+     "kind": "weapon",
+     "id": "phantasm"
+    },
+    {
+     "kind": "weapon",
+     "id": "terrarian"
+    },
+    {
+     "kind": "weapon",
+     "id": "celebration-mk2"
+    },
+    {
+     "kind": "ammo",
+     "id": "luminite-bullet"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,89 @@
+{
+  "comment": "Terraria's debuffs, the layer that makes one arrow different from another beyond its numbers. A Flaming Arrow should set things on fire; before this it just exploded, which is a Hellfire Arrow's job. Every effect here is one the engine can actually deliver against a mob: damage over time, a slow, or a multiplier on damage taken. Nothing reduces enemy defense, because mobs in this game do not have any. Durations are short -- a few seconds -- because a round is under a minute and a debuff that outlives the fight is just extra damage on the tooltip.",
+  "tickMs": 500,
+  "debuffs": [
+    {
+      "id": "on-fire",
+      "name": "On Fire!",
+      "description": "Burns for a few seconds.",
+      "seconds": 4,
+      "damagePerSecond": 6,
+      "tint": "#e8721c",
+      "particle": "spark"
+    },
+    {
+      "id": "frostburn",
+      "name": "Frostburn",
+      "description": "Burns cold, and harder than fire.",
+      "seconds": 5,
+      "damagePerSecond": 9,
+      "tint": "#7ad0f0",
+      "particle": "sparkle"
+    },
+    {
+      "id": "poisoned",
+      "name": "Poisoned",
+      "description": "A slow drain that stacks up over a wave.",
+      "seconds": 7,
+      "damagePerSecond": 5,
+      "tint": "#7ac44a",
+      "particle": "sparkle"
+    },
+    {
+      "id": "venom",
+      "name": "Venom",
+      "description": "Poison's nastier cousin.",
+      "seconds": 6,
+      "damagePerSecond": 15,
+      "tint": "#a05fd0",
+      "particle": "sparkle"
+    },
+    {
+      "id": "ichor",
+      "name": "Ichor",
+      "description": "Everything that hits it afterwards hits harder.",
+      "seconds": 6,
+      "damageTakenMultiplier": 1.25,
+      "tint": "#e8c84a",
+      "particle": "sparkle"
+    },
+    {
+      "id": "cursed-inferno",
+      "name": "Cursed Inferno",
+      "description": "Green fire that will not go out.",
+      "seconds": 5,
+      "damagePerSecond": 18,
+      "tint": "#5fd48a",
+      "particle": "spark"
+    },
+    {
+      "id": "shadowflame",
+      "name": "Shadowflame",
+      "description": "Burns and softens whatever it is burning.",
+      "seconds": 5,
+      "damagePerSecond": 12,
+      "damageTakenMultiplier": 1.15,
+      "tint": "#8a5fd0",
+      "particle": "spark"
+    },
+    {
+      "id": "frostbite",
+      "name": "Frostbite",
+      "description": "Slows it to a crawl while it freezes.",
+      "seconds": 4,
+      "damagePerSecond": 7,
+      "speedMultiplier": 0.55,
+      "tint": "#9fd8ff",
+      "particle": "sparkle"
+    },
+    {
+      "id": "confused",
+      "name": "Confused",
+      "description": "Walks the wrong way.",
+      "seconds": 3,
+      "reverseMovement": true,
+      "tint": "#d07ad0",
+      "particle": "sparkle"
+    }
+  ]
+}

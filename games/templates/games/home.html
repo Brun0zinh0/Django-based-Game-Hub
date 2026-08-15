@@ -41,10 +41,10 @@
 
         {% for game in arcade_games %}
         <article class="game-card arcade-card arcade-card-{{ game.theme }}{% if not game.available %} is-coming-soon{% endif %}">
-            {% if game.slug == "pokemon-rogue" %}
+            {% if game.cover %}
                 <figure class="game-card-cover">
                     <img
-                        src="{% static 'games/assets/hub/pokemon-rogue-cover.jpg' %}"
+                        src="{% static game.cover %}"
                         alt=""
                         decoding="async"
                     >
@@ -59,7 +59,7 @@
                 <p>{{ game.description }}</p>
                 {% if game.available %}
                     <a class="button button-arcade"
-                       href="{% if game.slug == 'pokemon-rogue' %}{% url 'games:pokemon_rogue' %}{% else %}{% url 'games:arcade_game' game.slug %}{% endif %}">
+                       href="{% if game.url_name %}{% url game.url_name %}{% else %}{% url 'games:arcade_game' game.slug %}{% endif %}">
                         Jouer
                     </a>
                 {% else %}

@@ -18,3 +18,16 @@ tmp/
 # originals are the artists' to distribute, not this repo's.
 .battleback-source/
 .deviantart-source/
+backgrounds/
+
+# Reference material the Terra Boss art was matched against: someone else's
+# screenshot gallery and a clip of the real game. Only these two at the top
+# level -- games/static/games/assets/terra/menu-animation.mp4 is built from
+# them, is loaded by the menu, and does ship.
+/video for background terraria.mp4
+/gallery-of-all-my-*.png
+
+# Soundtrack added after the first sync. The tracks are not ours to
+# redistribute; the published copy ships sounds/ empty with a README saying
+# where to drop your own.
+sounds/Pokerogue/

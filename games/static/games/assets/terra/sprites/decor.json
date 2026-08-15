@@ -1,0 +1,128 @@
+{
+ "forest-plants": {
+  "file": "decor/forest-plants.png",
+  "frameWidth": 16,
+  "frameHeight": 20,
+  "frames": 8,
+  "source": "Tiles_3"
+ },
+ "forest-flower": {
+  "file": "decor/forest-flower.png",
+  "frameWidth": 30,
+  "frameHeight": 72,
+  "frames": 1,
+  "source": "Tiles_27"
+ },
+ "forest-tree": {
+  "file": "decor/forest-tree.png",
+  "frameWidth": 80,
+  "frameHeight": 136,
+  "frames": 1,
+  "source": "Tree_Tops_0"
+ },
+ "snow-clutter": {
+  "file": "decor/snow-clutter.png",
+  "frameWidth": 16,
+  "frameHeight": 20,
+  "frames": 6,
+  "source": "Tiles_186"
+ },
+ "snow-tree": {
+  "file": "decor/snow-tree.png",
+  "frameWidth": 80,
+  "frameHeight": 136,
+  "frames": 1,
+  "source": "Tree_Tops_18"
+ },
+ "crimson-plants": {
+  "file": "decor/crimson-plants.png",
+  "frameWidth": 16,
+  "frameHeight": 20,
+  "frames": 8,
+  "source": "Tiles_201"
+ },
+ "crimson-tree": {
+  "file": "decor/crimson-tree.png",
+  "frameWidth": 80,
+  "frameHeight": 138,
+  "frames": 1,
+  "source": "Tree_Tops_5"
+ },
+ "corruption-plants": {
+  "file": "decor/corruption-plants.png",
+  "frameWidth": 16,
+  "frameHeight": 20,
+  "frames": 8,
+  "source": "Tiles_24"
+ },
+ "corruption-tree": {
+  "file": "decor/corruption-tree.png",
+  "frameWidth": 80,
+  "frameHeight": 136,
+  "frames": 1,
+  "source": "Tree_Tops_1"
+ },
+ "ice-plants": {
+  "file": "decor/ice-plants.png",
+  "frameWidth": 16,
+  "frameHeight": 20,
+  "frames": 8,
+  "source": "Tiles_187"
+ },
+ "ice-tree": {
+  "file": "decor/ice-tree.png",
+  "frameWidth": 76,
+  "frameHeight": 138,
+  "frames": 1,
+  "source": "Tree_Tops_4"
+ },
+ "hallow-plants": {
+  "file": "decor/hallow-plants.png",
+  "frameWidth": 16,
+  "frameHeight": 20,
+  "frames": 8,
+  "source": "Tiles_110"
+ },
+ "hallow-tree": {
+  "file": "decor/hallow-tree.png",
+  "frameWidth": 80,
+  "frameHeight": 196,
+  "frames": 1,
+  "source": "Tree_Tops_20"
+ },
+ "mushroom-plants": {
+  "file": "decor/mushroom-plants.png",
+  "frameWidth": 16,
+  "frameHeight": 20,
+  "frames": 5,
+  "source": "Tiles_71"
+ },
+ "mushroom-tree": {
+  "file": "decor/mushroom-tree.png",
+  "frameWidth": 76,
+  "frameHeight": 124,
+  "frames": 1,
+  "source": "Tree_Tops_14"
+ },
+ "jungle-plants": {
+  "file": "decor/jungle-plants.png",
+  "frameWidth": 16,
+  "frameHeight": 20,
+  "frames": 8,
+  "source": "Tiles_61"
+ },
+ "jungle-tree": {
+  "file": "decor/jungle-tree.png",
+  "frameWidth": 112,
+  "frameHeight": 136,
+  "frames": 1,
+  "source": "Tree_Tops_2"
+ },
+ "underworld-clutter": {
+  "file": "decor/underworld-clutter.png",
+  "frameWidth": 16,
+  "frameHeight": 20,
+  "frames": 6,
+  "source": "Tiles_186"
+ }
+}

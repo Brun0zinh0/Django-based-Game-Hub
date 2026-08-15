@@ -1,0 +1,165 @@
+{
+  "comment": "Feats. 'awarded' ones are handed out during the run itself (a boss dying); the rest are measured against the finished run and the save when it ends.",
+  "achievements": [
+    {
+      "id": "defeat-king-slime",
+      "name": "Slayer of King Slime",
+      "description": "Defeat King Slime.",
+      "condition": {
+        "awarded": true
+      }
+    },
+    {
+      "id": "defeat-eye-of-cthulhu",
+      "name": "Slayer of Eye of Cthulhu",
+      "description": "Defeat Eye of Cthulhu.",
+      "condition": {
+        "awarded": true
+      }
+    },
+    {
+      "id": "defeat-eater-of-worlds",
+      "name": "Slayer of Eater of Worlds",
+      "description": "Defeat Eater of Worlds.",
+      "condition": {
+        "awarded": true
+      }
+    },
+    {
+      "id": "defeat-skeletron",
+      "name": "Slayer of Skeletron",
+      "description": "Defeat Skeletron.",
+      "condition": {
+        "awarded": true
+      }
+    },
+    {
+      "id": "defeat-wall-of-flesh",
+      "name": "Slayer of Wall of Flesh",
+      "description": "Defeat Wall of Flesh.",
+      "condition": {
+        "awarded": true
+      }
+    },
+    {
+      "id": "defeat-destroyer",
+      "name": "Slayer of The Destroyer",
+      "description": "Defeat The Destroyer.",
+      "condition": {
+        "awarded": true
+      }
+    },
+    {
+      "id": "defeat-plantera",
+      "name": "Slayer of Plantera",
+      "description": "Defeat Plantera.",
+      "condition": {
+        "awarded": true
+      }
+    },
+    {
+      "id": "defeat-golem",
+      "name": "Slayer of Golem",
+      "description": "Defeat Golem.",
+      "condition": {
+        "awarded": true
+      }
+    },
+    {
+      "id": "defeat-duke-fishron",
+      "name": "Slayer of Duke Fishron",
+      "description": "Defeat Duke Fishron.",
+      "condition": {
+        "awarded": true
+      }
+    },
+    {
+      "id": "defeat-lunatic-cultist",
+      "name": "Slayer of Lunatic Cultist",
+      "description": "Defeat Lunatic Cultist.",
+      "condition": {
+        "awarded": true
+      }
+    },
+    {
+      "id": "defeat-moon-lord",
+      "name": "Slayer of Moon Lord",
+      "description": "Defeat Moon Lord.",
+      "condition": {
+        "awarded": true
+      }
+    },
+    {
+      "id": "first-blood",
+      "name": "First Blood",
+      "description": "Clear a single round.",
+      "condition": {
+        "roundsCleared": 1
+      }
+    },
+    {
+      "id": "deep-diver",
+      "name": "Deep Diver",
+      "description": "Survive ten rounds in one run.",
+      "condition": {
+        "roundsCleared": 10
+      }
+    },
+    {
+      "id": "abyss-walker",
+      "name": "Abyss Walker",
+      "description": "Survive twenty rounds in one run.",
+      "condition": {
+        "roundsCleared": 20
+      }
+    },
+    {
+      "id": "exterminator",
+      "name": "Exterminator",
+      "description": "Put down 150 creatures in one run.",
+      "condition": {
+        "killsInRun": 150
+      }
+    },
+    {
+      "id": "boss-rush",
+      "name": "Boss Rush",
+      "description": "Beat four bosses in a single run.",
+      "condition": {
+        "bossKillsInRun": 4
+      }
+    },
+    {
+      "id": "war-chest",
+      "name": "War Chest",
+      "description": "Earn 600 coins in one run.",
+      "condition": {
+        "coinsInRun": 600
+      }
+    },
+    {
+      "id": "quartermaster",
+      "name": "Quartermaster",
+      "description": "Carry 25 different weapons across all your runs.",
+      "condition": {
+        "weaponsCarried": 25
+      }
+    },
+    {
+      "id": "naturalist",
+      "name": "Naturalist",
+      "description": "Record 25 different creatures in the bestiary.",
+      "condition": {
+        "bestiaryEntries": 25
+      }
+    },
+    {
+      "id": "well-armed",
+      "name": "Well Armed",
+      "description": "Carry every weapon category at least once.",
+      "condition": {
+        "everyCategoryCarried": true
+      }
+    }
+  ]
+}

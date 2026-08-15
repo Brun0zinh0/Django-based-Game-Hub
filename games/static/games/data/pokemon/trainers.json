@@ -2170,6 +2170,934 @@
       "boss": false,
       "sprite": "games/assets/pokemon/trainers/showdown/saturn.png",
       "intro_line": "Cyrus demands results. I deliver them."
+    },
+    {
+      "id": "waitress",
+      "name": "Waitress",
+      "trainer_class": "Waitress",
+      "league_generations": [
+        5
+      ],
+      "sprite_generation": 5,
+      "specialties": [
+        "normal"
+      ],
+      "strength": "weak",
+      "boss": false,
+      "sprite": "games/assets/pokemon/trainers/showdown/waitress.png",
+      "intro_line": "One battle, coming right up!"
+    },
+    {
+      "id": "baker",
+      "name": "Baker",
+      "trainer_class": "Baker",
+      "league_generations": [
+        5
+      ],
+      "sprite_generation": 5,
+      "specialties": [
+        "fire"
+      ],
+      "strength": "weak",
+      "boss": false,
+      "sprite": "games/assets/pokemon/trainers/showdown/baker.png",
+      "intro_line": "My team was proofed to perfection - now watch them rise!"
+    },
+    {
+      "id": "preschooler",
+      "name": "Preschooler",
+      "trainer_class": "Preschooler",
+      "league_generations": [
+        5
+      ],
+      "sprite_generation": 5,
+      "specialties": [
+        "normal"
+      ],
+      "strength": "weak",
+      "boss": false,
+      "sprite": "games/assets/pokemon/trainers/showdown/preschooler.png",
+      "intro_line": "My Pokemon and I take our naps SERIOUSLY."
+    },
+    {
+      "id": "roughneck",
+      "name": "Roughneck",
+      "trainer_class": "Roughneck",
+      "league_generations": [
+        5
+      ],
+      "sprite_generation": 5,
+      "specialties": [
+        "dark"
+      ],
+      "strength": "weak",
+      "boss": false,
+      "sprite": "games/assets/pokemon/trainers/showdown/roughneck.png",
+      "intro_line": "This head isn't shaved for fashion. It's aerodynamic!"
+    },
+    {
+      "id": "cyclist",
+      "name": "Cyclist",
+      "trainer_class": "Cyclist",
+      "league_generations": [
+        5
+      ],
+      "sprite_generation": 5,
+      "specialties": [
+        "electric"
+      ],
+      "strength": "mid",
+      "boss": false,
+      "sprite": "games/assets/pokemon/trainers/showdown/cyclist.png",
+      "intro_line": "Try to keep up - my whole team trains at full sprint!"
+    },
+    {
+      "id": "depotagent",
+      "name": "Depot Agent",
+      "trainer_class": "Depot Agent",
+      "league_generations": [
+        5
+      ],
+      "sprite_generation": 5,
+      "specialties": [
+        "steel"
+      ],
+      "strength": "mid",
+      "boss": false,
+      "sprite": "games/assets/pokemon/trainers/showdown/depotagent.png",
+      "intro_line": "This battle departs right on schedule!"
+    },
+    {
+      "id": "maid",
+      "name": "Maid",
+      "trainer_class": "Maid",
+      "league_generations": [
+        5
+      ],
+      "sprite_generation": 5,
+      "specialties": [
+        "normal"
+      ],
+      "strength": "mid",
+      "boss": false,
+      "sprite": "games/assets/pokemon/trainers/showdown/maid.png",
+      "intro_line": "I shall tidy up this battle in no time at all."
+    },
+    {
+      "id": "musician",
+      "name": "Musician",
+      "trainer_class": "Musician",
+      "league_generations": [
+        5
+      ],
+      "sprite_generation": 5,
+      "specialties": [
+        "electric"
+      ],
+      "strength": "mid",
+      "boss": false,
+      "sprite": "games/assets/pokemon/trainers/showdown/musician.png",
+      "intro_line": "Ready for a set you won't forget?"
+    },
+    {
+      "id": "plasmagrunt-gen5bw",
+      "name": "Plasma Grunt",
+      "trainer_class": "Team Plasma",
+      "league_generations": [
+        5
+      ],
+      "sprite_generation": 5,
+      "specialties": [
+        "dark"
+      ],
+      "strength": "mid",
+      "boss": false,
+      "sprite": "games/assets/pokemon/trainers/showdown/plasmagrunt-gen5bw.png",
+      "intro_line": "For the liberation of Pokemon!"
+    },
+    {
+      "id": "plasmagruntf-gen5bw",
+      "name": "Plasma Grunt Nea",
+      "trainer_class": "Team Plasma",
+      "league_generations": [
+        5
+      ],
+      "sprite_generation": 5,
+      "specialties": [
+        "poison"
+      ],
+      "strength": "mid",
+      "boss": false,
+      "sprite": "games/assets/pokemon/trainers/showdown/plasmagruntf-gen5bw.png",
+      "intro_line": "Lord N's ideals will free every Pokemon - starting with yours!"
+    },
+    {
+      "id": "scientist",
+      "name": "Scientist",
+      "trainer_class": "Scientist",
+      "league_generations": [
+        5
+      ],
+      "sprite_generation": 5,
+      "specialties": [
+        "electric"
+      ],
+      "strength": "strong",
+      "boss": false,
+      "sprite": "games/assets/pokemon/trainers/showdown/scientist.png",
+      "intro_line": "My hypothesis: your defeat. Let's run the experiment."
+    },
+    {
+      "id": "battlegirl",
+      "name": "Battle Girl",
+      "trainer_class": "Battle Girl",
+      "league_generations": [
+        5
+      ],
+      "sprite_generation": 5,
+      "specialties": [
+        "fighting"
+      ],
+      "strength": "strong",
+      "boss": false,
+      "sprite": "games/assets/pokemon/trainers/showdown/battlegirl.png",
+      "intro_line": "Footwork first, victory second!"
+    },
+    {
+      "id": "acetrainer",
+      "name": "Ace Trainer",
+      "trainer_class": "Ace Trainer",
+      "league_generations": [
+        5
+      ],
+      "sprite_generation": 5,
+      "specialties": [
+        "normal"
+      ],
+      "strength": "strong",
+      "boss": false,
+      "sprite": "games/assets/pokemon/trainers/showdown/acetrainer.png",
+      "intro_line": "I didn't climb this far to lose here!"
+    },
+    {
+      "id": "acetrainerf",
+      "name": "Ace Trainer Elle",
+      "trainer_class": "Ace Trainer",
+      "league_generations": [
+        5
+      ],
+      "sprite_generation": 5,
+      "specialties": [
+        "psychic"
+      ],
+      "strength": "strong",
+      "boss": false,
+      "sprite": "games/assets/pokemon/trainers/showdown/acetrainerf.png",
+      "intro_line": "Every move you make, I've already planned around."
+    },
+    {
+      "id": "doctor",
+      "name": "Doctor",
+      "trainer_class": "Doctor",
+      "league_generations": [
+        5
+      ],
+      "sprite_generation": 5,
+      "specialties": [
+        "normal"
+      ],
+      "strength": "strong",
+      "boss": false,
+      "sprite": "games/assets/pokemon/trainers/showdown/doctor.png",
+      "intro_line": "I'll examine your team's weaknesses - thoroughly."
+    },
+    {
+      "id": "cilan",
+      "name": "Cilan",
+      "trainer_class": "Gym Leader",
+      "league_generations": [
+        5
+      ],
+      "sprite_generation": 5,
+      "specialties": [
+        "grass"
+      ],
+      "strength": "boss",
+      "boss": true,
+      "sprite": "games/assets/pokemon/trainers/showdown/cilan.png",
+      "intro_line": "Which of us you face was decided with your partner!"
+    },
+    {
+      "id": "lenora",
+      "name": "Lenora",
+      "trainer_class": "Gym Leader",
+      "league_generations": [
+        5
+      ],
+      "sprite_generation": 5,
+      "specialties": [
+        "normal"
+      ],
+      "strength": "boss",
+      "boss": true,
+      "sprite": "games/assets/pokemon/trainers/showdown/lenora.png",
+      "intro_line": "A librarian reads her opponents like books!"
+    },
+    {
+      "id": "burgh",
+      "name": "Burgh",
+      "trainer_class": "Gym Leader",
+      "league_generations": [
+        5
+      ],
+      "sprite_generation": 5,
+      "specialties": [
+        "bug"
+      ],
+      "strength": "boss",
+      "boss": true,
+      "sprite": "games/assets/pokemon/trainers/showdown/burgh.png",
+      "intro_line": "My bug Pokemon are living works of art!"
+    },
+    {
+      "id": "elesa",
+      "name": "Elesa",
+      "trainer_class": "Gym Leader",
+      "league_generations": [
+        5
+      ],
+      "sprite_generation": 5,
+      "specialties": [
+        "electric"
+      ],
+      "strength": "boss",
+      "boss": true,
+      "sprite": "games/assets/pokemon/trainers/showdown/elesa.png",
+      "intro_line": "You're about to be part of my show!"
+    },
+    {
+      "id": "clay",
+      "name": "Clay",
+      "trainer_class": "Gym Leader",
+      "league_generations": [
+        5
+      ],
+      "sprite_generation": 5,
+      "specialties": [
+        "ground"
+      ],
+      "strength": "boss",
+      "boss": true,
+      "sprite": "games/assets/pokemon/trainers/showdown/clay.png",
+      "intro_line": "I dig up everything my opponent buried!"
+    },
+    {
+      "id": "skyla",
+      "name": "Skyla",
+      "trainer_class": "Gym Leader",
+      "league_generations": [
+        5
+      ],
+      "sprite_generation": 5,
+      "specialties": [
+        "flying"
+      ],
+      "strength": "boss",
+      "boss": true,
+      "sprite": "games/assets/pokemon/trainers/showdown/skyla.png",
+      "intro_line": "The runway's clear - can you handle turbulence?"
+    },
+    {
+      "id": "brycen",
+      "name": "Brycen",
+      "trainer_class": "Gym Leader",
+      "league_generations": [
+        5
+      ],
+      "sprite_generation": 5,
+      "specialties": [
+        "ice"
+      ],
+      "strength": "boss",
+      "boss": true,
+      "sprite": "games/assets/pokemon/trainers/showdown/brycen.png",
+      "intro_line": "This ice has never melted for a challenger."
+    },
+    {
+      "id": "drayden",
+      "name": "Drayden",
+      "trainer_class": "Gym Leader",
+      "league_generations": [
+        5
+      ],
+      "sprite_generation": 5,
+      "specialties": [
+        "dragon"
+      ],
+      "strength": "boss",
+      "boss": true,
+      "sprite": "games/assets/pokemon/trainers/showdown/drayden.png",
+      "intro_line": "Dragons demand truth. Show me yours!"
+    },
+    {
+      "id": "n",
+      "name": "N",
+      "trainer_class": "Plasma King",
+      "league_generations": [
+        5
+      ],
+      "sprite_generation": 5,
+      "specialties": [
+        "dragon"
+      ],
+      "strength": "boss",
+      "boss": true,
+      "sprite": "games/assets/pokemon/trainers/showdown/n.png",
+      "intro_line": "The hero of legend has answered me."
+    },
+    {
+      "id": "shauntal",
+      "name": "Shauntal",
+      "trainer_class": "Elite Four",
+      "league_generations": [
+        5
+      ],
+      "sprite_generation": 5,
+      "specialties": [
+        "ghost"
+      ],
+      "strength": "boss",
+      "boss": true,
+      "sprite": "games/assets/pokemon/trainers/showdown/shauntal.png",
+      "intro_line": "What a marvelous opening line for my next novel!"
+    },
+    {
+      "id": "grimsley",
+      "name": "Grimsley",
+      "trainer_class": "Elite Four",
+      "league_generations": [
+        5
+      ],
+      "sprite_generation": 5,
+      "specialties": [
+        "dark"
+      ],
+      "strength": "boss",
+      "boss": true,
+      "sprite": "games/assets/pokemon/trainers/showdown/grimsley.png",
+      "intro_line": "Fortune is a blade that cuts both ways."
+    },
+    {
+      "id": "caitlin",
+      "name": "Caitlin",
+      "trainer_class": "Elite Four",
+      "league_generations": [
+        5
+      ],
+      "sprite_generation": 5,
+      "specialties": [
+        "psychic"
+      ],
+      "strength": "boss",
+      "boss": true,
+      "sprite": "games/assets/pokemon/trainers/showdown/caitlin.png",
+      "intro_line": "You woke me from a lovely dream."
+    },
+    {
+      "id": "marshal",
+      "name": "Marshal",
+      "trainer_class": "Elite Four",
+      "league_generations": [
+        5
+      ],
+      "sprite_generation": 5,
+      "specialties": [
+        "fighting"
+      ],
+      "strength": "boss",
+      "boss": true,
+      "sprite": "games/assets/pokemon/trainers/showdown/marshal.png",
+      "intro_line": "Meet strength with respect. Prepare yourself!"
+    },
+    {
+      "id": "alder",
+      "name": "Alder",
+      "trainer_class": "League Champion",
+      "league_generations": [
+        5
+      ],
+      "sprite_generation": 5,
+      "specialties": [
+        "bug"
+      ],
+      "strength": "boss",
+      "boss": true,
+      "sprite": "games/assets/pokemon/trainers/showdown/alder.png",
+      "intro_line": "Let's make this a battle worth the climb!"
+    },
+    {
+      "id": "tourist",
+      "name": "Tourist",
+      "trainer_class": "Tourist",
+      "league_generations": [
+        6
+      ],
+      "sprite_generation": 6,
+      "specialties": [
+        "normal"
+      ],
+      "strength": "weak",
+      "boss": false,
+      "sprite": "games/assets/pokemon/trainers/showdown/tourist.png",
+      "intro_line": "Ooh, a real Kalosian battle! Wait till I show the photos back home!"
+    },
+    {
+      "id": "schoolkid",
+      "name": "School Kid",
+      "trainer_class": "School Kid",
+      "league_generations": [
+        6
+      ],
+      "sprite_generation": 6,
+      "specialties": [
+        "normal"
+      ],
+      "strength": "weak",
+      "boss": false,
+      "sprite": "games/assets/pokemon/trainers/showdown/schoolkid.png",
+      "intro_line": "I studied every type chart. Quiz me - or better, battle me!"
+    },
+    {
+      "id": "fairytalegirl",
+      "name": "Fairy Tale Girl",
+      "trainer_class": "Fairy Tale Girl",
+      "league_generations": [
+        6
+      ],
+      "sprite_generation": 6,
+      "specialties": [
+        "fairy"
+      ],
+      "strength": "weak",
+      "boss": false,
+      "sprite": "games/assets/pokemon/trainers/showdown/fairytalegirl.png",
+      "intro_line": "Once upon a time, you lost this battle. The end!"
+    },
+    {
+      "id": "backpacker-gen6",
+      "name": "Backpacker",
+      "trainer_class": "Backpacker",
+      "league_generations": [
+        6
+      ],
+      "sprite_generation": 6,
+      "specialties": [
+        "ground"
+      ],
+      "strength": "weak",
+      "boss": false,
+      "sprite": "games/assets/pokemon/trainers/showdown/backpacker-gen6.png",
+      "intro_line": "Every trail in Kalos ends in a battle eventually!"
+    },
+    {
+      "id": "garcon",
+      "name": "Garcon",
+      "trainer_class": "Garcon",
+      "league_generations": [
+        6
+      ],
+      "sprite_generation": 6,
+      "specialties": [
+        "normal"
+      ],
+      "strength": "mid",
+      "boss": false,
+      "sprite": "games/assets/pokemon/trainers/showdown/garcon.png",
+      "intro_line": "Today's special: a swift and stylish defeat, served fresh."
+    },
+    {
+      "id": "punkguy",
+      "name": "Punk Guy",
+      "trainer_class": "Punk Guy",
+      "league_generations": [
+        6
+      ],
+      "sprite_generation": 6,
+      "specialties": [
+        "dark"
+      ],
+      "strength": "mid",
+      "boss": false,
+      "sprite": "games/assets/pokemon/trainers/showdown/punkguy.png",
+      "intro_line": "Nice team. Be a shame if mine wrecked it."
+    },
+    {
+      "id": "risingstar",
+      "name": "Rising Star",
+      "trainer_class": "Rising Star",
+      "league_generations": [
+        6
+      ],
+      "sprite_generation": 6,
+      "specialties": [
+        "electric"
+      ],
+      "strength": "mid",
+      "boss": false,
+      "sprite": "games/assets/pokemon/trainers/showdown/risingstar.png",
+      "intro_line": "Remember this battle - you'll brag about losing to me someday!"
+    },
+    {
+      "id": "swimmer-gen6",
+      "name": "Swimmer",
+      "trainer_class": "Swimmer",
+      "league_generations": [
+        6
+      ],
+      "sprite_generation": 6,
+      "specialties": [
+        "water"
+      ],
+      "strength": "mid",
+      "boss": false,
+      "sprite": "games/assets/pokemon/trainers/showdown/swimmer-gen6.png",
+      "intro_line": "The current off Azure Bay trained me. Can you keep your head up?"
+    },
+    {
+      "id": "hexmaniac-gen6",
+      "name": "Hex Maniac",
+      "trainer_class": "Hex Maniac",
+      "league_generations": [
+        6
+      ],
+      "sprite_generation": 6,
+      "specialties": [
+        "ghost"
+      ],
+      "strength": "mid",
+      "boss": false,
+      "sprite": "games/assets/pokemon/trainers/showdown/hexmaniac-gen6.png",
+      "intro_line": "I put a little curse on you. Just a little one. Heehee."
+    },
+    {
+      "id": "flaregrunt",
+      "name": "Flare Grunt",
+      "trainer_class": "Team Flare",
+      "league_generations": [
+        6
+      ],
+      "sprite_generation": 6,
+      "specialties": [
+        "fire"
+      ],
+      "strength": "mid",
+      "boss": false,
+      "sprite": "games/assets/pokemon/trainers/showdown/flaregrunt.png",
+      "intro_line": "This suit cost more than your whole team. Don't scuff it."
+    },
+    {
+      "id": "flaregruntf",
+      "name": "Flare Grunt Essie",
+      "trainer_class": "Team Flare",
+      "league_generations": [
+        6
+      ],
+      "sprite_generation": 6,
+      "specialties": [
+        "dark"
+      ],
+      "strength": "mid",
+      "boss": false,
+      "sprite": "games/assets/pokemon/trainers/showdown/flaregruntf.png",
+      "intro_line": "Beauty is power, and you are standing in its way."
+    },
+    {
+      "id": "skytrainer",
+      "name": "Sky Trainer",
+      "trainer_class": "Sky Trainer",
+      "league_generations": [
+        6
+      ],
+      "sprite_generation": 6,
+      "specialties": [
+        "flying"
+      ],
+      "strength": "strong",
+      "boss": false,
+      "sprite": "games/assets/pokemon/trainers/showdown/skytrainer.png",
+      "intro_line": "Up here the wind decides everything. It favours me!"
+    },
+    {
+      "id": "acetrainer-gen6",
+      "name": "Ace Trainer",
+      "trainer_class": "Ace Trainer",
+      "league_generations": [
+        6
+      ],
+      "sprite_generation": 6,
+      "specialties": [
+        "normal"
+      ],
+      "strength": "strong",
+      "boss": false,
+      "sprite": "games/assets/pokemon/trainers/showdown/acetrainer-gen6.png",
+      "intro_line": "Kalos breeds champions. Consider this your audition."
+    },
+    {
+      "id": "acetrainerf-gen6",
+      "name": "Ace Trainer Nina",
+      "trainer_class": "Ace Trainer",
+      "league_generations": [
+        6
+      ],
+      "sprite_generation": 6,
+      "specialties": [
+        "psychic"
+      ],
+      "strength": "strong",
+      "boss": false,
+      "sprite": "games/assets/pokemon/trainers/showdown/acetrainerf-gen6.png",
+      "intro_line": "I've rehearsed this victory a hundred times."
+    },
+    {
+      "id": "veteran-gen6",
+      "name": "Veteran",
+      "trainer_class": "Veteran",
+      "league_generations": [
+        6
+      ],
+      "sprite_generation": 6,
+      "specialties": [
+        "dragon"
+      ],
+      "strength": "strong",
+      "boss": false,
+      "sprite": "games/assets/pokemon/trainers/showdown/veteran-gen6.png",
+      "intro_line": "I've seen every trick twice. Show me something new."
+    },
+    {
+      "id": "viola",
+      "name": "Viola",
+      "trainer_class": "Gym Leader",
+      "league_generations": [
+        6
+      ],
+      "sprite_generation": 6,
+      "specialties": [
+        "bug"
+      ],
+      "strength": "boss",
+      "boss": true,
+      "sprite": "games/assets/pokemon/trainers/showdown/viola.png",
+      "intro_line": "My lens loves a challenger with fight in their eyes!"
+    },
+    {
+      "id": "grant",
+      "name": "Grant",
+      "trainer_class": "Gym Leader",
+      "league_generations": [
+        6
+      ],
+      "sprite_generation": 6,
+      "specialties": [
+        "rock"
+      ],
+      "strength": "boss",
+      "boss": true,
+      "sprite": "games/assets/pokemon/trainers/showdown/grant.png",
+      "intro_line": "I've climbed every wall in Kalos!"
+    },
+    {
+      "id": "korrina",
+      "name": "Korrina",
+      "trainer_class": "Gym Leader",
+      "league_generations": [
+        6
+      ],
+      "sprite_generation": 6,
+      "specialties": [
+        "fighting"
+      ],
+      "strength": "boss",
+      "boss": true,
+      "sprite": "games/assets/pokemon/trainers/showdown/korrina.png",
+      "intro_line": "My Lucario and I will roll right over you!"
+    },
+    {
+      "id": "ramos",
+      "name": "Ramos",
+      "trainer_class": "Gym Leader",
+      "league_generations": [
+        6
+      ],
+      "sprite_generation": 6,
+      "specialties": [
+        "grass"
+      ],
+      "strength": "boss",
+      "boss": true,
+      "sprite": "games/assets/pokemon/trainers/showdown/ramos.png",
+      "intro_line": "These old hands have pruned tougher saplings than you."
+    },
+    {
+      "id": "clemont",
+      "name": "Clemont",
+      "trainer_class": "Gym Leader",
+      "league_generations": [
+        6
+      ],
+      "sprite_generation": 6,
+      "specialties": [
+        "electric"
+      ],
+      "strength": "boss",
+      "boss": true,
+      "sprite": "games/assets/pokemon/trainers/showdown/clemont.png",
+      "intro_line": "The future is science!"
+    },
+    {
+      "id": "valerie",
+      "name": "Valerie",
+      "trainer_class": "Gym Leader",
+      "league_generations": [
+        6
+      ],
+      "sprite_generation": 6,
+      "specialties": [
+        "fairy"
+      ],
+      "strength": "boss",
+      "boss": true,
+      "sprite": "games/assets/pokemon/trainers/showdown/valerie.png",
+      "intro_line": "Step into my dollhouse."
+    },
+    {
+      "id": "olympia",
+      "name": "Olympia",
+      "trainer_class": "Gym Leader",
+      "league_generations": [
+        6
+      ],
+      "sprite_generation": 6,
+      "specialties": [
+        "psychic"
+      ],
+      "strength": "boss",
+      "boss": true,
+      "sprite": "games/assets/pokemon/trainers/showdown/olympia.png",
+      "intro_line": "The stars whispered of your coming."
+    },
+    {
+      "id": "wulfric",
+      "name": "Wulfric",
+      "trainer_class": "Gym Leader",
+      "league_generations": [
+        6
+      ],
+      "sprite_generation": 6,
+      "specialties": [
+        "ice"
+      ],
+      "strength": "boss",
+      "boss": true,
+      "sprite": "games/assets/pokemon/trainers/showdown/wulfric.png",
+      "intro_line": "My ice never thaws for a challenger!"
+    },
+    {
+      "id": "lysandre",
+      "name": "Lysandre",
+      "trainer_class": "Flare Boss",
+      "league_generations": [
+        6
+      ],
+      "sprite_generation": 6,
+      "specialties": [
+        "fire"
+      ],
+      "strength": "boss",
+      "boss": true,
+      "sprite": "games/assets/pokemon/trainers/showdown/lysandre.png",
+      "intro_line": "A beautiful world has no room for the unchosen."
+    },
+    {
+      "id": "malva",
+      "name": "Malva",
+      "trainer_class": "Elite Four",
+      "league_generations": [
+        6
+      ],
+      "sprite_generation": 6,
+      "specialties": [
+        "fire"
+      ],
+      "strength": "boss",
+      "boss": true,
+      "sprite": "games/assets/pokemon/trainers/showdown/malva.png",
+      "intro_line": "Losing to you is NOT in the script."
+    },
+    {
+      "id": "wikstrom",
+      "name": "Wikstrom",
+      "trainer_class": "Elite Four",
+      "league_generations": [
+        6
+      ],
+      "sprite_generation": 6,
+      "specialties": [
+        "steel"
+      ],
+      "strength": "boss",
+      "boss": true,
+      "sprite": "games/assets/pokemon/trainers/showdown/wikstrom.png",
+      "intro_line": "En garde! My blade answers with honour!"
+    },
+    {
+      "id": "drasna",
+      "name": "Drasna",
+      "trainer_class": "Elite Four",
+      "league_generations": [
+        6
+      ],
+      "sprite_generation": 6,
+      "specialties": [
+        "dragon"
+      ],
+      "strength": "boss",
+      "boss": true,
+      "sprite": "games/assets/pokemon/trainers/showdown/drasna.png",
+      "intro_line": "My dragons will try not to be TOO rough."
+    },
+    {
+      "id": "siebold",
+      "name": "Siebold",
+      "trainer_class": "Elite Four",
+      "league_generations": [
+        6
+      ],
+      "sprite_generation": 6,
+      "specialties": [
+        "water"
+      ],
+      "strength": "boss",
+      "boss": true,
+      "sprite": "games/assets/pokemon/trainers/showdown/siebold.png",
+      "intro_line": "Battle is my other art."
+    },
+    {
+      "id": "diantha",
+      "name": "Diantha",
+      "trainer_class": "League Champion",
+      "league_generations": [
+        6
+      ],
+      "sprite_generation": 6,
+      "specialties": [
+        "fairy"
+      ],
+      "strength": "boss",
+      "boss": true,
+      "sprite": "games/assets/pokemon/trainers/showdown/diantha.png",
+      "intro_line": "Give me a battle worthy of the screen!"
     }
   ]
 }

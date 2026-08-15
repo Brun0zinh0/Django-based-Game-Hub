@@ -1,0 +1,890 @@
+{
+ "comment": "Horde composition and scaling. A round picks mobs whose [minRound,maxRound] window contains it, weighted. Boss rounds come from bosses.json instead. Behaviours: slime-hops, walker, flyer, caster. The shop's tier gate opens a tier every six rounds: at three the whole 140-weapon roster was purchasable by round 15, which is the first quarter of a boss cycle, and every shop after that was a reroll of things you could already buy. At six the roster finishes opening around round 27 and boss bags carry the early power spikes instead. The offset is a head start: without it the first five rounds share four tier-one weapons and the shop has nothing to say, so tier two still lands on round three and only the later steps slow down. Enemy health takes whichever is larger of the linear ramp and a compounding one. Player power compounds -- tier, reforges, ammo and potions all multiply -- while a linear wave grew 7.5x over 55 rounds against a 180x rise in damage, so late hordes cleared in about a second. The compounding rate is set to sit under the linear ramp until round 20 and overtake it after, so nothing before that changes and the endgame stays a fight. Contact damage and coin value stay linear on purpose: bosses already kill in three hits, and coins are already in surplus.",
+ "bossEveryNRounds": 5,
+ "rewards": {
+  "soulsPerRoundCleared": 3,
+  "soulsPerBossKill": 10,
+  "killsPerSoul": 5
+ },
+ "drops": {
+  "heartChance": 0.08,
+  "heartHeal": 20,
+  "heartLifetimeMs": 10000
+ },
+ "player": {
+  "baseMaxHp": 100,
+  "maxMana": 100,
+  "manaRegenPerSecond": 8,
+  "startingCoins": 12,
+  "comment": "Terraria physics, converted from per-tick to per-second: run 3px/tick, gravity 0.4px/tick^2, jump peaks around 5.5 tiles.",
+  "runSpeed": 180,
+  "jumpVelocity": 505,
+  "gravity": 1440
+ },
+ "combat": {
+  "comment": "Terraria rolls each hit +/-15% and crits for double at 4% base for ranged weapons. Defense removes half its value, but never more than minDamageFraction of the raw hit: a full late set otherwise reduces every mid-game horde to 1 damage and whole rounds stop mattering.",
+  "damageVariance": 0.15,
+  "critChance": 0.04,
+  "critMultiplier": 2,
+  "minDamageFraction": 0.25
+ },
+ "shop": {
+  "itemCount": 4,
+  "rerollBaseCost": 6,
+  "comment": "Terraria buys items back at a fifth of their price.",
+  "sellRatio": 0.2,
+  "weights": {
+   "weapon": 40,
+   "armor": 26,
+   "accessory": 22,
+   "consumable": 12
+  },
+  "tierPerRounds": 6,
+  "tierRoundOffset": 3
+ },
+ "consumables": [
+  {
+   "id": "life-crystal",
+   "name": "Life Crystal",
+   "sprite": "items/life-crystal.png",
+   "description": "Permanently gain a heart. Restores it too.",
+   "price": 45,
+   "effects": {
+    "maxHpBonus": 20,
+    "maxHpCap": 400
+   }
+  },
+  {
+   "id": "mana-crystal",
+   "name": "Mana Crystal",
+   "sprite": "items/mana-crystal.png",
+   "description": "Permanently raise maximum mana for staffs.",
+   "price": 35,
+   "effects": {
+    "maxManaBonus": 20,
+    "maxManaCap": 200
+   }
+  },
+  {
+   "id": "weapon-forge",
+   "name": "Reforge",
+   "sprite": "items/weapon-forge.png",
+   "description": "Permanently sharpen every weapon you carry. Costs more each time.",
+   "price": 60,
+   "priceStep": 25,
+   "effects": {
+    "damageBonus": 0.06
+   }
+  }
+ ],
+ "scaling": {
+  "mobCountBase": 3,
+  "mobCountPerRound": 1,
+  "mobCountMax": 14,
+  "hpMultiplierPerRound": 0.12,
+  "damageMultiplierPerRound": 0.06,
+  "coinMultiplierPerRound": 0.08,
+  "hpGrowthPerRound": 1.06
+ },
+ "mobs": [
+  {
+   "id": "green-slime",
+   "name": "Green Slime",
+   "hp": 14,
+   "contactDamage": 6,
+   "coins": 2,
+   "weight": 10,
+   "minRound": 1,
+   "maxRound": 999,
+   "color": "#5fd45f",
+   "sizePx": 34,
+   "behavior": "slime-hops",
+   "skin": {
+    "id": "base-slime",
+    "useColor": true
+   },
+   "biomes": [
+    "forest",
+    "jungle",
+    "hallow",
+    "sky"
+   ]
+  },
+  {
+   "id": "blue-slime",
+   "name": "Blue Slime",
+   "hp": 25,
+   "contactDamage": 7,
+   "coins": 3,
+   "weight": 6,
+   "minRound": 2,
+   "maxRound": 999,
+   "color": "#5f8ed4",
+   "sizePx": 40,
+   "behavior": "slime-hops",
+   "skin": {
+    "id": "base-slime",
+    "useColor": true
+   },
+   "biomes": [
+    "forest",
+    "snow",
+    "ice",
+    "sky"
+   ]
+  },
+  {
+   "id": "zombie",
+   "name": "Zombie",
+   "hp": 38,
+   "contactDamage": 9,
+   "coins": 4,
+   "weight": 5,
+   "minRound": 3,
+   "maxRound": 999,
+   "color": "#7a9e6b",
+   "sizePx": 48,
+   "behavior": "walker",
+   "skin": {
+    "id": "zombie"
+   },
+   "biomes": [
+    "forest",
+    "corruption",
+    "crimson",
+    "jungle"
+   ]
+  },
+  {
+   "id": "skeleton",
+   "name": "Skeleton",
+   "hp": 45,
+   "contactDamage": 10,
+   "coins": 5,
+   "weight": 5,
+   "minRound": 3,
+   "maxRound": 999,
+   "color": "#d8d2c4",
+   "sizePx": 46,
+   "behavior": "walker",
+   "skin": {
+    "id": "skeleton"
+   },
+   "biomes": [
+    "ice",
+    "corruption",
+    "crimson",
+    "underworld"
+   ]
+  },
+  {
+   "id": "bat",
+   "name": "Bat",
+   "hp": 22,
+   "contactDamage": 7,
+   "coins": 3,
+   "weight": 5,
+   "minRound": 4,
+   "maxRound": 999,
+   "color": "#5f7fd4",
+   "sizePx": 26,
+   "behavior": "flyer",
+   "speed": 135,
+   "skin": {
+    "id": "bat"
+   },
+   "biomes": [
+    "ice",
+    "mushroom",
+    "jungle",
+    "underworld",
+    "corruption"
+   ]
+  },
+  {
+   "id": "demon-eye",
+   "name": "Demon Eye",
+   "hp": 30,
+   "contactDamage": 8,
+   "coins": 4,
+   "weight": 4,
+   "minRound": 4,
+   "maxRound": 999,
+   "color": "#c95d5d",
+   "sizePx": 30,
+   "behavior": "flyer",
+   "skin": {
+    "id": "demon-eye"
+   },
+   "biomes": [
+    "forest",
+    "corruption",
+    "crimson",
+    "hallow"
+   ]
+  },
+  {
+   "id": "jungle-slime",
+   "name": "Jungle Slime",
+   "hp": 32,
+   "contactDamage": 8,
+   "coins": 4,
+   "weight": 7,
+   "minRound": 4,
+   "maxRound": 999,
+   "color": "#7dc44a",
+   "sizePx": 30,
+   "behavior": "slime-hops",
+   "skin": {
+    "id": "base-slime",
+    "useColor": true
+   },
+   "biomes": [
+    "jungle",
+    "mushroom"
+   ]
+  },
+  {
+   "id": "eater-of-souls",
+   "name": "Eater of Souls",
+   "hp": 42,
+   "contactDamage": 10,
+   "coins": 5,
+   "weight": 6,
+   "minRound": 5,
+   "maxRound": 999,
+   "color": "#8a5fb0",
+   "sizePx": 80,
+   "behavior": "flyer",
+   "speed": 120,
+   "skin": {
+    "id": "eater-of-souls"
+   },
+   "biomes": [
+    "corruption"
+   ]
+  },
+  {
+   "id": "crimera",
+   "name": "Crimera",
+   "hp": 42,
+   "contactDamage": 11,
+   "coins": 5,
+   "weight": 6,
+   "minRound": 5,
+   "maxRound": 999,
+   "color": "#b05050",
+   "sizePx": 80,
+   "behavior": "flyer",
+   "speed": 120,
+   "skin": {
+    "id": "crimera"
+   },
+   "biomes": [
+    "crimson"
+   ]
+  },
+  {
+   "id": "pinky",
+   "name": "Pinky",
+   "hp": 20,
+   "contactDamage": 9,
+   "coins": 22,
+   "weight": 1,
+   "minRound": 6,
+   "maxRound": 999,
+   "color": "#ff7ec4",
+   "sizePx": 30,
+   "behavior": "slime-hops",
+   "skin": {
+    "id": "base-slime",
+    "useColor": true
+   },
+   "biomes": [
+    "forest",
+    "hallow"
+   ]
+  },
+  {
+   "id": "lava-slime",
+   "name": "Lava Slime",
+   "hp": 40,
+   "contactDamage": 12,
+   "coins": 5,
+   "weight": 4,
+   "minRound": 6,
+   "maxRound": 999,
+   "color": "#e0703a",
+   "sizePx": 30,
+   "behavior": "slime-hops",
+   "skin": {
+    "id": "lava-slime"
+   },
+   "biomes": [
+    "underworld"
+   ]
+  },
+  {
+   "id": "snow-flinx",
+   "name": "Snow Flinx",
+   "hp": 44,
+   "contactDamage": 11,
+   "coins": 5,
+   "weight": 6,
+   "minRound": 6,
+   "maxRound": 999,
+   "color": "#e6eef5",
+   "sizePx": 36,
+   "behavior": "walker",
+   "speed": 120,
+   "skin": {
+    "id": "snow-flinx"
+   },
+   "biomes": [
+    "snow",
+    "ice"
+   ]
+  },
+  {
+   "id": "goblin-peon",
+   "name": "Goblin Peon",
+   "hp": 55,
+   "contactDamage": 11,
+   "coins": 6,
+   "weight": 4,
+   "minRound": 6,
+   "maxRound": 999,
+   "color": "#6f9e5f",
+   "sizePx": 46,
+   "behavior": "walker",
+   "speed": 95,
+   "skin": {
+    "id": "goblin-peon"
+   },
+   "biomes": [
+    "forest",
+    "snow",
+    "hallow"
+   ]
+  },
+  {
+   "id": "ice-bat",
+   "name": "Ice Bat",
+   "hp": 28,
+   "contactDamage": 10,
+   "coins": 4,
+   "weight": 6,
+   "minRound": 7,
+   "maxRound": 999,
+   "color": "#9fd8ef",
+   "sizePx": 52,
+   "behavior": "flyer",
+   "speed": 145,
+   "skin": {
+    "id": "ice-bat"
+   },
+   "biomes": [
+    "ice",
+    "snow"
+   ]
+  },
+  {
+   "id": "blood-crawler",
+   "name": "Blood Crawler",
+   "hp": 38,
+   "contactDamage": 11,
+   "coins": 5,
+   "weight": 5,
+   "minRound": 7,
+   "maxRound": 999,
+   "color": "#a8503c",
+   "sizePx": 72,
+   "behavior": "walker",
+   "speed": 175,
+   "skin": {
+    "id": "blood-crawler"
+   },
+   "biomes": [
+    "crimson",
+    "corruption"
+   ]
+  },
+  {
+   "id": "face-monster",
+   "name": "Face Monster",
+   "hp": 58,
+   "contactDamage": 12,
+   "coins": 6,
+   "weight": 5,
+   "minRound": 7,
+   "maxRound": 999,
+   "color": "#b06a52",
+   "sizePx": 66,
+   "behavior": "walker",
+   "speed": 105,
+   "skin": {
+    "id": "face-monster"
+   },
+   "biomes": [
+    "crimson"
+   ]
+  },
+  {
+   "id": "spider",
+   "name": "Wall Creeper",
+   "hp": 35,
+   "contactDamage": 10,
+   "coins": 5,
+   "weight": 4,
+   "minRound": 8,
+   "maxRound": 999,
+   "color": "#6b5a4a",
+   "sizePx": 26,
+   "behavior": "walker",
+   "speed": 165,
+   "skin": {
+    "id": "spider"
+   },
+   "biomes": [
+    "jungle",
+    "corruption",
+    "crimson",
+    "mushroom"
+   ]
+  },
+  {
+   "id": "hornet",
+   "name": "Hornet",
+   "hp": 42,
+   "contactDamage": 9,
+   "coins": 6,
+   "weight": 3,
+   "minRound": 8,
+   "maxRound": 999,
+   "color": "#e0c05f",
+   "sizePx": 32,
+   "behavior": "caster",
+   "speed": 110,
+   "standoff": 230,
+   "shoot": {
+    "everyMs": 2600,
+    "count": 1,
+    "speed": 300,
+    "damage": 8
+   },
+   "skin": {
+    "id": "hornet"
+   },
+   "biomes": [
+    "jungle",
+    "mushroom"
+   ]
+  },
+  {
+   "id": "pixie",
+   "name": "Pixie",
+   "hp": 35,
+   "contactDamage": 12,
+   "coins": 7,
+   "weight": 5,
+   "minRound": 9,
+   "maxRound": 999,
+   "color": "#ffd45f",
+   "sizePx": 54,
+   "behavior": "flyer",
+   "speed": 165,
+   "skin": {
+    "id": "pixie"
+   },
+   "biomes": [
+    "hallow"
+   ]
+  },
+  {
+   "id": "mushi-ladybug",
+   "name": "Mushi Ladybug",
+   "hp": 55,
+   "contactDamage": 12,
+   "coins": 6,
+   "weight": 5,
+   "minRound": 9,
+   "maxRound": 999,
+   "color": "#6d7fc4",
+   "sizePx": 46,
+   "behavior": "walker",
+   "speed": 115,
+   "skin": {
+    "id": "mushi-ladybug"
+   },
+   "biomes": [
+    "mushroom"
+   ]
+  },
+  {
+   "id": "anomura-fungus",
+   "name": "Anomura Fungus",
+   "hp": 62,
+   "contactDamage": 13,
+   "coins": 7,
+   "weight": 5,
+   "minRound": 9,
+   "maxRound": 999,
+   "color": "#7f8fd6",
+   "sizePx": 54,
+   "behavior": "walker",
+   "speed": 100,
+   "skin": {
+    "id": "anomura-fungus"
+   },
+   "biomes": [
+    "mushroom"
+   ]
+  },
+  {
+   "id": "harpy",
+   "name": "Harpy",
+   "hp": 58,
+   "contactDamage": 13,
+   "coins": 7,
+   "weight": 4,
+   "minRound": 10,
+   "maxRound": 999,
+   "color": "#7fb8e0",
+   "sizePx": 100,
+   "behavior": "flyer",
+   "speed": 150,
+   "skin": {
+    "id": "harpy"
+   },
+   "biomes": [
+    "sky"
+   ]
+  },
+  {
+   "id": "ice-slime",
+   "name": "Ice Slime",
+   "hp": 60,
+   "contactDamage": 13,
+   "coins": 7,
+   "weight": 3,
+   "minRound": 10,
+   "maxRound": 999,
+   "color": "#8fd4e0",
+   "sizePx": 30,
+   "behavior": "slime-hops",
+   "skin": {
+    "id": "ice-slime"
+   },
+   "biomes": [
+    "snow",
+    "ice"
+   ]
+  },
+  {
+   "id": "goblin-warrior",
+   "name": "Goblin Warrior",
+   "hp": 90,
+   "contactDamage": 15,
+   "coins": 9,
+   "weight": 3,
+   "minRound": 10,
+   "maxRound": 999,
+   "color": "#8f9e5f",
+   "sizePx": 48,
+   "behavior": "walker",
+   "speed": 105,
+   "skin": {
+    "id": "goblin-warrior"
+   },
+   "biomes": [
+    "forest",
+    "snow",
+    "hallow"
+   ]
+  },
+  {
+   "id": "illuminant-bat",
+   "name": "Illuminant Bat",
+   "hp": 45,
+   "contactDamage": 14,
+   "coins": 7,
+   "weight": 4,
+   "minRound": 11,
+   "maxRound": 999,
+   "color": "#d67fe0",
+   "sizePx": 44,
+   "behavior": "flyer",
+   "speed": 160,
+   "skin": {
+    "id": "illuminant-bat"
+   },
+   "biomes": [
+    "hallow",
+    "mushroom"
+   ]
+  },
+  {
+   "id": "hellbat",
+   "name": "Hellbat",
+   "hp": 50,
+   "contactDamage": 15,
+   "coins": 8,
+   "weight": 5,
+   "minRound": 11,
+   "maxRound": 999,
+   "color": "#d4553c",
+   "sizePx": 44,
+   "behavior": "flyer",
+   "speed": 155,
+   "skin": {
+    "id": "hellbat"
+   },
+   "biomes": [
+    "underworld"
+   ]
+  },
+  {
+   "id": "undead-viking",
+   "name": "Undead Viking",
+   "hp": 85,
+   "contactDamage": 15,
+   "coins": 9,
+   "weight": 4,
+   "minRound": 11,
+   "maxRound": 999,
+   "color": "#a8c4d6",
+   "sizePx": 62,
+   "behavior": "walker",
+   "speed": 95,
+   "skin": {
+    "id": "undead-viking"
+   },
+   "biomes": [
+    "snow",
+    "ice"
+   ]
+  },
+  {
+   "id": "meteor-head",
+   "name": "Meteor Head",
+   "hp": 30,
+   "contactDamage": 14,
+   "coins": 6,
+   "weight": 3,
+   "minRound": 12,
+   "maxRound": 999,
+   "color": "#b05f4b",
+   "sizePx": 28,
+   "behavior": "flyer",
+   "speed": 185,
+   "skin": {
+    "id": "meteor-head"
+   },
+   "biomes": [
+    "sky",
+    "underworld",
+    "corruption"
+   ]
+  },
+  {
+   "id": "dark-caster",
+   "name": "Dark Caster",
+   "hp": 55,
+   "contactDamage": 12,
+   "coins": 9,
+   "weight": 2,
+   "minRound": 12,
+   "maxRound": 999,
+   "color": "#b04b6f",
+   "sizePx": 46,
+   "behavior": "caster",
+   "speed": 85,
+   "standoff": 280,
+   "shoot": {
+    "everyMs": 2000,
+    "count": 3,
+    "spreadDeg": 30,
+    "speed": 320,
+    "damage": 11
+   },
+   "skin": {
+    "id": "dark-caster"
+   },
+   "biomes": [
+    "corruption",
+    "crimson",
+    "underworld",
+    "ice"
+   ]
+  },
+  {
+   "id": "gastropod",
+   "name": "Gastropod",
+   "hp": 70,
+   "contactDamage": 16,
+   "coins": 10,
+   "weight": 3,
+   "minRound": 13,
+   "maxRound": 999,
+   "color": "#e05f9f",
+   "sizePx": 48,
+   "behavior": "caster",
+   "speed": 95,
+   "standoff": 260,
+   "shoot": {
+    "everyMs": 2400,
+    "count": 1,
+    "speed": 340,
+    "damage": 13
+   },
+   "skin": {
+    "id": "gastropod"
+   },
+   "biomes": [
+    "hallow",
+    "sky"
+   ]
+  },
+  {
+   "id": "wolf",
+   "name": "Wolf",
+   "hp": 75,
+   "contactDamage": 17,
+   "coins": 9,
+   "weight": 4,
+   "minRound": 13,
+   "maxRound": 999,
+   "color": "#c8ccd4",
+   "sizePx": 90,
+   "behavior": "walker",
+   "speed": 195,
+   "skin": {
+    "id": "wolf"
+   },
+   "biomes": [
+    "snow",
+    "forest"
+   ]
+  },
+  {
+   "id": "fire-imp",
+   "name": "Fire Imp",
+   "hp": 80,
+   "contactDamage": 16,
+   "coins": 10,
+   "weight": 3,
+   "minRound": 13,
+   "maxRound": 999,
+   "color": "#d0704a",
+   "sizePx": 56,
+   "behavior": "caster",
+   "speed": 90,
+   "standoff": 270,
+   "shoot": {
+    "everyMs": 2100,
+    "count": 2,
+    "spreadDeg": 18,
+    "speed": 330,
+    "damage": 14
+   },
+   "skin": {
+    "id": "fire-imp"
+   },
+   "biomes": [
+    "underworld"
+   ]
+  },
+  {
+   "id": "demon",
+   "name": "Demon",
+   "hp": 110,
+   "contactDamage": 18,
+   "coins": 12,
+   "weight": 2,
+   "minRound": 15,
+   "maxRound": 999,
+   "color": "#d4675f",
+   "sizePx": 52,
+   "behavior": "flyer",
+   "speed": 115,
+   "skin": {
+    "id": "demon"
+   },
+   "biomes": [
+    "underworld",
+    "crimson",
+    "sky"
+   ]
+  }
+ ],
+ "elites": {
+  "comment": "Rare upgraded creatures, the enemy answer to weapon prefixes. The chance climbs with the round so late hordes are not just more of the same, and the payout climbs with the danger. Bosses never roll one -- they are the spike in the round already.",
+  "chanceBase": 0.03,
+  "chancePerRound": 0.005,
+  "chanceMax": 0.22,
+  "affixes": [
+   {
+    "id": "armored",
+    "name": "Armored",
+    "weight": 6,
+    "hp": 2.0,
+    "contactDamage": 1.1,
+    "coins": 2.2,
+    "scale": 1.15,
+    "aura": "#9fb4d6"
+   },
+   {
+    "id": "swift",
+    "name": "Swift",
+    "weight": 6,
+    "hp": 1.25,
+    "speed": 1.7,
+    "contactDamage": 1.15,
+    "coins": 1.9,
+    "scale": 0.95,
+    "aura": "#7fe0c0"
+   },
+   {
+    "id": "giant",
+    "name": "Giant",
+    "weight": 4,
+    "hp": 2.6,
+    "contactDamage": 1.35,
+    "coins": 2.8,
+    "scale": 1.5,
+    "aura": "#e0b45f"
+   },
+   {
+    "id": "venomous",
+    "name": "Venomous",
+    "weight": 5,
+    "hp": 1.35,
+    "contactDamage": 1.6,
+    "coins": 2.1,
+    "scale": 1.1,
+    "aura": "#8fd45f"
+   },
+   {
+    "id": "spectral",
+    "name": "Spectral",
+    "weight": 3,
+    "hp": 1.5,
+    "contactDamage": 1.25,
+    "speed": 1.3,
+    "coins": 2.4,
+    "scale": 1.05,
+    "aura": "#c07fe0"
+   }
+  ]
+ },
+ "hardmode": {
+  "comment": "Terraria's world turns hardmode when the Wall of Flesh dies, and so does this one. Everything after that round is tougher, the shop opens two tiers early, and the Hallow exists at all -- before this it should never have been in the rotation, since in Terraria it does not exist until the world turns. Enemy health steps up rather than compounds: the round ramp already compounds, and doing both would put a wall in the run rather than a step.",
+  "triggerBoss": "wall-of-flesh",
+  "enemyHp": 1.35,
+  "enemyDamage": 1.25,
+  "coins": 1.4,
+  "tierBonus": 2,
+  "banner": "HARDMODE",
+  "say": "The world turns. Everything past here is worse."
+ }
+}

@@ -15,6 +15,22 @@
        its own width so the two screens paint the same size. */
     --menu-frame: clamp(1rem, 5vw, 4.5rem);
     --pokemon-menu-background: none;
+
+    /* The console. The whole game is one fixed stage scaled to fit the
+       window, so every screen paints at exactly the same size and nothing
+       resizes or slides sideways when you walk between them. 1240x900 is
+       what the content actually needs: the widest screen measures 1230, and
+       the battle wants a 61px topbar over a 590px stage over a 166px
+       console. Keep --console-* in step with fitConsole() in
+       pokemon_rogue.js, which computes the scale CSS cannot. */
+    --console-width: 1240px;
+    --console-height: 900px;
+    /* One content column for every screen. Inside the console this settles
+       at 1180px; below the console breakpoint it falls back to the viewport
+       so the phone layout still reflows. Before this, screens disagreed --
+       the menus painted 1214 and the league/starter screens 1080, so the
+       frame jumped and re-centred at every step. */
+    --app-frame: min(1180px, calc(100% - 1.25rem));
 }
 
 body:has(.pokemon-battle-page) {
@@ -46,7 +62,7 @@ body:has(.pokemon-battle-page) .page {
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    max-width: 1180px;
+    width: var(--app-frame);
     margin: 0 auto;
     padding: 0.72rem clamp(1rem, 3vw, 2rem) 0.58rem;
 }
@@ -142,16 +158,19 @@ body:has(.pokemon-battle-page) .page {
 }
 
 .pokemon-battle-shell {
-    width: min(1180px, calc(100% - 1.25rem));
+    width: var(--app-frame);
     margin: 0 auto;
     padding-bottom: 0.75rem;
+    /* The battle rises where the menus slide. Replays on unhide, i.e. once
+       per battle mount -- turn-by-turn re-renders never touch `hidden`. */
+    animation: screen-rise-in 300ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .trainer-intro {
     --trainer-accent: #56d6df;
     --trainer-accent-deep: #1f6077;
     display: grid;
-    width: min(1080px, calc(100% - 1.25rem));
+    width: var(--app-frame);
     min-height: calc(100vh - 90px);
     margin: 0 auto;
     padding: 1rem 0 2rem;
@@ -432,10 +451,13 @@ body:has(.pokemon-battle-page) .page {
 }
 
 .league-start {
-    width: min(1080px, calc(100% - 1.25rem));
+    width: var(--app-frame);
     margin: 0 auto;
     padding-bottom: 2rem;
-    animation: room-enter 280ms ease-out both;
+    /* Menus SLIDE in; room-enter's 12px rise stays for the between-rounds
+       hub. The animation replays each time `hidden` comes off, which is the
+       mechanism this file already leans on. */
+    animation: screen-slide-in 280ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .main-menu[hidden],
@@ -446,19 +468,9 @@ body:has(.pokemon-battle-page) .page {
 .main-menu,
 .league-selection,
 .starter-screen {
-    width: min(1080px, calc(100% - 1.25rem));
+    width: var(--app-frame);
     margin: 0 auto;
-    animation: room-enter 280ms ease-out both;
-}
-
-/* The main menu is content-box, so its 1080px is the room INSIDE its padding
-   and border and it paints about 1214px wide. The league screen carries no
-   padding of its own, so at the same declared width it sat ~134px narrower
-   than the menu it follows straight after. Match the painted width instead
-   of the declared one, tracking the same padding clamp so the two stay level
-   at every viewport. */
-.league-selection {
-    width: min(calc(1080px + 2 * var(--menu-frame) + 6px), calc(100% - 1.25rem));
+    animation: screen-slide-in 280ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .main-menu {
@@ -468,10 +480,10 @@ body:has(.pokemon-battle-page) .page {
     place-items: center start;
     border: 3px solid #4d7187;
     border-radius: 18px;
-    /* Content-box: the declared width is the shared painted width minus
-       this screen's own frame, so the menu and the league screen paint
-       the same box and neither overhangs the page on a phone. */
-    width: min(1080px, calc(100% - 1.25rem - 2 * var(--menu-frame) - 6px));
+    /* Content-box: the declared width is the shared frame minus this
+       screen's own padding and border, so the menu paints exactly
+       --app-frame like every other screen. */
+    width: calc(var(--app-frame) - 2 * var(--menu-frame) - 6px);
     padding: var(--menu-frame);
     background:
         linear-gradient(90deg, rgba(8, 23, 41, 0.5) 0%, rgba(12, 31, 51, 0.32) 45%, rgba(12, 31, 51, 0.08) 100%),
@@ -680,7 +692,7 @@ button.league-choice:not(:disabled):focus-visible { border-color: #f1d170; outli
 }
 .settings-card header p,
 .settings-card header h2 { margin: 0; }
-.settings-card header p { color: #73d9d7; font-size: 0.6rem; font-weight: 1000; letter-spacing: 0.16em; }
+.settings-card header p { color: #73d9d7; font-size: 0.95rem; font-weight: 1000; letter-spacing: 0.16em; }
 .settings-card header h2 { margin-top: 0.12rem; }
 .settings-fields { display: grid; gap: 0.65rem; padding: 1rem; }
 .settings-fields label {
@@ -688,18 +700,28 @@ button.league-choice:not(:disabled):focus-visible { border-color: #f1d170; outli
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
     gap: 1rem;
+    /* The whole row is a <label for=...>, so clicking anywhere toggles its
+       control -- the tap target is the row, not the 19px checkbox the audit
+       measured. The taller padding and pointer cursor make that reachable
+       and obvious. */
+    min-height: 56px;
     border: 2px solid #a3b2ae;
     border-radius: 9px;
-    padding: 0.75rem;
+    padding: 0.85rem 1rem;
     background: #faf8ea;
+    cursor: pointer;
 }
 .settings-fields strong,
 .settings-fields small { display: block; }
-.settings-fields small { margin-top: 0.18rem; color: #65757a; }
-.settings-fields select { min-width: 115px; border: 2px solid #58798a; border-radius: 6px; padding: 0.5rem; background: white; color: #17293c; font-weight: 900; }
+.settings-fields strong { font-size: 1rem; }
+.settings-fields small { margin-top: 0.2rem; color: #65757a; font-size: 0.95rem; }
+.settings-fields select { min-width: 128px; min-height: 56px; border: 2px solid #58798a; border-radius: 6px; padding: 0.5rem 0.6rem; background: white; color: #17293c; font-size: 0.95rem; font-weight: 900; cursor: pointer; }
+/* Native boxes drew at 19px painted. Enlarged for the eye; the row is the
+   real hit area. */
+.settings-fields input[type="checkbox"] { width: 30px; height: 30px; accent-color: #2f6f62; cursor: pointer; }
 .settings-range { display: flex; align-items: center; gap: 0.55rem; }
-.settings-range input[type="range"] { width: 130px; accent-color: #2f6f62; }
-.settings-range output { min-width: 3ch; color: #17293c; font-size: 0.8rem; font-weight: 900; }
+.settings-range input[type="range"] { width: 150px; height: 30px; accent-color: #2f6f62; cursor: pointer; }
+.settings-range output { min-width: 3ch; color: #17293c; font-size: 0.95rem; font-weight: 900; }
 .settings-music-volume em { color: #2f6f62; font-style: normal; font-weight: 900; }
 
 .legacy-balance { border: 2px solid #b98f2e; border-radius: 999px; padding: 0.35rem 0.7rem; background: #241d0b; color: #ffd769; font-size: 0.8rem; font-weight: 1000; letter-spacing: 0.08em; }
@@ -707,6 +729,10 @@ button.league-choice:not(:disabled):focus-visible { border-color: #f1d170; outli
 .inventory-use { border: 2px solid #2f6f62; border-radius: 7px; padding: 0.45rem 0.7rem; background: #dff3e9; color: #1d5a4d; font-weight: 1000; font-size: 0.7rem; cursor: pointer; }
 .legacy-buy:disabled { border-color: #9aa5a2; background: #e7e3d6; color: #8a8574; cursor: default; }
 .legacy-buy.is-owned { border-color: #2f6f62; background: #dff3e9; color: #1d5a4d; }
+/* Same pairing as the Mega button: this one is toggled with the hidden
+   attribute too, and its display would have overridden it the moment
+   anything tried to put the loot card away. */
+.legacy-loot-result[hidden] { display: none; }
 .legacy-loot-result { display: flex; align-items: center; gap: 0.8rem; margin: 0 1rem 1rem; border: 2px dashed #b98f2e; border-radius: 10px; padding: 0.6rem 0.8rem; background: #fffbe9; }
 .legacy-loot-result img { width: 64px; height: 64px; object-fit: contain; image-rendering: pixelated; }
 .legacy-loot-result p { margin: 0; color: #4a3a10; font-size: 0.8rem; font-weight: 900; }
@@ -801,26 +827,6 @@ button.league-choice:not(:disabled):focus-visible { border-color: #f1d170; outli
     letter-spacing: 0.1em;
 }
 
-.league-rules-strip {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    border-inline: 3px solid #4c7387;
-    background: #0f2236;
-}
-
-.league-rules-strip span {
-    padding: 0.7rem 0.5rem;
-    border-right: 1px solid #315168;
-    color: #a9bfca;
-    text-align: center;
-    font-size: 0.66rem;
-    font-weight: 900;
-    letter-spacing: 0.08em;
-}
-
-.league-rules-strip span:last-child { border-right: 0; }
-.league-rules-strip strong { margin-right: 0.2rem; color: #f4d078; font-size: 0.92rem; }
-
 .league-career {
     display: grid;
     gap: 0.75rem;
@@ -856,6 +862,8 @@ button.career-card:focus-visible { border-color: #7be0de; outline: 2px solid #7b
 .record-career-card strong { font-size: 1.15rem; }
 .reward-career-card.is-unlocked { border-color: #b69049; background: linear-gradient(145deg, #4a3821, #1d2d3c); }
 .reward-career-card.is-mastered { border-color: #bb83d3; box-shadow: inset 0 0 22px rgba(193, 120, 224, 0.15); }
+
+.league-milestone[hidden] { display: none; }
 
 .league-milestone {
     display: grid;
@@ -978,13 +986,13 @@ button.career-card:focus-visible { border-color: #7be0de; outline: 2px solid #7b
 .starter-footer p { margin: 0; color: #405664; font: 1000 0.72rem/1 Consolas, monospace; }
 .starter-secondary,
 .starter-confirm {
-    min-height: 52px;
+    min-height: 56px;
     border: 2px solid #31536b;
     border-radius: 7px;
     padding: 0.65rem 1rem;
     background: #f8f5e8;
     color: #1b344b;
-    font: 1000 0.72rem/1 "Trebuchet MS", sans-serif;
+    font: 1000 0.95rem/1 "Trebuchet MS", sans-serif;
     cursor: pointer;
 }
 .starter-confirm { background: #34734f; color: white; box-shadow: inset 0 0 0 2px rgba(255,255,255,0.18), 0 3px #214c36; }
@@ -1094,22 +1102,29 @@ button.career-card:focus-visible { border-color: #7be0de; outline: 2px solid #7b
     aspect-ratio: 2 / 1;
 }
 
-/* Sits on the active Pokemon's HP card inside the canvas, the way the games
-   put the Mega button beside the move list. Positioned from JS because the
-   card lives in canvas space, which is scaled to the container. */
+/* Lives in the submenu heading beside BACK while a move is being chosen --
+   the hand is already there. It used to float over the canvas on the HP
+   card, 24px painted, the least reachable control in the game. */
+/* An unqualified `display` beats the hidden attribute's own display:none,
+   so a component with both needs this guard or `hidden = true` sets the
+   attribute and changes nothing on screen. That is exactly what kept the
+   Mega button on the heading at all times. Every other toggled component
+   in this sheet already carries the pair. */
+.mega-trigger[hidden] { display: none; }
+
 .mega-trigger {
-    position: absolute;
-    z-index: 5;
     display: flex;
+    margin-left: auto;
     align-items: center;
     gap: 0.3rem;
-    padding: 0.22rem 0.5rem;
+    min-height: 56px;
+    padding: 0 0.85rem;
     border: 2px solid #e5b8ff;
     border-radius: 999px;
     background: linear-gradient(135deg, #8b3fae, #5d2478);
     color: #fdf6ff;
     font: inherit;
-    font-size: 0.62rem;
+    font-size: 0.74rem;
     font-weight: 900;
     letter-spacing: 0.06em;
     cursor: pointer;
@@ -1122,6 +1137,14 @@ button.career-card:focus-visible { border-color: #7be0de; outline: 2px solid #7b
     background: linear-gradient(135deg, #a256c8, #6f2c8e);
 }
 
+/* Declared and locked in: the pulse stops and the frame turns gold. */
+.mega-trigger.is-armed {
+    border-color: #f4d078;
+    background: linear-gradient(135deg, #a256c8, #7a3f92);
+    box-shadow: 0 0 0 2px rgba(244, 208, 120, 0.55), 0 2px 0 #2c1140;
+    animation: none;
+}
+
 .mega-trigger:disabled {
     filter: grayscale(0.7);
     opacity: 0.6;
@@ -1130,7 +1153,7 @@ button.career-card:focus-visible { border-color: #7be0de; outline: 2px solid #7b
 }
 
 .mega-trigger-icon {
-    font-size: 0.8rem;
+    font-size: 1rem;
     color: #f0d0ff;
 }
 
@@ -1141,7 +1164,7 @@ button.career-card:focus-visible { border-color: #7be0de; outline: 2px solid #7b
 }
 
 .mega-trigger-copy small {
-    font-size: 0.48rem;
+    font-size: 0.6rem;
     opacity: 0.85;
 }
 
@@ -1200,6 +1223,10 @@ button.career-card:focus-visible { border-color: #7be0de; outline: 2px solid #7b
     border-top: 0;
     border-radius: 0 0 16px 16px;
     background: #111f32;
+    /* A beat behind the shell it sits in: descendants replay their
+       animations when the shell's display returns, so this fires exactly
+       when the shell's own rise does. */
+    animation: screen-rise-in 320ms 70ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .command-grid {
@@ -1894,12 +1921,15 @@ button.career-card:focus-visible { border-color: #7be0de; outline: 2px solid #7b
 
 .room-progress em,
 .room-dex-button {
+    display: inline-flex;
+    min-height: 56px;
+    align-items: center;
     border: 1px solid #4f7c92;
-    border-radius: 4px;
-    padding: 0.45rem 0.7rem;
+    border-radius: 6px;
+    padding: 0 0.9rem;
     background: #10283d;
     color: #bce8e8;
-    font: 900 0.68rem/1 "Trebuchet MS", sans-serif;
+    font: 900 0.85rem/1 "Trebuchet MS", sans-serif;
     letter-spacing: 0.08em;
 }
 .room-progress em { border-color: #4e926a; background: #1d4835; color: #d5f4d9; font-style: normal; }
@@ -1994,12 +2024,15 @@ button.career-card:focus-visible { border-color: #7be0de; outline: 2px solid #7b
 }
 
 .pc-button {
+    display: inline-flex;
+    min-height: 56px;
+    align-items: center;
     border: 1px solid #6ccbd0;
     border-radius: 999px;
-    padding: 0.4rem 0.65rem;
+    padding: 0 0.9rem;
     background: #193d55;
     color: #baf4ef;
-    font: 1000 0.72rem/1 "Trebuchet MS", sans-serif;
+    font: 1000 0.85rem/1 "Trebuchet MS", sans-serif;
     cursor: pointer;
 }
 
@@ -2077,6 +2110,8 @@ button.career-card:focus-visible { border-color: #7be0de; outline: 2px solid #7b
 .shop-card-copy small {
     display: block;
 }
+
+.shop-card-copy small { font-size: 0.88rem; }
 
 .shop-card-copy strong {
     overflow: hidden;
@@ -2309,12 +2344,15 @@ button.career-card:focus-visible { border-color: #7be0de; outline: 2px solid #7b
     left: 5px;
     border: 1px solid #567688;
     border-radius: 999px;
-    padding: 0.14rem 0.28rem;
+    /* Tightened rather than shrunk: the console paints this at 0.8 scale, so
+       dropping the font size would undo the readability floor. The width came
+       out of the tracking, the padding and the word itself. */
+    padding: 0.18rem 0.32rem;
     background: #173b53;
     color: #bdf3eb;
-    font-size: 0.45rem;
+    font-size: 0.78rem;
     font-weight: 1000;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.02em;
 }
 
 .room-pokemon-card img {
@@ -2333,13 +2371,13 @@ button.career-card:focus-visible { border-color: #7be0de; outline: 2px solid #7b
     justify-content: space-between;
     gap: 0.4rem;
     color: #17263a;
-    font-size: 0.76rem;
+    font-size: 1rem;
     font-weight: 1000;
 }
 
 .room-pokemon-name span {
     color: #596b75;
-    font-size: 0.58rem;
+    font-size: 0.9rem;
 }
 
 .room-hp-track {
@@ -2362,7 +2400,7 @@ button.career-card:focus-visible { border-color: #7be0de; outline: 2px solid #7b
 .room-pokemon-hp {
     margin-top: 0.25rem;
     color: #465966;
-    font: 800 0.6rem/1 Consolas, monospace;
+    font: 800 0.9rem/1 Consolas, monospace;
 }
 
 .room-type-row {
@@ -2595,28 +2633,10 @@ button.career-card:focus-visible { border-color: #7be0de; outline: 2px solid #7b
     border-color: #67d7dd;
 }
 
-/* Shop rarity, matching the tiers that drive price and availability. */
-.shop-rarity {
-    justify-self: start;
-    margin-top: 0.18rem;
-    padding: 0.08rem 0.32rem;
-    border: 1px solid currentColor;
-    border-radius: 3px;
-    font-size: 0.46rem;
-    font-weight: 900;
-    letter-spacing: 0.09em;
-}
-
-.shop-card[data-rarity="common"] .shop-rarity { color: #6f7d8c; }
-.shop-card[data-rarity="uncommon"] .shop-rarity { color: #2f8f5b; }
-.shop-card[data-rarity="rare"] .shop-rarity { color: #2f6fbf; }
-.shop-card[data-rarity="epic"] .shop-rarity { color: #8b3fae; }
-
-.shop-card[data-rarity="rare"] { border-color: #96b6e2; }
-.shop-card[data-rarity="epic"] {
-    border-color: #c79ade;
-    box-shadow: 0 0 0 1px rgba(160, 92, 200, 0.35);
-}
+/* The shop no longer shows rarity in any form. The tier still decides
+   price and how often a thing appears -- it just is not announced, so the
+   label, its per-tier colours and the blue/violet card borders that keyed
+   off data-rarity are all gone. Every card wears the same frame now. */
 
 .room-held-row {
     display: flex;
@@ -2657,24 +2677,12 @@ button.career-card:focus-visible { border-color: #7be0de; outline: 2px solid #7b
     line-height: 1;
 }
 
-.room-ability {
-    border-radius: 3px;
-    border: 1px solid #b8a86a;
-    padding: 0.15rem 0.28rem;
-    background: #f4ecd2;
-    color: #6b5b1e;
-    font-size: 0.5rem;
-    font-weight: 900;
-    letter-spacing: 0.04em;
-    cursor: help;
-}
-
 .room-type {
     border-radius: 3px;
-    padding: 0.15rem 0.28rem;
+    padding: 0.2rem 0.42rem;
     background: var(--type-color, #69727b);
     color: white;
-    font-size: 0.48rem;
+    font-size: 0.8rem;
     font-weight: 1000;
     letter-spacing: 0.05em;
     text-shadow: 0 1px rgba(0, 0, 0, 0.35);
@@ -2771,7 +2779,7 @@ button.career-card:focus-visible { border-color: #7be0de; outline: 2px solid #7b
     border-radius: 5px;
     background: rgba(12, 31, 48, 0.86);
     color: #dcecf0;
-    font-size: 0.86rem;
+    font-size: 1rem;
     font-weight: 800;
 }
 
@@ -2827,11 +2835,11 @@ button.career-card:focus-visible { border-color: #7be0de; outline: 2px solid #7b
 }
 .room-dialog-shell header p,
 .room-dialog-shell header h2 { margin: 0; }
-.room-dialog-shell header p { color: #73d9dc; font-size: 0.64rem; font-weight: 1000; letter-spacing: 0.16em; }
+.room-dialog-shell header p { color: #73d9dc; font-size: 0.95rem; font-weight: 1000; letter-spacing: 0.16em; }
 .room-dialog-shell header h2 { margin-top: 0.15rem; font-size: 1.35rem; }
 .room-dialog-close {
-    width: 38px;
-    height: 38px;
+    width: 56px;
+    height: 56px;
     border: 1px solid #83b9c7;
     border-radius: 50%;
     background: #294a63;
@@ -2922,8 +2930,15 @@ button.career-card:focus-visible { border-color: #7be0de; outline: 2px solid #7b
 .replace-choice img { width: 46px; height: 46px; object-fit: contain; image-rendering: pixelated; }
 .bag-row strong,
 .bag-row small { display: block; }
-.bag-row small { margin-top: 0.18rem; color: #60717b; }
-.bag-row > b { font: 1000 1rem/1 Consolas, monospace; }
+/* The row's text was one flat size: the 16px name and the 15.2px
+   description read as equals, so the whole row felt oversized and every
+   description wrapped to three lines. The name is the anchor at 0.9rem;
+   the description is clearly secondary at 0.78rem, which is flavour text
+   read one row at a time, not scanned, so it sits below the 0.94rem
+   primary floor on purpose. */
+.bag-row strong { font-size: 0.9rem; line-height: 1.15; }
+.bag-row small { margin-top: 0.15rem; color: #60717b; font-size: 0.78rem; line-height: 1.3; }
+.bag-row > b { font: 1000 0.9rem/1 Consolas, monospace; }
 
 .bag-actions {
     display: grid;
@@ -2931,13 +2946,17 @@ button.career-card:focus-visible { border-color: #7be0de; outline: 2px solid #7b
 }
 
 .inventory-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     min-width: 72px;
+    min-height: 56px;
     border: 1px solid #41657a;
-    border-radius: 5px;
-    padding: 0.4rem 0.5rem;
+    border-radius: 6px;
+    padding: 0.4rem 0.7rem;
     background: #2c607e;
     color: white;
-    font: 1000 0.62rem/1 "Trebuchet MS", sans-serif;
+    font: 1000 0.95rem/1 "Trebuchet MS", sans-serif;
     cursor: pointer;
 }
 
@@ -2996,13 +3015,17 @@ button.career-card:focus-visible { border-color: #7be0de; outline: 2px solid #7b
     padding: 0.65rem;
     background: #f7f5e8;
     color: #68777d;
-    font-size: 0.62rem;
+    font-size: 0.95rem;
     font-weight: 900;
     letter-spacing: 0.08em;
 }
 .dex-summary strong { color: #1d3447; font-size: 1rem; }
-.dex-mastery-note { margin: 0 0 0.8rem; border-left: 4px solid #7b58a0; padding: 0.55rem 0.7rem; background: #eee4f3; color: #58436a; font-size: 0.72rem; font-weight: 800; }
-.dex-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.45rem; }
+.dex-mastery-note { margin: 0 0 0.8rem; border-left: 4px solid #7b58a0; padding: 0.6rem 0.75rem; background: #eee4f3; color: #58436a; font-size: 0.95rem; font-weight: 800; }
+/* Four columns, not five: at five the cards were too narrow to read a
+   name in, and the wall of 7px text was the audit's single densest panel.
+   The dex is a reference list you scroll -- readability beats fitting more
+   rows on screen. The phone media query below still narrows to three. */
+.dex-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.5rem; }
 .dex-entry {
     position: relative;
     display: grid;
@@ -3023,9 +3046,9 @@ button.career-card:focus-visible { border-color: #7be0de; outline: 2px solid #7b
 .dex-entry small,
 .dex-entry strong,
 .dex-entry em { display: block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.dex-entry small { justify-self: start; color: #718088; font: 900 0.55rem/1 Consolas, monospace; }
-.dex-entry strong { width: 100%; font-size: 0.67rem; }
-.dex-entry em { margin-top: 0.22rem; color: #36708a; font-size: 0.52rem; font-style: normal; font-weight: 1000; letter-spacing: 0.08em; }
+.dex-entry small { justify-self: start; color: #718088; font: 900 0.95rem/1 Consolas, monospace; }
+.dex-entry strong { width: 100%; font-size: 1rem; }
+.dex-entry em { margin-top: 0.28rem; color: #36708a; font-size: 0.95rem; font-style: normal; font-weight: 1000; letter-spacing: 0.06em; }
 .dex-entry.is-locked strong { color: #675c6c; }
 
 .wild-encounter-card {
@@ -3170,9 +3193,6 @@ button.career-card:focus-visible { border-color: #7be0de; outline: 2px solid #7b
     .league-player-avatar img { width: 92px; height: 96px; }
     .league-title-art { width: 118px; height: 58px; }
     .league-start-heading h2 { font-size: clamp(1.45rem, 8vw, 2.2rem); }
-    .league-rules-strip { grid-template-columns: repeat(2, 1fr); }
-    .league-rules-strip span:nth-child(2) { border-right: 0; }
-    .league-rules-strip span:nth-child(-n+2) { border-bottom: 1px solid #315168; }
     .league-career-grid { grid-template-columns: 1fr; }
     .league-milestone { grid-template-columns: 1fr; }
     .mode-options { grid-template-columns: 1fr; }
@@ -3282,10 +3302,12 @@ button.career-card:focus-visible { border-color: #7be0de; outline: 2px solid #7b
 .battle-command-panel {
     position: relative;
     min-width: 0;
-    /* Tall enough that a full 2x2 move grid fits without the submenu
-       scrolling. Applied to the panel itself rather than only when the
-       submenu opens, so switching views never shifts the layout. */
-    min-height: 158px;
+    /* Tall enough that the 68px submenu heading and a 2x2 grid of 56px
+       choices fit without scrolling -- 56px layout is what clears the 44px
+       painted touch floor at the console's 0.8 scale. Applied to the panel
+       itself rather than only when the submenu opens, so switching views
+       never shifts the layout. */
+    min-height: 204px;
     border: 0;
     border-radius: 0;
     background: linear-gradient(145deg, #e7ebdf, #cbd8d6);
@@ -3419,21 +3441,26 @@ button.career-card:focus-visible { border-color: #7be0de; outline: 2px solid #7b
 
 .submenu-heading {
     position: static;
-    min-height: 42px;
-    padding: 0.45rem 0.65rem 0.4rem 0.8rem;
+    min-height: 68px;
+    padding: 0.3rem 0.65rem 0.3rem 0.8rem;
 }
 
 .submenu-heading h2 {
     overflow: hidden;
-    font-size: 0.84rem;
+    font-size: 0.92rem;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-.submenu-back { padding: 0.32rem 0.58rem; }
+.submenu-back {
+    min-height: 56px;
+    min-width: 92px;
+    padding: 0 0.9rem;
+    font-size: 0.82rem;
+}
 
 .submenu-content {
-    height: calc(100% - 42px);
+    height: calc(100% - 68px);
     max-height: none;
     overflow: auto;
     padding: 0.4rem;
@@ -3448,18 +3475,100 @@ button.career-card:focus-visible { border-color: #7be0de; outline: 2px solid #7b
 
 .move-choice,
 .target-choice,
-.item-choice { min-height: 42px; }
+.item-choice { min-height: 56px; }
 
 .move-choice { padding: 0.3rem 0.6rem 0.3rem 0.85rem; }
-.move-choice strong { font-size: 0.83rem; }
-.move-choice span { margin-top: 0.1rem; font-size: 0.57rem; }
+.move-choice strong { font-size: 0.9rem; }
+.move-choice span { margin-top: 0.1rem; font-size: 0.66rem; }
 .target-choice { padding: 0.5rem 0.6rem; font-size: 0.75rem; }
 .item-choice { padding: 0.4rem 0.55rem; }
 .item-choice img { width: 30px; height: 30px; }
 
 @media (min-width: 761px) and (min-height: 600px) {
     .pokemon-battle-shell {
-        width: min(1180px, calc(100% - 1.25rem), calc((100svh - 290px) * 2));
+        /* 344 = topbar + the 204px command panel + margins: the height the
+           battle needs besides the 2:1 stage. Was 290 before the panel grew
+           to hold 56px choices, which overflowed the console by 29px. */
+        width: min(1180px, calc(100% - 1.25rem), calc((100svh - 344px) * 2));
+    }
+}
+
+/* --- the console ------------------------------------------------------- */
+/* Above this breakpoint the game stops being a page that reflows and becomes
+   a fixed stage scaled to fit, so every screen is identically sized and
+   placed. Below it the old responsive flow stays: a 1240px stage on a phone
+   would scale to under a third and be unreadable. The same breakpoint is
+   named in fitConsole(). */
+@media (min-width: 880px) and (min-height: 640px) {
+    body:has(.console-stage) {
+        overflow: hidden;
+    }
+
+    .console-viewport {
+        position: fixed;
+        inset: 0;
+        display: grid;
+        /* The net. If the scale is ever wrong the console is bigger than the
+           window, and with the body not scrolling the controls along the
+           bottom -- the button that starts the next fight among them -- sit
+           under the edge with no way to reach them. `safe` matters: a centred
+           grid item larger than its track overflows both ways, and the top of
+           it cannot be scrolled back to. */
+        overflow: auto;
+        place-items: safe center;
+    }
+
+    /* A transform does not change layout, so a scaled stage still occupies its
+       full 1240x900 and the viewport above would think it overflows and show
+       scrollbars at every size. This box carries the painted size instead, so
+       centring and overflow both read what is actually on screen. */
+    .console-fit {
+        width: calc(var(--console-width) * var(--console-scale, 1));
+        height: calc(var(--console-height) * var(--console-scale, 1));
+    }
+
+    .console-stage {
+        width: var(--console-width);
+        height: var(--console-height);
+        /* .pokemon-battle-page asks for 100vh, which would fight the fixed
+           height and let the stage grow with the window again. */
+        min-height: 0;
+        /* Vertical overflow scrolls INSIDE the console. The stage is a fixed
+           900 tall, and the between-rounds room outgrows that in any real
+           run -- six shop cards alone put the next-fight button at 1031.
+           With plain `overflow: hidden` those pixels were simply cut, and
+           with the body locked there was no scroller anywhere that could
+           reach them: the game could not be continued. The viewport's own
+           scrolling does not cover this -- it helps when the CONSOLE is
+           bigger than the window, not when a screen is bigger than the
+           console. */
+        overflow-x: hidden;
+        overflow-y: auto;
+        transform: scale(var(--console-scale, 1));
+        transform-origin: top left;
+    }
+
+    /* Viewport units inside the console have to mean the console, not the
+       window, or these three keep sizing themselves off the real screen and
+       the stage stops being fixed. */
+    .console-stage .pokemon-battle-shell {
+        width: min(var(--app-frame), calc((var(--console-height) - 344px) * 2));
+    }
+
+    .console-stage .main-menu {
+        min-height: 690px;
+    }
+
+    .console-stage .trainer-intro {
+        min-height: calc(var(--console-height) - 90px);
+    }
+
+    /* A modal dialog lives in the top layer, which an ancestor transform does
+       not reach, so it would open at full size over a shrunken console. It
+       carries the same scale itself instead. */
+    body.console-scaled dialog[open] {
+        transform: scale(var(--console-scale, 1));
+        transform-origin: center center;
     }
 }
 
@@ -3658,15 +3767,18 @@ button.career-card:focus-visible { border-color: #7be0de; outline: 2px solid #7b
     margin-bottom: 0.8rem;
     border: 2px solid #668b91;
     border-radius: 9px;
-    padding: 0.7rem 0.85rem;
+    padding: 0.6rem 0.85rem;
     background: #d8e7dc;
     color: #23445a;
     font-weight: 900;
+    font-size: 0.9rem;
 }
 
-.bag-summary strong { font: 1000 1.15rem/1 Consolas, monospace; }
+.bag-summary strong { font: 1000 1.05rem/1 Consolas, monospace; }
 .bag-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.bag-row { min-height: 94px; padding: 0.7rem; }
+/* Smaller text no longer needs 94px of row; the shorter descriptions pull
+   the height down on their own, but the floor comes down to match. */
+.bag-row { min-height: 78px; padding: 0.6rem; }
 .bag-row img { width: 56px; height: 56px; }
 .bag-row > b { align-self: start; padding-top: 0.25rem; }
 .bag-actions { min-width: 132px; }
@@ -3680,13 +3792,15 @@ button.career-card:focus-visible { border-color: #7be0de; outline: 2px solid #7b
 .bag-sell-quantity {
     width: 100%;
     min-width: 0;
+    min-height: 56px;
     border: 1px solid #795844;
-    border-radius: 5px;
-    padding: 0.35rem 0.25rem;
+    border-radius: 6px;
+    padding: 0.35rem 0.3rem;
     background: #fffaf0;
     color: #342419;
-    font: 900 0.7rem/1 Consolas, monospace;
+    font: 900 0.95rem/1 Consolas, monospace;
     text-align: center;
+    cursor: pointer;
 }
 
 .inventory-sell-all {
@@ -3770,4 +3884,65 @@ button.career-card:focus-visible { border-color: #7be0de; outline: 2px solid #7b
     .bag-row { grid-template-columns: auto minmax(0, 1fr) auto; }
     .bag-actions { grid-column: 1 / -1; grid-template-columns: 1fr 1fr; }
     .bag-sell-control { grid-column: 1 / -1; }
+}
+
+/* --- P2 readability floor -------------------------------------------------
+   The console paints at 0.8 scale on a 720p window, so 12px painted needs
+   0.94rem of layout. This block sits at the end of the sheet on purpose:
+   several earlier rules (including console-media ones) set smaller sizes,
+   and last-at-equal-specificity is the simplest way to give the whole room
+   one floor. Measured by the audit probe, not by eye. */
+.room-kicker { font-size: 0.94rem; }
+.room-progress span,
+.room-progress strong,
+.room-progress em,
+.room-progress b { font-size: 0.94rem; }
+.shop-panel header p { font-size: 0.94rem; }
+.money-display span { font-size: 0.94rem; }
+.shop-card-copy strong { font-size: 1.05rem; }
+.shop-card-copy small { font-size: 1rem; }
+.shop-card-copy small.shop-card-description { font-size: 0.94rem; }
+.panel-title p { font-size: 0.94rem; }
+.room-pokemon-order,
+.room-type { font-size: 0.94rem; }
+.room-pokemon-name span { font-size: 0.94rem; }
+.room-pokemon-hp { font-size: 0.94rem; }
+
+/* --- UI motion ----------------------------------------------------------
+   No JS drives any of this. A CSS animation on a screen's base class
+   replays every time `hidden` comes off -- the mechanism room-enter was
+   already using -- so the menus slide, the battle rises, and dialogs pop
+   straight from [open]. */
+@keyframes screen-slide-in {
+    from { opacity: 0; transform: translateX(26px); }
+    to { opacity: 1; transform: none; }
+}
+@keyframes screen-rise-in {
+    from { opacity: 0; transform: translateY(22px); }
+    to { opacity: 1; transform: none; }
+}
+dialog[open] {
+    animation: dialog-rise 200ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+dialog[open]::backdrop {
+    animation: backdrop-fade 200ms ease-out both;
+}
+@keyframes dialog-rise {
+    from { opacity: 0; transform: translateY(16px) scale(0.98); }
+    to { opacity: 1; transform: none; }
+}
+@keyframes backdrop-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .main-menu,
+    .league-selection,
+    .league-start,
+    .starter-screen,
+    .between-rounds,
+    .pokemon-battle-shell,
+    .battle-command-panel,
+    dialog[open],
+    dialog[open]::backdrop { animation: none; }
 }

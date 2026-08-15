@@ -1,0 +1,23 @@
+{
+  "comment": "Weapon prefixes, as Terraria's reforging gives them. Every weapon the shop offers rolls one, so the same Megashark is a different buy each time it appears. Bad prefixes are not filler: they knock the price down, so a Deadly weapon you cannot afford and an Awful one you can is a real choice. Weights are relative; 'none' is the commonest outcome. The multipliers are modelled for this game rather than copied from Terraria's table, since its prefixes assume ammunition and knockback that do not exist here.",
+  "modifiers": [
+    { "id": "none", "name": "", "weight": 34, "price": 1 },
+
+    { "id": "keen", "name": "Keen", "weight": 7, "crit": 0.04, "price": 1.15 },
+    { "id": "hasty", "name": "Hasty", "weight": 7, "fireRate": 0.92, "price": 1.15 },
+    { "id": "sighted", "name": "Sighted", "weight": 7, "damage": 1.08, "price": 1.15 },
+    { "id": "quick", "name": "Quick", "weight": 6, "projectileSpeed": 1.2, "price": 1.12 },
+    { "id": "intrepid", "name": "Intrepid", "weight": 6, "damage": 1.06, "crit": 0.02, "price": 1.2 },
+
+    { "id": "ruthless", "name": "Ruthless", "weight": 5, "damage": 1.15, "price": 1.3 },
+    { "id": "rapid", "name": "Rapid", "weight": 5, "fireRate": 0.85, "price": 1.3 },
+    { "id": "murderous", "name": "Murderous", "weight": 4, "damage": 1.12, "crit": 0.04, "price": 1.4 },
+    { "id": "deadly", "name": "Deadly", "weight": 4, "damage": 1.12, "fireRate": 0.9, "price": 1.45 },
+    { "id": "unreal", "name": "Unreal", "weight": 2, "damage": 1.18, "fireRate": 0.88, "crit": 0.05, "projectileSpeed": 1.15, "price": 1.75 },
+
+    { "id": "sluggish", "name": "Sluggish", "weight": 5, "fireRate": 1.15, "price": 0.72 },
+    { "id": "lethargic", "name": "Lethargic", "weight": 5, "damage": 0.9, "price": 0.72 },
+    { "id": "awful", "name": "Awful", "weight": 4, "damage": 0.85, "fireRate": 1.1, "price": 0.55 },
+    { "id": "broken", "name": "Broken", "weight": 3, "damage": 0.78, "projectileSpeed": 0.85, "price": 0.45 }
+  ]
+}

@@ -13,6 +13,57 @@
     // Critical-hit odds by stage: none, a high-crit move, Focus Energy, both.
     const CRIT_STAGE_ODDS = [0.0625, 0.125, 0.25, 0.5, 1];
 
+    // Magnitude 4 to 10, with the games' own odds and powers. Kept as one
+    // table so the number that gets called out and the power that gets dealt
+    // cannot drift apart.
+    const MAGNITUDE_TABLE = [
+        { level: 4, power: 10, chance: 0.05 },
+        { level: 5, power: 30, chance: 0.10 },
+        { level: 6, power: 50, chance: 0.20 },
+        { level: 7, power: 70, chance: 0.30 },
+        { level: 8, power: 90, chance: 0.20 },
+        { level: 9, power: 110, chance: 0.10 },
+        { level: 10, power: 150, chance: 0.05 },
+    ];
+    function rollMagnitude(rng) {
+        let roll = typeof rng === "function" ? rng() : Math.random();
+        for (let index = 0; index < MAGNITUDE_TABLE.length; index += 1) {
+            roll -= MAGNITUDE_TABLE[index].chance;
+            if (roll < 0) return MAGNITUDE_TABLE[index];
+        }
+        return MAGNITUDE_TABLE[MAGNITUDE_TABLE.length - 1];
+    }
+
+    // A "hits 2 to 5 times" move does NOT roll its count evenly. Two and three
+    // hits are the common cases and four and five are the rare ones -- 35, 35,
+    // 15, 15 from Gen 5 on. Rolling uniformly instead gave 25% each: an
+    // average of 3.5 hits against the real 3.167, so every multi-hit move did
+    // about a tenth more damage than it should, and four-or-five landed half
+    // the time rather than three in ten. Skill Link still overrides all of
+    // this and takes the maximum.
+    const MULTI_HIT_ODDS = [
+        { hits: 2, chance: 0.35 },
+        { hits: 3, chance: 0.35 },
+        { hits: 4, chance: 0.15 },
+        { hits: 5, chance: 0.15 },
+    ];
+    function rollHitCount(range, rng) {
+        const min = Math.max(1, numberOr(range?.min, 1));
+        const max = Math.max(min, numberOr(range?.max, min));
+        if (max === min) return min;
+        // Only the classic 2-5 spread has published odds. Anything else keeps
+        // an even roll rather than inventing a curve for it.
+        const table = MULTI_HIT_ODDS.filter((entry) => entry.hits >= min && entry.hits <= max);
+        const total = table.reduce((sum, entry) => sum + entry.chance, 0);
+        if (!table.length || total <= 0) return min + Math.floor(rng() * (max - min + 1));
+        let roll = rng() * total;
+        for (let index = 0; index < table.length; index += 1) {
+            roll -= table[index].chance;
+            if (roll < 0) return table[index].hits;
+        }
+        return table[table.length - 1].hits;
+    }
+
     // Moves whose power is worked out at use time. The extraction stores them
     // all with a placeholder power of 1, so without these they landed for
     // almost nothing -- Electro Ball hit a Staryu for six.
@@ -55,17 +106,9 @@
         // Scales with how much health the target still has.
         "wring-out": ({ target }) => Math.max(1, Math.floor(120 * target.hp / Math.max(1, target.maxHp))),
         "hard-press": ({ target }) => Math.max(1, Math.floor(120 * target.hp / Math.max(1, target.maxHp))),
-        // The real move rolls a magnitude from 4 to 10.
-        magnitude: ({ rng }) => {
-            const roll = rng();
-            if (roll < 0.05) return 10;
-            if (roll < 0.15) return 30;
-            if (roll < 0.35) return 50;
-            if (roll < 0.65) return 70;
-            if (roll < 0.85) return 90;
-            if (roll < 0.95) return 110;
-            return 150;
-        },
+        // Damage estimates and the AI's scoring go through the same table
+        // the announced tremor comes from.
+        magnitude: ({ rng }) => rollMagnitude(rng).power,
         // No friendship is tracked, so both sit at the midpoint of their range.
         return: () => 102,
         frustration: () => 102,
@@ -745,6 +788,10 @@
             targetCode,
             targetMode: targetCode === TARGET_SELF ? "self" : targetCode === TARGET_ALL_OPPONENTS ? "all-opponents" : targetCode === TARGET_FOES_AND_ALLY ? "adjacent-all" : "selected-opponent",
             firstTurnOnly: /usable only on (?:the )?(?:1st|first) turn|only works the first turn/.test(text),
+            // Last Resort: unusable until every OTHER move this Pokemon knows
+            // has been used at least once this battle. It had no mechanic at
+            // all -- a plain 140-power attack from turn one.
+            needsOtherMovesUsed: /only be used after the user has exhausted all other moves/.test(text),
             nonLethal: /at least 1 hp/.test(text),
             // "If the user faints..." is a *condition*, not an effect --
             // Destiny Bond and Grudge were killing their own user on use
@@ -890,7 +937,11 @@
         const config = options || {};
         const level = numberOr(config.level, LEVEL);
         const base = species.base_stats || {};
-        const maxHp = calculateStat(base.hp, level, true);
+        // Shedinja has 1 HP at every level, which is the whole point of it --
+        // a shell that Wonder Guard makes untouchable except to the moves it
+        // is weak to. It is the only species in the set with a base HP of 1,
+        // so the rule reads straight off the data rather than off its name.
+        const maxHp = Number(base.hp) === 1 ? 1 : calculateStat(base.hp, level, true);
         const movePool = learnedMoves(species, movesById, level);
         return {
             id: species.id,
@@ -920,6 +971,10 @@
             // Index of the last move genuinely attempted, for Disable,
             // Encore and Torment. Null until this Pokemon actually moves.
             lastMoveIndex: null,
+            // Every move index used since this Pokemon came in, for Last
+            // Resort. Battle-scoped like stat stages: switching out clears it,
+            // which is how the handhelds count it.
+            usedMoveIndexes: [],
             // Eviolite only helps something with a real evolution left. Mega
             // Evolution is stored in the same evolves_to list, and it is not
             // an evolution for this purpose -- a Mega entry is recognisable
@@ -1291,6 +1346,12 @@
                 pokemon.statusCondition = pokemon.statusCondition || null;
                 pokemon.statusTurns = numberOr(pokemon.statusTurns, 0);
                 pokemon.volatileStatus = pokemon.volatileStatus || {};
+                // Battle-scoped, and party members are serialised into the run
+                // save between duels -- without this, a Pokemon that exhausted
+                // its moves in one battle would open the next one able to fire
+                // Last Resort on turn 1.
+                pokemon.usedMoveIndexes = [];
+                pokemon.lastMoveIndex = null;
                 pokemon.turnsActive = numberOr(pokemon.turnsActive, 0);
             });
             const configuredSlots = config.activePerSide || {};
@@ -1364,6 +1425,25 @@
             }
             if (move.effects?.healRatio && pokemon.hp >= pokemon.maxHp) {
                 return { usable: false, reason: `${pokemon.name} is already at full HP.` };
+            }
+            if (move.effects?.needsOtherMovesUsed) {
+                // Every OTHER move has to have been used since this Pokemon
+                // came in. Knowing nothing else is a failure too, exactly as
+                // in the handhelds: Last Resort alone can never fire.
+                const used = pokemon.usedMoveIndexes || [];
+                const others = pokemon.moves
+                    .map((entry, index) => index)
+                    .filter((index) => pokemon.moves[index] !== move);
+                const remaining = others.filter((index) => !used.includes(index));
+                if (!others.length) {
+                    return { usable: false, reason: `${pokemon.name} knows no other move to exhaust first.` };
+                }
+                if (remaining.length) {
+                    return {
+                        usable: false,
+                        reason: `${pokemon.name} must use its other moves first.`,
+                    };
+                }
             }
             const volatiles = pokemon.volatileStatus || {};
             const moveIndex = pokemon.moves.indexOf(move);
@@ -2247,7 +2327,7 @@
             }
             if (actor.volatileStatus?.flinched) {
                 actor.volatileStatus.flinched = false;
-                events.push({ type: "status", message: `${actor.name} flinched and couldn't move!` });
+                events.push({ type: "status", side: actorSide, targetIndex: actorIndex, message: `${actor.name} flinched and couldn't move!` });
                 const ability = abilityOf(actor);
                 if (typeof ability?.onFlinched === "function") {
                     ability.onFlinched(this.abilityContext(actor, actorSide, actorIndex, events));
@@ -2262,39 +2342,39 @@
                 // their user is asleep.
                 const worksAsleep = move?.effects?.callsMove === "own-random" || move?.slug === "snore";
                 if (actor.statusTurns > 0 && !worksAsleep) {
-                    events.push({ type: "status", message: `${actor.name} is fast asleep.` });
+                    events.push({ type: "status", side: actorSide, targetIndex: actorIndex, message: `${actor.name} is fast asleep.` });
                     return false;
                 }
                 if (actor.statusTurns > 0) {
-                    events.push({ type: "status", message: `${actor.name} is fast asleep, but talked in its sleep!` });
+                    events.push({ type: "status", side: actorSide, targetIndex: actorIndex, message: `${actor.name} is fast asleep, but talked in its sleep!` });
                 } else {
                     actor.statusCondition = null;
-                    events.push({ type: "status", message: `${actor.name} woke up!` });
+                    events.push({ type: "status", side: actorSide, targetIndex: actorIndex, status: null, message: `${actor.name} woke up!` });
                 }
             }
             if (actor.statusCondition === "freeze") {
                 if (this.rng() >= 0.2) {
-                    events.push({ type: "status", message: `${actor.name} is frozen solid!` });
+                    events.push({ type: "status", side: actorSide, targetIndex: actorIndex, message: `${actor.name} is frozen solid!` });
                     return false;
                 }
                 actor.statusCondition = null;
-                events.push({ type: "status", message: `${actor.name} thawed out!` });
+                events.push({ type: "status", side: actorSide, targetIndex: actorIndex, status: null, message: `${actor.name} thawed out!` });
             }
             if (actor.statusCondition === "paralysis" && this.rng() < 0.25) {
-                events.push({ type: "status", message: `${actor.name} is paralyzed! It can't move!` });
+                events.push({ type: "status", side: actorSide, targetIndex: actorIndex, message: `${actor.name} is paralyzed! It can't move!` });
                 return false;
             }
             // Infatuation costs the turn half the time, and lasts until the
             // Pokemon switches out (volatileStatus is cleared on switch).
             if (actor.volatileStatus?.infatuated && this.rng() < 0.5) {
-                events.push({ type: "status", message: `${actor.name} is immobilized by love!` });
+                events.push({ type: "status", side: actorSide, targetIndex: actorIndex, message: `${actor.name} is immobilized by love!` });
                 return false;
             }
             if (actor.volatileStatus?.confused) {
                 actor.volatileStatus.confusionTurns = Math.max(0, numberOr(actor.volatileStatus.confusionTurns, 1) - 1);
                 if (actor.volatileStatus.confusionTurns <= 0) {
                     actor.volatileStatus.confused = false;
-                    events.push({ type: "status", message: `${actor.name} snapped out of confusion!` });
+                    events.push({ type: "status", side: actorSide, targetIndex: actorIndex, status: null, message: `${actor.name} snapped out of confusion!` });
                 } else if (this.rng() < 1 / 3) {
                     // The self-hit is a 40-power typeless physical strike with
                     // the mon's own Attack against its own Defense, not a
@@ -2305,7 +2385,7 @@
                     const damage = Math.max(1, Math.floor(selfBase * (0.85 + this.rng() * 0.15)));
                     actor.hp = Math.max(0, actor.hp - damage);
                     actor.fainted = actor.hp === 0;
-                    events.push({ type: "status", message: "It hurt itself in its confusion!" });
+                    events.push({ type: "status", side: actorSide, targetIndex: actorIndex, message: "It hurt itself in its confusion!" });
                     events.push({ type: "damage", side: actorSide, targetIndex: actorIndex, damage, newHp: actor.hp, maxHp: actor.maxHp, message: "" });
                     return false;
                 }
@@ -4508,13 +4588,25 @@
                     actor.stats = { ...target.stats };
                     actor.statStages = { ...target.statStages };
                     actor.moves = (target.moves || []).map((entry) => ({ ...entry, pp: 5, maxPp: 5 }));
+                    // Read before the copy overwrites it, or the line comes
+                    // out as "Pikachu transformed into Pikachu!".
+                    const shifterName = actor.name;
                     actor.name = target.name;
                     actor.key = target.key;
                     actor.id = target.id;
                     actor.sprites = target.sprites;
+                    // Its own event type, not a plain rule: the scene has to
+                    // load the copied Pokemon's artwork to show the change,
+                    // and every texture is preloaded per team slot from the
+                    // species that started there.
                     events.push({
-                        type: "rule", side: actorSide, targetIndex: actorIndex,
-                        message: `${actor.name} transformed into ${target.name}!`,
+                        type: "transform", side: actorSide, targetIndex: actorIndex,
+                        sprites: actor.sprites,
+                        // A distinct texture key per copy, so transforming
+                        // twice in one battle cannot land on the first copy's
+                        // cached artwork.
+                        formVariant: `as-${String(target.key || target.id).toLowerCase().replace(/[^a-z0-9]+/g, "-")}`,
+                        message: `${shifterName} transformed into ${target.name}!`,
                     });
                 }
             }
@@ -4997,6 +5089,10 @@
             }
 
             actor.lastMoveIndex = action.moveIndex;
+            if (!Array.isArray(actor.usedMoveIndexes)) actor.usedMoveIndexes = [];
+            if (!actor.usedMoveIndexes.includes(action.moveIndex)) {
+                actor.usedMoveIndexes.push(action.moveIndex);
+            }
             // A Choice item locks onto whatever it opens with.
             if (heldItemOf(actor)?.locksMove && !Number.isInteger(actor.volatileStatus.choiceLockedIndex)) {
                 actor.volatileStatus.choiceLockedIndex = action.moveIndex;
@@ -5117,8 +5213,14 @@
             const hitCount = multiHit
                 ? (abilityOf(actor)?.multiHitAlwaysMax
                     ? multiHit.max
-                    : multiHit.min + Math.floor(this.rng() * (multiHit.max - multiHit.min + 1)))
+                    : rollHitCount(multiHit, () => this.rng()))
                 : 1;
+
+            // Magnitude picks one tremor for the whole use, the way the games
+            // do: the number is called out before anything is hit, and every
+            // target feels the same quake. Rolled inside the target loop it
+            // would have given each one its own magnitude in a double battle.
+            const magnitude = move.slug === "magnitude" ? rollMagnitude(() => this.rng()) : null;
 
             targets.forEach((entry, targetNumber) => {
                 const target = entry.pokemon;
@@ -5151,6 +5253,17 @@
                     hits: hitCount,
                     message: targetNumber === 0 ? `${actor.name} used ${move.displayName}!` : "",
                 });
+                // Straight after "used Magnitude!" and before anything is hit,
+                // which is where the games put it.
+                if (magnitude && targetNumber === 0) {
+                    events.push({
+                        type: "rule",
+                        side: action.side,
+                        actorIndex: action.actorIndex,
+                        magnitude: magnitude.level,
+                        message: `Magnitude ${magnitude.level}!`,
+                    });
+                }
                 // Sucker Punch and Thunderclap only connect against a target
                 // that is still about to attack. If the target has already
                 // moved this turn, or is switching, using an item, or has a
@@ -5423,18 +5536,20 @@
                     // DYNAMIC_POWER work theirs out from speed, health or PP.
                     // The data lists all of their powers as a placeholder 1.
                     const dynamic = DYNAMIC_POWER[move.slug];
-                    const rawPower = effects.stockpilePower
-                        ? 100 * numberOr(actor.volatileStatus?.stockpile, 0)
-                        : dynamic
-                            ? dynamic({
-                                actor,
-                                target,
-                                move,
-                                actorSpeed: modifiedStat(actor, "speed", { weather: weatherKind }),
-                                targetSpeed: modifiedStat(target, "speed", { weather: weatherKind }),
-                                rng: () => this.rng(),
-                            })
-                            : move.power;
+                    const rawPower = magnitude
+                        ? magnitude.power
+                        : effects.stockpilePower
+                            ? 100 * numberOr(actor.volatileStatus?.stockpile, 0)
+                            : dynamic
+                                ? dynamic({
+                                    actor,
+                                    target,
+                                    move,
+                                    actorSpeed: modifiedStat(actor, "speed", { weather: weatherKind }),
+                                    targetSpeed: modifiedStat(target, "speed", { weather: weatherKind }),
+                                    rng: () => this.rng(),
+                                })
+                                : move.power;
                     const baseDamage = (((2 * actor.level / 5 + 2) * Math.max(1, rawPower) * attackStat / Math.max(1, defenseStat)) / 50) + 2;
                     const fieldModifier = moveType === "fire" && this.fieldEffects.waterSport > 0 ? 1 / 3
                         : moveType === "electric" && this.fieldEffects.mudSport > 0 ? 1 / 3 : 1;
@@ -5800,6 +5915,7 @@
                 pokemon.statStages = Object.fromEntries(STAT_KEYS.map((stat) => [stat, 0]));
                 pokemon.turnsActive = 0;
                 pokemon.lastMoveIndex = null;
+                pokemon.usedMoveIndexes = [];
             });
         }
 
@@ -5817,6 +5933,10 @@
         BattleEngine,
         TYPE_CHART,
         createCombatant,
+        // The run layer recomputes a stat when a vitamin raises its base, and
+        // there must be exactly one place that knows the formula.
+        calculateStat,
+        restoreBattleMutations,
         rollGender,
         learnedMoves,
         estimateMoveDamage,

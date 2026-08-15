@@ -1,0 +1,176 @@
+{
+ "comment": "Terraria's buff potions. You buy them between rounds and drink them mid-fight with the number keys, so a potion is a decision about when rather than a stat you own. Durations are tuned to cover roughly one round: long enough to matter, short enough that you cannot stay buffed forever. Effects are smaller than Terraria's on purpose, because armor, accessories and prefixes already stack in this game. Sprites are drawn by build_terra_potions.py, not cut from the pack.",
+ "beltSlots": 5,
+ "maxStack": 5,
+ "potions": [
+  {
+   "id": "ironskin",
+   "name": "Ironskin Potion",
+   "sprite": "items/ironskin-potion.png",
+   "description": "Skin like plate. Everything hits softer.",
+   "price": 30,
+   "seconds": 60,
+   "tint": "#e88e3e",
+   "effects": {
+    "defense": 6
+   }
+  },
+  {
+   "id": "regeneration",
+   "name": "Regeneration Potion",
+   "sprite": "items/regeneration-potion.png",
+   "description": "Health trickles back on its own.",
+   "price": 32,
+   "seconds": 60,
+   "tint": "#e96aa8",
+   "effects": {
+    "regenPerSecond": 3
+   }
+  },
+  {
+   "id": "swiftness",
+   "name": "Swiftness Potion",
+   "sprite": "items/swiftness-potion.png",
+   "description": "Run faster. Not everything has to be fought.",
+   "price": 28,
+   "seconds": 60,
+   "tint": "#69b0e9",
+   "effects": {
+    "moveSpeed": 1.25
+   }
+  },
+  {
+   "id": "archery",
+   "name": "Archery Potion",
+   "sprite": "items/archery-potion.png",
+   "description": "Arrows fly faster and land harder.",
+   "price": 38,
+   "seconds": 60,
+   "tint": "#d6c460",
+   "effects": {
+    "bowDamage": 1.2,
+    "projectileSpeed": 1.2
+   }
+  },
+  {
+   "id": "endurance",
+   "name": "Endurance Potion",
+   "sprite": "items/endurance-potion.png",
+   "description": "A tenth of every hit simply does not land.",
+   "price": 42,
+   "seconds": 45,
+   "tint": "#967ad6",
+   "effects": {
+    "damageTaken": 0.9
+   }
+  },
+  {
+   "id": "wrath",
+   "name": "Wrath Potion",
+   "sprite": "items/wrath-potion.png",
+   "description": "Everything you own hits harder.",
+   "price": 45,
+   "seconds": 45,
+   "tint": "#ce443e",
+   "effects": {
+    "damage": 1.1
+   }
+  },
+  {
+   "id": "rage",
+   "name": "Rage Potion",
+   "sprite": "items/rage-potion.png",
+   "description": "Critical strikes come far more often.",
+   "price": 44,
+   "seconds": 45,
+   "tint": "#e2703c",
+   "effects": {
+    "crit": 0.1
+   }
+  },
+  {
+   "id": "magic-power",
+   "name": "Magic Power Potion",
+   "sprite": "items/magic-power-potion.png",
+   "description": "Staffs bite deeper.",
+   "price": 40,
+   "seconds": 45,
+   "tint": "#c460d6",
+   "effects": {
+    "magicDamage": 1.2
+   }
+  },
+  {
+   "id": "mana-regeneration",
+   "name": "Mana Regeneration Potion",
+   "sprite": "items/mana-regeneration-potion.png",
+   "description": "Mana comes back quickly enough to keep casting.",
+   "price": 30,
+   "seconds": 60,
+   "tint": "#607ae2",
+   "effects": {
+    "manaRegen": 2.0
+   }
+  },
+  {
+   "id": "thorns",
+   "name": "Thorns Potion",
+   "sprite": "items/thorns-potion.png",
+   "description": "What touches you takes some of it back.",
+   "price": 36,
+   "seconds": 45,
+   "tint": "#967444",
+   "effects": {
+    "thorns": 0.5
+   }
+  },
+  {
+   "id": "lifeforce",
+   "name": "Lifeforce Potion",
+   "sprite": "items/lifeforce-potion.png",
+   "description": "One more heart, for as long as it lasts.",
+   "price": 50,
+   "seconds": 45,
+   "tint": "#e2607a",
+   "effects": {
+    "maxHpBonus": 20
+   }
+  },
+  {
+   "id": "featherfall",
+   "name": "Featherfall Potion",
+   "sprite": "items/featherfall-potion.png",
+   "description": "Drift down instead of dropping. Easier to aim on the way.",
+   "price": 22,
+   "seconds": 60,
+   "tint": "#c4cee2",
+   "effects": {
+    "fallSpeed": 0.45
+   }
+  },
+  {
+   "id": "heartreach",
+   "name": "Heartreach Potion",
+   "sprite": "items/heartreach-potion.png",
+   "description": "Hearts and coins come to you across the arena.",
+   "price": 34,
+   "seconds": 60,
+   "tint": "#ce5482",
+   "effects": {
+    "pickupRange": 240
+   }
+  },
+  {
+   "id": "battle",
+   "name": "Battle Potion",
+   "sprite": "items/battle-potion.png",
+   "description": "Every coin drop is worth more while it lasts.",
+   "price": 26,
+   "seconds": 45,
+   "tint": "#ce3e60",
+   "effects": {
+    "coins": 1.35
+   }
+  }
+ ]
+}

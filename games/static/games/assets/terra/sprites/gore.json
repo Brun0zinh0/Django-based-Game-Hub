@@ -1,0 +1,548 @@
+{
+  "zombie": [
+    {
+      "file": "gore/zombie-0.png",
+      "source": "Gore_3",
+      "size": [
+        26,
+        30
+      ]
+    },
+    {
+      "file": "gore/zombie-1.png",
+      "source": "Gore_4",
+      "size": [
+        22,
+        14
+      ]
+    },
+    {
+      "file": "gore/zombie-2.png",
+      "source": "Gore_5",
+      "size": [
+        22,
+        20
+      ]
+    }
+  ],
+  "skeleton": [
+    {
+      "file": "gore/skeleton-0.png",
+      "source": "Gore_55",
+      "size": [
+        54,
+        38
+      ]
+    },
+    {
+      "file": "gore/skeleton-1.png",
+      "source": "Gore_465",
+      "size": [
+        30,
+        24
+      ]
+    },
+    {
+      "file": "gore/skeleton-2.png",
+      "source": "Gore_268",
+      "size": [
+        22,
+        20
+      ]
+    }
+  ],
+  "demon-eye": [
+    {
+      "file": "gore/demon-eye-0.png",
+      "source": "Gore_7",
+      "size": [
+        20,
+        24
+      ]
+    },
+    {
+      "file": "gore/demon-eye-1.png",
+      "source": "Gore_2",
+      "size": [
+        16,
+        22
+      ]
+    },
+    {
+      "file": "gore/demon-eye-2.png",
+      "source": "Gore_9",
+      "size": [
+        48,
+        52
+      ]
+    }
+  ],
+  "bat": [
+    {
+      "file": "gore/bat-0.png",
+      "source": "Gore_107",
+      "size": [
+        24,
+        18
+      ]
+    },
+    {
+      "file": "gore/bat-1.png",
+      "source": "Gore_82",
+      "size": [
+        14,
+        12
+      ]
+    }
+  ],
+  "goblin-peon": [
+    {
+      "file": "gore/goblin-peon-0.png",
+      "source": "Gore_626",
+      "size": [
+        26,
+        22
+      ]
+    },
+    {
+      "file": "gore/goblin-peon-1.png",
+      "source": "Gore_627",
+      "size": [
+        20,
+        8
+      ]
+    },
+    {
+      "file": "gore/goblin-peon-2.png",
+      "source": "Gore_628",
+      "size": [
+        14,
+        16
+      ]
+    }
+  ],
+  "goblin-warrior": [
+    {
+      "file": "gore/goblin-warrior-0.png",
+      "source": "Gore_635",
+      "size": [
+        26,
+        24
+      ]
+    },
+    {
+      "file": "gore/goblin-warrior-1.png",
+      "source": "Gore_636",
+      "size": [
+        20,
+        8
+      ]
+    },
+    {
+      "file": "gore/goblin-warrior-2.png",
+      "source": "Gore_637",
+      "size": [
+        14,
+        16
+      ]
+    }
+  ],
+  "demon": [
+    {
+      "file": "gore/demon-0.png",
+      "source": "Gore_93",
+      "size": [
+        24,
+        26
+      ]
+    },
+    {
+      "file": "gore/demon-1.png",
+      "source": "Gore_94",
+      "size": [
+        42,
+        44
+      ]
+    },
+    {
+      "file": "gore/demon-2.png",
+      "source": "Gore_95",
+      "size": [
+        12,
+        16
+      ]
+    }
+  ],
+  "hornet": [
+    {
+      "file": "gore/hornet-0.png",
+      "source": "Gore_1047",
+      "size": [
+        28,
+        34
+      ]
+    },
+    {
+      "file": "gore/hornet-1.png",
+      "source": "Gore_1165",
+      "size": [
+        26,
+        22
+      ]
+    },
+    {
+      "file": "gore/hornet-2.png",
+      "source": "Gore_1176",
+      "size": [
+        50,
+        20
+      ]
+    }
+  ],
+  "spider": [
+    {
+      "file": "gore/spider-0.png",
+      "source": "Gore_206",
+      "size": [
+        34,
+        22
+      ]
+    },
+    {
+      "file": "gore/spider-1.png",
+      "source": "Gore_205",
+      "size": [
+        24,
+        18
+      ]
+    },
+    {
+      "file": "gore/spider-2.png",
+      "source": "Gore_196",
+      "size": [
+        20,
+        18
+      ]
+    }
+  ],
+  "dark-caster": [
+    {
+      "file": "gore/dark-caster-0.png",
+      "source": "Gore_934",
+      "size": [
+        20,
+        22
+      ]
+    },
+    {
+      "file": "gore/dark-caster-1.png",
+      "source": "Gore_641",
+      "size": [
+        12,
+        22
+      ]
+    },
+    {
+      "file": "gore/dark-caster-2.png",
+      "source": "Gore_87",
+      "size": [
+        36,
+        34
+      ]
+    }
+  ],
+  "meteor-head": [
+    {
+      "file": "gore/meteor-head-0.png",
+      "source": "Gore_841",
+      "size": [
+        42,
+        26
+      ]
+    },
+    {
+      "file": "gore/meteor-head-1.png",
+      "source": "Gore_842",
+      "size": [
+        26,
+        26
+      ]
+    },
+    {
+      "file": "gore/meteor-head-2.png",
+      "source": "Gore_843",
+      "size": [
+        24,
+        14
+      ]
+    }
+  ],
+  "eye-of-cthulhu": [
+    {
+      "file": "gore/eye-of-cthulhu-0.png",
+      "source": "Gore_7",
+      "size": [
+        20,
+        24
+      ]
+    },
+    {
+      "file": "gore/eye-of-cthulhu-1.png",
+      "source": "Gore_2",
+      "size": [
+        16,
+        22
+      ]
+    },
+    {
+      "file": "gore/eye-of-cthulhu-2.png",
+      "source": "Gore_9",
+      "size": [
+        48,
+        52
+      ]
+    }
+  ],
+  "skeletron": [
+    {
+      "file": "gore/skeletron-0.png",
+      "source": "Gore_147",
+      "size": [
+        38,
+        32
+      ]
+    },
+    {
+      "file": "gore/skeletron-1.png",
+      "source": "Gore_148",
+      "size": [
+        16,
+        28
+      ]
+    },
+    {
+      "file": "gore/skeletron-2.png",
+      "source": "Gore_150",
+      "size": [
+        54,
+        58
+      ]
+    }
+  ],
+  "crimera": [
+    {
+      "file": "gore/crimera-0.png",
+      "source": "Gore_223",
+      "size": [
+        30,
+        48
+      ]
+    },
+    {
+      "file": "gore/crimera-1.png",
+      "source": "Gore_224",
+      "size": [
+        30,
+        50
+      ]
+    },
+    {
+      "file": "gore/crimera-2.png",
+      "source": "Gore_225",
+      "size": [
+        18,
+        22
+      ]
+    }
+  ],
+  "blood-crawler": [
+    {
+      "file": "gore/blood-crawler-0.png",
+      "source": "Gore_352",
+      "size": [
+        20,
+        26
+      ]
+    },
+    {
+      "file": "gore/blood-crawler-1.png",
+      "source": "Gore_353",
+      "size": [
+        24,
+        16
+      ]
+    },
+    {
+      "file": "gore/blood-crawler-2.png",
+      "source": "Gore_354",
+      "size": [
+        22,
+        22
+      ]
+    }
+  ],
+  "face-monster": [
+    {
+      "file": "gore/face-monster-0.png",
+      "source": "Gore_237",
+      "size": [
+        26,
+        50
+      ]
+    },
+    {
+      "file": "gore/face-monster-1.png",
+      "source": "Gore_238",
+      "size": [
+        24,
+        28
+      ]
+    }
+  ],
+  "harpy": [
+    {
+      "file": "gore/harpy-0.png",
+      "source": "Gore_80",
+      "size": [
+        48,
+        16
+      ]
+    },
+    {
+      "file": "gore/harpy-1.png",
+      "source": "Gore_81",
+      "size": [
+        48,
+        16
+      ]
+    },
+    {
+      "file": "gore/harpy-2.png",
+      "source": "Gore_82",
+      "size": [
+        14,
+        12
+      ]
+    }
+  ],
+  "undead-viking": [
+    {
+      "file": "gore/undead-viking-0.png",
+      "source": "Gore_213",
+      "size": [
+        20,
+        22
+      ]
+    },
+    {
+      "file": "gore/undead-viking-1.png",
+      "source": "Gore_214",
+      "size": [
+        24,
+        20
+      ]
+    },
+    {
+      "file": "gore/undead-viking-2.png",
+      "source": "Gore_215",
+      "size": [
+        16,
+        18
+      ]
+    }
+  ],
+  "fire-imp": [
+    {
+      "file": "gore/fire-imp-0.png",
+      "source": "Gore_45",
+      "size": [
+        26,
+        30
+      ]
+    },
+    {
+      "file": "gore/fire-imp-1.png",
+      "source": "Gore_46",
+      "size": [
+        20,
+        14
+      ]
+    }
+  ],
+  "wolf": [
+    {
+      "file": "gore/wolf-0.png",
+      "source": "Gore_180",
+      "size": [
+        58,
+        36
+      ]
+    },
+    {
+      "file": "gore/wolf-1.png",
+      "source": "Gore_181",
+      "size": [
+        28,
+        24
+      ]
+    },
+    {
+      "file": "gore/wolf-2.png",
+      "source": "Gore_182",
+      "size": [
+        48,
+        42
+      ]
+    }
+  ],
+  "eater-of-souls": [
+    {
+      "file": "gore/eater-of-souls-0.png",
+      "source": "Gore_114",
+      "size": [
+        18,
+        30
+      ]
+    }
+  ],
+  "snow-flinx": [
+    {
+      "file": "gore/snow-flinx-0.png",
+      "source": "Gore_240",
+      "size": [
+        34,
+        32
+      ]
+    }
+  ],
+  "ice-bat": [
+    {
+      "file": "gore/ice-bat-0.png",
+      "source": "Gore_359",
+      "size": [
+        30,
+        34
+      ]
+    }
+  ],
+  "mushi-ladybug": [
+    {
+      "file": "gore/mushi-ladybug-0.png",
+      "source": "Gore_188",
+      "size": [
+        32,
+        36
+      ]
+    }
+  ],
+  "anomura-fungus": [
+    {
+      "file": "gore/anomura-fungus-0.png",
+      "source": "Gore_191",
+      "size": [
+        22,
+        30
+      ]
+    }
+  ]
+}

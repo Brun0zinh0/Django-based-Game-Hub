@@ -123,19 +123,67 @@
             const map = calibrate();
             const projected = SD.project(loc);
             const point = map.toCanvas(projected);
-            return { x: point.x, y: point.y, scale: projected.scale * map.effectScale * 0.5 };
+            // effectScale is how much wider this stage is than their coordinate
+            // space (1.86x). That is the whole correction. There used to be a
+            // further * 0.5 here, and it belonged to the perspective project()
+            // once had: their scale ran 2.0 at the near row, so 2.0 * ratio *
+            // 0.5 came back to ratio. Flattening that scale to 1.0 left the
+            // halving behind with nothing to undo, and every effect drew at
+            // half size -- rocks landed at 18px against a 190px Pokemon, which
+            // is where the MIN_EFFECT_PX floor was quietly catching them.
+            return { x: point.x, y: point.y, scale: projected.scale * map.effectScale };
         }
 
         // ---- effect sprites ---------------------------------------------------
         const live = new Set();
         // Slug of the move currently playing, for the DS-particle dressing.
         let currentSlug = null;
+        // Counts the effects one play spawns. A move whose choreography
+        // fires the same effect over and over would otherwise wear a
+        // single piece of its art throughout; walking the counter hands
+        // successive spawns different pieces, which is how the handheld
+        // looks when several emitters run at once. Each sprite keeps
+        // whatever it was given for its whole life, so nothing flickers.
+        let spawnOrder = 0;
 
-        function textureKeyFor(effect) {
-            // The current move's HeartGold particle texture, when staged,
+        // Showdown names the effect it is spawning -- 'fire1', 'wisp',
+        // 'rock1'. Turning that name into a small stable number lets a move
+        // hand each of its effects a different piece of its own art, while
+        // the same effect always gets the same piece rather than flickering.
+        function variantOf(effect) {
+            const name = effect && typeof effect === "object"
+                ? String(effect.url || "")
+                : String(effect ?? "");
+            let hash = 0;
+            for (let i = 0; i < name.length; i += 1) {
+                hash = (hash * 31 + name.charCodeAt(i)) | 0;
+            }
+            return Math.abs(hash);
+        }
+
+        // Showdown's effect names carry shape. 'topbite' and 'bottombite'
+        // are the two halves of a mouth; 'rightslash' and 'leftclaw' are
+        // marks. That has to reach the art picker, because a DS set holds
+        // several unrelated pieces and choosing between them by hash knows
+        // nothing about what it is dressing -- it put the upper jaw on the
+        // bottom as often as the top, and drew Scratch as the round burst
+        // that shares its archive rather than the claw mark.
+        function roleOf(effect) {
+            const raw = effect && typeof effect === "object"
+                ? String(effect.url || "")
+                : String(effect ?? "");
+            const name = raw.split("/").pop().replace(/\.(?:png|jpg)$/, "");
+            if (name.startsWith("top")) return "top";
+            if (name.startsWith("bottom")) return "bottom";
+            if (/slash|claw/.test(name)) return "streak";
+            return null;
+        }
+
+        function textureKeyFor(effect, variant, role) {
+            // The current move's HeartGold particle art, when staged,
             // dresses every effect the choreography spawns.
             const override = currentSlug && options.overrideFor
-                ? options.overrideFor(currentSlug) : null;
+                ? options.overrideFor(currentSlug, variant, role) : null;
             if (override) return override;
             if (effect && typeof effect === "object") {
                 const match = String(effect.url || "").match(/fx\/([\w.-]+)\.(?:png|jpg)/);
@@ -150,12 +198,17 @@
         // invisible or screen-filling (Signal Beam came out at 29px, Thunder
         // Wave at 933px). Every swapped texture is normalised to the size the
         // choreography was written against.
-        const SHOWDOWN_REFERENCE_PX = 72;
+        // These two were fitted by eye while place() was still halving, so
+        // they absorbed the halving: 36 * 1.86 is the same 67px on screen that
+        // 72 * 0.93 was. Both are halved alongside the fix so the DS-dressed
+        // moves keep the exact sizes their contact sheets were reviewed at --
+        // the bug was in Showdown's own art, and only that should change.
+        const SHOWDOWN_REFERENCE_PX = 36;
         // A DS particle is pixel art from a 256px-wide screen. Blowing a
-        // 12px puff up to the full reference size is a 6x magnification and
-        // it reads as a blurry smear, so the enlargement is capped and small
-        // art simply stays small.
-        const DS_MAX_MAGNIFICATION = 3;
+        // 12px puff up to the full reference size reads as a blurry smear, so
+        // the enlargement is capped and small art simply stays small. Halved
+        // with the reference above, and for the same reason.
+        const DS_MAX_MAGNIFICATION = 1.5;
         // Nothing on a 960x480 stage should be a 1500px smear or a 12px
         // speck. Thunder Wave's own choreography ends at 27x, which is fine
         // for Showdown's stage and absurd on ours.
@@ -178,12 +231,31 @@
             return scale;
         }
 
+        // Showdown's own art is drawn thin and layered many deep -- half its
+        // keyframes ask for less than half opacity. A DS particle is one
+        // sprite standing on its own, so the same number leaves it looking
+        // like a ghost. Its opacity is lifted into the top of the range
+        // instead, and drawn objects go further still: a boulder is not
+        // translucent.
+        function dsAlpha(requested, blend) {
+            const asked = Math.max(0, Math.min(1, Number(requested ?? 1)));
+            const floor = blend === "normal" ? 0.9 : 0.55;
+            return floor + (1 - floor) * asked;
+        }
+
         function spawnEffect(effect, start) {
             const at = place(start);
-            const key = textureKeyFor(effect);
+            const variant = variantOf(effect) + spawnOrder;
+            spawnOrder += 1;
+            const role = roleOf(effect);
+            const key = textureKeyFor(effect, variant, role);
             const image = scene.add.image(at.x, at.y, key).setDepth(46);
             const isDs = String(key).startsWith("dsp-");
-            image.setAlpha(start.opacity ?? 1);
+            const dsStyle = isDs && options.dsStyleFor
+                ? options.dsStyleFor(currentSlug, variant, role)
+                : null;
+            image.dsBlend = dsStyle?.blend || null;
+            image.setAlpha(isDs ? dsAlpha(start.opacity, image.dsBlend) : (start.opacity ?? 1));
             image.baseSizeCorrection = sizeCorrection(key, image);
             image.setScale(boundedScale(image, (start.scale ?? 1) * at.scale * image.baseSizeCorrection));
             // Showdown's fx art is smooth and wants LINEAR; DS particles are
@@ -198,7 +270,7 @@
             // blending instead. The tint puts back the colour the handheld
             // applied from the emitter, which the art itself does not carry.
             if (isDs) {
-                const style = options.dsStyleFor ? options.dsStyleFor(currentSlug) : null;
+                const style = dsStyle;
                 image.setBlendMode(style && style.blend === "normal"
                     ? Phaser.BlendModes.NORMAL
                     : Phaser.BlendModes.ADD);
@@ -219,7 +291,9 @@
                 await tween(image, {
                     x: to.x, y: to.y,
                     scale: boundedScale(image, (end.scale ?? start.scale ?? 1) * to.scale * (image.baseSizeCorrection || 1)),
-                    alpha: end.opacity ?? image.alpha,
+                    alpha: String(image.texture?.key || "").startsWith("dsp-")
+                        ? dsAlpha(end.opacity ?? start.opacity, image.dsBlend)
+                        : (end.opacity ?? image.alpha),
                     duration: Math.max(60, beat((end.time ?? 600) - (start.time || 0))),
                     ease: easeFor(ease),
                 });
@@ -246,7 +320,19 @@
             };
             const z = isFrontSprite ? 200 : 0;
             const map = calibrate();
-            const origin = map.fromCanvas(view.position.x, view.position.y);
+            // A Pokemon's sprite stands ON its platform: view.position is
+            // where its feet are, and the art runs upward from there. Aiming
+            // effects at that point closed Bite's jaws around the platform,
+            // with the lower half below the Pokemon entirely. They aim at the
+            // middle of the body instead, which is also where the scene's own
+            // effectPoint() has always pointed.
+            const bounds = typeof sprite.getBounds === "function" ? sprite.getBounds() : null;
+            const anchorX = bounds ? bounds.centerX : view.position.x;
+            const anchorY = bounds ? bounds.centerY : view.position.y;
+            // How far the aiming point sits above the feet, so that moving
+            // the sprite still lands its feet where the choreography meant.
+            const anchorLift = anchorY - view.position.y;
+            const origin = map.fromCanvas(anchorX, anchorY);
             const sd = SD.solve(origin.left, origin.top, z);
             let queue = Promise.resolve();
             const proxy = {
@@ -265,7 +351,7 @@
                             x: end.x ?? proxy.x, y: end.y ?? proxy.y, z: end.z ?? proxy.z,
                         });
                         await tween(sprite, {
-                            x: to.x, y: to.y,
+                            x: to.x, y: to.y - anchorLift,
                             scaleX: saved.scaleX * (end.scale ?? 1),
                             scaleY: saved.scaleY * (end.scale ?? 1),
                             alpha: end.opacity ?? sprite.alpha,
@@ -388,6 +474,7 @@
                 if (!anim) return;
                 const entry = { anim };
                 currentSlug = slug;
+                spawnOrder = 0;
                 const jobs = [];
                 const actorIsFront = scene.slotViews.enemy.includes(actorView);
                 const attacker = makeProxy(actorView, actorIsFront, jobs);

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 150" role="img" aria-label="Pokemon Kalos League wordmark">
+  <!-- Hand-authored X/Y-style plate, following the Johto, Sinnoh and
+       Unova precedent: no clean 2D rip of the XY logo exists on the
+       archives this project uses, so Kalos's wordmark takes the two
+       box colours of the era. The KALOS line runs in X's steel blue,
+       the LEAGUE line in Y's carmine red. -->
+  <defs>
+    <linearGradient id="kalos-x" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e8f2fb"/>
+      <stop offset="0.45" stop-color="#9cc3e4"/>
+      <stop offset="0.55" stop-color="#4d7fb3"/>
+      <stop offset="1" stop-color="#1d3f66"/>
+    </linearGradient>
+    <linearGradient id="kalos-y" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fbe3e3"/>
+      <stop offset="0.45" stop-color="#e88f8f"/>
+      <stop offset="0.55" stop-color="#c04747"/>
+      <stop offset="1" stop-color="#6e1d1d"/>
+    </linearGradient>
+  </defs>
+  <text x="230" y="62" text-anchor="middle"
+        font-family="'Trebuchet MS', Arial, sans-serif" font-size="58" font-weight="900"
+        fill="url(#kalos-x)" stroke="#101b2a" stroke-width="3" paint-order="stroke"
+        letter-spacing="2">KALOS</text>
+  <text x="230" y="118" text-anchor="middle"
+        font-family="'Trebuchet MS', Arial, sans-serif" font-size="44" font-weight="900"
+        fill="url(#kalos-y)" stroke="#2a0f0f" stroke-width="3" paint-order="stroke"
+        letter-spacing="6">LEAGUE</text>
+</svg>

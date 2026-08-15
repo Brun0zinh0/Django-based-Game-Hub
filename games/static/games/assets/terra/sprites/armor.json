@@ -1,0 +1,65 @@
+{
+  "copper-helmet": {
+    "file": "armor/copper-helmet.png",
+    "frameWidth": 40,
+    "frameHeight": 56,
+    "frames": 16,
+    "source": "Armor_Head_1"
+  },
+  "wood-helmet": {
+    "file": "armor/wood-helmet.png",
+    "frameWidth": 40,
+    "frameHeight": 56,
+    "frames": 16,
+    "source": "Armor_Head_52"
+  },
+  "fossil-helmet": {
+    "file": "armor/fossil-helmet.png",
+    "frameWidth": 40,
+    "frameHeight": 56,
+    "frames": 16,
+    "source": "Armor_Head_188"
+  },
+  "silver-helmet": {
+    "file": "armor/silver-helmet.png",
+    "frameWidth": 40,
+    "frameHeight": 56,
+    "frames": 16,
+    "source": "Armor_Head_3"
+  },
+  "gold-helmet": {
+    "file": "armor/gold-helmet.png",
+    "frameWidth": 40,
+    "frameHeight": 56,
+    "frames": 16,
+    "source": "Armor_Head_4"
+  },
+  "platinum-helmet": {
+    "file": "armor/platinum-helmet.png",
+    "frameWidth": 40,
+    "frameHeight": 56,
+    "frames": 16,
+    "source": "Armor_Head_50"
+  },
+  "necro-helmet": {
+    "file": "armor/necro-helmet.png",
+    "frameWidth": 40,
+    "frameHeight": 56,
+    "frames": 16,
+    "source": "Armor_Head_7"
+  },
+  "frost-helmet": {
+    "file": "armor/frost-helmet.png",
+    "frameWidth": 40,
+    "frameHeight": 56,
+    "frames": 16,
+    "source": "Armor_Head_46"
+  },
+  "shroomite-mask": {
+    "file": "armor/shroomite-mask.png",
+    "frameWidth": 40,
+    "frameHeight": 56,
+    "frames": 16,
+    "source": "Armor_Head_104"
+  }
+}

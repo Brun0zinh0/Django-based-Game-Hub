@@ -1,0 +1,16 @@
+{
+  "leaf-wings": {
+    "file": "wings/leaf-wings.png",
+    "frameWidth": 86,
+    "frameHeight": 62,
+    "frames": 4,
+    "source": "Wings_13"
+  },
+  "fairy-wings": {
+    "file": "wings/fairy-wings.png",
+    "frameWidth": 86,
+    "frameHeight": 66,
+    "frames": 4,
+    "source": "Wings_5"
+  }
+}

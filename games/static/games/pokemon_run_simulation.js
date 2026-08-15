@@ -7,6 +7,12 @@
 
     const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 
+    // How much of a normal slot's odds a species already caught this run
+    // keeps in the wild pool. A league may override it with
+    // wild_encounter.repeat_species_weight; 0 would bar repeats entirely,
+    // which the pool is too small to survive late in a run.
+    const REPEAT_SPECIES_WEIGHT = 0.25;
+
     class LeagueRun {
         constructor(options) {
             const config = options || {};
@@ -50,6 +56,12 @@
                 pendingCapture: null,
                 seenHeldItemIds: new Set(),
                 seenMegaStoneIds: new Set(),
+                // Species caught in THIS run, for thinning repeat encounters.
+                // Recorded at catch time rather than read off the party,
+                // because a caught Caterpie that evolves is no longer a
+                // Caterpie -- and meeting another one is exactly the repeat
+                // this is meant to make rarer.
+                caughtThisRunSpeciesIds: new Set(),
                 currentTrainer: null,
                 trainerHistoryIds: [],
                 storyMilestoneIndex: 0,
@@ -69,6 +81,7 @@
             const plain = { ...this.state };
             plain.seenHeldItemIds = [...this.state.seenHeldItemIds];
             plain.seenMegaStoneIds = [...this.state.seenMegaStoneIds];
+            plain.caughtThisRunSpeciesIds = [...this.state.caughtThisRunSpeciesIds];
             const shed = (pokemon) => {
                 const copy = { ...pokemon };
                 delete copy.megaTarget;
@@ -89,6 +102,9 @@
                 ...incoming,
                 seenHeldItemIds: new Set(incoming.seenHeldItemIds || []),
                 seenMegaStoneIds: new Set(incoming.seenMegaStoneIds || []),
+                // Absent from saves written before repeat-thinning existed;
+                // an older run simply starts with nothing marked.
+                caughtThisRunSpeciesIds: new Set(incoming.caughtThisRunSpeciesIds || []),
                 // Battle-scoped leftovers never resume mid-fight.
                 wildEncounter: null,
                 pendingCapture: incoming.pendingCapture || null,
@@ -1046,9 +1062,86 @@
             };
         }
 
+        // The six drinks, by the stat each one raises. Keyed by slug because
+        // the ids differ between datasets but the slugs do not.
+        static get VITAMINS() {
+            return {
+                "hp-up": { stat: "hp", label: "HP" },
+                protein: { stat: "attack", label: "Attack" },
+                iron: { stat: "defense", label: "Defense" },
+                carbos: { stat: "speed", label: "Speed" },
+                calcium: { stat: "specialAttack", label: "Sp. Atk" },
+                zinc: { stat: "specialDefense", label: "Sp. Def" },
+            };
+        }
+
+        // Ten of a given drink is the games' own limit, and it is what keeps
+        // a rich player from pouring forty Carbos into one Pokemon. Each one
+        // raises the EFFECTIVE BASE stat by two, which is then run back
+        // through the normal formula -- so the gain scales with level the way
+        // every other stat does instead of being a flat number that means
+        // everything at level 5 and nothing at level 50.
+        static get VITAMIN_MAX_PER_STAT() { return 10; }
+        static get VITAMIN_BASE_STEP() { return 2; }
+
+        vitaminFor(itemKeyOrSlug) {
+            return LeagueRun.VITAMINS[String(itemKeyOrSlug || "").toLowerCase()] || null;
+        }
+
+        // Re-derive a Pokemon's stats from its species base plus whatever it
+        // has drunk. Safe to call more than once: it always starts from the
+        // species, never from the current value.
+        applyVitamins(pokemon) {
+            const counts = pokemon?.vitamins;
+            if (!pokemon || !counts) return pokemon;
+            const species = this.speciesById.get(Number(pokemon.id));
+            const base = species?.base_stats;
+            const calculate = this.battleApi.calculateStat;
+            if (!base || typeof calculate !== "function") return pokemon;
+            const step = LeagueRun.VITAMIN_BASE_STEP;
+            const raised = (baseValue, taken, isHp) =>
+                calculate(Number(baseValue || 1) + step * Number(taken || 0), pokemon.level, isHp);
+            // Shedinja's single hit point is a species rule, not a stat to be
+            // topped up, so HP Up leaves it alone.
+            if (counts.hp && Number(base.hp) !== 1) {
+                // Current HP rises by exactly what max HP gained, the same rule
+                // preserveBattleCondition uses for an evolution: full stays
+                // full, hurt stays hurt by the same margin. Scaling by the
+                // fraction instead drifted a half-health Pokemon upward a
+                // little on every drink.
+                const previous = Number(pokemon.maxHp || 0);
+                pokemon.maxHp = raised(base.hp, counts.hp, true);
+                const gained = Math.max(0, pokemon.maxHp - previous);
+                if (!pokemon.fainted) {
+                    pokemon.hp = Math.max(0, Math.min(pokemon.maxHp, Number(pokemon.hp || 0) + gained));
+                }
+            }
+            const map = {
+                attack: "attack", defense: "defense", speed: "speed",
+                specialAttack: "special_attack", specialDefense: "special_defense",
+            };
+            Object.entries(map).forEach(([statKey, baseKey]) => {
+                if (!counts[statKey]) return;
+                pokemon.stats[statKey] = raised(base[baseKey], counts[statKey], false);
+            });
+            return pokemon;
+        }
+
+        // A level-up or an evolution builds a brand new Pokemon from the
+        // species, which would silently drop everything the old one drank.
+        carryVitamins(source, target) {
+            if (source?.vitamins) {
+                target.vitamins = { ...source.vitamins };
+                this.applyVitamins(target);
+            }
+            return target;
+        }
+
         itemCategory(itemId) {
             const id = Number(itemId);
             if ([1, 2, 3, 4].includes(id)) return "capture";
+            const raw = this.itemsById.get(id);
+            if (raw && this.vitaminFor(raw.slug)) return "vitamin";
             if ((this.groupIds["mega-stones"] || []).includes(id)) return "mega-stone";
             if ((this.groupIds["evolution-items"] || []).includes(id)) return "evolution";
             if ((this.groupIds["held-items"] || []).includes(id)) return "held";
@@ -1094,6 +1187,10 @@
             };
             if (category === "healing") item.effect = this.healingEffect(raw.name);
             if (category === "capture") item.catchModifier = this.captureModifier(raw.name);
+            if (category === "vitamin") {
+                const vitamin = this.vitaminFor(raw.slug);
+                if (vitamin) item.effect = { type: "vitamin", ...vitamin };
+            }
             return item;
         }
 
@@ -1188,12 +1285,90 @@
                 && species.has_battle_sprite !== false;
         }
 
+        hasOpenPartySlot() {
+            return this.state.party.length < Number(this.rules.league.battle_format.maximum_party_size);
+        }
+
+        // The ball the second Pokemon is packed into. A plain Poke Ball first,
+        // as the games ask, but any spare ball will do rather than lose the
+        // evolution to a stocking detail.
+        spareBallKey() {
+            const inventory = this.state.inventory || {};
+            if (Number(inventory["poke-ball"]?.quantity) > 0) return "poke-ball";
+            const spare = Object.values(inventory)
+                .find((item) => item?.category === "capture" && Number(item.quantity) > 0);
+            return spare ? spare.key : null;
+        }
+
+        // Nincada is the only Pokemon in the set that evolves into two things
+        // at once: Ninjask on the level-up branch, and a Shedinja left behind
+        // in a spare ball. The dataset has always carried the second branch,
+        // with its requirements spelled out, but evolveAtLevel only ever
+        // looked at level-up branches -- so half of the evolution was
+        // silently dropped and you got the Ninjask alone.
+        partyConditionBranch(species) {
+            return (species.evolution?.evolves_to || []).find((entry) => {
+                if (entry.trigger !== "party-condition") return false;
+                if (!this.speciesById.has(Number(entry.target_species_id))) return false;
+                if (!this.canEvolveInto(this.speciesById.get(Number(entry.target_species_id)))) return false;
+                const needs = new Set(entry.condition?.requirements || []);
+                // "evolve-to-ninjask" is the branch riding on the level-up one,
+                // which is the only way this is reached.
+                if (needs.has("open-party-slot") && !this.hasOpenPartySlot()) return false;
+                if (needs.has("poke-ball") && !this.spareBallKey()) return false;
+                return true;
+            }) || null;
+        }
+
+        // The dataset keeps the handheld's own evolution methods, and some
+        // have no direct analogue here: this run has no friendship counter
+        // and no clock. So plain high-friendship evolves on level-up at 25;
+        // friendship-by-day maps to a usable Sun Stone and friendship-by-
+        // night to a Moon Stone -- which is what keeps Eevee's Espeon and
+        // Umbreon a choice instead of an accident -- and Sylveon's
+        // friendship-plus-fairy-move maps to a Shiny Stone. All three stones
+        // already live in the shop's evolution-items group.
+        evolutionItemIdOf(entry) {
+            const condition = entry.condition || {};
+            if (Number.isFinite(Number(condition.item_id))) return Number(condition.item_id);
+            if (condition.friendship === "high") {
+                if (condition.knows_move_type_id !== undefined) return 99; // Shiny Stone
+                if (condition.time === "day") return 93;                   // Sun Stone
+                if (condition.time === "night") return 94;                 // Moon Stone
+            }
+            return null;
+        }
+
+        // Whether a level-up-shaped branch is ready for this Pokemon. The
+        // known-move and party-companion methods work as the handheld wrote
+        // them; 32 evolutions were unreachable while only min_level counted,
+        // Golbat's Crobat among them.
+        levelUpBranchReady(pokemon, entry) {
+            if (entry.trigger !== "level-up" && entry.trigger !== "know-move") return false;
+            const condition = entry.condition || {};
+            const minLevel = Number(condition.min_level);
+            if (Number.isFinite(minLevel) && minLevel > 0) return minLevel <= pokemon.level;
+            if (condition.known_move_id) {
+                return (pokemon.movePool || pokemon.moves || [])
+                    .some((move) => Number(move.id) === Number(condition.known_move_id));
+            }
+            if (condition.party_species_id) {
+                return this.state.party.some((member) => Number(member.id) === Number(condition.party_species_id));
+            }
+            // Plain high friendship, with no clock to consult: level 25.
+            // Timed friendship goes through evolutionItemIdOf instead.
+            if (condition.friendship === "high" && condition.time === undefined
+                && condition.knows_move_type_id === undefined) {
+                return pokemon.level >= 25;
+            }
+            return false;
+        }
+
         evolveAtLevel(location, index) {
             const pokemon = this.state[location][index];
             const species = this.speciesById.get(Number(pokemon.id));
             const evolution = (species.evolution?.evolves_to || []).find((entry) => (
-                entry.trigger === "level-up"
-                && Number(entry.condition?.min_level || Infinity) <= pokemon.level
+                this.levelUpBranchReady(pokemon, entry)
                 && this.speciesById.has(Number(entry.target_species_id))
                 && this.canEvolveInto(this.speciesById.get(Number(entry.target_species_id)))
             ));
@@ -1203,9 +1378,27 @@
             this.mergeMoveKnowledge(pokemon, evolved);
             evolved.experience = pokemon.experience;
             evolved.heldItemKey = pokemon.heldItemKey;
+            this.carryVitamins(pokemon, evolved);
             this.preserveBattleCondition(pokemon, evolved);
             this.replacePokemon(location, index, evolved);
-            return { from: pokemon.name, to: evolved.name, level: evolved.level };
+            const result = { from: pokemon.name, to: evolved.name, level: evolved.level };
+            const second = location === "party" ? this.partyConditionBranch(species) : null;
+            if (second) {
+                const ballKey = this.spareBallKey();
+                const born = this.createPokemon(
+                    this.speciesById.get(Number(second.target_species_id)),
+                    evolved.level,
+                );
+                if (ballKey) this.state.inventory[ballKey].quantity -= 1;
+                this.state.party.push(born);
+                // The dex updates as you play, so it should not have to wait
+                // for the next duel to notice one that arrived between them.
+                this.recordUsedSpecies([born]);
+                result.companion = {
+                    name: born.name, from: pokemon.name, level: born.level, ball: ballKey,
+                };
+            }
+            return result;
         }
 
         // What a single party member earns from a duel. A Pokemon that was
@@ -1257,6 +1450,7 @@
                     this.mergeMoveKnowledge(pokemon, refreshed);
                     refreshed.experience = pokemon.experience;
                     refreshed.heldItemKey = pokemon.heldItemKey;
+                    this.carryVitamins(pokemon, refreshed);
                     this.preserveBattleCondition(pokemon, refreshed);
                     this.state.party[index] = refreshed;
                     pokemon = refreshed;
@@ -1283,6 +1477,23 @@
                     evolution,
                     learnedMoves,
                 });
+                // A line of its own, or the Shedinja would join the party with
+                // nothing on the victory screen to say where it came from.
+                if (evolution?.companion) {
+                    changes.push({
+                        name: evolution.companion.name,
+                        previousName: null,
+                        experience: 0,
+                        participated: false,
+                        knockouts: 0,
+                        fromLevel: evolution.companion.level,
+                        toLevel: evolution.companion.level,
+                        leveledUp: false,
+                        evolution: null,
+                        learnedMoves: [],
+                        appeared: evolution.companion,
+                    });
+                }
                 // Battle-scoped tallies, cleared once they have been counted.
                 current.duelKnockouts = 0;
                 current.duelParticipated = false;
@@ -1394,9 +1605,15 @@
             owned.forEach((pokemon) => {
                 const species = this.speciesById.get(Number(pokemon.id));
                 (species.evolution?.evolves_to || []).forEach((entry) => {
-                    const itemId = Number(entry.condition?.item_id);
+                    const itemId = Number(this.evolutionItemIdOf(entry));
                     const target = this.speciesById.get(Number(entry.target_species_id));
-                    if (group.has(itemId) && target && this.inDexRange(target)) result.add(itemId);
+                    if (!group.has(itemId) || !target) return;
+                    // Same split as evolutionForItem: stones may cross the
+                    // dex, mega stones stay inside it.
+                    const reachable = groupName === "mega-stones"
+                        ? this.inDexRange(target)
+                        : this.canEvolveInto(target);
+                    if (reachable) result.add(itemId);
                 });
             });
             return [...result];
@@ -1503,6 +1720,7 @@
             };
             this.availableItemIds("capture", shop.general_capture_item_ids).forEach((id) => push(id, "capture"));
             this.availableItemIds("healing", shop.general_healing_item_ids).forEach((id) => push(id, "healing"));
+            this.availableItemIds("vitamin", shop.general_vitamin_item_ids).forEach((id) => push(id, "vitamin"));
 
             // Only stock held items the battle engine actually reads -- the
             // group has 344 members but the vast majority have no effect, so
@@ -1641,6 +1859,14 @@
             this.state.money += money;
             this.state.legacy += legacy;
             this.state.wins += 1;
+            // Undo Mega Evolution before anything else reads the party.
+            // Levelling up rebuilds a Pokemon from its own species id, and
+            // while transformed that id IS the mega species -- so a Pokemon
+            // that gained a level mid-Mega came back as a permanent mega
+            // with no base form left to return to. Reverting first also
+            // means it levels and evolves as itself, which is what the
+            // games do.
+            this.state.party.forEach((pokemon) => this.revertMega(pokemon));
             const drops = this.rewardDrops();
             const experience = this.awardExperience();
             const recovery = this.recoverAfterDuel();
@@ -1669,12 +1895,22 @@
             const item = this.state.inventory[itemKey];
             if (!item || item.quantity <= 0) throw new Error("That item is not in the Bag.");
             const effect = item.effect;
-            if (!effect || (effect.type !== "heal" && effect.type !== "revive")) {
+            if (!effect || !["heal", "revive", "vitamin"].includes(effect.type)) {
                 throw new Error("That item cannot be used from the Bag.");
             }
             const list = location === "pc" ? this.state.pc : this.state.party;
             const pokemon = list[index];
             if (!pokemon) throw new Error("Choose a Pokemon to use it on.");
+            if (effect.type === "vitamin") {
+                const taken = this.vitaminCount(pokemon, effect.stat);
+                if (taken >= LeagueRun.VITAMIN_MAX_PER_STAT) {
+                    throw new Error(`${pokemon.name} cannot take any more ${item.name}.`);
+                }
+                pokemon.vitamins = { ...(pokemon.vitamins || {}), [effect.stat]: taken + 1 };
+                this.applyVitamins(pokemon);
+                item.quantity -= 1;
+                return { pokemon, item, stat: effect.label, taken: taken + 1 };
+            }
             if (effect.type === "revive") {
                 if (!pokemon.fainted) throw new Error(`${pokemon.name} is still standing.`);
                 pokemon.fainted = false;
@@ -1689,6 +1925,16 @@
             }
             item.quantity -= 1;
             return { pokemon, item };
+        }
+
+        // How many of one drink this Pokemon has already had.
+        vitaminCount(pokemon, stat) {
+            return Number(pokemon?.vitamins?.[stat] || 0);
+        }
+
+        // Whether a drink would do anything for this Pokemon.
+        canTakeVitamin(pokemon, stat) {
+            return this.vitaminCount(pokemon, stat) < LeagueRun.VITAMIN_MAX_PER_STAT;
         }
 
         sellItem(itemKey, quantity) {
@@ -1707,7 +1953,15 @@
             const species = this.speciesById.get(Number(pokemon.id));
             return (species.evolution?.evolves_to || []).find((entry) => {
                 const target = this.speciesById.get(Number(entry.target_species_id));
-                return Number(entry.condition?.item_id) === Number(itemId) && target && this.inDexRange(target);
+                if (this.evolutionItemIdOf(entry) !== Number(itemId) || !target) return false;
+                // Evolution items follow the same rule level-ups already do:
+                // the next stage may live outside this league's dex -- a
+                // Kanto Onix still becomes Steelix with a Metal Coat. Mega
+                // stones keep the dex gate, because their targets are the
+                // mega forms and the canonical-form test would reject them.
+                return groupName === "mega-stones"
+                    ? this.inDexRange(target)
+                    : this.canEvolveInto(target);
             }) || null;
         }
 
@@ -1892,7 +2146,29 @@
 
             const area = areaOverride || this.currentWildArea();
             const pool = area.species;
-            return pool[Math.floor(this.rng() * pool.length)];
+            if (!pool.length) return pool[0];
+            // Something already caught THIS RUN is thinned rather than
+            // barred: the pool is small and late areas can be mostly caught,
+            // so removing them outright would empty it. A quarter weight
+            // makes a fresh species roughly four times likelier per slot
+            // while the caught one stays possible.
+            const repeatWeight = Math.max(0, Number(
+                rules.repeat_species_weight ?? REPEAT_SPECIES_WEIGHT));
+            const caught = this.state.caughtThisRunSpeciesIds;
+            const weights = pool.map((species) => {
+                const id = this.canonicalLeagueSpeciesId(species);
+                return (id !== null && caught.has(id)) ? repeatWeight : 1;
+            });
+            const total = weights.reduce((sum, weight) => sum + weight, 0);
+            // Everything in the area is caught and the weight is zero: fall
+            // back to an even pick rather than returning nothing.
+            if (total <= 0) return pool[Math.floor(this.rng() * pool.length)];
+            let ticket = this.rng() * total;
+            for (let index = 0; index < pool.length; index += 1) {
+                ticket -= weights[index];
+                if (ticket < 0) return pool[index];
+            }
+            return pool[pool.length - 1];
         }
 
         startWildEncounter() {
@@ -1939,10 +2215,19 @@
             const caught = roll < chance;
             const shakes = caught ? 3 : clamp(Math.floor((chance / Math.max(roll, 0.0001)) * 3), 0, 2);
             if (caught) {
+                // A Ditto that copied one of yours is still a Ditto. Transform
+                // rewrites its name, id, sprites, stats and moves, and the ball
+                // keeps whatever object it lands on -- so without putting the
+                // borrowed form back first, the Dex records the copy and you
+                // walk away with a duplicate of your own Pokemon.
+                this.battleApi.restoreBattleMutations(encounter.pokemon);
+                encounter.pokemon.volatileStatus = {};
                 encounter.pokemon.hp = encounter.pokemon.maxHp;
                 encounter.pokemon.fainted = false;
                 encounter.pokemon.caughtThisRun = true;
                 this.recordCaughtSpecies(encounter.pokemon);
+                const caughtId = this.canonicalLeagueSpeciesId(encounter.pokemon);
+                if (caughtId !== null) this.state.caughtThisRunSpeciesIds.add(caughtId);
                 this.state.pendingCapture = encounter.pokemon;
                 this.state.wildEncounter = null;
             }

@@ -1,0 +1,1204 @@
+/* Terra Boss — page shell, menus, HUD.
+ *
+ * Terraria's night sky: deep indigo panels, slate edges, and the gold that was
+ * always here for coins and highlights. Every colour is a token, including the
+ * ones that used to be written inline -- the palette was mostly variables but
+ * about thirty greens were hardcoded through the file, which is why it read as
+ * green no matter what the variables said. */
+
+* { box-sizing: border-box; }
+
+/* Sections are toggled with the hidden attribute; keep it winning over
+   the display values set on .tb-panel / .tb-game. */
+[hidden] { display: none !important; }
+
+:root {
+    /* Height left for a panel once the top bar and its own padding are gone.
+       Percentages cannot be used: the app grows with its content, so 100%
+       resolves to the content height and constrains nothing. */
+    --tb-panel-space: calc(100vh - 5.5rem);
+    /* Ground up: page, panel, the recessed face inside a panel, and the ink
+       used for text shadows and the darkest wells. */
+    --tb-bg: #0e1020;
+    --tb-bg-deep: #080a16;
+    --tb-bg-low: #12152b;
+    --tb-panel: #191c33;
+    --tb-panel-face: #12152a;
+    --tb-panel-sunk: #0d0f1e;
+    --tb-ink: #070812;
+
+    /* Edges, from the quiet default to the one a hovered control gets. */
+    --tb-panel-edge: #343a5e;
+    --tb-panel-edge-soft: #262b48;
+    --tb-edge-lit: #5a63a0;
+
+    /* One accent for interactive state, one for value. Gold stays: the coins,
+       prices and highlights were already gold and they read correctly on
+       indigo, which is most of why this palette was chosen. */
+    --tb-accent: #7d9cff;
+    --tb-accent-lit: #9db4ff;
+    --tb-accent-hi: #b0c2ff;
+    --tb-accent-dark: #4459b8;
+
+    /* Panel surfaces one step up from the base, for gradients and hovers. */
+    --tb-panel-lit: #20244a;
+    --tb-panel-raised: #1d2140;
+    --tb-panel-hover: #262b4d;
+    --tb-panel-hover-low: #1a1e39;
+    --tb-gold: #f2c14b;
+
+    --tb-text: #e6e8f5;
+    --tb-muted: #9aa0c4;
+    /* Footnotes and locked labels sit at 8px, so this has to clear AA on
+       every surface it lands on -- including the lighter top stop of the
+       panel gradient and the raised top of a button, which the previous
+       value missed at 4.22 while clearing the flat panel behind them. */
+    --tb-faint: #868cbe;
+    --tb-danger: #e06a7a;
+    --tb-danger-edge: #6b2f3c;
+    --tb-gold-edge: #6a5526;
+    /* Mana and the flight meter: cyan, so they never read as the accent. */
+    --tb-mana: #7fd4f0;
+
+    --tb-font: "Press Start 2P", "Segoe UI", sans-serif;
+
+    /* Two shadows, so depth is consistent rather than invented per component. */
+    --tb-lift: 0 18px 44px rgb(4 5 12 / 55%);
+    --tb-lift-strong: 0 26px 64px rgb(4 5 12 / 62%);
+}
+
+html, body {
+    margin: 0;
+    min-height: 100%;
+}
+
+body {
+    color: var(--tb-text);
+    font-family: var(--tb-font);
+    /* Two washes rather than one: a cool highlight up top and a warmer one
+       low and to the left, so the page has a direction to it instead of
+       being a flat field. */
+    background:
+        radial-gradient(circle at 78% -12%, rgb(125 156 255 / 12%), transparent 42rem),
+        radial-gradient(circle at 8% 108%, rgb(242 193 75 / 6%), transparent 34rem),
+        linear-gradient(180deg, var(--tb-bg-deep) 0%, var(--tb-bg) 48%, var(--tb-bg-low) 100%);
+    background-attachment: fixed;
+}
+
+/* min-height, not height: menus taller than the window must still scroll. */
+#terra-boss-app {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+/* ---------- top bar ---------- */
+
+.tb-topbar {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.45rem 1rem;
+    border-bottom: 1px solid var(--tb-panel-edge);
+    background: rgb(10 12 26 / 82%);
+}
+
+.tb-title-group p { margin-bottom: 0.15rem; }
+
+.tb-back {
+    display: inline-flex;
+    align-items: center;
+    /* 24px is the smallest a pointer target should be; this was 23. */
+    min-height: 24px;
+    padding: 0 0.2rem;
+    color: var(--tb-muted);
+    font-size: 0.62rem;
+    text-decoration: none;
+}
+
+.tb-back:hover { color: var(--tb-accent); }
+
+.tb-title-group { text-align: center; }
+
+.tb-title-group p {
+    margin: 0 0 0.3rem;
+    color: var(--tb-accent);
+    font-size: 0.55rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.tb-title-group h1 {
+    margin: 0;
+    font-size: 0.85rem;
+}
+
+.tb-topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.tb-souls-chip {
+    color: var(--tb-gold);
+    font-size: 0.7rem;
+    white-space: nowrap;
+}
+
+.tb-mute {
+    padding: 0.35rem 0.5rem;
+    background: var(--tb-panel-face);
+    border: 1px solid var(--tb-panel-edge);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 0.8rem;
+    line-height: 1;
+}
+
+.tb-mute:hover {
+    border-color: var(--tb-accent);
+}
+
+/* ---------- shared panel / buttons ---------- */
+
+/* Flex with auto margins, not place-items:center. A centred grid item that
+   grows past the container overflows off the top where it cannot be reached;
+   auto margins centre it while still allowing the panel to scroll. */
+.tb-panel {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.tb-panel > * {
+    margin: auto;
+}
+
+.tb-button {
+    padding: 0.8rem 1.1rem;
+    color: var(--tb-text);
+    background: linear-gradient(180deg, var(--tb-panel-lit) 0%, var(--tb-panel-face) 100%);
+    border: 1px solid var(--tb-panel-edge);
+    border-radius: 0.55rem;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 6%);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.62rem;
+    /* Colour and lift only. Nothing here animates size, which would nudge the
+       buttons around it on a grid. */
+    transition: border-color 120ms ease, background-color 120ms ease,
+                box-shadow 120ms ease, transform 90ms ease;
+}
+
+.tb-button:hover {
+    border-color: var(--tb-edge-lit);
+    background: linear-gradient(180deg, var(--tb-panel-hover) 0%, var(--tb-panel-hover-low) 100%);
+}
+
+/* Keyboard users get the same affordance as the mouse, and a ring they can
+   actually see against indigo. */
+.tb-button:focus-visible {
+    border-color: var(--tb-accent);
+    outline: 2px solid rgb(125 156 255 / 45%);
+    outline-offset: 2px;
+}
+
+.tb-button:active {
+    transform: translateY(1px);
+    box-shadow: inset 0 2px 4px rgb(4 5 12 / 45%);
+}
+
+.tb-button-primary {
+    color: var(--tb-ink);
+    background: linear-gradient(180deg, var(--tb-accent-lit) 0%, var(--tb-accent) 100%);
+    border-color: var(--tb-accent-lit);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 30%), 0 6px 16px rgb(69 89 184 / 35%);
+    font-weight: 700;
+}
+
+.tb-button-primary:hover {
+    background: linear-gradient(180deg, var(--tb-accent-hi) 0%, var(--tb-accent) 100%);
+    border-color: var(--tb-accent-hi);
+}
+
+.tb-button-primary:active {
+    box-shadow: inset 0 2px 5px rgb(20 26 70 / 40%);
+}
+
+/* Disabled controls should look unavailable rather than merely dim. */
+.tb-button:disabled,
+.tb-button[disabled] {
+    opacity: 0.45;
+    box-shadow: none;
+    cursor: not-allowed;
+    filter: grayscale(0.5);
+}
+
+/* ---------- loading ---------- */
+
+.tb-loading { text-align: center; }
+
+.tb-loading-pick {
+    margin-bottom: 1rem;
+    color: var(--tb-accent);
+    font-size: 2.4rem;
+    animation: tb-swing 1.1s ease-in-out infinite alternate;
+}
+
+@keyframes tb-swing {
+    from { transform: rotate(-18deg); }
+    to { transform: rotate(18deg); }
+}
+
+.tb-loading p {
+    color: var(--tb-muted);
+    font-size: 0.62rem;
+    line-height: 1.7;
+}
+
+#tb-loading-retry { margin-top: 1rem; }
+
+/* ---------- main menu ---------- */
+
+.tb-menu-card {
+    display: grid;
+    width: min(62rem, 100%);
+    max-height: var(--tb-panel-space);
+    overflow: hidden auto;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    background: linear-gradient(180deg, var(--tb-panel-raised) 0%, var(--tb-panel) 42%);
+    border: 1px solid var(--tb-panel-edge);
+    border-radius: 1rem;
+    /* The inset line is the lit top edge; the drop shadow lifts the card off
+       the page. Both come from the same tokens every other panel uses. */
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 8%), var(--tb-lift-strong);
+    text-align: center;
+}
+
+/* Decorative animation panel on the left. */
+.tb-menu-art {
+    position: relative;
+    display: grid;
+    margin: 0;
+    background: var(--tb-bg-deep);
+    place-items: center;
+}
+
+.tb-menu-art img,
+.tb-menu-art video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 22rem;
+    object-fit: cover;
+    image-rendering: pixelated;
+}
+
+/* Blend the art into the panel so the split does not read as a hard seam. */
+.tb-menu-art::after {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 55%, var(--tb-panel));
+    content: "";
+    pointer-events: none;
+}
+
+.tb-menu-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2.2rem 2rem;
+}
+
+.tb-menu-card h2 {
+    margin: 0 0 1.1rem;
+    font-size: 1.7rem;
+    line-height: 1.35;
+    text-shadow: 0 4px 0 var(--tb-ink);
+}
+
+/* The one word that carries the accent gets a glow, so the title has a focal
+   point rather than being evenly bright across its width. */
+.tb-menu-card h2 span {
+    color: var(--tb-accent-lit);
+    text-shadow: 0 4px 0 var(--tb-ink), 0 0 1.6rem rgb(125 156 255 / 45%);
+}
+
+.tb-menu-copy {
+    margin: 0 0 1.6rem;
+    color: var(--tb-muted);
+    font-size: 0.6rem;
+    line-height: 1.9;
+}
+
+.tb-menu-actions {
+    display: grid;
+    gap: 0.7rem;
+    margin-bottom: 1.4rem;
+}
+
+.tb-menu-note {
+    margin: 0;
+    color: var(--tb-faint);
+    font-size: 0.5rem;
+    line-height: 1.8;
+}
+
+.tb-menu-best {
+    margin: 0.8rem 0 0;
+    color: var(--tb-gold);
+    font-size: 0.55rem;
+}
+
+/* ---------- overlays (characters / unlocks / summary) ---------- */
+
+.tb-overlay-card {
+    width: min(40rem, 100%);
+    /* Long lists scroll inside the card rather than off the screen. */
+    max-height: var(--tb-panel-space);
+    padding: 1.4rem;
+    overflow-y: auto;
+    background: linear-gradient(180deg, var(--tb-panel-raised) 0%, var(--tb-panel) 38%);
+    border: 1px solid var(--tb-panel-edge);
+    border-radius: 1rem;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 7%), var(--tb-lift);
+}
+
+.tb-overlay-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.6rem;
+}
+
+.tb-overlay-head h2 { margin: 0; font-size: 0.95rem; }
+
+.tb-close { padding: 0.5rem 0.7rem; }
+
+.tb-overlay-hint {
+    margin: 0 0 1.2rem;
+    color: var(--tb-muted);
+    font-size: 0.55rem;
+    line-height: 1.8;
+}
+
+.tb-card-list {
+    display: grid;
+    gap: 0.8rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tb-card-list li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.9rem 1rem;
+    background: var(--tb-panel-face);
+    border: 1px solid var(--tb-panel-edge-soft);
+    border-radius: 0.7rem;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 4%);
+    transition: border-color 120ms ease, background-color 120ms ease;
+}
+
+/* Only rows that do something respond to the pointer. */
+.tb-card-list li:has(button:not(:disabled)):hover {
+    background: var(--tb-panel-hover-low);
+    border-color: var(--tb-panel-edge);
+}
+
+.tb-card-list li.is-locked {
+    background: var(--tb-panel-sunk);
+    border-style: dashed;
+    opacity: 0.72;
+}
+
+.tb-card-list li.is-sold {
+    opacity: 0.5;
+    filter: grayscale(0.6);
+}
+
+.tb-card-swatch {
+    display: grid;
+    width: 2.6rem;
+    height: 2.6rem;
+    flex-shrink: 0;
+    border-radius: 0.5rem;
+    place-items: center;
+    color: var(--tb-ink);
+    font-size: 1rem;
+}
+
+.tb-card-swatch img {
+    max-width: 2.3rem;
+    max-height: 2.4rem;
+    image-rendering: pixelated;
+}
+
+.tb-card-swatch.is-locked-art img {
+    filter: brightness(0.25) grayscale(1);
+}
+
+/* The pack tick and cross. Both states are set here rather than inline so
+   the glyph colour travels with the background it sits on: the shared dark
+   ink reads 7.7 on the accent and 1.8 on the edge, which looks broken. */
+.tb-pack-swatch-on {
+    background: var(--tb-accent);
+    color: var(--tb-ink);
+}
+
+.tb-pack-swatch-off {
+    background: var(--tb-panel-edge);
+    color: var(--tb-text);
+}
+
+.tb-card-body { flex: 1; }
+
+.tb-card-body strong {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 0.66rem;
+}
+
+.tb-card-body small {
+    color: var(--tb-muted);
+    font-size: 0.52rem;
+    line-height: 1.7;
+}
+
+.tb-card-state {
+    flex-shrink: 0;
+    color: var(--tb-gold);
+    font-size: 0.55rem;
+    text-align: right;
+    line-height: 1.6;
+}
+
+.tb-card-state .tb-play { color: var(--tb-accent); }
+
+/* ---------- codex (bestiary / weaponry) ---------- */
+
+.tb-menu-actions-row {
+    display: grid;
+    gap: 0.7rem;
+    grid-template-columns: 1fr 1fr;
+}
+
+.tb-codex-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin: 1.5rem 0 0.8rem;
+    color: var(--tb-accent);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+/* A rule that runs to the edge, so a heading divides the panel without
+   costing another row of padding. */
+.tb-codex-heading::after {
+    height: 1px;
+    flex: 1;
+    background: linear-gradient(90deg, var(--tb-panel-edge), transparent);
+    content: "";
+}
+
+.tb-codex-heading:first-of-type {
+    margin-top: 0.3rem;
+}
+
+.tb-codex-progress {
+    display: block;
+    margin-top: 0.35rem;
+    color: var(--tb-gold);
+}
+
+.tb-codex-locked-tag {
+    color: var(--tb-faint);
+    font-size: 0.5rem;
+}
+
+.tb-codex-grid {
+    display: grid;
+    gap: 0.6rem;
+    margin: 0;
+    padding: 0;
+    grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr));
+    list-style: none;
+}
+
+.tb-codex-card {
+    display: grid;
+    padding: 0.7rem 0.5rem;
+    background: var(--tb-panel-face);
+    border: 1px solid var(--tb-panel-edge-soft);
+    border-radius: 0.6rem;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 4%);
+    justify-items: center;
+    text-align: center;
+    transition: border-color 120ms ease, transform 120ms ease;
+}
+
+.tb-codex-card:not(.is-undiscovered):hover {
+    border-color: var(--tb-edge-lit);
+    transform: translateY(-2px);
+}
+
+.tb-codex-card.is-undiscovered {
+    background: var(--tb-panel-sunk);
+    border-style: dashed;
+}
+
+.tb-codex-frame {
+    display: grid;
+    width: 100%;
+    height: 3.9rem;
+    margin-bottom: 0.5rem;
+    place-items: center;
+}
+
+.tb-codex-icon {
+    display: grid;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+    place-items: center;
+    color: var(--tb-faint);
+}
+
+.tb-codex-icon-item img {
+    max-width: 3.4rem;
+    max-height: 3.4rem;
+    image-rendering: pixelated;
+}
+
+/* Unseen entries read as silhouettes rather than spoilers. */
+.tb-codex-icon.is-undiscovered {
+    filter: brightness(0) opacity(0.42);
+}
+
+.tb-codex-card strong {
+    font-size: 0.55rem;
+    line-height: 1.4;
+}
+
+.tb-codex-card.is-undiscovered strong {
+    color: var(--tb-faint);
+}
+
+.tb-codex-card small {
+    margin-top: 0.3rem;
+    color: var(--tb-muted);
+    font-size: 0.46rem;
+    line-height: 1.5;
+}
+
+/* ---------- between rounds: shop over inventory, gear alongside ---------- */
+
+/* A definite height, so the 1fr rows below actually divide the space
+   instead of each growing to fit its own contents. */
+.tb-between {
+    display: grid;
+    width: min(78rem, 100%);
+    height: var(--tb-panel-space);
+    gap: 0.7rem;
+    grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+    align-items: stretch;
+}
+
+.tb-between-main {
+    display: grid;
+    min-height: 0;
+    gap: 0.8rem;
+    /* Shop takes the upper half, inventory the lower, as in the sketch. */
+    grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.tb-between .tb-overlay-card {
+    min-height: 0;
+    max-height: none;
+    margin: 0;
+}
+
+.tb-between-shop,
+.tb-between-inventory,
+.tb-between-gear {
+    overflow-y: auto;
+}
+
+/* Panels are moved between screens, so they must not carry their own frame. */
+#tb-gear-panel,
+#tb-inventory-panel {
+    display: block;
+    min-width: 0;
+}
+
+.tb-sell {
+    flex-shrink: 0;
+    padding: 0.35rem 0.5rem;
+    border-color: var(--tb-gold-edge);
+    color: var(--tb-gold);
+    font-size: 0.46rem;
+}
+
+.tb-sell:hover {
+    border-color: var(--tb-gold);
+}
+
+@media (max-width: 900px) {
+    .tb-between {
+        max-height: none;
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* ---------- equipment ---------- */
+
+/* Floats over the paused arena, like the shop. */
+#tb-gear {
+    position: fixed;
+    inset: 0;
+    z-index: 45;
+    background: rgb(7 8 18 / 86%);
+}
+
+.tb-gear-layout {
+    display: grid;
+    gap: 1.2rem;
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+}
+
+.tb-gear-column {
+    min-width: 0;
+}
+
+.tb-slot-list,
+.tb-slot-grid {
+    display: grid;
+    gap: 0.45rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tb-slot-grid {
+    grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+}
+
+.tb-slot {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.4rem;
+    background: var(--tb-panel-face);
+    border: 1px solid var(--tb-panel-edge);
+    border-radius: 0.5rem;
+}
+
+.tb-slot.is-empty {
+    background: var(--tb-panel-sunk);
+    border-style: dashed;
+}
+
+/* The weapon you are actually firing. */
+.tb-slot.is-active {
+    border-color: var(--tb-accent);
+    box-shadow: inset 0 0 0 1px rgb(125 156 255 / 35%);
+}
+
+.tb-slot-box {
+    display: grid;
+    width: 3rem;
+    height: 3rem;
+    flex-shrink: 0;
+    padding: 0;
+    background: var(--tb-panel-sunk);
+    border: 1px solid var(--tb-panel-edge-soft);
+    border-radius: 0.4rem;
+    cursor: pointer;
+    place-items: center;
+}
+
+.tb-slot-box:hover:not(:disabled) {
+    border-color: var(--tb-accent);
+}
+
+.tb-slot-box:disabled {
+    cursor: default;
+    opacity: 0.55;
+}
+
+.tb-slot-icon img {
+    max-width: 2.4rem;
+    max-height: 2.4rem;
+    image-rendering: pixelated;
+}
+
+.tb-slot-label {
+    display: grid;
+    min-width: 0;
+    gap: 0.2rem;
+}
+
+.tb-slot-label strong {
+    font-size: 0.5rem;
+    line-height: 1.4;
+}
+
+.tb-slot-label small {
+    color: var(--tb-muted);
+    font-size: 0.44rem;
+    line-height: 1.4;
+}
+
+.tb-slot.is-empty .tb-slot-label strong {
+    color: var(--tb-faint);
+    text-transform: capitalize;
+}
+
+.tb-slot-empty-note {
+    color: var(--tb-faint);
+    font-size: 0.5rem;
+    line-height: 1.7;
+}
+
+.tb-gear-stats {
+    display: grid;
+    gap: 0.35rem;
+    margin: 0;
+}
+
+.tb-gear-stats div {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.6rem;
+    padding: 0.4rem 0.5rem;
+    background: var(--tb-panel-face);
+    border-radius: 0.4rem;
+}
+
+.tb-gear-stats dt {
+    color: var(--tb-muted);
+    font-size: 0.46rem;
+}
+
+.tb-gear-stats dd {
+    margin: 0;
+    color: var(--tb-gold);
+    font-size: 0.46rem;
+    text-align: right;
+}
+
+/* ---------- shop ---------- */
+
+/* The shop floats over the paused arena rather than stacking below it. */
+#tb-shop {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background: rgb(7 8 18 / 80%);
+}
+
+.tb-shop-coins {
+    color: var(--tb-gold);
+    font-size: 0.72rem;
+}
+
+.tb-shop-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.8rem;
+    margin-top: 1.2rem;
+}
+
+.tb-card-list li.is-sold {
+    opacity: 0.45;
+}
+
+.tb-shop-icon {
+    width: 2.6rem;
+    height: 2.6rem;
+    flex-shrink: 0;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+.tb-card-kind {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: var(--tb-faint);
+    font-size: 0.46rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/* ---------- run summary ---------- */
+
+.tb-summary-card { text-align: center; }
+
+.tb-summary-card h2 {
+    margin: 0 0 1.4rem;
+    color: var(--tb-danger);
+    font-size: 1.1rem;
+}
+
+.tb-summary-stats {
+    display: grid;
+    gap: 0.7rem;
+    margin: 0 0 1.6rem;
+}
+
+.tb-summary-stats div {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.7rem 0.9rem;
+    background: var(--tb-panel-face);
+    border-radius: 0.6rem;
+}
+
+.tb-summary-stats dt {
+    color: var(--tb-muted);
+    font-size: 0.56rem;
+}
+
+.tb-summary-stats dd {
+    margin: 0;
+    font-size: 0.62rem;
+}
+
+#tb-summary-souls { color: var(--tb-gold); }
+
+/* ---------- game view ---------- */
+
+/* The arena takes the whole panel; every readout floats over it. */
+.tb-game {
+    position: relative;
+    display: grid;
+    flex: 1;
+    min-height: 0;
+    padding: 0;
+    place-items: stretch;
+}
+
+.tb-canvas {
+    position: relative;
+    display: grid;
+    overflow: hidden;
+    background: var(--tb-ink);
+    place-items: center;
+}
+
+.tb-hud {
+    position: absolute;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    pointer-events: none;
+}
+
+/* Only the buttons should swallow clicks; the rest must not block aiming. */
+.tb-hud button {
+    pointer-events: auto;
+}
+
+.tb-hud-left {
+    top: 0.6rem;
+    left: 0.7rem;
+}
+
+.tb-hud-right {
+    top: 0.6rem;
+    right: 0.7rem;
+    align-items: flex-end;
+}
+
+.tb-hud-actions {
+    right: 0.7rem;
+    bottom: 0.6rem;
+    flex-direction: row;
+    gap: 0.5rem;
+}
+
+.tb-hud-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.tb-hud-row-end {
+    justify-content: flex-end;
+}
+
+.tb-hud-chip {
+    padding: 0.35rem 0.55rem;
+    background: rgb(18 21 42 / 78%);
+    border: 1px solid rgb(52 58 94 / 70%);
+    border-radius: 0.45rem;
+    font-size: 0.52rem;
+    text-shadow: 0 1px 0 var(--tb-ink);
+}
+
+.tb-hud-chip b { color: var(--tb-gold); }
+
+/* Life reads as a row of hearts, as it does in the game. */
+.tb-hearts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.18rem;
+    max-width: 12rem;
+}
+
+.tb-hearts img {
+    width: 1.15rem;
+    height: 1.15rem;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 1px 0 rgb(0 0 0 / 55%));
+}
+
+.tb-hearts img.is-empty {
+    filter: grayscale(1) brightness(0.42);
+}
+
+.tb-hotbar {
+    display: flex;
+    gap: 0.35rem;
+}
+
+#tb-hud-mana { color: var(--tb-mana); }
+
+.tb-hud-flight {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.tb-flight-bar {
+    display: block;
+    width: 3.2rem;
+    height: 0.45rem;
+    overflow: hidden;
+    background: var(--tb-panel-sunk);
+    border: 1px solid var(--tb-panel-edge);
+    border-radius: 0.3rem;
+}
+
+.tb-flight-bar b {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: var(--tb-mana);
+}
+
+/* The treasure bag: three cards, one choice, nothing else on screen. Narrow
+   on purpose -- this is a decision, not a shelf to browse. */
+.tb-bag-card {
+    width: min(30rem, 92vw);
+    margin: auto;
+}
+
+#tb-bag {
+    display: grid;
+    place-items: center;
+}
+
+.tb-bag-card .tb-card-list {
+    gap: 0.5rem;
+}
+
+/* Hardmode reads in the danger colour: it is a warning, not a reward. */
+.tb-hud-hardmode {
+    color: var(--tb-danger);
+    border-color: var(--tb-danger-edge);
+    font-size: 0.46rem;
+    letter-spacing: 0.12em;
+}
+
+/* The damage barrier, in the accent rather than the mana cyan: it is a
+   defensive pool, not a resource you spend. */
+.tb-hud-barrier {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--tb-accent-lit);
+}
+
+.tb-barrier-bar {
+    display: block;
+    width: 3.2rem;
+    height: 0.45rem;
+    overflow: hidden;
+    background: var(--tb-panel-sunk);
+    border: 1px solid var(--tb-panel-edge);
+    border-radius: 0.3rem;
+}
+
+.tb-barrier-bar b {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: var(--tb-accent-lit);
+    transition: width 140ms ease;
+}
+
+.tb-hud-barrier.is-spent { opacity: 0.45; }
+
+/* The belt: potion stock, picked with the number keys or clicked. Each slot
+   is tinted by its own liquid so the row is readable at a glance mid-fight. */
+.tb-belt {
+    display: flex;
+    gap: 0.3rem;
+    margin-top: 0.35rem;
+}
+
+.tb-belt-slot {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 2.1rem;
+    height: 2.1rem;
+    padding: 0;
+    color: inherit;
+    font: inherit;
+    background: rgb(18 21 42 / 82%);
+    border: 1px solid color-mix(in srgb, var(--tb-potion) 55%, rgb(52 58 94 / 70%));
+    border-radius: 0.4rem;
+    cursor: pointer;
+}
+
+.tb-belt-slot:hover,
+.tb-belt-slot:focus-visible {
+    border-color: var(--tb-potion);
+    box-shadow: 0 0 0.5rem color-mix(in srgb, var(--tb-potion) 45%, transparent);
+}
+
+.tb-belt-icon {
+    width: 1.3rem;
+    height: 1.5rem;
+    image-rendering: pixelated;
+}
+
+.tb-belt-key {
+    position: absolute;
+    top: -0.3rem;
+    left: -0.3rem;
+    padding: 0 0.22rem;
+    color: var(--tb-gold);
+    font-size: 0.42rem;
+    background: var(--tb-ink);
+    border: 1px solid var(--tb-panel-edge);
+    border-radius: 0.25rem;
+}
+
+.tb-belt-count {
+    position: absolute;
+    right: 0.1rem;
+    bottom: 0;
+    font-size: 0.42rem;
+    font-style: normal;
+    text-shadow: 0 1px 0 var(--tb-ink);
+}
+
+/* Active buffs, each with the time it has left draining away. */
+.tb-buffs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.3rem;
+    max-width: 12rem;
+    margin-top: 0.35rem;
+}
+
+.tb-buff {
+    display: grid;
+    justify-items: center;
+    gap: 0.15rem;
+    padding: 0.2rem;
+    background: rgb(18 21 42 / 78%);
+    border: 1px solid color-mix(in srgb, var(--tb-potion) 50%, rgb(52 58 94 / 70%));
+    border-radius: 0.35rem;
+}
+
+.tb-buff-icon {
+    width: 1.05rem;
+    height: 1.2rem;
+    image-rendering: pixelated;
+}
+
+.tb-buff-bar {
+    display: block;
+    width: 1.2rem;
+    height: 0.22rem;
+    overflow: hidden;
+    background: var(--tb-panel-sunk);
+    border-radius: 0.2rem;
+}
+
+.tb-buff-bar b {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: var(--tb-potion);
+}
+
+/* The last few seconds pulse, so a buff never lapses without warning. */
+.tb-buff-fading { animation: tb-buff-pulse 0.7s steps(2, end) infinite; }
+
+@keyframes tb-buff-pulse {
+    from { opacity: 1; }
+    to { opacity: 0.45; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tb-buff-fading { animation: none; opacity: 0.7; }
+}
+
+/* Hotbar slots echo the game's inventory squares. */
+.tb-hud-slot {
+    padding: 0.35rem 0.55rem;
+    background: rgb(18 21 42 / 78%);
+    border: 1px solid rgb(52 58 94 / 70%);
+    border-radius: 0.45rem;
+    font-size: 0.52rem;
+    text-shadow: 0 1px 0 var(--tb-ink);
+}
+
+.tb-hud-slot.is-active {
+    color: var(--tb-accent);
+    border-color: var(--tb-accent);
+    box-shadow: inset 0 0 0 1px rgb(125 156 255 / 30%);
+}
+
+.tb-hud-quit {
+    border-color: var(--tb-danger-edge);
+    color: var(--tb-danger);
+}
+
+.tb-hud-quit:hover { border-color: var(--tb-danger); }
+
+@media (max-width: 860px) {
+    /* Stack the art above the buttons rather than squeezing both. */
+    .tb-menu-card { grid-template-columns: minmax(0, 1fr); }
+
+    .tb-menu-art img,
+    .tb-menu-art video {
+        min-height: 12rem;
+        max-height: 16rem;
+    }
+
+    .tb-menu-art::after {
+        background: linear-gradient(180deg, transparent 55%, var(--tb-panel));
+    }
+}
+
+@media (max-width: 720px) {
+    .tb-title-group h1 { font-size: 0.66rem; }
+    .tb-menu-body { padding: 1.5rem 1.1rem; }
+}

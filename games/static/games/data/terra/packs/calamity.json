@@ -1,0 +1,1049 @@
+{
+ "comment": "A slice of the Calamity Mod: its pre-hardmode bosses, two from early hardmode, and the ranged gear that drops from them. Stats are converted from the Calamity wiki with the same rules the vanilla weapons use, so these sit on the same tier ladder rather than beside it. Each boss is placed against the vanilla one it shares a progression slot with instead of having its health copied over. No Calamity artwork is included: every entry points at a sprite this game already ships, so what reads as Calamity here is the names, the numbers and the behaviour. Melee, magic and summon content is left out because this game is ranged-only. Written by build_terra_calamity.py.",
+ "weapons": [
+  {
+   "id": "calamity-barinade",
+   "name": "Barinade",
+   "category": "bow",
+   "damage": 9,
+   "fireRateMs": 400,
+   "projectileSpeed": 900,
+   "projectileGravity": true,
+   "shots": 2,
+   "spreadDeg": 6,
+   "tier": 3,
+   "price": 54,
+   "sprite": "items/tendon-bow.png",
+   "description": "Turns every arrow into a pair of fins that converge on the target."
+  },
+  {
+   "id": "calamity-aquashard-shotgun",
+   "name": "Aquashard Shotgun",
+   "category": "gun",
+   "damage": 9,
+   "fireRateMs": 500,
+   "projectileSpeed": 2350,
+   "projectileGravity": false,
+   "shots": 2,
+   "spreadDeg": 16,
+   "tier": 3,
+   "price": 54,
+   "sprite": "items/boomstick.png",
+   "description": "Fires a spread of aquamarine shards."
+  },
+  {
+   "id": "calamity-scourge-of-the-desert",
+   "name": "Scourge of the Desert",
+   "category": "throwable",
+   "damage": 5,
+   "fireRateMs": 400,
+   "projectileSpeed": 1140,
+   "projectileGravity": true,
+   "pierce": 2,
+   "tier": 1,
+   "price": 26,
+   "sprite": "items/javelin.png",
+   "description": "A javelin that burrows and comes back up under whatever it was aimed at."
+  },
+  {
+   "id": "calamity-fungicide",
+   "name": "Fungicide",
+   "category": "gun",
+   "damage": 12,
+   "fireRateMs": 367,
+   "projectileSpeed": 1470,
+   "projectileGravity": false,
+   "homing": true,
+   "tier": 2,
+   "price": 40,
+   "sprite": "items/blowgun.png",
+   "description": "Rounds burst into spores that go looking for whatever is nearby."
+  },
+  {
+   "id": "calamity-shadethrower",
+   "name": "Shadethrower",
+   "category": "gun",
+   "damage": 13,
+   "fireRateMs": 667,
+   "projectileSpeed": 2460,
+   "projectileGravity": false,
+   "shots": 4,
+   "spreadDeg": 22,
+   "pierce": 2,
+   "tier": 4,
+   "price": 68,
+   "sprite": "items/flamethrower.png",
+   "description": "Four bursts of shade at close range. Each one passes through twice."
+  },
+  {
+   "id": "calamity-blood-bath",
+   "name": "Blood Bath",
+   "category": "staff",
+   "damage": 22,
+   "fireRateMs": 400,
+   "projectileSpeed": 1600,
+   "projectileGravity": false,
+   "manaCost": 10,
+   "shots": 3,
+   "spreadDeg": 26,
+   "pierce": 1,
+   "tier": 5,
+   "price": 82,
+   "sprite": "items/golden-shower.png",
+   "description": "Calls blood down from above. It falls through whatever is under it."
+  },
+  {
+   "id": "calamity-overloaded-blaster",
+   "name": "Overloaded Blaster",
+   "category": "gun",
+   "damage": 12,
+   "fireRateMs": 467,
+   "projectileSpeed": 975,
+   "projectileGravity": false,
+   "shots": 3,
+   "spreadDeg": 20,
+   "pierce": 2,
+   "bounce": 2,
+   "tier": 4,
+   "price": 68,
+   "sprite": "items/elf-melter.png",
+   "description": "Three slime pearls that punch through, then ricochet off whatever they land on."
+  },
+  {
+   "id": "calamity-hoarfrost-bow",
+   "name": "Hoarfrost Bow",
+   "category": "bow",
+   "damage": 63,
+   "fireRateMs": 483,
+   "projectileSpeed": 720,
+   "projectileGravity": true,
+   "shots": 2,
+   "spreadDeg": 12,
+   "debuff": "frostbite",
+   "hardmode": true,
+   "tier": 6,
+   "price": 96,
+   "sprite": "items/ice-bow.png",
+   "description": "Two mist arrows that break into frost where they land."
+  },
+  {
+   "id": "calamity-barinautical",
+   "name": "Barinautical",
+   "category": "bow",
+   "damage": 56,
+   "fireRateMs": 333,
+   "projectileSpeed": 900,
+   "projectileGravity": true,
+   "shots": 3,
+   "spreadDeg": 10,
+   "pierce": 1,
+   "splashRadius": 46,
+   "hardmode": true,
+   "tier": 6,
+   "price": 96,
+   "sprite": "items/pulse-bow.png",
+   "description": "Bursts of three electric bolts that go off on contact."
+  }
+ ],
+ "armorSets": [
+  {
+   "id": "calamity-aerospec",
+   "name": "Aerospec Armor",
+   "tier": 4,
+   "pieces": [
+    {
+     "id": "calamity-aerospec-hood",
+     "name": "Aerospec Hood",
+     "slot": "head",
+     "defense": 5,
+     "price": 46,
+     "sprite": "items/necro-helmet.png"
+    },
+    {
+     "id": "calamity-aerospec-breastplate",
+     "name": "Aerospec Breastplate",
+     "slot": "chest",
+     "defense": 7,
+     "price": 56,
+     "sprite": "items/necro-breastplate.png"
+    },
+    {
+     "id": "calamity-aerospec-leggings",
+     "name": "Aerospec Leggings",
+     "slot": "legs",
+     "defense": 6,
+     "price": 46,
+     "sprite": "items/necro-greaves.png"
+    }
+   ],
+   "setBonus": {
+    "description": "A hit over 25 sends three homing feathers back.",
+    "effects": {
+     "retaliate": {
+      "overDamage": 25,
+      "count": 3,
+      "damage": 15,
+      "homing": true,
+      "speed": 440,
+      "tint": "#cfe4ff"
+     }
+    }
+   }
+  },
+  {
+   "id": "calamity-daedalus",
+   "name": "Daedalus Armor",
+   "hardmode": true,
+   "tier": 6,
+   "pieces": [
+    {
+     "id": "calamity-daedalus-headgear",
+     "name": "Daedalus Headgear",
+     "slot": "head",
+     "defense": 14,
+     "price": 108,
+     "sprite": "items/frost-helmet.png"
+    },
+    {
+     "id": "calamity-daedalus-breastplate",
+     "name": "Daedalus Breastplate",
+     "slot": "chest",
+     "defense": 19,
+     "price": 128,
+     "sprite": "items/frost-breastplate.png"
+    },
+    {
+     "id": "calamity-daedalus-leggings",
+     "name": "Daedalus Leggings",
+     "slot": "legs",
+     "defense": 15,
+     "price": 108,
+     "sprite": "items/frost-leggings.png"
+    }
+   ],
+   "setBonus": {
+    "description": "Any hit scatters five homing crystal shards.",
+    "effects": {
+     "retaliate": {
+      "overDamage": 0,
+      "count": 5,
+      "damage": 26,
+      "homing": true,
+      "speed": 500,
+      "tint": "#a8e8ff"
+     }
+    }
+   }
+  }
+ ],
+ "accessories": [
+  {
+   "id": "calamity-rover-drive",
+   "name": "Rover Drive",
+   "tier": 2,
+   "price": 42,
+   "sprite": "items/cobalt-shield.png",
+   "description": "A barrier that soaks 20 damage, then rebuilds if you can stay out of trouble for a few seconds.",
+   "effects": {
+    "barrier": {
+     "capacity": 20,
+     "regenPerSecond": 4,
+     "delayMs": 10000
+    }
+   }
+  },
+  {
+   "id": "calamity-aero-stone",
+   "name": "Aero Stone",
+   "hardmode": true,
+   "tier": 4,
+   "price": 76,
+   "sprite": "items/shiny-red-balloon.png",
+   "description": "Adds a little under a second of flight to whatever wings you are wearing.",
+   "effects": {
+    "flightBonusMs": 833
+   }
+  }
+ ],
+ "mobs": [
+  {
+   "id": "calamity-wulfrum-drone",
+   "name": "Wulfrum Drone",
+   "hp": 26,
+   "contactDamage": 6,
+   "coins": 4,
+   "weight": 6,
+   "minRound": 3,
+   "maxRound": 999,
+   "color": "#c8b878",
+   "sizePx": 44,
+   "behavior": "caster",
+   "speed": 130,
+   "standoff": 230,
+   "shoot": {
+    "everyMs": 2200,
+    "count": 1,
+    "speed": 330,
+    "damage": 9
+   },
+   "skin": {
+    "id": "meteor-head",
+    "tint": "#d8c890"
+   },
+   "biomes": [
+    "forest",
+    "sky"
+   ]
+  },
+  {
+   "id": "calamity-aero-slime",
+   "name": "Aero Slime",
+   "hp": 48,
+   "contactDamage": 14,
+   "coins": 7,
+   "weight": 5,
+   "minRound": 8,
+   "maxRound": 999,
+   "color": "#a8d8f0",
+   "sizePx": 46,
+   "behavior": "flyer",
+   "speed": 132,
+   "skin": {
+    "id": "base-slime",
+    "tint": "#a8d8f0"
+   },
+   "biomes": [
+    "sky",
+    "snow"
+   ]
+  },
+  {
+   "id": "calamity-cryo-slime",
+   "name": "Cryo Slime",
+   "hardmode": true,
+   "hp": 105,
+   "contactDamage": 22,
+   "coins": 16,
+   "weight": 4,
+   "minRound": 1,
+   "maxRound": 999,
+   "color": "#a8e8ff",
+   "sizePx": 52,
+   "behavior": "slime-hops",
+   "skin": {
+    "id": "ice-slime",
+    "tint": "#b0ecff"
+   },
+   "biomes": [
+    "ice",
+    "snow"
+   ]
+  },
+  {
+   "id": "calamity-sulphurous-skater",
+   "name": "Sulphurous Skater",
+   "hardmode": true,
+   "hp": 92,
+   "contactDamage": 26,
+   "coins": 15,
+   "weight": 4,
+   "minRound": 1,
+   "maxRound": 999,
+   "color": "#c8d86a",
+   "sizePx": 46,
+   "behavior": "slime-hops",
+   "skin": {
+    "id": "blood-crawler",
+    "tint": "#d0e078"
+   },
+   "biomes": [
+    "jungle",
+    "underworld",
+    "hallow"
+   ]
+  },
+  {
+   "id": "calamity-cnidrion",
+   "name": "Cnidrion",
+   "hp": 95,
+   "contactDamage": 0,
+   "coins": 12,
+   "weight": 3,
+   "minRound": 12,
+   "maxRound": 999,
+   "color": "#7ac8d8",
+   "sizePx": 54,
+   "behavior": "caster",
+   "speed": 88,
+   "standoff": 280,
+   "shoot": {
+    "everyMs": 2600,
+    "count": 4,
+    "spreadDeg": 34,
+    "speed": 320,
+    "damage": 15
+   },
+   "skin": {
+    "id": "crimera",
+    "tint": "#8ad0e0"
+   },
+   "biomes": [
+    "forest",
+    "jungle",
+    "hallow"
+   ]
+  }
+ ],
+ "bosses": [
+  {
+   "id": "calamity-desert-scourge",
+   "name": "Desert Scourge",
+   "hp": 780,
+   "contactDamage": 20,
+   "color": "#d8c88a",
+   "sizePx": 96,
+   "pattern": "worm",
+   "patternConfig": {
+    "speed": 205,
+    "segments": 9,
+    "servantsAtHpFractions": [
+     0.5
+    ],
+    "servantMob": "blue-slime",
+    "servantCount": 2
+   },
+   "phases": [
+    {
+     "atHp": 0.5,
+     "name": "Burrowing",
+     "say": "It goes under, and comes back down at you.",
+     "config": {
+      "speed": 290,
+      "servantCount": 3
+     },
+     "shoot": {
+      "everyMs": 1300,
+      "count": 3,
+      "spreadDeg": 38,
+      "speed": 330,
+      "damage": 15
+     }
+    }
+   ],
+   "skin": {
+    "id": "eater-of-worlds"
+   },
+   "biomes": [
+    "forest",
+    "underworld"
+   ],
+   "arena": "corridor",
+   "drops": [
+    {
+     "kind": "weapon",
+     "id": "calamity-barinade"
+    },
+    {
+     "kind": "weapon",
+     "id": "calamity-aquashard-shotgun"
+    },
+    {
+     "kind": "weapon",
+     "id": "calamity-scourge-of-the-desert"
+    },
+    {
+     "kind": "accessory",
+     "id": "band-of-regeneration"
+    }
+   ],
+   "achievementOnKill": "calamity-defeat-desert-scourge"
+  },
+  {
+   "id": "calamity-crabulon",
+   "name": "Crabulon",
+   "hp": 682,
+   "contactDamage": 20,
+   "color": "#b8a0d8",
+   "sizePx": 104,
+   "pattern": "stomper",
+   "patternConfig": {
+    "slamEveryMs": 2200,
+    "leapPower": 840,
+    "leapLead": 1.2,
+    "walkSpeed": 74,
+    "shockRadius": 158,
+    "shockDamage": 18,
+    "shoot": {
+     "everyMs": 2400,
+     "count": 1,
+     "spreadDeg": 0,
+     "speed": 300,
+     "damage": 14
+    },
+    "servantsAtHpFractions": [
+     0.8,
+     0.6,
+     0.4,
+     0.2
+    ],
+    "servantMob": "anomura-fungus",
+    "servantCount": 2
+   },
+   "phases": [
+    {
+     "atHp": 0.45,
+     "name": "Clawing",
+     "say": "The claws come down faster than it can walk.",
+     "config": {
+      "slamEveryMs": 1400,
+      "walkSpeed": 104,
+      "shockRadius": 190
+     },
+     "shoot": {
+      "everyMs": 1500,
+      "count": 2,
+      "spreadDeg": 26,
+      "speed": 330,
+      "damage": 16
+     }
+    }
+   ],
+   "skin": {
+    "id": "king-slime",
+    "tint": "#c8a8e0"
+   },
+   "biomes": [
+    "mushroom",
+    "jungle"
+   ],
+   "arena": "temple",
+   "drops": [
+    {
+     "kind": "weapon",
+     "id": "calamity-fungicide"
+    },
+    {
+     "kind": "weapon",
+     "id": "calamity-aquashard-shotgun"
+    },
+    {
+     "kind": "accessory",
+     "id": "shiny-red-balloon"
+    },
+    {
+     "kind": "ammo",
+     "id": "chlorophyte-arrow"
+    }
+   ],
+   "achievementOnKill": "calamity-defeat-crabulon"
+  },
+  {
+   "id": "calamity-hive-mind",
+   "name": "The Hive Mind",
+   "hp": 975,
+   "contactDamage": 20,
+   "color": "#8a5fb0",
+   "sizePx": 100,
+   "pattern": "teleporter",
+   "patternConfig": {
+    "blinkEveryMs": 2500,
+    "telegraphMs": 420,
+    "blinkRadius": 200,
+    "arriveShotDelayMs": 220,
+    "shoot": {
+     "everyMs": 1400,
+     "count": 3,
+     "spreadDeg": 44,
+     "speed": 320,
+     "damage": 15
+    },
+    "servantsAtHpFractions": [
+     0.9,
+     0.7,
+     0.5,
+     0.3
+    ],
+    "servantMob": "eater-of-souls",
+    "servantCount": 2
+   },
+   "phases": [
+    {
+     "atHp": 0.8,
+     "name": "Stirring",
+     "say": "It stops waiting and starts moving.",
+     "config": {
+      "blinkEveryMs": 1700,
+      "servantCount": 3
+     }
+    },
+    {
+     "atHp": 0.4,
+     "name": "Dashing",
+     "say": "No more blinking. It comes straight at you.",
+     "pattern": "charger",
+     "config": {
+      "hoverHeight": 130,
+      "hoverMs": 1000,
+      "telegraphMs": 280,
+      "dashSpeed": 660,
+      "dashMs": 540,
+      "dashCount": 4
+     }
+    }
+   ],
+   "skin": {
+    "id": "eater-of-worlds",
+    "tint": "#a878d0"
+   },
+   "biomes": [
+    "corruption"
+   ],
+   "arena": "pillars",
+   "drops": [
+    {
+     "kind": "weapon",
+     "id": "calamity-shadethrower"
+    },
+    {
+     "kind": "weapon",
+     "id": "calamity-barinade"
+    },
+    {
+     "kind": "accessory",
+     "id": "worm-scarf"
+    },
+    {
+     "kind": "ammo",
+     "id": "unholy-arrow"
+    }
+   ],
+   "achievementOnKill": "calamity-defeat-hive-mind"
+  },
+  {
+   "id": "calamity-perforators",
+   "name": "The Perforators",
+   "hp": 1626,
+   "contactDamage": 12,
+   "color": "#c04848",
+   "sizePx": 96,
+   "pattern": "shooter",
+   "patternConfig": {
+    "hoverHeight": 175,
+    "orbitRadius": 150,
+    "driftMs": 1500,
+    "followX": 1.9,
+    "followY": 1.6,
+    "shoot": {
+     "everyMs": 1100,
+     "count": 3,
+     "spreadDeg": 30,
+     "speed": 320,
+     "damage": 16
+    },
+    "servantsAtHpFractions": [
+     0.75,
+     0.5,
+     0.25
+    ],
+    "servantMob": "blood-crawler",
+    "servantCount": 2
+   },
+   "phases": [
+    {
+     "atHp": 0.5,
+     "name": "Second Worm",
+     "say": "Something bigger comes out of it.",
+     "config": {
+      "driftMs": 1200,
+      "servantCount": 3
+     },
+     "shoot": {
+      "everyMs": 850,
+      "count": 4,
+      "spreadDeg": 40,
+      "speed": 350,
+      "damage": 18
+     }
+    },
+    {
+     "atHp": 0.25,
+     "name": "Third Worm",
+     "say": "The last one is the big one.",
+     "config": {
+      "driftMs": 900,
+      "orbitRadius": 110,
+      "servantCount": 4
+     },
+     "shoot": {
+      "everyMs": 650,
+      "count": 5,
+      "spreadDeg": 52,
+      "speed": 380,
+      "damage": 20
+     }
+    }
+   ],
+   "skin": {
+    "id": "eye-of-cthulhu",
+    "tint": "#d05858",
+    "facePlayer": true
+   },
+   "biomes": [
+    "crimson"
+   ],
+   "arena": "canopy",
+   "drops": [
+    {
+     "kind": "weapon",
+     "id": "calamity-blood-bath"
+    },
+    {
+     "kind": "weapon",
+     "id": "calamity-fungicide"
+    },
+    {
+     "kind": "accessory",
+     "id": "band-of-regeneration"
+    },
+    {
+     "kind": "ammo",
+     "id": "hellfire-arrow"
+    }
+   ],
+   "achievementOnKill": "calamity-defeat-perforators"
+  },
+  {
+   "id": "calamity-slime-god",
+   "name": "The Slime God",
+   "hp": 3104,
+   "contactDamage": 21,
+   "color": "#8ad06a",
+   "sizePx": 120,
+   "pattern": "kingslime",
+   "patternConfig": {
+    "bigHopEvery": 3,
+    "bigHopAirTimeMs": 900,
+    "minScale": 0.7,
+    "summonEveryHpFraction": 0.12,
+    "summonMob": "green-slime",
+    "shoot": {
+     "everyMs": 1900,
+     "count": 2,
+     "spreadDeg": 30,
+     "speed": 300,
+     "damage": 16
+    }
+   },
+   "phases": [
+    {
+     "atHp": 0.66,
+     "name": "Crimulan Down",
+     "say": "One of them bursts. The other speeds up.",
+     "config": {
+      "bigHopEvery": 2,
+      "summonEveryHpFraction": 0.08
+     },
+     "shoot": {
+      "everyMs": 1400,
+      "count": 3,
+      "spreadDeg": 40,
+      "speed": 330,
+      "damage": 18
+     }
+    },
+    {
+     "atHp": 0.33,
+     "name": "Ebonian Down",
+     "say": "Both are gone. What is left does not jump.",
+     "pattern": "charger",
+     "config": {
+      "hoverHeight": 110,
+      "hoverMs": 850,
+      "telegraphMs": 240,
+      "dashSpeed": 700,
+      "dashMs": 560,
+      "dashCount": 5
+     },
+     "shoot": {
+      "everyMs": 1100,
+      "count": 4,
+      "spreadDeg": 48,
+      "speed": 360,
+      "damage": 20
+     }
+    }
+   ],
+   "skin": {
+    "id": "king-slime",
+    "tint": "#9ce07a",
+    "alpha": 0.94
+   },
+   "biomes": [
+    "forest",
+    "corruption",
+    "crimson"
+   ],
+   "arena": "open-sky",
+   "drops": [
+    {
+     "kind": "weapon",
+     "id": "calamity-overloaded-blaster"
+    },
+    {
+     "kind": "weapon",
+     "id": "calamity-shadethrower"
+    },
+    {
+     "kind": "accessory",
+     "id": "shield-of-cthulhu"
+    },
+    {
+     "kind": "ammo",
+     "id": "crystal-bullet"
+    }
+   ],
+   "achievementOnKill": "calamity-defeat-slime-god"
+  },
+  {
+   "id": "calamity-cryogen",
+   "name": "Cryogen",
+   "hp": 4875,
+   "contactDamage": 34,
+   "color": "#9fd8ff",
+   "sizePx": 108,
+   "pattern": "shooter",
+   "patternConfig": {
+    "hoverHeight": 160,
+    "orbitRadius": 170,
+    "driftMs": 1700,
+    "followX": 1.5,
+    "followY": 1.4,
+    "shoot": {
+     "everyMs": 2000,
+     "count": 6,
+     "spreadDeg": 96,
+     "speed": 320,
+     "damage": 22
+    },
+    "servantsAtHpFractions": [
+     0.8,
+     0.5
+    ],
+    "servantMob": "ice-bat",
+    "servantCount": 3
+   },
+   "phases": [
+    {
+     "atHp": 0.6,
+     "name": "Shell Cracked",
+     "say": "The shell splits and the rings come faster.",
+     "config": {
+      "driftMs": 1300,
+      "orbitRadius": 140
+     },
+     "shoot": {
+      "everyMs": 1400,
+      "count": 8,
+      "spreadDeg": 110,
+      "speed": 350,
+      "damage": 24
+     }
+    },
+    {
+     "atHp": 0.4,
+     "name": "Unshielded",
+     "say": "No shield left. It starts turning up beside you.",
+     "pattern": "teleporter",
+     "config": {
+      "blinkEveryMs": 1600,
+      "telegraphMs": 280,
+      "blinkRadius": 210,
+      "arriveShotDelayMs": 150
+     },
+     "shoot": {
+      "everyMs": 900,
+      "count": 6,
+      "spreadDeg": 84,
+      "speed": 380,
+      "damage": 26
+     }
+    },
+    {
+     "atHp": 0.3,
+     "name": "Frozen Core",
+     "say": "It stops firing. Now it just comes at you.",
+     "pattern": "charger",
+     "config": {
+      "hoverHeight": 120,
+      "hoverMs": 700,
+      "telegraphMs": 200,
+      "dashSpeed": 780,
+      "dashMs": 520,
+      "dashCount": 6
+     }
+    }
+   ],
+   "skin": {
+    "id": "eye-of-cthulhu",
+    "tint": "#a8e0ff",
+    "facePlayer": true
+   },
+   "biomes": [
+    "snow",
+    "ice"
+   ],
+   "arena": "canopy",
+   "drops": [
+    {
+     "kind": "weapon",
+     "id": "calamity-hoarfrost-bow"
+    },
+    {
+     "kind": "weapon",
+     "id": "calamity-overloaded-blaster"
+    },
+    {
+     "kind": "accessory",
+     "id": "frostspark-boots"
+    },
+    {
+     "kind": "ammo",
+     "id": "frostburn-arrow"
+    }
+   ],
+   "achievementOnKill": "calamity-defeat-cryogen"
+  },
+  {
+   "id": "calamity-aquatic-scourge",
+   "name": "Aquatic Scourge",
+   "hp": 15600,
+   "contactDamage": 42,
+   "color": "#7ad0a8",
+   "sizePx": 104,
+   "pattern": "worm",
+   "patternConfig": {
+    "speed": 240,
+    "segments": 12,
+    "shoot": {
+     "everyMs": 2600,
+     "count": 4,
+     "spreadDeg": 90,
+     "speed": 300,
+     "damage": 24
+    },
+    "servantsAtHpFractions": [
+     0.75,
+     0.5,
+     0.25
+    ],
+    "servantMob": "gastropod",
+    "servantCount": 2
+   },
+   "phases": [
+    {
+     "atHp": 0.75,
+     "name": "Roused",
+     "say": "It stops drifting and starts hunting.",
+     "config": {
+      "speed": 300
+     },
+     "shoot": {
+      "everyMs": 1900,
+      "count": 5,
+      "spreadDeg": 110,
+      "speed": 330,
+      "damage": 26
+     }
+    },
+    {
+     "atHp": 0.25,
+     "name": "Sulphurous",
+     "say": "The water behind it turns.",
+     "config": {
+      "speed": 375,
+      "servantCount": 3
+     },
+     "shoot": {
+      "everyMs": 1300,
+      "count": 7,
+      "spreadDeg": 130,
+      "speed": 370,
+      "damage": 30
+     }
+    }
+   ],
+   "skin": {
+    "id": "destroyer",
+    "tint": "#8ce0b8"
+   },
+   "biomes": [
+    "jungle",
+    "underworld"
+   ],
+   "arena": "corridor",
+   "drops": [
+    {
+     "kind": "weapon",
+     "id": "calamity-barinautical"
+    },
+    {
+     "kind": "weapon",
+     "id": "calamity-hoarfrost-bow"
+    },
+    {
+     "kind": "accessory",
+     "id": "stalkers-quiver"
+    },
+    {
+     "kind": "ammo",
+     "id": "luminite-arrow"
+    }
+   ],
+   "achievementOnKill": "calamity-defeat-aquatic-scourge"
+  }
+ ],
+ "achievements": [
+  {
+   "id": "calamity-defeat-desert-scourge",
+   "name": "Sands Below",
+   "description": "Defeat the Desert Scourge.",
+   "hint": "Enable the Calamity pack and reach a boss round."
+  },
+  {
+   "id": "calamity-defeat-crabulon",
+   "name": "Spore Print",
+   "description": "Defeat Crabulon.",
+   "hint": "It turns up on a later boss round."
+  },
+  {
+   "id": "calamity-defeat-hive-mind",
+   "name": "Rot and Ruin",
+   "description": "Defeat The Hive Mind.",
+   "hint": "It turns up on a later boss round."
+  },
+  {
+   "id": "calamity-defeat-perforators",
+   "name": "Three Worms Deep",
+   "description": "Defeat The Perforators.",
+   "hint": "It turns up on a later boss round."
+  },
+  {
+   "id": "calamity-defeat-slime-god",
+   "name": "God of Nothing Much",
+   "description": "Defeat The Slime God.",
+   "hint": "The last of the pack's pre-hardmode bosses."
+  },
+  {
+   "id": "calamity-defeat-cryogen",
+   "name": "Should Have Worn a Coat",
+   "description": "Defeat Cryogen.",
+   "hint": "Deep in a run, once the vanilla ladder is behind you."
+  },
+  {
+   "id": "calamity-defeat-aquatic-scourge",
+   "name": "Sulphur Bloom",
+   "description": "Defeat the Aquatic Scourge.",
+   "hint": "The largest thing in the game."
+  }
+ ]
+}

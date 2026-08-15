@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 150" role="img" aria-label="Pokemon Unova League wordmark">
+  <!-- Hand-authored Black/White-style plate, following the Johto and
+       Sinnoh precedent: no clean 2D rip of the BW logo exists on the
+       archives this project uses, so Unova's wordmark is drawn in the
+       era's stark treatment. The UNOVA line runs white falling to black,
+       the LEAGUE line black rising to white: the two games' halves,
+       mirrored. (An XML comment must not contain a double hyphen, which
+       is exactly how the first draft of this note broke the file.) -->
+  <defs>
+    <linearGradient id="unova-white" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.5" stop-color="#e8e8ea"/>
+      <stop offset="0.55" stop-color="#9a9aa2"/>
+      <stop offset="1" stop-color="#4c4c55"/>
+    </linearGradient>
+    <linearGradient id="unova-black" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3a3a42"/>
+      <stop offset="0.45" stop-color="#17171d"/>
+      <stop offset="0.55" stop-color="#5c5c66"/>
+      <stop offset="1" stop-color="#c9c9cf"/>
+    </linearGradient>
+  </defs>
+  <text x="230" y="62" text-anchor="middle"
+        font-family="'Trebuchet MS', Arial, sans-serif" font-size="58" font-weight="900"
+        fill="url(#unova-white)" stroke="#0c0c10" stroke-width="3" paint-order="stroke"
+        letter-spacing="2">UNOVA</text>
+  <text x="230" y="118" text-anchor="middle"
+        font-family="'Trebuchet MS', Arial, sans-serif" font-size="44" font-weight="900"
+        fill="url(#unova-black)" stroke="#f2f2f4" stroke-width="3" paint-order="stroke"
+        letter-spacing="6">LEAGUE</text>
+</svg>

@@ -1,0 +1,118 @@
+{
+  "region": "unova",
+  "sources": [
+    "Painted battleback set (240x112 terrain backdrops), supplied locally.",
+    "Pokemon HeartGold/SoulSilver 'Location Art (Johto)', ripped by Latias Tamer (spriters-resource asset 28243, marked No Credit Needed)."
+  ],
+  "note": "Backdrops are painted scenery; platforms are drawn separately by the battle scene.",
+  "scenes": [
+    {
+      "scene": "route",
+      "source": "battleback/PATH 2",
+      "source_size": [
+        240,
+        112
+      ],
+      "colours": 24
+    },
+    {
+      "scene": "grass",
+      "source": "battleback/TALL GRASS",
+      "source_size": [
+        240,
+        112
+      ],
+      "colours": 28
+    },
+    {
+      "scene": "water",
+      "source": "battleback/OCEAN",
+      "source_size": [
+        240,
+        112
+      ],
+      "colours": 42
+    },
+    {
+      "scene": "rock",
+      "source": "battleback/MOUNTAIN 2",
+      "source_size": [
+        240,
+        112
+      ],
+      "colours": 61
+    },
+    {
+      "scene": "cave",
+      "source": "battleback/CAVE 2",
+      "source_size": [
+        240,
+        112
+      ],
+      "colours": 21
+    },
+    {
+      "scene": "pond",
+      "source": "battleback/LAKE",
+      "source_size": [
+        240,
+        112
+      ],
+      "colours": 27
+    },
+    {
+      "scene": "ice",
+      "source": "battleback/SNOW NIGHT",
+      "source_size": [
+        240,
+        112
+      ],
+      "colours": 34
+    },
+    {
+      "scene": "sand",
+      "source": "battleback/DESERT",
+      "source_size": [
+        240,
+        112
+      ],
+      "colours": 32
+    },
+    {
+      "scene": "gym",
+      "source": "location-art/national-park/night",
+      "source_size": [
+        256,
+        160
+      ],
+      "colours": 106
+    },
+    {
+      "scene": "psychic",
+      "source": "location-art/tin-tower/morning",
+      "source_size": [
+        256,
+        160
+      ],
+      "colours": 36
+    },
+    {
+      "scene": "rocket",
+      "source": "location-art/dark-cave-south/night",
+      "source_size": [
+        256,
+        160
+      ],
+      "colours": 25
+    },
+    {
+      "scene": "league",
+      "source": "location-art/victory-road/morning",
+      "source_size": [
+        256,
+        177
+      ],
+      "colours": 34
+    }
+  ]
+}

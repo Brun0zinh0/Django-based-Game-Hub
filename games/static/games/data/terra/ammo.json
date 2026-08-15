@@ -1,0 +1,269 @@
+{
+ "comment": "Ammunition, the axis a ranged-only game was missing. You hold one type per weapon family at a time, so committing to Hellfire Arrows is a real choice rather than a stat you accumulate. Ammo never runs out -- in a round-based game counting arrows is bookkeeping, not tension -- so what it costs you is the slot and the coins. Effects are only behaviours the engine puts on a projectile. Sprites come from build_terra_ammo.py: arrows are the cut sprite with a recoloured head, bullets and rockets are drawn.",
+ "families": {
+  "bow": "Arrows",
+  "gun": "Bullets",
+  "launcher": "Rockets"
+ },
+ "ammo": [
+  {
+   "id": "wooden-arrow",
+   "name": "Wooden Arrow",
+   "family": "bow",
+   "sprite": "items/wooden-arrow.png",
+   "description": "Plain wood. It does the job and costs nothing much.",
+   "price": 8,
+   "tier": 1,
+   "tint": "#967044",
+   "effects": {}
+  },
+  {
+   "id": "flaming-arrow",
+   "name": "Flaming Arrow",
+   "family": "bow",
+   "sprite": "items/flaming-arrow.png",
+   "description": "Sets what it hits alight.",
+   "price": 26,
+   "tier": 2,
+   "tint": "#e28034",
+   "effects": {
+    "debuff": "on-fire"
+   }
+  },
+  {
+   "id": "frostburn-arrow",
+   "name": "Frostburn Arrow",
+   "family": "bow",
+   "sprite": "items/frostburn-arrow.png",
+   "description": "Burns cold, and cold burns harder.",
+   "price": 32,
+   "tier": 2,
+   "tint": "#80cee8",
+   "effects": {
+    "debuff": "frostburn"
+   }
+  },
+  {
+   "id": "unholy-arrow",
+   "name": "Unholy Arrow",
+   "family": "bow",
+   "sprite": "items/unholy-arrow.png",
+   "description": "Punches through three of them, and poisons what it passes.",
+   "price": 40,
+   "tier": 3,
+   "tint": "#8060a8",
+   "effects": {
+    "pierce": 3,
+    "debuff": "poisoned"
+   }
+  },
+  {
+   "id": "jesters-arrow",
+   "name": "Jester's Arrow",
+   "family": "bow",
+   "sprite": "items/jesters-arrow.png",
+   "description": "Ignores gravity entirely and keeps going.",
+   "price": 48,
+   "tier": 3,
+   "tint": "#e8ce60",
+   "effects": {
+    "pierce": 4,
+    "noGravity": true,
+    "projectileSpeed": 1.35
+   }
+  },
+  {
+   "id": "hellfire-arrow",
+   "name": "Hellfire Arrow",
+   "family": "bow",
+   "sprite": "items/hellfire-arrow.png",
+   "description": "Detonates, and leaves the survivors burning.",
+   "price": 62,
+   "tier": 4,
+   "tint": "#ce3a2c",
+   "effects": {
+    "splashRadius": 84,
+    "damage": 1.1,
+    "debuff": "on-fire"
+   }
+  },
+  {
+   "id": "holy-arrow",
+   "name": "Holy Arrow",
+   "family": "bow",
+   "sprite": "items/holy-arrow.png",
+   "description": "Blessed tips. They hit harder and find the weak spot.",
+   "price": 74,
+   "tier": 5,
+   "tint": "#f6eeb0",
+   "effects": {
+    "damage": 1.25,
+    "crit": 0.08
+   }
+  },
+  {
+   "id": "chlorophyte-arrow",
+   "name": "Chlorophyte Arrow",
+   "family": "bow",
+   "sprite": "items/chlorophyte-arrow.png",
+   "description": "Steers itself. You only have to fire in roughly the right direction.",
+   "price": 82,
+   "tier": 5,
+   "tint": "#7ace54",
+   "effects": {
+    "homing": true
+   }
+  },
+  {
+   "id": "luminite-arrow",
+   "name": "Luminite Arrow",
+   "family": "bow",
+   "sprite": "items/luminite-arrow.png",
+   "description": "The last arrow. It pierces, it steers, and it softens what it hits.",
+   "price": 118,
+   "tier": 6,
+   "tint": "#b0e2d6",
+   "effects": {
+    "pierce": 3,
+    "homing": true,
+    "damage": 1.2,
+    "debuff": "ichor"
+   }
+  },
+  {
+   "id": "musket-ball",
+   "name": "Musket Ball",
+   "family": "gun",
+   "sprite": "items/musket-ball.png",
+   "description": "Lead. Cheap by the box.",
+   "price": 8,
+   "tier": 1,
+   "tint": "#7a7c86",
+   "effects": {}
+  },
+  {
+   "id": "silver-bullet",
+   "name": "Silver Bullet",
+   "family": "gun",
+   "sprite": "items/silver-bullet.png",
+   "description": "Cleaner metal, harder hit.",
+   "price": 28,
+   "tier": 2,
+   "tint": "#dee6ee",
+   "effects": {
+    "damage": 1.18
+   }
+  },
+  {
+   "id": "meteor-shot",
+   "name": "Meteor Shot",
+   "family": "gun",
+   "sprite": "items/meteor-shot.png",
+   "description": "Ricochets off anything it does not kill.",
+   "price": 44,
+   "tier": 3,
+   "tint": "#6c8eb0",
+   "effects": {
+    "bounce": 2
+   }
+  },
+  {
+   "id": "crystal-bullet",
+   "name": "Crystal Bullet",
+   "family": "gun",
+   "sprite": "items/crystal-bullet.png",
+   "description": "Shatters into the space around the hit, and the shards bite.",
+   "price": 58,
+   "tier": 4,
+   "tint": "#c48ae2",
+   "effects": {
+    "splashRadius": 52,
+    "damage": 1.08,
+    "debuff": "frostbite"
+   }
+  },
+  {
+   "id": "high-velocity-bullet",
+   "name": "High Velocity Bullet",
+   "family": "gun",
+   "sprite": "items/high-velocity-bullet.png",
+   "description": "Halves the lead you have to give a runner.",
+   "price": 60,
+   "tier": 4,
+   "tint": "#f0d880",
+   "effects": {
+    "projectileSpeed": 1.6,
+    "damage": 1.1
+   }
+  },
+  {
+   "id": "chlorophyte-bullet",
+   "name": "Chlorophyte Bullet",
+   "family": "gun",
+   "sprite": "items/chlorophyte-bullet.png",
+   "description": "Turns corners looking for something to hit.",
+   "price": 84,
+   "tier": 5,
+   "tint": "#7ace54",
+   "effects": {
+    "homing": true
+   }
+  },
+  {
+   "id": "luminite-bullet",
+   "name": "Luminite Bullet",
+   "family": "gun",
+   "sprite": "items/luminite-bullet.png",
+   "description": "The last round. Bounces, steers, and marks what it hits.",
+   "price": 120,
+   "tier": 6,
+   "tint": "#b0e2d6",
+   "effects": {
+    "bounce": 2,
+    "homing": true,
+    "damage": 1.2,
+    "debuff": "ichor"
+   }
+  },
+  {
+   "id": "rocket-i",
+   "name": "Rocket I",
+   "family": "launcher",
+   "sprite": "items/rocket-i.png",
+   "description": "Standard warhead.",
+   "price": 14,
+   "tier": 2,
+   "tint": "#ced2da",
+   "effects": {}
+  },
+  {
+   "id": "rocket-iii",
+   "name": "Rocket III",
+   "family": "launcher",
+   "sprite": "items/rocket-iii.png",
+   "description": "A wider blast for a heavier round.",
+   "price": 66,
+   "tier": 4,
+   "tint": "#e8943c",
+   "effects": {
+    "splashRadius": 1.5,
+    "damage": 1.12
+   }
+  },
+  {
+   "id": "mini-nuke",
+   "name": "Mini Nuke",
+   "family": "launcher",
+   "sprite": "items/mini-nuke.png",
+   "description": "Absurd. Do not fire it at your feet.",
+   "price": 132,
+   "tier": 6,
+   "tint": "#f0e260",
+   "effects": {
+    "splashRadius": 2.3,
+    "damage": 1.4,
+    "debuff": "cursed-inferno"
+   }
+  }
+ ]
+}

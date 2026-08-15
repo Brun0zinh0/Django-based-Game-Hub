@@ -1,0 +1,19 @@
+{
+ "comment": "Content packs, applied in order after the base game loads. A pack adds entries to any list the game is built from, or replaces an existing entry by reusing its id -- so a pack can rebalance base content as well as extend it. Point 'file' at the pack, or inline its content here for a one-off tweak. Set enabled false to switch one off without deleting it -- that is the default, and a player who toggles the pack on the in-game Packs screen overrides it from then on. A pack that is missing, malformed, or has entries without ids is reported to the console and skipped; the base game always plays. See example-pack.json for every key a pack can use.",
+ "packs": [
+  {
+   "id": "example",
+   "name": "Example Pack",
+   "description": "A worked example showing how to add content. Enable it to see two weapons, a creature, an accessory and a feat appear.",
+   "file": "packs/example-pack.json",
+   "enabled": false
+  },
+  {
+   "id": "calamity",
+   "name": "Calamity",
+   "description": "Bosses and ranged gear from the Calamity Mod by the Calamity Mod team, converted onto this game's tier ladder. Uses this game's own sprites, not Calamity's.",
+   "file": "packs/calamity.json",
+   "enabled": true
+  }
+ ]
+}

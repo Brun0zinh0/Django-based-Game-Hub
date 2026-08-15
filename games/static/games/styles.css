@@ -39,10 +39,14 @@ a {
     color: inherit;
 }
 
+/* Matches --console-width in pokemon_rogue.css: the hub and the games share
+   one container so moving between them does not resize the page. The two
+   stylesheets never load together, so the number is repeated rather than
+   shared -- change both. */
 .site-header,
 .page,
 footer {
-    width: min(1100px, calc(100% - 2rem));
+    width: min(1240px, calc(100% - 2rem));
     margin-inline: auto;
 }
 
@@ -2594,6 +2598,12 @@ button.skill-node {
 .arcade-theme-violet {
     --arcade-accent: #e879f9;
     --arcade-accent-soft: rgb(232 121 249 / 18%);
+}
+
+.arcade-card-terra,
+.arcade-theme-terra {
+    --arcade-accent: #8ee05f;
+    --arcade-accent-soft: rgb(142 224 95 / 18%);
 }
 
 .arcade-card {

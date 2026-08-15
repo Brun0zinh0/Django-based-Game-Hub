@@ -7705,6 +7705,26 @@
     });
     document.addEventListener("pointerdown", unlockMusicFromInteraction);
     document.addEventListener("keydown", unlockMusicFromInteraction);
+    // Only the tab you are looking at makes a sound. A hidden one used to keep
+    // playing, and since this game and Pokemon Rogue draw on the same nine
+    // tracks, leaving either open in another tab laid a second copy of the
+    // same song over the first, a minute or so out of step. It resumes only if
+    // hiding is what stopped it, so a tab that never got its first click stays
+    // silent.
+    let musicPausedByHiding = false;
+    document.addEventListener("visibilitychange", () => {
+        if (!backgroundMusic) return;
+        if (document.hidden) {
+            if (!backgroundMusic.paused) {
+                musicPausedByHiding = true;
+                backgroundMusic.pause();
+            }
+        } else if (musicPausedByHiding) {
+            musicPausedByHiding = false;
+            const request = backgroundMusic.play();
+            if (request) request.catch(() => { /* blocked until a gesture */ });
+        }
+    });
     settingsDialog.addEventListener("close", cancelResetConfirmation);
     settingsDialog.addEventListener("click", (event) => {
         if (event.target === settingsDialog) {

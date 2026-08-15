@@ -1,0 +1,230 @@
+{
+  "comment": "Playable Terraria NPCs. Sprites come from The Spriters Resource in the content phase; until then the engine draws a coloured placeholder using 'color'.",
+  "characters": [
+    {
+      "id": "guide",
+      "name": "Guide",
+      "color": "#8ee05f",
+      "sprite": "portraits/guide.png",
+      "startingWeapon": "wooden-bow",
+      "ability": {
+        "name": "Helpful Hints",
+        "description": "Shop prices are 10% cheaper.",
+        "effects": {
+          "shopDiscount": 0.1
+        }
+      },
+      "unlock": {
+        "type": "free"
+      }
+    },
+    {
+      "id": "arms-dealer",
+      "name": "Arms Dealer",
+      "color": "#e0b45f",
+      "sprite": "portraits/arms-dealer.png",
+      "startingWeapon": "flintlock-pistol",
+      "ability": {
+        "name": "Right to Bear Arms",
+        "description": "Guns deal +15% damage. Starts with a Flintlock Pistol.",
+        "effects": {
+          "damageMultiplier": {
+            "gun": 1.15
+          }
+        }
+      },
+      "unlock": {
+        "type": "souls",
+        "cost": 25
+      }
+    },
+    {
+      "id": "nurse",
+      "name": "Nurse",
+      "color": "#f28bb1",
+      "sprite": "portraits/nurse.png",
+      "startingWeapon": "wooden-bow",
+      "ability": {
+        "name": "Triage",
+        "description": "Heal 25% of missing life after every boss round.",
+        "effects": {
+          "healAfterBoss": 0.25
+        }
+      },
+      "unlock": {
+        "type": "souls",
+        "cost": 25
+      }
+    },
+    {
+      "id": "demolitionist",
+      "name": "Demolitionist",
+      "color": "#d96a4b",
+      "sprite": "portraits/demolitionist.png",
+      "startingWeapon": "grenade",
+      "ability": {
+        "name": "Blast Radius",
+        "description": "Explosions are 30% larger. Starts with Grenades.",
+        "effects": {
+          "splashMultiplier": 1.3
+        }
+      },
+      "unlock": {
+        "type": "souls",
+        "cost": 40
+      }
+    },
+    {
+      "id": "goblin-tinkerer",
+      "name": "Goblin Tinkerer",
+      "color": "#7f9fd4",
+      "sprite": "portraits/goblin-tinkerer.png",
+      "startingWeapon": "wooden-yoyo",
+      "ability": {
+        "name": "Tinker's Luck",
+        "description": "One free shop reroll per visit. Starts with a Wooden Yoyo.",
+        "effects": {
+          "freeRerolls": 1
+        }
+      },
+      "unlock": {
+        "type": "souls",
+        "cost": 40
+      }
+    },
+    {
+      "id": "clothier",
+      "name": "Clothier",
+      "color": "#b08bd4",
+      "sprite": "portraits/clothier.png",
+      "startingWeapon": "amethyst-staff",
+      "ability": {
+        "name": "Curse of the Skull",
+        "description": "Fires a bonus homing skull every 5 seconds.",
+        "effects": {
+          "skull": true
+        }
+      },
+      "unlock": {
+        "type": "achievement",
+        "achievement": "defeat-skeletron"
+      }
+    },
+    {
+      "id": "merchant",
+      "name": "Merchant",
+      "color": "#d9c07f",
+      "sprite": "portraits/merchant.png",
+      "startingWeapon": "wooden-bow",
+      "ability": {
+        "name": "Bulk Discount",
+        "description": "Shop prices are 15% cheaper. Starts with a heavier purse.",
+        "effects": {
+          "shopDiscount": 0.15,
+          "startingCoins": 24
+        }
+      },
+      "unlock": {
+        "type": "souls",
+        "cost": 20
+      }
+    },
+    {
+      "id": "dryad",
+      "name": "Dryad",
+      "color": "#7fd6a0",
+      "sprite": "portraits/dryad.png",
+      "startingWeapon": "wooden-bow",
+      "ability": {
+        "name": "Nature's Blessing",
+        "description": "+4 defense and life slowly returns on its own.",
+        "effects": {
+          "defense": 4,
+          "regenPerSecond": 1
+        }
+      },
+      "unlock": {
+        "type": "souls",
+        "cost": 30
+      }
+    },
+    {
+      "id": "tax-collector",
+      "name": "Tax Collector",
+      "color": "#d6b45f",
+      "sprite": "portraits/tax-collector.png",
+      "startingWeapon": "wooden-bow",
+      "ability": {
+        "name": "Taxation",
+        "description": "Every kill pays 40% more.",
+        "effects": {
+          "coinMultiplier": 1.4
+        }
+      },
+      "unlock": {
+        "type": "souls",
+        "cost": 30
+      }
+    },
+    {
+      "id": "wizard",
+      "name": "Wizard",
+      "color": "#9f7fe0",
+      "sprite": "portraits/wizard.png",
+      "startingWeapon": "amethyst-staff",
+      "ability": {
+        "name": "Arcane Study",
+        "description": "+60 maximum mana and staffs cost 30% less to cast.",
+        "effects": {
+          "maxManaBonus": 60,
+          "manaCostMultiplier": 0.7
+        }
+      },
+      "unlock": {
+        "type": "souls",
+        "cost": 35
+      }
+    },
+    {
+      "id": "steampunker",
+      "name": "Steampunker",
+      "color": "#c98f5f",
+      "sprite": "portraits/steampunker.png",
+      "startingWeapon": "flintlock-pistol",
+      "ability": {
+        "name": "Clockwork",
+        "description": "Guns fire 25% faster.",
+        "effects": {
+          "fireRateMultiplier": {
+            "gun": 0.75
+          }
+        }
+      },
+      "unlock": {
+        "type": "souls",
+        "cost": 40
+      }
+    },
+    {
+      "id": "cyborg",
+      "name": "Cyborg",
+      "color": "#7fc9d6",
+      "sprite": "portraits/cyborg.png",
+      "startingWeapon": "grenade-launcher",
+      "ability": {
+        "name": "Ordnance",
+        "description": "Launchers hit 25% harder with a 30% wider blast.",
+        "effects": {
+          "damageMultiplier": {
+            "launcher": 1.25
+          },
+          "splashMultiplier": 1.3
+        }
+      },
+      "unlock": {
+        "type": "souls",
+        "cost": 45
+      }
+    }
+  ]
+}

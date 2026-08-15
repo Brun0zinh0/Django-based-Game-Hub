@@ -1,0 +1,498 @@
+{
+  "guide": {
+    "file": "frames/guide.png",
+    "frameWidth": 40,
+    "frameHeight": 56,
+    "frames": 16,
+    "anims": {
+      "idle": 0,
+      "walk": [
+        1,
+        14
+      ],
+      "jump": 15
+    },
+    "tintable": false
+  },
+  "arms-dealer": {
+    "file": "frames/arms-dealer.png",
+    "frameWidth": 40,
+    "frameHeight": 56,
+    "frames": 16,
+    "anims": {
+      "idle": 0,
+      "walk": [
+        1,
+        14
+      ],
+      "jump": 15
+    },
+    "tintable": false
+  },
+  "nurse": {
+    "file": "frames/nurse.png",
+    "frameWidth": 40,
+    "frameHeight": 56,
+    "frames": 16,
+    "anims": {
+      "idle": 0,
+      "walk": [
+        1,
+        14
+      ],
+      "jump": 15
+    },
+    "tintable": false
+  },
+  "demolitionist": {
+    "file": "frames/demolitionist.png",
+    "frameWidth": 52,
+    "frameHeight": 56,
+    "frames": 16,
+    "anims": {
+      "idle": 0,
+      "walk": [
+        1,
+        14
+      ],
+      "jump": 15
+    },
+    "tintable": false
+  },
+  "goblin-tinkerer": {
+    "file": "frames/goblin-tinkerer.png",
+    "frameWidth": 40,
+    "frameHeight": 56,
+    "frames": 16,
+    "anims": {
+      "idle": 0,
+      "walk": [
+        1,
+        14
+      ],
+      "jump": 15
+    },
+    "tintable": false
+  },
+  "clothier": {
+    "file": "frames/clothier.png",
+    "frameWidth": 48,
+    "frameHeight": 58,
+    "frames": 16,
+    "anims": {
+      "idle": 0,
+      "walk": [
+        1,
+        14
+      ],
+      "jump": 15
+    },
+    "tintable": false
+  },
+  "base-slime": {
+    "file": "frames/base-slime.png",
+    "frameWidth": 32,
+    "frameHeight": 24,
+    "frames": 2,
+    "tintable": true
+  },
+  "zombie": {
+    "file": "frames/zombie.png",
+    "frameWidth": 46,
+    "frameHeight": 46,
+    "frames": 3,
+    "tintable": false
+  },
+  "demon-eye": {
+    "file": "frames/demon-eye.png",
+    "frameWidth": 38,
+    "frameHeight": 24,
+    "frames": 2,
+    "tintable": false,
+    "source": "NPC_2"
+  },
+  "king-slime": {
+    "file": "frames/king-slime.png",
+    "frameWidth": 174,
+    "frameHeight": 150,
+    "frames": 6,
+    "tintable": false,
+    "source": "NPC_50"
+  },
+  "eye-of-cthulhu": {
+    "file": "frames/eye-of-cthulhu.png",
+    "frameWidth": 110,
+    "frameHeight": 166,
+    "frames": 6,
+    "tintable": false,
+    "source": "NPC_4",
+    "anims": {
+      "calm": [
+        0,
+        2
+      ],
+      "enraged": [
+        3,
+        5
+      ]
+    }
+  },
+  "skeletron": {
+    "file": "frames/skeletron.png",
+    "frameWidth": 82,
+    "frameHeight": 102,
+    "frames": 1,
+    "tintable": false
+  },
+  "wall-of-flesh": {
+    "file": "frames/wall-of-flesh.png",
+    "frameWidth": 172,
+    "frameHeight": 52,
+    "frames": 2,
+    "tintable": false
+  },
+  "destroyer": {
+    "file": "frames/destroyer.png",
+    "frameWidth": 180,
+    "frameHeight": 31,
+    "frames": 2,
+    "tintable": false
+  },
+  "eater-of-worlds": {
+    "file": "frames/eater-of-worlds.png",
+    "frameWidth": 146,
+    "frameHeight": 42,
+    "frames": 2,
+    "tintable": false
+  },
+  "plantera": {
+    "file": "frames/plantera.png",
+    "frameWidth": 116,
+    "frameHeight": 154,
+    "frames": 8,
+    "tintable": false,
+    "anims": {
+      "calm": [
+        0,
+        3
+      ],
+      "enraged": [
+        4,
+        7
+      ]
+    }
+  },
+  "golem": {
+    "file": "frames/golem.png",
+    "frameWidth": 146,
+    "frameHeight": 52,
+    "frames": 2,
+    "tintable": false
+  },
+  "duke-fishron": {
+    "file": "frames/duke-fishron.png",
+    "frameWidth": 202,
+    "frameHeight": 162,
+    "frames": 8,
+    "tintable": false
+  },
+  "lunatic-cultist": {
+    "file": "frames/lunatic-cultist.png",
+    "frameWidth": 46,
+    "frameHeight": 64,
+    "frames": 8,
+    "tintable": false
+  },
+  "moon-lord": {
+    "file": "frames/moon-lord.png",
+    "frameWidth": 382,
+    "frameHeight": 268,
+    "frames": 2,
+    "tintable": false
+  },
+  "skeleton": {
+    "file": "frames/skeleton.png",
+    "frameWidth": 40,
+    "frameHeight": 56,
+    "frames": 3,
+    "tintable": false
+  },
+  "goblin-peon": {
+    "file": "frames/goblin-peon.png",
+    "frameWidth": 40,
+    "frameHeight": 56,
+    "frames": 3,
+    "tintable": false
+  },
+  "goblin-warrior": {
+    "file": "frames/goblin-warrior.png",
+    "frameWidth": 40,
+    "frameHeight": 56,
+    "frames": 3,
+    "tintable": false
+  },
+  "dark-caster": {
+    "file": "frames/dark-caster.png",
+    "frameWidth": 40,
+    "frameHeight": 56,
+    "frames": 3,
+    "tintable": false
+  },
+  "bat": {
+    "file": "frames/bat.png",
+    "frameWidth": 44,
+    "frameHeight": 32,
+    "frames": 3,
+    "tintable": false
+  },
+  "hornet": {
+    "file": "frames/hornet.png",
+    "frameWidth": 48,
+    "frameHeight": 40,
+    "frames": 3,
+    "tintable": false
+  },
+  "lava-slime": {
+    "file": "frames/lava-slime.png",
+    "frameWidth": 32,
+    "frameHeight": 24,
+    "frames": 2,
+    "tintable": false
+  },
+  "ice-slime": {
+    "file": "frames/ice-slime.png",
+    "frameWidth": 32,
+    "frameHeight": 24,
+    "frames": 2,
+    "tintable": false
+  },
+  "meteor-head": {
+    "file": "frames/meteor-head.png",
+    "frameWidth": 26,
+    "frameHeight": 28,
+    "frames": 2,
+    "tintable": false
+  },
+  "demon": {
+    "file": "frames/demon.png",
+    "frameWidth": 86,
+    "frameHeight": 62,
+    "frames": 3,
+    "tintable": false
+  },
+  "spider": {
+    "file": "frames/spider.png",
+    "frameWidth": 88,
+    "frameHeight": 30,
+    "frames": 3,
+    "tintable": false
+  },
+  "eater-of-souls": {
+    "file": "frames/eater-of-souls.png",
+    "frameWidth": 42,
+    "frameHeight": 80,
+    "frames": 2,
+    "source": "NPC_6"
+  },
+  "crimera": {
+    "file": "frames/crimera.png",
+    "frameWidth": 42,
+    "frameHeight": 80,
+    "frames": 2,
+    "source": "NPC_173"
+  },
+  "blood-crawler": {
+    "file": "frames/blood-crawler.png",
+    "frameWidth": 72,
+    "frameHeight": 34,
+    "frames": 5,
+    "source": "NPC_239"
+  },
+  "face-monster": {
+    "file": "frames/face-monster.png",
+    "frameWidth": 34,
+    "frameHeight": 66,
+    "frames": 16,
+    "source": "NPC_181"
+  },
+  "snow-flinx": {
+    "file": "frames/snow-flinx.png",
+    "frameWidth": 34,
+    "frameHeight": 36,
+    "frames": 12,
+    "source": "NPC_185"
+  },
+  "ice-bat": {
+    "file": "frames/ice-bat.png",
+    "frameWidth": 52,
+    "frameHeight": 48,
+    "frames": 4,
+    "source": "NPC_150"
+  },
+  "anomura-fungus": {
+    "file": "frames/anomura-fungus.png",
+    "frameWidth": 54,
+    "frameHeight": 42,
+    "frames": 5,
+    "source": "NPC_257"
+  },
+  "mushi-ladybug": {
+    "file": "frames/mushi-ladybug.png",
+    "frameWidth": 46,
+    "frameHeight": 38,
+    "frames": 6,
+    "source": "NPC_258"
+  },
+  "pixie": {
+    "file": "frames/pixie.png",
+    "frameWidth": 54,
+    "frameHeight": 34,
+    "frames": 4,
+    "source": "NPC_75"
+  },
+  "harpy": {
+    "file": "frames/harpy.png",
+    "frameWidth": 100,
+    "frameHeight": 86,
+    "frames": 6,
+    "source": "NPC_48"
+  },
+  "hellbat": {
+    "file": "frames/hellbat.png",
+    "frameWidth": 44,
+    "frameHeight": 32,
+    "frames": 5,
+    "source": "NPC_60"
+  },
+  "illuminant-bat": {
+    "file": "frames/illuminant-bat.png",
+    "frameWidth": 44,
+    "frameHeight": 32,
+    "frames": 4,
+    "source": "NPC_137"
+  },
+  "undead-viking": {
+    "file": "frames/undead-viking.png",
+    "frameWidth": 40,
+    "frameHeight": 62,
+    "frames": 15,
+    "source": "NPC_167"
+  },
+  "wolf": {
+    "file": "frames/wolf.png",
+    "frameWidth": 90,
+    "frameHeight": 52,
+    "frames": 13,
+    "source": "NPC_155"
+  },
+  "gastropod": {
+    "file": "frames/gastropod.png",
+    "frameWidth": 48,
+    "frameHeight": 42,
+    "frames": 11,
+    "source": "NPC_122"
+  },
+  "fire-imp": {
+    "file": "frames/fire-imp.png",
+    "frameWidth": 54,
+    "frameHeight": 56,
+    "frames": 10,
+    "source": "NPC_24"
+  },
+  "merchant": {
+    "file": "frames/merchant.png",
+    "frameWidth": 40,
+    "frameHeight": 56,
+    "frames": 16,
+    "anims": {
+      "idle": 0,
+      "walk": [
+        1,
+        14
+      ],
+      "jump": 15
+    },
+    "tintable": false,
+    "source": "NPC_17"
+  },
+  "dryad": {
+    "file": "frames/dryad.png",
+    "frameWidth": 40,
+    "frameHeight": 56,
+    "frames": 16,
+    "anims": {
+      "idle": 0,
+      "walk": [
+        1,
+        14
+      ],
+      "jump": 15
+    },
+    "tintable": false,
+    "source": "NPC_20"
+  },
+  "tax-collector": {
+    "file": "frames/tax-collector.png",
+    "frameWidth": 42,
+    "frameHeight": 56,
+    "frames": 16,
+    "anims": {
+      "idle": 0,
+      "walk": [
+        1,
+        14
+      ],
+      "jump": 15
+    },
+    "tintable": false,
+    "source": "NPC_441"
+  },
+  "wizard": {
+    "file": "frames/wizard.png",
+    "frameWidth": 40,
+    "frameHeight": 64,
+    "frames": 16,
+    "anims": {
+      "idle": 0,
+      "walk": [
+        1,
+        14
+      ],
+      "jump": 15
+    },
+    "tintable": false,
+    "source": "NPC_108"
+  },
+  "steampunker": {
+    "file": "frames/steampunker.png",
+    "frameWidth": 40,
+    "frameHeight": 58,
+    "frames": 16,
+    "anims": {
+      "idle": 0,
+      "walk": [
+        1,
+        14
+      ],
+      "jump": 15
+    },
+    "tintable": false,
+    "source": "NPC_178"
+  },
+  "cyborg": {
+    "file": "frames/cyborg.png",
+    "frameWidth": 40,
+    "frameHeight": 56,
+    "frames": 16,
+    "anims": {
+      "idle": 0,
+      "walk": [
+        1,
+        14
+      ],
+      "jump": 15
+    },
+    "tintable": false,
+    "source": "NPC_209"
+  }
+}

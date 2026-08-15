@@ -1,0 +1,118 @@
+{
+  "region": "kalos",
+  "sources": [
+    "Painted battleback set (240x112 terrain backdrops), supplied locally.",
+    "Pokemon HeartGold/SoulSilver 'Location Art (Johto)', ripped by Latias Tamer (spriters-resource asset 28243, marked No Credit Needed)."
+  ],
+  "note": "Backdrops are painted scenery; platforms are drawn separately by the battle scene.",
+  "scenes": [
+    {
+      "scene": "route",
+      "source": "battleback/PATH",
+      "source_size": [
+        240,
+        112
+      ],
+      "colours": 24
+    },
+    {
+      "scene": "grass",
+      "source": "battleback/TALL GRASS NIGHT",
+      "source_size": [
+        240,
+        112
+      ],
+      "colours": 39
+    },
+    {
+      "scene": "water",
+      "source": "battleback/OCEAN NIGHT",
+      "source_size": [
+        240,
+        112
+      ],
+      "colours": 43
+    },
+    {
+      "scene": "rock",
+      "source": "battleback/MOUNTAIN NIGHT",
+      "source_size": [
+        240,
+        112
+      ],
+      "colours": 49
+    },
+    {
+      "scene": "cave",
+      "source": "battleback/CAVE",
+      "source_size": [
+        240,
+        112
+      ],
+      "colours": 8
+    },
+    {
+      "scene": "pond",
+      "source": "battleback/LAKE NIGHT",
+      "source_size": [
+        240,
+        112
+      ],
+      "colours": 124
+    },
+    {
+      "scene": "ice",
+      "source": "battleback/SNOW",
+      "source_size": [
+        240,
+        112
+      ],
+      "colours": 18
+    },
+    {
+      "scene": "sand",
+      "source": "battleback/BEACH NIGHT",
+      "source_size": [
+        240,
+        112
+      ],
+      "colours": 25
+    },
+    {
+      "scene": "gym",
+      "source": "location-art/sprout-tower/morning",
+      "source_size": [
+        256,
+        160
+      ],
+      "colours": 80
+    },
+    {
+      "scene": "psychic",
+      "source": "location-art/tohjo-falls/night",
+      "source_size": [
+        256,
+        160
+      ],
+      "colours": 71
+    },
+    {
+      "scene": "rocket",
+      "source": "location-art/mt-mortar/morning",
+      "source_size": [
+        256,
+        160
+      ],
+      "colours": 65
+    },
+    {
+      "scene": "league",
+      "source": "location-art/dragons-den/morning",
+      "source_size": [
+        256,
+        160
+      ],
+      "colours": 75
+    }
+  ]
+}
