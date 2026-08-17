@@ -18,7 +18,11 @@ tmp/
 # originals are the artists' to distribute, not this repo's.
 .battleback-source/
 .deviantart-source/
-backgrounds/
+# Anchored to the repo root. Bare "backgrounds/" matches at any depth, and it
+# was quietly swallowing games/static/games/assets/terra/backgrounds -- the
+# game's own arena art -- so 23 of 33 backdrops would never have been
+# committed and the biomes would point at pictures that were not there.
+/backgrounds/
 
 # Reference material the Terra Boss art was matched against: someone else's
 # screenshot gallery and a clip of the real game. Only these two at the top

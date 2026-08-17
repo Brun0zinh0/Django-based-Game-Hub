@@ -22,10 +22,11 @@
  },
  "snow-clutter": {
   "file": "decor/snow-clutter.png",
-  "frameWidth": 16,
+  "frameWidth": 46,
   "frameHeight": 20,
-  "frames": 6,
-  "source": "Tiles_186"
+  "frames": 2,
+  "source": "Tiles_186",
+  "note": "Re-cut and recoloured by build_terra_clutter.py; snow and the underworld shared one file."
  },
  "snow-tree": {
   "file": "decor/snow-tree.png",
@@ -120,9 +121,10 @@
  },
  "underworld-clutter": {
   "file": "decor/underworld-clutter.png",
-  "frameWidth": 16,
+  "frameWidth": 46,
   "frameHeight": 20,
-  "frames": 6,
-  "source": "Tiles_186"
+  "frames": 2,
+  "source": "Tiles_186",
+  "note": "Re-cut and recoloured by build_terra_clutter.py; snow and the underworld shared one file."
  }
 }

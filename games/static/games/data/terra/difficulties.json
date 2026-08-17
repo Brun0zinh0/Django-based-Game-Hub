@@ -1,60 +1,61 @@
 {
-  "comment": "A difficulty ladder, in order. Each level multiplies the base numbers rather than replacing them, so content changes flow through automatically. A level is unlocked by reaching 'unlockRound' on the level before it, and the first is always available. Souls scale with the punishment, which is what makes climbing worth it once everything is bought.",
-  "difficulties": [
-    {
-      "id": "journey",
-      "name": "Journey",
-      "description": "The game as designed. Nothing is scaled.",
-      "enemyHp": 1,
-      "enemyDamage": 1,
-      "soulReward": 1,
-      "shopItems": 0,
-      "startingCoinsMultiplier": 1
-    },
-    {
-      "id": "classic",
-      "name": "Classic",
-      "description": "Tougher creatures, and more souls for beating them.",
-      "unlockRound": 10,
-      "enemyHp": 1.25,
-      "enemyDamage": 1.15,
-      "soulReward": 1.35,
-      "shopItems": 0,
-      "startingCoinsMultiplier": 1
-    },
-    {
-      "id": "expert",
-      "name": "Expert",
-      "description": "Hits land harder and the shop offers one option fewer.",
-      "unlockRound": 12,
-      "enemyHp": 1.6,
-      "enemyDamage": 1.35,
-      "soulReward": 1.8,
-      "shopItems": -1,
-      "startingCoinsMultiplier": 1
-    },
-    {
-      "id": "master",
-      "name": "Master",
-      "description": "Everything hurts, and you start with an empty purse.",
-      "unlockRound": 12,
-      "enemyHp": 2.1,
-      "enemyDamage": 1.6,
-      "soulReward": 2.4,
-      "shopItems": -1,
-      "startingCoinsMultiplier": 0.5
-    },
-    {
-      "id": "legend",
-      "name": "Legend",
-      "description": "A boss every fourth round, and no room for a mistake.",
-      "unlockRound": 12,
-      "enemyHp": 2.8,
-      "enemyDamage": 2,
-      "soulReward": 3.2,
-      "shopItems": -1,
-      "startingCoinsMultiplier": 0.5,
-      "bossEvery": 4
-    }
-  ]
+ "comment": "A difficulty ladder, in order. Each level multiplies the base numbers rather than replacing them, so content changes flow through automatically. A level is unlocked by reaching 'unlockRound' on the level before it, and the first is always available. Souls scale with the punishment, which is what makes climbing worth it once everything is bought.",
+ "difficulties": [
+  {
+   "id": "journey",
+   "name": "Journey",
+   "description": "The game as designed, and you patch up between rounds.",
+   "enemyHp": 1,
+   "enemyDamage": 1,
+   "soulReward": 1,
+   "shopItems": 0,
+   "startingCoinsMultiplier": 1,
+   "healBetweenRounds": 1
+  },
+  {
+   "id": "classic",
+   "name": "Classic",
+   "description": "Tougher creatures, and more souls for beating them.",
+   "unlockRound": 10,
+   "enemyHp": 1.25,
+   "enemyDamage": 1.15,
+   "soulReward": 1.35,
+   "shopItems": 0,
+   "startingCoinsMultiplier": 1
+  },
+  {
+   "id": "expert",
+   "name": "Expert",
+   "description": "Hits land harder and the shop offers one option fewer.",
+   "unlockRound": 12,
+   "enemyHp": 1.6,
+   "enemyDamage": 1.35,
+   "soulReward": 1.8,
+   "shopItems": -1,
+   "startingCoinsMultiplier": 1
+  },
+  {
+   "id": "master",
+   "name": "Master",
+   "description": "Everything hurts, and you start with an empty purse.",
+   "unlockRound": 12,
+   "enemyHp": 2.1,
+   "enemyDamage": 1.6,
+   "soulReward": 2.4,
+   "shopItems": -1,
+   "startingCoinsMultiplier": 0.5
+  },
+  {
+   "id": "legend",
+   "name": "Legend",
+   "description": "A boss every fourth round, and no room for a mistake.",
+   "unlockRound": 12,
+   "enemyHp": 2.8,
+   "enemyDamage": 2,
+   "soulReward": 3.2,
+   "shopItems": -1,
+   "startingCoinsMultiplier": 0.5,
+   "bossEvery": 4
+  }
+ ]
 }

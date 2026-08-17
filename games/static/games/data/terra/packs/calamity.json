@@ -1,5 +1,249 @@
 {
  "comment": "A slice of the Calamity Mod: its pre-hardmode bosses, two from early hardmode, and the ranged gear that drops from them. Stats are converted from the Calamity wiki with the same rules the vanilla weapons use, so these sit on the same tier ladder rather than beside it. Each boss is placed against the vanilla one it shares a progression slot with instead of having its health copied over. No Calamity artwork is included: every entry points at a sprite this game already ships, so what reads as Calamity here is the names, the numbers and the behaviour. Melee, magic and summon content is left out because this game is ranged-only. Written by build_terra_calamity.py.",
+ "frameSprites": {
+  "calamity-desert-scourge": {
+   "file": "calamity/frames/calamity-desert-scourge.png",
+   "frameWidth": 160,
+   "frameHeight": 66,
+   "frames": 7,
+   "tintable": false
+  },
+  "calamity-aquatic-scourge": {
+   "file": "calamity/frames/calamity-aquatic-scourge.png",
+   "frameWidth": 187,
+   "frameHeight": 63,
+   "frames": 1,
+   "tintable": false
+  },
+  "calamity-perforators": {
+   "file": "calamity/frames/calamity-perforators.png",
+   "frameWidth": 88,
+   "frameHeight": 95,
+   "frames": 10,
+   "tintable": false
+  },
+  "calamity-slime-god": {
+   "file": "calamity/frames/calamity-slime-god.png",
+   "frameWidth": 154,
+   "frameHeight": 101,
+   "frames": 6,
+   "tintable": false
+  },
+  "calamity-cnidrion": {
+   "file": "calamity/frames/calamity-cnidrion.png",
+   "frameWidth": 101,
+   "frameHeight": 61,
+   "frames": 10,
+   "tintable": false
+  },
+  "calamity-crimson-slime-spawn": {
+   "file": "calamity/frames/calamity-crimson-slime-spawn.png",
+   "frameWidth": 44,
+   "frameHeight": 32,
+   "frames": 2,
+   "tintable": false
+  },
+  "calamity-wulfrum-drone": {
+   "file": "calamity/frames/calamity-wulfrum-drone.png",
+   "frameWidth": 32,
+   "frameHeight": 32,
+   "frames": 6,
+   "tintable": false
+  },
+  "calamity-aero-slime": {
+   "file": "calamity/frames/calamity-aero-slime.png",
+   "frameWidth": 64,
+   "frameHeight": 36,
+   "frames": 4,
+   "tintable": false
+  },
+  "calamity-cryo-slime": {
+   "file": "calamity/frames/calamity-cryo-slime.png",
+   "frameWidth": 56,
+   "frameHeight": 44,
+   "frames": 2,
+   "tintable": false
+  },
+  "calamity-sulphurous-skater": {
+   "file": "calamity/frames/calamity-sulphurous-skater.png",
+   "frameWidth": 48,
+   "frameHeight": 46,
+   "frames": 5,
+   "tintable": false
+  },
+  "calamity-crabulon": {
+   "file": "calamity/frames/calamity-crabulon.png",
+   "frameWidth": 193,
+   "frameHeight": 120,
+   "frames": 12,
+   "tintable": false,
+   "anims": {
+    "calm": [
+     0,
+     5
+    ],
+    "enraged": [
+     6,
+     11
+    ]
+   }
+  },
+  "calamity-hive-mind": {
+   "file": "calamity/frames/calamity-hive-mind.png",
+   "frameWidth": 191,
+   "frameHeight": 73,
+   "frames": 24,
+   "tintable": false,
+   "anims": {
+    "calm": [
+     0,
+     15
+    ],
+    "enraged": [
+     16,
+     23
+    ]
+   }
+  },
+  "calamity-cryogen": {
+   "file": "calamity/frames/calamity-cryogen.png",
+   "frameWidth": 155,
+   "frameHeight": 151,
+   "frames": 2,
+   "tintable": false,
+   "anims": {
+    "calm": [
+     0,
+     0
+    ],
+    "enraged": [
+     1,
+     1
+    ]
+   }
+  }
+ },
+ "itemSprites": {
+  "barinade": {
+   "file": "calamity/items/barinade.png",
+   "size": [
+    30,
+    58
+   ]
+  },
+  "aquashard-shotgun": {
+   "file": "calamity/items/aquashard-shotgun.png",
+   "size": [
+    62,
+    26
+   ]
+  },
+  "scourge-of-the-desert": {
+   "file": "calamity/items/scourge-of-the-desert.png",
+   "size": [
+    42,
+    42
+   ]
+  },
+  "fungicide": {
+   "file": "calamity/items/fungicide.png",
+   "size": [
+    40,
+    26
+   ]
+  },
+  "shadethrower": {
+   "file": "calamity/items/shadethrower.png",
+   "size": [
+    70,
+    28
+   ]
+  },
+  "blood-bath": {
+   "file": "calamity/items/blood-bath.png",
+   "size": [
+    40,
+    48
+   ]
+  },
+  "overloaded-blaster": {
+   "file": "calamity/items/overloaded-blaster.png",
+   "size": [
+    42,
+    34
+   ]
+  },
+  "hoarfrost-bow": {
+   "file": "calamity/items/hoarfrost-bow.png",
+   "size": [
+    34,
+    62
+   ]
+  },
+  "barinautical": {
+   "file": "calamity/items/barinautical.png",
+   "size": [
+    28,
+    54
+   ]
+  },
+  "aerospec-helmet": {
+   "file": "calamity/items/aerospec-helmet.png",
+   "size": [
+    22,
+    22
+   ]
+  },
+  "aerospec-chest": {
+   "file": "calamity/items/aerospec-chest.png",
+   "size": [
+    34,
+    20
+   ]
+  },
+  "aerospec-legs": {
+   "file": "calamity/items/aerospec-legs.png",
+   "size": [
+    22,
+    18
+   ]
+  },
+  "daedalus-helmet": {
+   "file": "calamity/items/daedalus-helmet.png",
+   "size": [
+    26,
+    22
+   ]
+  },
+  "daedalus-chest": {
+   "file": "calamity/items/daedalus-chest.png",
+   "size": [
+    42,
+    28
+   ]
+  },
+  "daedalus-legs": {
+   "file": "calamity/items/daedalus-legs.png",
+   "size": [
+    22,
+    18
+   ]
+  },
+  "rover-drive": {
+   "file": "calamity/items/rover-drive.png",
+   "size": [
+    34,
+    30
+   ]
+  },
+  "aero-stone": {
+   "file": "calamity/items/aero-stone.png",
+   "size": [
+    36,
+    38
+   ]
+  }
+ },
  "weapons": [
   {
    "id": "calamity-barinade",
@@ -13,7 +257,7 @@
    "spreadDeg": 6,
    "tier": 3,
    "price": 54,
-   "sprite": "items/tendon-bow.png",
+   "sprite": "calamity/items/barinade.png",
    "description": "Turns every arrow into a pair of fins that converge on the target."
   },
   {
@@ -28,7 +272,7 @@
    "spreadDeg": 16,
    "tier": 3,
    "price": 54,
-   "sprite": "items/boomstick.png",
+   "sprite": "calamity/items/aquashard-shotgun.png",
    "description": "Fires a spread of aquamarine shards."
   },
   {
@@ -42,7 +286,7 @@
    "pierce": 2,
    "tier": 1,
    "price": 26,
-   "sprite": "items/javelin.png",
+   "sprite": "calamity/items/scourge-of-the-desert.png",
    "description": "A javelin that burrows and comes back up under whatever it was aimed at."
   },
   {
@@ -56,7 +300,7 @@
    "homing": true,
    "tier": 2,
    "price": 40,
-   "sprite": "items/blowgun.png",
+   "sprite": "calamity/items/fungicide.png",
    "description": "Rounds burst into spores that go looking for whatever is nearby."
   },
   {
@@ -72,7 +316,7 @@
    "pierce": 2,
    "tier": 4,
    "price": 68,
-   "sprite": "items/flamethrower.png",
+   "sprite": "calamity/items/shadethrower.png",
    "description": "Four bursts of shade at close range. Each one passes through twice."
   },
   {
@@ -89,7 +333,7 @@
    "pierce": 1,
    "tier": 5,
    "price": 82,
-   "sprite": "items/golden-shower.png",
+   "sprite": "calamity/items/blood-bath.png",
    "description": "Calls blood down from above. It falls through whatever is under it."
   },
   {
@@ -106,7 +350,7 @@
    "bounce": 2,
    "tier": 4,
    "price": 68,
-   "sprite": "items/elf-melter.png",
+   "sprite": "calamity/items/overloaded-blaster.png",
    "description": "Three slime pearls that punch through, then ricochet off whatever they land on."
   },
   {
@@ -123,7 +367,7 @@
    "hardmode": true,
    "tier": 6,
    "price": 96,
-   "sprite": "items/ice-bow.png",
+   "sprite": "calamity/items/hoarfrost-bow.png",
    "description": "Two mist arrows that break into frost where they land."
   },
   {
@@ -141,7 +385,7 @@
    "hardmode": true,
    "tier": 6,
    "price": 96,
-   "sprite": "items/pulse-bow.png",
+   "sprite": "calamity/items/barinautical.png",
    "description": "Bursts of three electric bolts that go off on contact."
   }
  ],
@@ -157,7 +401,7 @@
      "slot": "head",
      "defense": 5,
      "price": 46,
-     "sprite": "items/necro-helmet.png"
+     "sprite": "calamity/items/aerospec-helmet.png"
     },
     {
      "id": "calamity-aerospec-breastplate",
@@ -165,7 +409,7 @@
      "slot": "chest",
      "defense": 7,
      "price": 56,
-     "sprite": "items/necro-breastplate.png"
+     "sprite": "calamity/items/aerospec-chest.png"
     },
     {
      "id": "calamity-aerospec-leggings",
@@ -173,7 +417,7 @@
      "slot": "legs",
      "defense": 6,
      "price": 46,
-     "sprite": "items/necro-greaves.png"
+     "sprite": "calamity/items/aerospec-legs.png"
     }
    ],
    "setBonus": {
@@ -202,7 +446,7 @@
      "slot": "head",
      "defense": 14,
      "price": 108,
-     "sprite": "items/frost-helmet.png"
+     "sprite": "calamity/items/daedalus-helmet.png"
     },
     {
      "id": "calamity-daedalus-breastplate",
@@ -210,7 +454,7 @@
      "slot": "chest",
      "defense": 19,
      "price": 128,
-     "sprite": "items/frost-breastplate.png"
+     "sprite": "calamity/items/daedalus-chest.png"
     },
     {
      "id": "calamity-daedalus-leggings",
@@ -218,7 +462,7 @@
      "slot": "legs",
      "defense": 15,
      "price": 108,
-     "sprite": "items/frost-leggings.png"
+     "sprite": "calamity/items/daedalus-legs.png"
     }
    ],
    "setBonus": {
@@ -242,7 +486,7 @@
    "name": "Rover Drive",
    "tier": 2,
    "price": 42,
-   "sprite": "items/cobalt-shield.png",
+   "sprite": "calamity/items/rover-drive.png",
    "description": "A barrier that soaks 20 damage, then rebuilds if you can stay out of trouble for a few seconds.",
    "effects": {
     "barrier": {
@@ -258,7 +502,7 @@
    "hardmode": true,
    "tier": 4,
    "price": 76,
-   "sprite": "items/shiny-red-balloon.png",
+   "sprite": "calamity/items/aero-stone.png",
    "description": "Adds a little under a second of flight to whatever wings you are wearing.",
    "effects": {
     "flightBonusMs": 833
@@ -266,6 +510,24 @@
   }
  ],
  "mobs": [
+  {
+   "id": "calamity-crimson-slime-spawn",
+   "name": "Crimson Slime Spawn",
+   "hp": 54,
+   "contactDamage": 16,
+   "coins": 3,
+   "color": "#d05a5a",
+   "sizePx": 42,
+   "behavior": "slime-hops",
+   "speed": 96,
+   "minRound": 14,
+   "splitAtHp": 0.5,
+   "splitInto": 2,
+   "splitScale": 0.68,
+   "skin": {
+    "id": "calamity-crimson-slime-spawn"
+   }
+  },
   {
    "id": "calamity-wulfrum-drone",
    "name": "Wulfrum Drone",
@@ -287,8 +549,7 @@
     "damage": 9
    },
    "skin": {
-    "id": "meteor-head",
-    "tint": "#d8c890"
+    "id": "calamity-wulfrum-drone"
    },
    "biomes": [
     "forest",
@@ -309,8 +570,7 @@
    "behavior": "flyer",
    "speed": 132,
    "skin": {
-    "id": "base-slime",
-    "tint": "#a8d8f0"
+    "id": "calamity-aero-slime"
    },
    "biomes": [
     "sky",
@@ -331,8 +591,7 @@
    "sizePx": 52,
    "behavior": "slime-hops",
    "skin": {
-    "id": "ice-slime",
-    "tint": "#b0ecff"
+    "id": "calamity-cryo-slime"
    },
    "biomes": [
     "ice",
@@ -353,8 +612,7 @@
    "sizePx": 46,
    "behavior": "slime-hops",
    "skin": {
-    "id": "blood-crawler",
-    "tint": "#d0e078"
+    "id": "calamity-sulphurous-skater"
    },
    "biomes": [
     "jungle",
@@ -384,8 +642,7 @@
     "damage": 15
    },
    "skin": {
-    "id": "crimera",
-    "tint": "#8ad0e0"
+    "id": "calamity-cnidrion"
    },
    "biomes": [
     "forest",
@@ -431,7 +688,7 @@
     }
    ],
    "skin": {
-    "id": "eater-of-worlds"
+    "id": "calamity-desert-scourge"
    },
    "biomes": [
     "forest",
@@ -477,8 +734,10 @@
      "everyMs": 2400,
      "count": 1,
      "spreadDeg": 0,
-     "speed": 300,
-     "damage": 14
+     "speed": 560,
+     "damage": 14,
+     "gravity": 520,
+     "lob": true
     },
     "servantsAtHpFractions": [
      0.8,
@@ -491,26 +750,46 @@
    },
    "phases": [
     {
-     "atHp": 0.45,
+     "atHp": 0.66,
      "name": "Clawing",
      "say": "The claws come down faster than it can walk.",
+     "config": {
+      "slamEveryMs": 1700,
+      "walkSpeed": 92,
+      "shockRadius": 174
+     },
+     "shoot": {
+      "everyMs": 1800,
+      "count": 3,
+      "spreadDeg": 26,
+      "speed": 560,
+      "damage": 15,
+      "gravity": 520,
+      "lob": true
+     }
+    },
+    {
+     "atHp": 0.33,
+     "name": "Sporing",
+     "say": "Mushrooms come down everywhere at once.",
      "config": {
       "slamEveryMs": 1400,
       "walkSpeed": 104,
       "shockRadius": 190
      },
      "shoot": {
-      "everyMs": 1500,
-      "count": 2,
-      "spreadDeg": 26,
-      "speed": 330,
-      "damage": 16
+      "everyMs": 1300,
+      "count": 6,
+      "spreadDeg": 62,
+      "speed": 560,
+      "damage": 16,
+      "gravity": 520,
+      "lob": true
      }
     }
    ],
    "skin": {
-    "id": "king-slime",
-    "tint": "#c8a8e0"
+    "id": "calamity-crabulon"
    },
    "biomes": [
     "mushroom",
@@ -546,6 +825,7 @@
    "sizePx": 100,
    "pattern": "teleporter",
    "patternConfig": {
+    "enrageAtHp": 0.8,
     "blinkEveryMs": 2500,
     "telegraphMs": 420,
     "blinkRadius": 200,
@@ -592,8 +872,8 @@
     }
    ],
    "skin": {
-    "id": "eater-of-worlds",
-    "tint": "#a878d0"
+    "id": "calamity-hive-mind",
+    "enrageAnim": true
    },
    "biomes": [
     "corruption"
@@ -637,9 +917,12 @@
      "everyMs": 1100,
      "count": 3,
      "spreadDeg": 30,
-     "speed": 320,
-     "damage": 16
+     "speed": 500,
+     "damage": 16,
+     "gravity": 440
     },
+    "damageReductionPerServant": 0.3,
+    "damageReductionCap": 0.9,
     "servantsAtHpFractions": [
      0.75,
      0.5,
@@ -684,8 +967,7 @@
     }
    ],
    "skin": {
-    "id": "eye-of-cthulhu",
-    "tint": "#d05858",
+    "id": "calamity-perforators",
     "facePlayer": true
    },
    "biomes": [
@@ -725,13 +1007,15 @@
     "bigHopAirTimeMs": 900,
     "minScale": 0.7,
     "summonEveryHpFraction": 0.12,
-    "summonMob": "green-slime",
+    "summonMob": "calamity-crimson-slime-spawn",
     "shoot": {
      "everyMs": 1900,
      "count": 2,
      "spreadDeg": 30,
-     "speed": 300,
-     "damage": 16
+     "speed": 540,
+     "damage": 16,
+     "gravity": 480,
+     "lob": true
     }
    },
    "phases": [
@@ -774,8 +1058,7 @@
     }
    ],
    "skin": {
-    "id": "king-slime",
-    "tint": "#9ce07a",
+    "id": "calamity-slime-god",
     "alpha": 0.94
    },
    "biomes": [
@@ -820,8 +1103,8 @@
     "followY": 1.4,
     "shoot": {
      "everyMs": 2000,
-     "count": 6,
-     "spreadDeg": 96,
+     "count": 16,
+     "ring": true,
      "speed": 320,
      "damage": 22
     },
@@ -833,6 +1116,21 @@
     "servantCount": 3
    },
    "phases": [
+    {
+     "atHp": 0.8,
+     "name": "Bursting",
+     "say": "It climbs above you and fires in bursts.",
+     "config": {
+      "driftMs": 1500
+     },
+     "shoot": {
+      "everyMs": 1500,
+      "count": 10,
+      "spreadDeg": 120,
+      "speed": 340,
+      "damage": 23
+     }
+    },
     {
      "atHp": 0.6,
      "name": "Shell Cracked",
@@ -884,8 +1182,7 @@
     }
    ],
    "skin": {
-    "id": "eye-of-cthulhu",
-    "tint": "#a8e0ff",
+    "id": "calamity-cryogen",
     "facePlayer": true
    },
    "biomes": [
@@ -973,8 +1270,7 @@
     }
    ],
    "skin": {
-    "id": "destroyer",
-    "tint": "#8ce0b8"
+    "id": "calamity-aquatic-scourge"
    },
    "biomes": [
     "jungle",

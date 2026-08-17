@@ -32,11 +32,29 @@
     const SAVE_KEY = "terraBossSave.v1";
     const VIEW_WIDTH = 960;
     const VIEW_HEIGHT = 540;
+    // The ground is built in columns so it can rise and fall. 48 is wide
+    // enough that the arena is a few dozen bodies rather than hundreds, and
+    // narrow enough that a slope reads as a slope.
+    const GROUND_COLUMN = 48;
+    // The tallest step the ground may take between two columns. Walkers jump
+    // when blocked and slimes hop, but only clear so much; anything taller
+    // than this is a wall that strands them.
+    const STEP_LIMIT = 24;
+    // How much of a fight has to be airborne before the arena grows ledges.
+    const AIRBORNE_FOR_PLATFORMS = 0.25;
+    // A corridor fight runs this many screens end to end. The Wall of Flesh
+    // is a chase, and a chase needs somewhere to run to.
+    const CORRIDOR_SCREENS = 4;
     // Terraria's life maths: you start on five 20-point hearts and Life
     // Crystals add one heart each, so max life is always a multiple of 20.
     const PLAYER_MAX_HP = 100;
     const HP_PER_HEART = 20;
-    const BACKGROUND_COUNT = 10;
+    // Terraria's row length, and this game shares its 20-per-heart
+    // scale and 400 ceiling -- so a full loadout is two rows of ten.
+    const HEARTS_PER_ROW = 10;
+    // Raised as backdrops were added; every one listed by a biome has to
+    // be preloaded or the arena falls back to a flat colour.
+    const BACKGROUND_COUNT = 33;
     // How much likelier a mob is to show up in a biome it belongs to.
     const BIOME_WEIGHT_BONUS = 5;
     // Terraria art is drawn 1:1 (16px tiles, 40x56 player frames). Every
@@ -389,6 +407,12 @@
     // What each weapon category fires: a real item/projectile sprite when it
     // loaded, otherwise the generated placeholder. "align" keeps the art
     // pointing along its velocity (Terraria projectile art points up).
+    // How much of its inventory icon a shot draws at. The icons are sized to
+    // be legible in a slot; in flight they only have to read as a shot.
+    const PROJECTILE_ART_SCALE = 0.6;
+    // The most coin sprites one kill may put on the floor, however rich it is.
+    const COIN_DROP_MAX = 12;
+
     const PROJECTILE_ART = {
         bow: { item: "arrow", align: true },
         gun: { item: "bullet", align: true },
@@ -927,6 +951,18 @@
     }
 
     /**
+     * Does this entry point at a picture we can draw?
+     *
+     * This used to be a check for the "items/" prefix, which quietly meant a
+     * pack could only use the base game's art: a pack shipping its own under
+     * its own folder passed the sprite through, failed the prefix test, and
+     * drew a "?" with no error anywhere.
+     */
+    function hasArt(sprite) {
+        return typeof sprite === "string" && sprite.toLowerCase().endsWith(".png");
+    }
+
+    /**
      * An icon showing frame 0 of an animation strip. The strips are laid out
      * horizontally, so the element is sized to one frame and the background is
      * scaled to match — anything past the first frame stays outside the box.
@@ -1038,7 +1074,7 @@
                 }
                 const icon = document.createElement("span");
                 icon.className = "tb-codex-icon tb-codex-icon-item";
-                if (weapon.sprite && weapon.sprite.startsWith("items/")) {
+                if (hasArt(weapon.sprite)) {
                     const image = document.createElement("img");
                     image.src = spritePath(weapon.sprite);
                     image.alt = "";
@@ -1105,7 +1141,7 @@
     function itemIcon(item) {
         const icon = document.createElement("span");
         icon.className = "tb-slot-icon";
-        if (item && item.sprite && item.sprite.startsWith("items/")) {
+        if (item && hasArt(item.sprite)) {
             const image = document.createElement("img");
             image.src = spritePath(item.sprite);
             image.alt = "";
@@ -1128,6 +1164,7 @@
             box.append(itemIcon(item));
             box.title = `${item.name} — click to unequip`;
             box.addEventListener("click", onClick);
+            attachTip(box, item, emptyLabel);
         } else {
             // An empty slot is still a button in the tree, and without this it
             // announces as nothing at all.
@@ -1412,7 +1449,7 @@
         for (const offer of bagState.offers) {
             const row = document.createElement("li");
 
-            if (offer.item.sprite && offer.item.sprite.startsWith("items/")) {
+            if (hasArt(offer.item.sprite)) {
                 const icon = document.createElement("img");
                 icon.className = "tb-shop-icon";
                 icon.src = spritePath(offer.item.sprite);
@@ -1818,6 +1855,308 @@
         return base * (shopState.rerollsUsed - freeRerolls + 1);
     }
 
+    /* ---------- vendor: hover detail and drag-to-buy ---------- */
+
+    const tipUi = { box: null, forElement: null };
+
+    // Effect keys read like code otherwise: "damageMultiplier" on a card.
+    const EFFECT_LABELS = {
+        // Read off the data rather than invented: these are every key that
+        // actually appears in accessories, ammo, potions and armour.
+        damage: "Damage", damageMultiplier: "Damage", bowDamage: "Bow damage",
+        magicDamage: "Magic damage", defense: "Defense", crit: "Crit",
+        critBonus: "Crit", moveSpeed: "Speed", moveSpeedMultiplier: "Speed",
+        jumpMultiplier: "Jump", extraJumps: "Extra jumps", dash: "Dash",
+        flight: "Flight", wings: "Wings", noGravity: "Ignores gravity",
+        fallSpeed: "Fall speed", pierce: "Pierce", pierceBonus: "Pierce",
+        bounce: "Bounce", homing: "Homing", splashRadius: "Blast",
+        projectileSpeed: "Velocity", projectileSpeedMultiplier: "Velocity",
+        regenPerSecond: "Regeneration", maxHpBonus: "Max health",
+        manaRegen: "Mana regen", thorns: "Thorns", debuff: "Inflicts",
+        damageTaken: "Damage taken", damageTakenMultiplier: "Damage taken",
+        pickupRange: "Pickup range", coins: "Coins",
+    };
+
+    /** A multiplier reads as a percentage; a flat number reads as itself. */
+    function formatEffect(key, value) {
+        if (typeof value === "number") {
+            if (/Multiplier$/.test(key) || key === "crit" || key === "critBonus") {
+                const percent = Math.round((value > 1 ? value - 1 : value) * 100);
+                return `${percent > 0 ? "+" : ""}${percent}%`;
+            }
+            if (key === "flightBonusMs" || key === "flight") {
+                return `+${(value / 1000).toFixed(1)} s`;
+            }
+            return value > 0 ? `+${value}` : String(value);
+        }
+        if (typeof value === "boolean") {
+            return value ? "yes" : "no";
+        }
+        if (value && typeof value === "object") {
+            return Object.keys(value).join(", ");
+        }
+        return String(value);
+    }
+
+    /**
+     * Everything worth knowing about an item, the way a vendor screen says it.
+     *
+     * Terraria tells you what a thing does while the cursor is over it, and
+     * this shop only ever showed a name and a one-line blurb -- you had to buy
+     * something to find out what it was. Lines are built per kind because a
+     * bow and a potion have nothing in common to report.
+     */
+    function itemDetailLines(item, kind) {
+        const lines = [];
+        const add = (label, value) => {
+            if (value !== undefined && value !== null && value !== "") {
+                lines.push([label, String(value)]);
+            }
+        };
+        if (kind === "weapon" || item.damage !== undefined) {
+            add("Damage", item.damage);
+            if (item.fireRateMs) {
+                add("Use time", `${item.fireRateMs} ms`);
+                const shots = item.shots || 1;
+                add("DPS", Math.round((item.damage || 0) * shots * 1000 / item.fireRateMs));
+            }
+            if ((item.shots || 1) > 1) add("Shots", item.shots);
+            if (item.pierce) add("Pierce", item.pierce);
+            if (item.splashRadius) add("Blast", `${item.splashRadius} px`);
+            if (item.mana) add("Mana", item.mana);
+            if (item.category) add("Class", item.category);
+        }
+        if (item.defense !== undefined) add("Defense", item.defense);
+        if (item.pieces) add("Set", `${item.pieces.length} pieces`);
+        if (item.heal) add("Heals", item.heal);
+        // Potions carry seconds, not milliseconds.
+        if (item.seconds) add("Lasts", `${item.seconds} s`);
+        if (item.family) add("Fits", item.family);
+        // Ammunition and potions say what they do through an effects object
+        // rather than through named stats, and it is the only thing worth
+        // knowing about most of them.
+        for (const [key, value] of Object.entries(item.effects || {})) {
+            add(EFFECT_LABELS[key] || key, formatEffect(key, value));
+        }
+        if (item.hardmode) add("Requires", "Hardmode");
+        if (item.tier !== undefined) add("Tier", item.tier);
+        return lines;
+    }
+
+    /** Build the floating panel's contents for one item. */
+    function fillTip(item, kind, price) {
+        const box = tipUi.box;
+        box.textContent = "";
+        const head = document.createElement("div");
+        head.className = "tb-tip-head";
+        if (hasArt(item.sprite)) {
+            const icon = document.createElement("img");
+            icon.src = spritePath(item.sprite);
+            icon.alt = "";
+            head.append(icon);
+        }
+        const naming = document.createElement("div");
+        const name = document.createElement("strong");
+        name.textContent = item.name;
+        const type = document.createElement("small");
+        type.textContent = kind || "";
+        naming.append(name, type);
+        head.append(naming);
+        box.append(head);
+
+        const stats = itemDetailLines(item, kind);
+        if (stats.length) {
+            const table = document.createElement("dl");
+            table.className = "tb-tip-stats";
+            for (const [label, value] of stats) {
+                const dt = document.createElement("dt");
+                dt.textContent = label;
+                const dd = document.createElement("dd");
+                dd.textContent = value;
+                table.append(dt, dd);
+            }
+            box.append(table);
+        }
+        // Weapons keep their prose in `notes`; everything else uses
+        // `description`. Reading only the latter left every weapon blank.
+        const blurbText = item.description || item.notes;
+        if (blurbText) {
+            const blurb = document.createElement("p");
+            blurb.className = "tb-tip-blurb";
+            blurb.textContent = blurbText;
+            box.append(blurb);
+        }
+        if (price !== undefined && price !== null) {
+            const cost = document.createElement("p");
+            cost.className = "tb-tip-price";
+            cost.textContent = `🪙 ${price}`;
+            box.append(cost);
+        }
+    }
+
+    function moveTip(x, y) {
+        const box = tipUi.box;
+        const pad = 14;
+        // Flip to the other side of the cursor near an edge, so the panel is
+        // never half off the screen where it cannot be read.
+        const width = box.offsetWidth || 240;
+        const height = box.offsetHeight || 120;
+        const left = x + pad + width > window.innerWidth ? x - pad - width : x + pad;
+        const top = y + pad + height > window.innerHeight ? y - pad - height : y + pad;
+        box.style.left = `${Math.max(4, left)}px`;
+        box.style.top = `${Math.max(4, top)}px`;
+    }
+
+    function showTip(element, item, kind, price) {
+        // Resolved on demand: assigning it next to the other UI handles put
+        // the write above the declaration, and the whole script died on the
+        // temporal dead zone before anything rendered.
+        if (!tipUi.box) {
+            tipUi.box = document.getElementById("tb-tip");
+        }
+        if (!tipUi.box || !item) {
+            return;
+        }
+        tipUi.forElement = element;
+        fillTip(item, kind, price);
+        tipUi.box.hidden = false;
+    }
+
+    function hideTip(element) {
+        if (!tipUi.box || (element && tipUi.forElement !== element)) {
+            return;
+        }
+        tipUi.box.hidden = true;
+        tipUi.forElement = null;
+    }
+
+    /** Give an element a hover panel describing the item behind it. */
+    function attachTip(element, item, kind, price) {
+        if (!element || !item) {
+            return;
+        }
+        element.addEventListener("pointerenter", (event) => {
+            showTip(element, item, kind, price);
+            moveTip(event.clientX, event.clientY);
+        });
+        element.addEventListener("pointermove", (event) => {
+            if (tipUi.forElement === element) {
+                moveTip(event.clientX, event.clientY);
+            }
+        });
+        element.addEventListener("pointerleave", () => hideTip(element));
+        // Keyboard users get the same information without a pointer.
+        element.addEventListener("focus", () => {
+            const box = element.getBoundingClientRect();
+            showTip(element, item, kind, price);
+            moveTip(box.right, box.top);
+        });
+        element.addEventListener("blur", () => hideTip(element));
+    }
+
+    const dragState = { offer: null, ghost: null, price: 0, zones: [] };
+
+    /** The docks an item can be dropped onto to buy it. */
+    function dropZones() {
+        return [
+            document.getElementById("tb-inventory-dock-shop"),
+            document.getElementById("tb-gear-dock-shop"),
+        ].filter(Boolean);
+    }
+
+    function endDrag(dropped) {
+        if (dragState.ghost) {
+            dragState.ghost.remove();
+        }
+        for (const zone of dragState.zones) {
+            zone.classList.remove("is-drop-target", "is-drop-hot");
+        }
+        dragState.ghost = null;
+        dragState.offer = null;
+        dragState.zones = [];
+        document.body.classList.remove("tb-dragging");
+        if (dropped) {
+            audio.play("buy");
+        }
+    }
+
+    /**
+     * Buying by dragging the thing where you want it.
+     *
+     * Pointer events rather than HTML5 drag-and-drop: the native API cannot
+     * drag a canvas-derived sprite without a ghost image workaround, gives no
+     * control over the cursor on touch, and its dragover/drop pair fires in an
+     * order that makes a hover highlight flicker. The buy button stays as
+     * well -- dragging is not discoverable on its own, and it is no use to
+     * anyone on a keyboard.
+     */
+    function beginDrag(event, offer, price, card) {
+        const scene = shopState && shopState.scene;
+        if (!scene || offer.sold || scene.coinsCollected < price || event.button) {
+            return;
+        }
+        event.preventDefault();
+        hideTip(card);
+        dragState.offer = offer;
+        dragState.price = price;
+        dragState.zones = dropZones();
+
+        const ghost = document.createElement("div");
+        ghost.className = "tb-drag-ghost";
+        if (hasArt(offer.item.sprite)) {
+            const icon = document.createElement("img");
+            icon.src = spritePath(offer.item.sprite);
+            icon.alt = "";
+            ghost.append(icon);
+        }
+        const label = document.createElement("span");
+        label.textContent = offer.item.name;
+        ghost.append(label);
+        document.body.append(ghost);
+        dragState.ghost = ghost;
+        document.body.classList.add("tb-dragging");
+        for (const zone of dragState.zones) {
+            zone.classList.add("is-drop-target");
+        }
+
+        const move = (moveEvent) => {
+            ghost.style.left = `${moveEvent.clientX}px`;
+            ghost.style.top = `${moveEvent.clientY}px`;
+            for (const zone of dragState.zones) {
+                const box = zone.getBoundingClientRect();
+                const over = moveEvent.clientX >= box.left && moveEvent.clientX <= box.right
+                    && moveEvent.clientY >= box.top && moveEvent.clientY <= box.bottom;
+                zone.classList.toggle("is-drop-hot", over);
+            }
+        };
+        const drop = (upEvent) => {
+            window.removeEventListener("pointermove", move);
+            window.removeEventListener("pointerup", drop);
+            window.removeEventListener("pointercancel", cancel);
+            const landed = dragState.zones.some((zone) => {
+                const box = zone.getBoundingClientRect();
+                return upEvent.clientX >= box.left && upEvent.clientX <= box.right
+                    && upEvent.clientY >= box.top && upEvent.clientY <= box.bottom;
+            });
+            const pending = dragState.offer;
+            const cost = dragState.price;
+            endDrag(false);
+            if (landed && pending) {
+                buyOffer(pending, cost);
+            }
+        };
+        const cancel = () => {
+            window.removeEventListener("pointermove", move);
+            window.removeEventListener("pointerup", drop);
+            window.removeEventListener("pointercancel", cancel);
+            endDrag(false);
+        };
+        window.addEventListener("pointermove", move);
+        window.addEventListener("pointerup", drop);
+        window.addEventListener("pointercancel", cancel);
+        move(event);
+    }
+
     function renderShop() {
         const scene = shopState.scene;
         shopUi.coins.textContent = String(scene.coinsCollected);
@@ -1825,8 +2164,16 @@
         for (const offer of shopState.offers) {
             const item = document.createElement("li");
             item.classList.toggle("is-sold", offer.sold);
+            const askingPrice = offer.sold ? null : offerPrice(scene, offer);
+            if (!offer.sold) {
+                item.classList.add("is-draggable");
+                item.addEventListener(
+                    "pointerdown", (event) => beginDrag(event, offer, askingPrice, item),
+                );
+            }
+            attachTip(item, offer.item, offer.kind, askingPrice);
 
-            if (offer.item.sprite && offer.item.sprite.startsWith("items/")) {
+            if (hasArt(offer.item.sprite)) {
                 const icon = document.createElement("img");
                 icon.className = "tb-shop-icon";
                 icon.src = spritePath(offer.item.sprite);
@@ -1850,7 +2197,7 @@
             if (offer.sold) {
                 stateBox.textContent = "Sold";
             } else {
-                const price = offerPrice(scene, offer);
+                const price = askingPrice;
                 const buy = document.createElement("button");
                 buy.className = "tb-button";
                 buy.textContent = `🪙 ${price}`;
@@ -1917,6 +2264,7 @@
 
     const hud = {
         hearts: document.getElementById("tb-hud-hearts"),
+        hp: document.getElementById("tb-hud-hp"),
         round: document.getElementById("tb-hud-round"),
         coins: document.getElementById("tb-hud-coins"),
         weapon: document.getElementById("tb-hud-weapon"),
@@ -2043,21 +2391,61 @@
 
     function updateHudHearts(hp, maxHp = PLAYER_MAX_HP) {
         const hearts = Math.max(1, Math.round(maxHp / HP_PER_HEART));
-        const full = Phaser.Math.Clamp(Math.ceil(hp / HP_PER_HEART), 0, hearts);
-        // Rebuild only when the heart count changes; otherwise just re-toggle.
-        if (hud.hearts.children.length !== hearts) {
+        const rows = Math.ceil(hearts / HEARTS_PER_ROW);
+        // Rebuilt only when the heart count changes; a hit just re-fills them.
+        if (hud.hearts.dataset.hearts !== String(hearts)) {
+            hud.hearts.dataset.hearts = String(hearts);
             hud.hearts.textContent = "";
-            for (let i = 0; i < hearts; i += 1) {
-                const heart = document.createElement("img");
-                heart.src = spritePath("items/heart.png");
-                heart.alt = "";
-                hud.hearts.append(heart);
+            // Rows appended last-first, so the first ten sit along the bottom
+            // and Life Crystals stack upward the way Terraria does it.
+            for (let row = rows - 1; row >= 0; row -= 1) {
+                const line = document.createElement("div");
+                line.className = "tb-heart-row";
+                const from = row * HEARTS_PER_ROW;
+                const to = Math.min(hearts, from + HEARTS_PER_ROW);
+                for (let i = from; i < to; i += 1) {
+                    const cell = document.createElement("span");
+                    cell.className = "tb-heart";
+                    // Which heart this is, counting from the first. The rows
+                    // are appended top-first so the bottom row is last in the
+                    // document, and reading the cells in document order would
+                    // fill the top row first and drain the bottom one.
+                    cell.dataset.index = String(i);
+                    // Two layers: a spent heart underneath, a full one over it
+                    // clipped to however much of this heart is left. Without
+                    // the overlay a heart is full until it is gone, and the
+                    // last twenty health look the same as the last one.
+                    const spent = document.createElement("img");
+                    spent.className = "tb-heart-spent";
+                    spent.src = spritePath("items/heart.png");
+                    spent.alt = "";
+                    const live = document.createElement("img");
+                    live.className = "tb-heart-live";
+                    live.src = spritePath("items/heart.png");
+                    live.alt = "";
+                    cell.append(spent, live);
+                    line.append(cell);
+                }
+                hud.hearts.append(line);
             }
         }
-        [...hud.hearts.children].forEach((heart, index) => {
-            heart.classList.toggle("is-empty", index >= full);
+        const cells = hud.hearts.querySelectorAll(".tb-heart");
+        cells.forEach((cell) => {
+            const index = Number(cell.dataset.index);
+            const into = hp - index * HP_PER_HEART;
+            const part = Phaser.Math.Clamp(into / HP_PER_HEART, 0, 1);
+            cell.classList.toggle("is-empty", part <= 0);
+            // Clipped from the right, so a heart drains rather than blinking out.
+            cell.querySelector(".tb-heart-live").style.clipPath =
+                `inset(0 ${Math.round((1 - part) * 100)}% 0 0)`;
         });
-        hud.hearts.setAttribute("aria-label", `${full} of ${hearts} hearts`);
+        const shown = Math.max(0, Math.round(hp));
+        if (hud.hp) {
+            hud.hp.textContent = `${shown} / ${Math.round(maxHp)}`;
+            hud.hp.classList.toggle("is-low", shown <= maxHp * 0.3);
+        }
+        hud.hearts.setAttribute("aria-label", `${shown} of ${Math.round(maxHp)} health`);
+    
     }
 
     /* ---------- arena scene ---------- */
@@ -2246,12 +2634,16 @@
 
             this.buildTextures();
             this.buildSkins();
+            this.plan = this.fightPlan(null, this.expectedMobCount());
             this.buildArena();
             this.buildParticles();
             this.buildPlayer();
             this.buildGroups();
             this.buildInput();
 
+            // Pinned to the window: everything below is HUD, and a scrolling
+            // corridor would otherwise carry the banner and the boss bar off
+            // the side of the screen with the scenery.
             this.banner = this.add.text(VIEW_WIDTH / 2, VIEW_HEIGHT / 2 - 90, "", {
                 fontFamily: '"Press Start 2P", monospace',
                 fontSize: "22px",
@@ -2261,7 +2653,7 @@
                 stroke: token("--tb-bg-deep", "#080a16"),
                 strokeThickness: 6,
                 align: "center",
-            }).setOrigin(0.5).setDepth(50);
+            }).setOrigin(0.5).setDepth(50).setScrollFactor(0);
 
             this.bannerSub = this.add.text(VIEW_WIDTH / 2, VIEW_HEIGHT / 2 - 58, "", {
                 fontFamily: '"Press Start 2P", monospace',
@@ -2270,7 +2662,7 @@
                 stroke: token("--tb-bg-deep", "#080a16"),
                 strokeThickness: 4,
                 align: "center",
-            }).setOrigin(0.5).setDepth(50);
+            }).setOrigin(0.5).setDepth(50).setScrollFactor(0);
 
             this.time.delayedCall(400, () => this.startNextRound());
         }
@@ -2416,9 +2808,17 @@
                 if (biome.hardmode && !this.hardmode) {
                     return false;
                 }
-                const key = `tb-bg-${biome.background}`;
-                return this.tileKey(biome.surface) && this.tileKey(biome.fill)
-                    && this.textures.exists(key) && !this.failedBackgrounds.has(key);
+                // Any of its backdrops will do. Testing one random pick
+                // would drop a whole biome from the rotation because the one
+                // it happened to roll had failed to load.
+                const options = (Array.isArray(biome.backgrounds) && biome.backgrounds.length
+                    ? biome.backgrounds
+                    : [biome.background]);
+                const usableArt = options.some((index) => {
+                    const key = `tb-bg-${index}`;
+                    return this.textures.exists(key) && !this.failedBackgrounds.has(key);
+                });
+                return this.tileKey(biome.surface) && this.tileKey(biome.fill) && usableArt;
             });
             const wanted = prefer && prefer.length
                 ? usable.filter((biome) => prefer.includes(biome.id))
@@ -2437,6 +2837,63 @@
             return {
                 biome: pool.length ? Phaser.Utils.Array.GetRandom(pool) : null,
                 layout: layouts.length ? Phaser.Utils.Array.GetRandom(layouts) : null,
+            };
+        }
+
+        /**
+         * The cast this round can draw on, before any of it has spawned.
+         *
+         * The arena is built before the wave arrives, so this is how it can
+         * know whether anything is going to fly. Same filter spawnHordeMob
+         * uses, minus the weighting, which only decides which one turns up.
+         */
+        roundPool() {
+            const only = (this.event || {}).only;
+            if (only && only.length) {
+                const cast = (data.rounds.mobs || []).filter((mob) => only.includes(mob.id));
+                if (cast.length) {
+                    return cast;
+                }
+            }
+            return (data.rounds.mobs || []).filter(
+                (mob) => this.round >= mob.minRound && this.round <= mob.maxRound
+                    && (!mob.hardmode || this.hardmode),
+            );
+        }
+
+        /**
+         * What this round's arena has to accommodate.
+         *
+         * The arena used to be rolled with no idea what was about to be fought
+         * in it, so a wave of slimes got the same scaffolding as a flying boss
+         * and the Moon Lord got the same headroom as a zombie. This reads the
+         * fight first: how many bodies, how wide the biggest one is, and
+         * whether any of it leaves the floor.
+         */
+        fightPlan(boss, mobCount) {
+            const pool = boss ? [] : this.roundPool();
+            const flies = (entry) => entry.behavior === "flyer" || entry.behavior === "caster";
+            // How wide the biggest thing is, in the units the sprites are in.
+            const skin = boss && boss.skin && (data.frames || {})[boss.skin.id];
+            const bulk = boss
+                ? Math.max(boss.sizePx || 0, skin ? skin.frameWidth : 0)
+                : Math.max(30, ...pool.map((entry) => entry.sizePx || 30));
+            return {
+                round: this.round,
+                isBoss: Boolean(boss),
+                crowd: boss ? 1 : mobCount,
+                bulk,
+                // A boss that marches one way needs a corridor to march down.
+                corridor: Boolean(boss && boss.patternConfig
+                                  && boss.patternConfig.corridor),
+                // How much of this fight leaves the floor. Presence was too
+                // sensitive: one drone in a pool of five put scaffolding over
+                // a round that is still slimes and zombies in character.
+                airborneShare: boss
+                    ? (boss.pattern === "kingslime" || boss.pattern === "stomper" ? 0 : 1)
+                    : (pool.length
+                        ? pool.filter(flies).length / pool.length
+                        : 0),
             };
         }
 
@@ -2462,23 +2919,48 @@
                 this.background = this.add.image(
                     VIEW_WIDTH / 2,
                     VIEW_HEIGHT / 2,
-                    biome ? `tb-bg-${biome.background}` : this.backgroundKeys[0],
-                );
+                    biome ? `tb-bg-${this.chooseBackdrop(biome)}` : this.backgroundKeys[0],
+                ).setScrollFactor(0);
                 // A light shade so actors stay readable on the art.
                 this.shade = this.add.rectangle(
                     VIEW_WIDTH / 2, VIEW_HEIGHT / 2, VIEW_WIDTH, VIEW_HEIGHT, 0x03140a, 0.22,
-                );
+                ).setScrollFactor(0);
             }
             this.applyArena(biome, layout);
+        }
+
+        /**
+         * Which backdrop this biome shows this time.
+         *
+         * A biome used to name one picture, so the jungle looked identical on
+         * every visit however long a run lasted. It names a set now. Ones
+         * that failed to load are skipped rather than drawn and shown as a
+         * blank; a biome still listing a single backdrop behaves as before.
+         */
+        chooseBackdrop(biome) {
+            if (!biome) {
+                return 1;
+            }
+            const options = (Array.isArray(biome.backgrounds) && biome.backgrounds.length
+                ? biome.backgrounds
+                : [biome.background]).filter((index) => {
+                const key = `tb-bg-${index}`;
+                return this.textures.exists(key) && !this.failedBackgrounds.has(key);
+            });
+            return options.length
+                ? Phaser.Utils.Array.GetRandom(options)
+                : biome.background;
         }
 
         /** Swap the whole arena over to a biome: sky, blocks, floor plan, plants. */
         applyArena(biome, layout) {
             this.biome = biome;
             this.layout = layout;
+            // Drawn fresh for each arena, and only from backdrops that loaded.
+            this.pickedBackdrop = this.chooseBackdrop(biome);
 
             if (this.background && biome) {
-                this.background.setTexture(`tb-bg-${biome.background}`);
+                this.background.setTexture(`tb-bg-${this.pickedBackdrop}`);
                 this.fitBackground();
             }
             if (this.shade) {
@@ -2500,11 +2982,69 @@
             this.scatterDecor(biome);
         }
 
+        /**
+         * A run of ground heights across the arena, one per column.
+         *
+         * Two overlapping waves at unrelated wavelengths, so it reads as
+         * terrain rather than as a repeating pattern, quantised to whole tiles
+         * so the surface art lines up. Steps are held to STEP_LIMIT: walkers
+         * jump when something blocks them and slimes hop anyway, but only if
+         * the wall in front of them is short enough to clear.
+         */
+        groundProfile(baseTop, roughness) {
+            const columns = Math.ceil(this.arenaWidth / GROUND_COLUMN);
+            const tile = 8;
+            if (roughness <= 0) {
+                return new Array(columns).fill(baseTop);
+            }
+            const phase = Math.random() * Math.PI * 2;
+            const phase2 = Math.random() * Math.PI * 2;
+            const heights = [];
+            for (let i = 0; i < columns; i += 1) {
+                const t = i / columns;
+                const wave = Math.sin(phase + t * Math.PI * 2.2) * 0.62
+                    + Math.sin(phase2 + t * Math.PI * 5.7) * 0.38;
+                heights.push(baseTop - Math.round((wave * roughness) / tile) * tile);
+            }
+            // Flatten any step the ground-bound cannot climb out of.
+            for (let i = 1; i < heights.length; i += 1) {
+                const rise = heights[i - 1] - heights[i];
+                if (Math.abs(rise) > STEP_LIMIT) {
+                    heights[i] = heights[i - 1] - Math.sign(rise) * STEP_LIMIT;
+                }
+            }
+            return heights;
+        }
+
         buildGround(biome, layout) {
-            // Ground thickness varies per layout, so the headroom you fight in
-            // changes between rounds as well as the scenery.
-            const groundTop = VIEW_HEIGHT - ((layout && layout.groundHeight) || 46);
-            this.groundTop = groundTop;
+            const plan = this.plan || {};
+            // Everything below measures the world, not the window.
+            this.arenaWidth = plan.corridor ? VIEW_WIDTH * CORRIDOR_SCREENS : VIEW_WIDTH;
+            this.physics.world.setBounds(0, 0, this.arenaWidth, VIEW_HEIGHT);
+            this.cameras.main.setBounds(0, 0, this.arenaWidth, VIEW_HEIGHT);
+            // Ground thickness varies per layout, and a big fight gets more
+            // room over its head: the arena is the same 960 wide either way,
+            // so headroom is the only dimension there is to give.
+            const base = (layout && layout.groundHeight) || 46;
+            const roomy = Math.round(
+                Math.min(22, Math.max(0, (plan.crowd || 0) - 5) * 2.5)
+                + Math.min(20, Math.max(0, (plan.bulk || 0) - 110) * 0.16),
+            );
+            const groundHeight = Math.max(20, base - roomy);
+            const baseTop = VIEW_HEIGHT - groundHeight;
+
+            // Wide things need somewhere flat to stand: a worm or a boss the
+            // width of the screen wedged in a trench reads as a bug.
+            const roughness = Math.max(
+                0, Math.round(((layout && layout.roughness) ?? 18)
+                              * (plan.bulk > 150 ? 0.35 : 1)),
+            );
+            const heights = this.groundProfile(baseTop, roughness);
+            this.groundHeights = heights;
+            // Everything that asks "where is the floor" without a position
+            // gets the highest point, so nothing spawns inside a hill.
+            this.groundTop = Math.min(...heights);
+            this.groundBaseTop = baseTop;
 
             const surfaceKey = this.tileKey(biome ? biome.surface : "ground-grass")
                 || this.tileKey("ground-grass");
@@ -2512,44 +3052,136 @@
                 || this.tileKey("ground-dirt");
             if (surfaceKey && fillKey) {
                 const row = 16 * WORLD_SCALE;
-                const surface = this.add.tileSprite(
-                    VIEW_WIDTH / 2, groundTop + row / 2, VIEW_WIDTH, row, surfaceKey,
-                );
-                surface.setTileScale(WORLD_SCALE).setDepth(5);
-                this.scenery.push(surface);
-                const fillTop = groundTop + row;
-                const fillHeight = VIEW_HEIGHT - fillTop;
-                if (fillHeight > 0) {
-                    const fill = this.add.tileSprite(
-                        VIEW_WIDTH / 2, fillTop + fillHeight / 2, VIEW_WIDTH, fillHeight, fillKey,
+                // One column at a time: art on top, an invisible slab beneath
+                // it carrying the collision, exactly as the flat floor did.
+                for (let i = 0; i < heights.length; i += 1) {
+                    const top = heights[i];
+                    const x = i * GROUND_COLUMN + GROUND_COLUMN / 2;
+                    const surface = this.add.tileSprite(
+                        x, top + row / 2, GROUND_COLUMN, row, surfaceKey,
                     );
-                    fill.setTileScale(WORLD_SCALE).setDepth(4);
-                    this.scenery.push(fill);
+                    surface.setTileScale(WORLD_SCALE).setDepth(5);
+                    this.scenery.push(surface);
+                    const fillTop = top + row;
+                    const fillHeight = VIEW_HEIGHT - fillTop;
+                    if (fillHeight > 0) {
+                        const fill = this.add.tileSprite(
+                            x, fillTop + fillHeight / 2, GROUND_COLUMN, fillHeight, fillKey,
+                        );
+                        fill.setTileScale(WORLD_SCALE).setDepth(4);
+                        this.scenery.push(fill);
+                    }
+                    const slab = this.platforms.create(
+                        x, top + (VIEW_HEIGHT - top) / 2, "tb-ground",
+                    );
+                    slab.setVisible(false);
+                    slab.setDisplaySize(GROUND_COLUMN, VIEW_HEIGHT - top);
+                    slab.refreshBody();
                 }
-                // The art is drawn above; collision is one invisible slab.
-                const floor = this.platforms.create(
-                    VIEW_WIDTH / 2, groundTop + (VIEW_HEIGHT - groundTop) / 2, "tb-ground",
-                );
-                floor.setVisible(false);
-                floor.setDisplaySize(VIEW_WIDTH, VIEW_HEIGHT - groundTop);
-                floor.refreshBody();
                 return;
             }
 
             for (let x = 24; x < VIEW_WIDTH; x += 48) {
                 this.platforms.create(x, VIEW_HEIGHT - 22, "tb-ground");
-                this.scenery.push(this.add.image(x, groundTop + 4, "tb-grass").setDepth(5));
+                this.scenery.push(
+                    this.add.image(x, this.groundAt(x) + 4, "tb-grass").setDepth(5),
+                );
             }
+        }
+
+        /**
+         * The wall is a moving back edge to the world.
+         *
+         * In Terraria you cannot get behind the Wall of Flesh -- there is no
+         * fight there, only the part of the map it has already taken. Here it
+         * shoves you along in front of it and hurts you for being caught,
+         * which is what turns a boss that walks slowly into a chase. As it
+         * closes on the far end the room you have left runs out, so the last
+         * of the fight happens with your back to the wall.
+         */
+        tickCorridorSqueeze(boss) {
+            if (!this.plan || !this.plan.corridor || !this.player || !this.player.body) {
+                return;
+            }
+            const face = boss.marchDirection;
+            const edge = boss.x + face * (boss.displayWidth / 2);
+            const caught = face > 0 ? this.player.x < edge : this.player.x > edge;
+            if (!caught) {
+                return;
+            }
+            // Shoved, not teleported: it keeps the player on the live side
+            // without snapping them across the screen.
+            this.player.x = edge;
+            if (this.player.body.velocity.x * face < 0) {
+                this.player.setVelocityX(face * 60);
+            }
+            this.hurtPlayer(boss.contactDamage, boss.x);
+        }
+
+        /** Where the player starts: at the mouth of a corridor, else centre. */
+        playerStartX() {
+            return (this.plan && this.plan.corridor) ? 220 : VIEW_WIDTH / 2;
+        }
+
+        /**
+         * Lift anything the new ground was built on top of.
+         *
+         * Each round rolls a fresh height profile, and the arena is rebuilt
+         * around whoever is standing in it. Where the new ground came in
+         * higher than the old, the player was left inside it -- and a body
+         * inside a static slab is not pushed out, it falls through and lands
+         * on the bottom of the world. Seventeen rotations in twenty buried
+         * the player before this, which is why it looked like spawning
+         * underground.
+         *
+         * Only ever lifts. Something legitimately in the air stays there.
+         */
+        standOnGround(sprite) {
+            if (!sprite || !sprite.body) {
+                return false;
+            }
+            const ground = this.groundAt(sprite.x);
+            const overlap = sprite.body.bottom - ground;
+            if (overlap <= 0) {
+                return false;
+            }
+            sprite.y -= overlap + 1;
+            sprite.body.reset(sprite.x, sprite.y);
+            return true;
+        }
+
+        /** The surface height under a given x, for spawning and decor. */
+        groundAt(x) {
+            const heights = this.groundHeights;
+            if (!heights || !heights.length) {
+                return this.groundTop;
+            }
+            const index = Phaser.Math.Clamp(
+                Math.floor(x / GROUND_COLUMN), 0, heights.length - 1,
+            );
+            return heights[index];
         }
 
         buildOneWayPlatforms(biome, layout) {
             // Layouts come from biomes.json so a test can walk every one of
             // them and prove the tiers are still inside a single jump.
-            const spots = (layout && layout.platforms) || [
+            let spots = (layout && layout.platforms) || [
                 { x: 190, y: 424, width: 96 }, { x: 770, y: 424, width: 96 },
                 { x: 262, y: 350, width: 96 }, { x: 698, y: 350, width: 96 },
                 { x: 334, y: 276, width: 96 }, { x: 626, y: 276, width: 96 },
             ];
+            const plan = this.plan || {};
+            // Scaffolding you climb to get away from something. A wave of
+            // slimes gives you nothing to climb away from, and a floor of
+            // ledges made the early rounds read as a platformer rather than
+            // as standing your ground. Ground-bound bosses get the same bare
+            // floor however late they turn up: King Slime is a slime.
+            if (plan.airborneShare < AIRBORNE_FOR_PLATFORMS) {
+                spots = [];
+            } else if (plan.bulk > 150) {
+                // Something the width of the screen needs the floor clear.
+                spots = spots.filter((spot) => spot.y < (this.groundBaseTop || 0) - 90);
+            }
             const plankKey = this.tileKey(biome ? biome.platform : "platform-wood")
                 || this.tileKey("platform-wood");
             for (const spot of spots) {
@@ -2577,7 +3209,9 @@
             if (!biome || !biome.decor) {
                 return;
             }
-            const groundTop = this.groundTop;
+            // Where something has already been put, so the next one does
+            // not land on top of it.
+            const taken = [];
             const place = (spec, depth, originY) => {
                 if (!spec) {
                     return;
@@ -2589,13 +3223,41 @@
                 const meta = (data.decor || {})[spec.sprite] || {};
                 const [low, high] = spec.count || [1, 1];
                 const total = Phaser.Math.Between(low, high);
+                const width = meta.frameWidth || 16;
                 for (let i = 0; i < total; i += 1) {
                     // Keep the middle clear: that is where the player drops in.
-                    const x = Phaser.Math.Between(24, VIEW_WIDTH - 24);
-                    if (Math.abs(x - VIEW_WIDTH / 2) < 60 && depth < 5) {
+                    let x = Phaser.Math.Between(24, this.arenaWidth - 24);
+                    if (Math.abs(x - this.playerStartX()) < 60 && depth < 5) {
                         continue;
                     }
-                    const sprite = this.add.image(x, groundTop + 1, key);
+                    // Purely random x put two tufts three pixels apart, which
+                    // draws as one smeared clump rather than two plants. Given
+                    // a few tries it finds clear ground; if the arena really is
+                    // that crowded it gives up rather than looping.
+                    let clear = true;
+                    for (let tries = 0; tries < 6; tries += 1) {
+                        clear = !taken.some((other) => Math.abs(other - x) < width * 0.8);
+                        if (clear) {
+                            break;
+                        }
+                        x = Phaser.Math.Between(24, this.arenaWidth - 24);
+                    }
+                    if (!clear) {
+                        continue;
+                    }
+                    // Nudged off the seam between two ground columns. A sprite
+                    // sits at the height of whichever column its centre is in,
+                    // so one straddling a step has half of itself hanging over
+                    // the drop.
+                    const intoColumn = x % GROUND_COLUMN;
+                    const margin = Math.min(width / 2, GROUND_COLUMN / 2 - 1);
+                    if (intoColumn < margin) {
+                        x += margin - intoColumn;
+                    } else if (intoColumn > GROUND_COLUMN - margin) {
+                        x -= intoColumn - (GROUND_COLUMN - margin);
+                    }
+                    taken.push(x);
+                    const sprite = this.add.image(x, this.groundAt(x) + 1, key);
                     if (meta.frames > 1) {
                         sprite.setFrame(Phaser.Math.Between(0, meta.frames - 1));
                     }
@@ -2745,8 +3407,11 @@
          * This rebuilds the ground as well as the sky. Swapping the backdrop
          * alone would leave you standing on hellstone under a snowfield.
          */
-        rotateArena(prefer, wantLayout) {
+        rotateArena(prefer, wantLayout, boss = null) {
             const all = (data.biomes && data.biomes.biomes) || [];
+            // Worked out before anything is built, because the ground and the
+            // scaffolding both read it.
+            this.plan = this.fightPlan(boss, this.expectedMobCount());
             if (!this.background || all.length < 2) {
                 return;
             }
@@ -2762,6 +3427,18 @@
             // away; let them fall rather than leaving them stuck in mid-air.
             if (this.player && this.player.body) {
                 this.player.body.setAllowGravity(true);
+                // A corridor round ends three screens from the origin, and the
+                // arena that follows it is one screen wide. Without this the
+                // player is left standing outside the world, off camera, with
+                // the round going on somewhere they cannot see.
+                if (this.player.x > this.arenaWidth - 40) {
+                    this.player.setPosition(
+                        this.playerStartX(),
+                        this.groundAt(this.playerStartX()) - 40,
+                    );
+                    this.cameras.main.centerOn(this.player.x, VIEW_HEIGHT / 2);
+                }
+                this.standOnGround(this.player);
             }
             this.tweens.add({
                 targets: this.background,
@@ -2771,11 +3448,19 @@
         }
 
         buildPlayer() {
-            this.player = this.physics.add.sprite(VIEW_WIDTH / 2, this.groundTop - 40, "tb-player");
+            const startX = this.playerStartX();
+            this.player = this.physics.add.sprite(
+                startX, this.groundAt(startX) - 40, "tb-player",
+            );
             this.player.setCollideWorldBounds(true);
             this.player.body.setSize(20, 30);
             this.player.setDepth(10);
             this.player.dropThroughUntil = 0;
+            // Follows loosely and only sideways: the arena is one screen tall
+            // whatever its length, and a camera that chased jumps would make
+            // the horizon bob every time the player hopped.
+            this.cameras.main.startFollow(this.player, true, 0.09, 0);
+            this.cameras.main.setFollowOffset(0, 0);
             this.applySkin(this.player, this.character.id);
             this.buildWings();
             this.buildWornArmor();
@@ -2849,10 +3534,11 @@
             });
             this.physics.add.overlap(this.player, this.coins, (player, coin) => {
                 this.burst("sparkle", 4, coin.x, coin.y, 0xffd75e);
+                const worth = coin.value || 1;
                 coin.destroy();
                 audio.play("coin", 70);
-                this.coinsCollected += 1;
-                this.coinsEarnedTotal += 1;
+                this.coinsCollected += worth;
+                this.coinsEarnedTotal += worth;
                 hud.coins.textContent = String(this.coinsCollected);
             });
             this.physics.add.collider(this.bags, this.platforms);
@@ -3024,10 +3710,16 @@
 
         /** The item id behind a weapon's sprite path, if it has real art. */
         weaponItemKey(weapon) {
-            if (!weapon || !weapon.sprite || !weapon.sprite.startsWith("items/")) {
+            if (!weapon || !hasArt(weapon.sprite)) {
                 return null;
             }
-            return this.itemKey(weapon.sprite.slice(6, -4));
+            // The file's own name, not a fixed slice off an "items/" prefix:
+            // a pack keeps its art in its own folder, and the old slice cut
+            // six characters off whatever path it was handed.
+            const base = weapon.sprite.slice(
+                weapon.sprite.lastIndexOf("/") + 1, -4,
+            );
+            return this.itemKey(base);
         }
 
         updateHeldWeapon() {
@@ -3632,6 +4324,40 @@
             return this.difficulty.bossEvery || data.rounds.bossEveryNRounds || 5;
         }
 
+        /**
+         * What an ordinary wave at this round is worth in coins.
+         *
+         * The average of what this round can spawn, scaled the way a mob's
+         * drop is scaled, times how many turn up. Used to price a boss, whose
+         * round spawns no wave at all -- so without this the reward for the
+         * hardest round in the cycle had nothing to be measured against and
+         * sat at a flat number that never moved.
+         */
+        waveValue() {
+            const scaling = (data.rounds && data.rounds.scaling) || {};
+            const pool = this.roundPool();
+            if (!pool.length) {
+                return 0;
+            }
+            const average = pool.reduce((sum, mob) => sum + (mob.coins || 0), 0) / pool.length;
+            return this.roundScale(average, scaling.coinMultiplierPerRound)
+                * this.expectedMobCount();
+        }
+
+        /** How many bodies this round will put on the field. */
+        expectedMobCount() {
+            const scaling = (data.rounds && data.rounds.scaling) || {};
+            let count = Math.min(
+                scaling.mobCountMax || 12,
+                (scaling.mobCountBase || 4)
+                + Math.floor(Math.max(0, this.round - 1) * (scaling.mobCountPerRound || 0)),
+            );
+            if (this.event) {
+                count = Math.max(2, Math.round(count * (this.event.spawnMultiplier || 1)));
+            }
+            return count;
+        }
+
         startNextRound() {
             if (this.over) {
                 return;
@@ -3649,7 +4375,7 @@
             this.event = boss ? null : this.pickEvent();
             if (this.round > 1) {
                 const prefer = boss ? boss.biomes : this.event && this.event.biomes;
-                this.rotateArena(prefer, boss && boss.arena);
+                this.rotateArena(prefer, boss && boss.arena, boss);
             }
             this.applyEventShade();
 
@@ -3724,6 +4450,7 @@
                 // the ground you are standing on alone.
                 this.eventShade = this.add
                     .rectangle(VIEW_WIDTH / 2, VIEW_HEIGHT / 2, VIEW_WIDTH, VIEW_HEIGHT, 0x000000, 0)
+                .setScrollFactor(0)
                     .setDepth(1);
             }
             this.tweens.killTweensOf(this.eventShade);
@@ -3806,9 +4533,18 @@
                 }
             }
 
-            const x = Math.random() < 0.5 ? 40 : VIEW_WIDTH - 40;
+            // Just off whichever side of the window the player can see, so a
+            // corridor spawns its horde ahead of and behind them rather than
+            // at the far end of a world they have run away from.
+            const view = this.cameras.main;
+            const x = Phaser.Math.Clamp(
+                Math.random() < 0.5 ? view.scrollX + 40 : view.scrollX + VIEW_WIDTH - 40,
+                30, this.arenaWidth - 30,
+            );
             const airborne = pick.behavior === "flyer" || pick.behavior === "caster";
-            const y = airborne ? Phaser.Math.Between(60, 200) : this.groundTop - 60;
+            const y = airborne
+                ? Phaser.Math.Between(60, 200)
+                : this.groundAt(x) - 60;
             this.materializeMob(pick, x, y);
         }
 
@@ -3843,6 +4579,11 @@
             mob.speed = pick.speed && Math.round(pick.speed * (event.enemySpeed || 1));
             mob.standoff = pick.standoff;
             mob.shootConfig = pick.shoot;
+            mob.maxHp = mob.hp;
+            // Creatures that come apart rather than dying outright.
+            mob.splitAtHp = pick.splitAtHp;
+            mob.splitInto = pick.splitInto;
+            mob.splitScale = pick.splitScale;
             if (pick.behavior === "flyer" || pick.behavior === "caster") {
                 mob.body.setAllowGravity(false);
             }
@@ -3908,18 +4649,45 @@
             mob.nextAuraAt = 0;
         }
 
-        spawnServant(mobId, x, y, count) {
+        spawnServant(mobId, x, y, count, owner = null) {
             const definition = (data.rounds.mobs || []).find((mob) => mob.id === mobId);
             if (!definition) {
                 return;
             }
             for (let i = 0; i < count; i += 1) {
-                this.materializeMob(
+                const servant = this.materializeMob(
                     definition,
                     Phaser.Math.Clamp(x + Phaser.Math.Between(-70, 70), 30, VIEW_WIDTH - 30),
                     Math.max(50, y - Phaser.Math.Between(10, 50)),
                 );
+                // Remembered so a boss can be armoured by what it summoned.
+                if (servant && owner) {
+                    servant.summonedBy = owner;
+                }
             }
+        }
+
+        /**
+         * How much of a hit a boss shrugs off for every summon still alive.
+         *
+         * The Perforator Hive takes 30% less per worm on the field, up to 90%,
+         * so killing what it spawned is the way in rather than an optional
+         * chore. Without this the worms are scenery and the fight is a
+         * stationary target.
+         */
+        servantArmour(boss) {
+            const perServant = boss.patternConfig.damageReductionPerServant || 0;
+            if (!perServant) {
+                return 1;
+            }
+            let alive = 0;
+            for (const mob of this.mobs.getChildren()) {
+                if (mob.active && mob.summonedBy === boss) {
+                    alive += 1;
+                }
+            }
+            const cap = boss.patternConfig.damageReductionCap ?? 0.9;
+            return 1 - Math.min(cap, perServant * alive);
         }
 
         spawnBoss(bossData) {
@@ -3944,7 +4712,16 @@
                 this.roundScale(bossData.contactDamage, scaling.damageMultiplierPerRound)
                 * (this.difficulty.enemyDamage || 1),
             );
-            boss.coinDrop = Math.round(25 * (this.ability.coinMultiplier || 1));
+            // Priced against the wave it cancels. A boss round spawns no
+            // horde, so a flat 25 meant reaching one cost you the round's
+            // income: at round 20 the wave would have paid 240 and the Moon
+            // Lord paid 25, a tenth, for the hardest fight on the board. It
+            // pays a multiple of that wave now, so a boss is the payday it
+            // looks like and the number keeps up on its own.
+            boss.coinDrop = Math.round(
+                this.waveValue() * ((data.rounds.scaling || {}).bossCoinMultiplier || 1.6)
+                * (this.ability.coinMultiplier || 1),
+            );
             boss.isBoss = true;
             boss.enemyId = bossData.id;
             boss.particleTint = Phaser.Display.Color.HexStringToColor(bossData.color || "#ffffff").color;
@@ -3986,8 +4763,10 @@
 
             this.burst("spark", 26, boss.x, boss.y, boss.particleTint);
             this.burst("cloud", 12, boss.x, boss.y, 0x2b1f2f);
-            this.bossBar = this.add.rectangle(VIEW_WIDTH / 2, 24, 420, 10, 0xd4524b).setDepth(60);
-            this.bossBarBack = this.add.rectangle(VIEW_WIDTH / 2, 24, 424, 14, 0x0a1a0d).setDepth(59);
+            this.bossBar = this.add.rectangle(VIEW_WIDTH / 2, 24, 420, 10, 0xd4524b)
+                .setDepth(60).setScrollFactor(0);
+            this.bossBarBack = this.add.rectangle(VIEW_WIDTH / 2, 24, 424, 14, 0x0a1a0d)
+                .setDepth(59).setScrollFactor(0);
         }
 
         /**
@@ -4012,14 +4791,20 @@
                 boss.slamPending = false;
                 boss.body.setAllowGravity(true);
                 if (x !== undefined) {
-                    boss.setPosition(x, this.groundTop - 80);
+                    boss.setPosition(x, this.groundAt(x) - 80);
                 }
             } else if (boss.pattern === "wall") {
                 boss.body.setAllowGravity(false);
                 if (x !== undefined) {
+                    // At one end of the corridor, not one end of the window:
+                    // measured against the screen it started a quarter of the
+                    // way down a four-screen arena, sometimes ahead of the
+                    // player, and the chase began with the wall in front.
+                    const nearEnd = boss.x < this.arenaWidth / 2;
                     boss.setPosition(
-                        boss.x < VIEW_WIDTH / 2 ? 60 : VIEW_WIDTH - 60,
-                        this.groundTop - boss.displayHeight / 2,
+                        nearEnd ? 60 : this.arenaWidth - 60,
+                        this.groundAt(nearEnd ? 60 : this.arenaWidth - 60)
+                            - boss.displayHeight / 2,
                     );
                 }
             } else if (boss.pattern === "worm") {
@@ -4155,14 +4940,72 @@
             });
         }
 
+        /**
+         * Everything still on the floor when the fighting stops.
+         *
+         * The shop opens about a second after the last kill, which is not
+         * enough time to walk the arena picking up change -- a round-15 boss
+         * paid 323 and a player standing across the map banked 7 of it. The
+         * money was earned; collecting it was a formality the round did not
+         * leave room for. They fly to the player and land in the purse.
+         */
+        sweepDroppedCoins() {
+            let swept = 0;
+            for (const coin of this.coins.getChildren()) {
+                if (!coin.active) {
+                    continue;
+                }
+                swept += coin.value || 1;
+                const target = coin;
+                this.tweens.add({
+                    targets: target,
+                    x: this.player.x,
+                    y: this.player.y,
+                    duration: 260,
+                    ease: "Quad.easeIn",
+                    onComplete: () => target.destroy(),
+                });
+                if (target.body) {
+                    target.body.setAllowGravity(false);
+                    target.body.setVelocity(0, 0);
+                }
+            }
+            if (swept > 0) {
+                this.coinsCollected += swept;
+                this.coinsEarnedTotal += swept;
+                hud.coins.textContent = String(this.coinsCollected);
+                audio.play("coin", 40);
+                this.burst("sparkle", 10, this.player.x, this.player.y, 0xffd75e);
+            }
+            return swept;
+        }
+
         onRoundCleared() {
             this.roundActive = false;
+            // Before anything else: the round is over and the shop is next.
+            this.sweepDroppedCoins();
             const wasBossRound = this.round % this.bossEvery === 0;
             const mend = this.ability.healAfterBoss || 0;
             if (wasBossRound && mend && this.playerHp < this.maxHp) {
                 const missing = this.maxHp - this.playerHp;
                 this.playerHp = Math.min(this.maxHp, this.playerHp + Math.ceil(missing * mend));
                 updateHudHearts(this.playerHp, this.maxHp);
+            }
+            // Journey patches you up after every round. It is the rung you
+            // play to see the game rather than to be tested by it, and what
+            // actually ended those runs was chip damage from round four that
+            // never came back. Read off the difficulty rather than its name,
+            // so another rung can offer a partial mend without a code change.
+            const rest = this.difficulty.healBetweenRounds || 0;
+            if (rest > 0 && this.playerHp < this.maxHp) {
+                const missing = this.maxHp - this.playerHp;
+                const healed = Math.ceil(missing * Math.min(1, rest));
+                this.playerHp = Math.min(this.maxHp, this.playerHp + healed);
+                updateHudHearts(this.playerHp, this.maxHp);
+                this.burst("spark", 12, this.player.x, this.player.y, 0x7ce07c);
+                // "heart", not "heal": play() ignores a name it does not know,
+                // so the obvious spelling would have been a silent no-op.
+                audio.play("heart");
             }
             if (this.bossBar) {
                 this.bossBar.destroy();
@@ -4251,8 +5094,12 @@
             const projectile = this.projectiles.create(muzzle.x, muzzle.y, textureKey);
             projectile.setDepth(11);
             if (textureKey.startsWith("tb-item-")) {
-                // Item art is 1x scale; the world runs at 2x.
-                projectile.setScale(WORLD_SCALE);
+                // An inventory icon is drawn to be read in a slot, not to fly:
+                // the wooden arrow's icon is 14x32 against a 26x46 player, so
+                // shots looked like thrown furniture. This used to multiply by
+                // WORLD_SCALE against a comment claiming the world ran at 2x --
+                // it runs at 1, so the call did nothing at all.
+                projectile.setScale(PROJECTILE_ART_SCALE);
                 // A bullet sprite is two pixels wide, which gave it a one pixel
                 // hitbox -- a thread that had to thread a moving 18px mob. The
                 // art stays a thin tracer; the hitbox is the size the shot
@@ -4657,6 +5504,9 @@
             if (!options.fromDebuff) {
                 amount = Math.max(1, Math.round(amount * this.debuffDamageTaken(mob)));
             }
+            if (mob.isBoss) {
+                amount = Math.max(1, Math.round(amount * this.servantArmour(mob)));
+            }
             mob.hp -= amount;
             this.showDamageNumber(
                 mob.x + Phaser.Math.Between(-6, 6),
@@ -4687,12 +5537,64 @@
                 }
                 while (mob.summonAtFractions.length && fraction <= mob.summonAtFractions[0]) {
                     mob.summonAtFractions.shift();
-                    this.spawnServant(mob.servantMob, mob.x, mob.y, mob.servantCount);
+                    this.spawnServant(
+                        mob.servantMob, mob.x, mob.y, mob.servantCount, mob,
+                    );
                 }
+            }
+            if (mob.hp > 0 && !mob.isBoss && this.splitMob(mob)) {
+                return;
             }
             if (mob.hp <= 0) {
                 this.killMob(mob);
             }
+        }
+
+        /**
+         * A wounded creature coming apart into smaller copies of itself.
+         *
+         * Calamity's paladins halve at half health and its middle worm splits
+         * when hurt, and both read as the same thing: one thing becomes two
+         * smaller ones that share what is left of its health. The halves are
+         * marked so they cannot split again, or a slime dissolves into a
+         * cloud of specks. Returns true when the original is gone.
+         */
+        splitMob(mob) {
+            const at = mob.splitAtHp;
+            if (!at || mob.hasSplit || mob.hp / mob.maxHp > at) {
+                return false;
+            }
+            const pieces = Math.max(2, mob.splitInto || 2);
+            const scale = mob.splitScale || 0.7;
+            const definition = (data.rounds.mobs || [])
+                .find((entry) => entry.id === mob.enemyId);
+            if (!definition) {
+                return false;
+            }
+            for (let i = 0; i < pieces; i += 1) {
+                const half = this.materializeMob(
+                    definition,
+                    Phaser.Math.Clamp(
+                        mob.x + (i - (pieces - 1) / 2) * 34, 24, VIEW_WIDTH - 24,
+                    ),
+                    mob.y,
+                );
+                if (!half) {
+                    continue;
+                }
+                half.hasSplit = true;                 // once only
+                half.summonedBy = mob.summonedBy;     // still the boss's armour
+                half.hp = Math.max(1, Math.round(mob.hp / pieces));
+                half.maxHp = half.hp;
+                half.setScale(half.scaleX * scale, half.scaleY * scale);
+                half.setVelocity(
+                    (i - (pieces - 1) / 2) * 120, -Phaser.Math.Between(90, 170),
+                );
+            }
+            this.burst("debris", 8, mob.x, mob.y, mob.particleTint);
+            // Gone quietly: the halves carry the kill and whatever it drops.
+            mob.destroy();
+            return true;
         }
 
         killMob(mob) {
@@ -4725,15 +5627,30 @@
             const purse = Math.max(1, Math.round(
                 mob.coinDrop * ((this.loadout || {}).coinMultiplier || 1),
             ));
-            for (let i = 0; i < purse; i += 1) {
+            // Denominations, not one sprite per coin. A boss worth 323 used to
+            // hit the floor as 323 separate bodies -- more than the round had
+            // time to walk over, and a physics group that size for a reward
+            // that is a single number. A handful of coins each worth several
+            // reads the same and can actually be picked up.
+            const coinCount = Math.min(COIN_DROP_MAX, purse);
+            const each = Math.floor(purse / coinCount);
+            let remainder = purse - each * coinCount;
+            for (let i = 0; i < coinCount; i += 1) {
                 const coin = this.coins.create(
                     mob.x + Phaser.Math.Between(-14, 14),
                     mob.y + Phaser.Math.Between(-10, 0),
                     coinKey,
                 );
                 coin.setDepth(8);
+                // Whatever does not divide evenly rides on the first few, so
+                // the pile is always worth exactly what the kill was worth.
+                coin.value = each + (remainder > 0 ? 1 : 0);
+                if (remainder > 0) {
+                    remainder -= 1;
+                }
                 if (coinKey !== "tb-coin") {
-                    coin.setScale(1.4);
+                    // Bigger denominations look bigger, up to a point.
+                    coin.setScale(1.4 * (coin.value > 20 ? 1.35 : 1));
                 }
                 coin.setCollideWorldBounds(true);
                 coin.setVelocity(Phaser.Math.Between(-140, 140), Phaser.Math.Between(-320, -140));
@@ -4865,6 +5782,43 @@
 
         /* -- enemy ranged attacks (bosses and casters share this) -- */
 
+        /**
+         * The launch angle that drops a falling shot onto the player.
+         *
+         * Aiming a gravity-bound shot straight at someone just puts it in the
+         * dirt short of them, which reads as the boss missing rather than as
+         * an arc to dodge. This solves the throw instead: for a launch speed
+         * and a gravity there are usually two angles that land on the target,
+         * a flat one that arrives quickly and a high one that comes down from
+         * above.
+         *
+         * A throw only reaches v^2/g on the flat, so a slow shot across a wide
+         * arena has no solution at all. Rather than aim straight at someone it
+         * cannot reach -- which drops the shot at the boss's own feet -- it
+         * throws at 45 degrees, which is the angle that goes furthest.
+         */
+        lobAngle(enemy, speed, gravity, high = false) {
+            const dx = this.player.x - enemy.x;
+            // Screen y grows downward; the maths below wants it growing up.
+            const dy = -(this.player.y - enemy.y);
+            if (Math.abs(dx) < 1) {
+                return Phaser.Math.Angle.Between(
+                    enemy.x, enemy.y, this.player.x, this.player.y,
+                );
+            }
+            const v2 = speed * speed;
+            const root = v2 * v2 - gravity * (gravity * dx * dx + 2 * dy * v2);
+            if (root < 0) {
+                return dx < 0 ? -Math.PI * 0.75 : -Math.PI * 0.25;
+            }
+            // atan2 already resolves which side the target is on -- when dx is
+            // negative the denominator is too, and the angle lands past 90.
+            const solved = Math.atan2(
+                v2 + (high ? 1 : -1) * Math.sqrt(root), gravity * dx,
+            );
+            return -solved;                          // back to screen space
+        }
+
         fireEnemyShots(enemy) {
             const shot = enemy.shootConfig;
             if (!shot || this.over) {
@@ -4872,15 +5826,31 @@
             }
             const count = shot.count || 1;
             const spread = ((shot.spreadDeg || 0) * Math.PI) / 180;
-            const base = Phaser.Math.Angle.Between(enemy.x, enemy.y, this.player.x, this.player.y);
+            const speed = shot.speed || 320;
+            const gravity = shot.gravity || 0;
+            const base = gravity
+                ? this.lobAngle(enemy, speed, gravity, shot.lob)
+                : Phaser.Math.Angle.Between(enemy.x, enemy.y, this.player.x, this.player.y);
             for (let i = 0; i < count; i += 1) {
-                const offset = count === 1 ? 0 : spread * (i / (count - 1) - 0.5);
+                // A ring is spaced over the whole turn and has no endpoints.
+                // Doing it as a 360-degree fan puts the first and last shot on
+                // the same heading, so a "ring of 16" fires 15 and a gap.
+                const offset = shot.ring
+                    ? (Math.PI * 2 * i) / count
+                    : (count === 1 ? 0 : spread * (i / (count - 1) - 0.5));
                 const angle = base + offset;
                 const bolt = this.enemyShots.create(enemy.x, enemy.y, "tb-bossshot");
                 bolt.setDepth(11);
                 bolt.damage = shot.damage || 10;
-                bolt.body.setAllowGravity(false);
-                const speed = shot.speed || 320;
+                bolt.body.setAllowGravity(Boolean(gravity));
+                if (gravity) {
+                    // Arcade adds the body's gravity to the world's, and this
+                    // world pulls at 1440. Setting the configured figure
+                    // directly made shots fall at 1960 against a solver that
+                    // assumed 520, so every lob landed a screen short. Only
+                    // the difference belongs on the body.
+                    bolt.body.setGravityY(gravity - this.physics.world.gravity.y);
+                }
                 bolt.setVelocity(Math.cos(angle) * speed, Math.sin(angle) * speed);
                 this.time.delayedCall(shot.lifetimeMs || 4000, () => bolt.active && bolt.destroy());
             }
@@ -5448,19 +6418,25 @@
             }
 
             if (boss.pattern === "wall") {
-                // Advances relentlessly across the arena; you have to keep
-                // running and turn the fight into a chase.
+                // It only ever goes one way. Bouncing it off the edges of a
+                // single screen made a fight with nowhere to run: the wall
+                // came back at you and the chase was a pacing exercise. Down
+                // a corridor it walks from one end to the other and the run
+                // is the fight.
                 if (boss.marchDirection === undefined) {
-                    boss.marchDirection = boss.x < VIEW_WIDTH / 2 ? 1 : -1;
+                    boss.marchDirection = boss.x < this.arenaWidth / 2 ? 1 : -1;
                 }
-                const margin = boss.displayWidth / 2;
-                if (boss.x < margin || boss.x > VIEW_WIDTH - margin) {
-                    boss.marchDirection *= -1;
-                    boss.x = Phaser.Math.Clamp(boss.x, margin, VIEW_WIDTH - margin);
-                }
-                boss.setVelocityX(boss.marchDirection * (config.marchSpeed || 95));
-                boss.setVelocityY((this.groundTop - boss.displayHeight / 2 - boss.y) * 1.5);
+                // Terraria's wall speeds up as it is worn down, so a wounded
+                // wall is a harder run rather than a longer one.
+                const fraction = Math.max(0, boss.hp / boss.maxHp);
+                const speed = (config.marchSpeed || 95)
+                    * (1 + (1 - fraction) * (config.marchRamp || 0));
+                boss.setVelocityX(boss.marchDirection * speed);
+                boss.setVelocityY(
+                    (this.groundAt(boss.x) - boss.displayHeight / 2 - boss.y) * 1.5,
+                );
                 boss.setFlipX(boss.marchDirection > 0);
+                this.tickCorridorSqueeze(boss);
                 return;
             }
 

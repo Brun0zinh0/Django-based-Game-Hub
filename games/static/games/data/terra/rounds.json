@@ -15,7 +15,7 @@
   "baseMaxHp": 100,
   "maxMana": 100,
   "manaRegenPerSecond": 8,
-  "startingCoins": 12,
+  "startingCoins": 24,
   "comment": "Terraria physics, converted from per-tick to per-second: run 3px/tick, gravity 0.4px/tick^2, jump peaks around 5.5 tiles.",
   "runSpeed": 180,
   "jumpVelocity": 505,
@@ -84,7 +84,9 @@
   "hpMultiplierPerRound": 0.12,
   "damageMultiplierPerRound": 0.06,
   "coinMultiplierPerRound": 0.08,
-  "hpGrowthPerRound": 1.06
+  "hpGrowthPerRound": 1.06,
+  "bossCoinMultiplier": 1.6,
+  "comment": ""
  },
  "mobs": [
   {

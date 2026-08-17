@@ -11,10 +11,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
-    <link rel="stylesheet" href="{% static 'games/terra_boss.css' %}?v=20260815-13">
+    <link rel="stylesheet" href="{% static 'games/terra_boss.css' %}?v=20260816-1">
     <script defer src="{% static 'games/vendor/phaser-3.90.0.min.js' %}"></script>
     <script defer src="{% static 'games/terra_boss_audio.js' %}?v=20260809-1"></script>
-    <script defer src="{% static 'games/terra_boss.js' %}?v=20260815-15"></script>
+    <script defer src="{% static 'games/terra_boss.js' %}?v=20260816-1"></script>
 </head>
 <body>
 <main
@@ -23,18 +23,18 @@
     data-armor-url="{% static 'games/data/terra/armor.json' %}?v=20260809-2"
     data-accessories-url="{% static 'games/data/terra/accessories.json' %}?v=20260809-3"
     data-characters-url="{% static 'games/data/terra/characters.json' %}?v=20260809-7"
-    data-bosses-url="{% static 'games/data/terra/bosses.json' %}?v=20260814-10"
-    data-rounds-url="{% static 'games/data/terra/rounds.json' %}?v=20260815-1"
-    data-biomes-url="{% static 'games/data/terra/biomes.json' %}?v=20260815-1"
+    data-bosses-url="{% static 'games/data/terra/bosses.json' %}?v=20260815-1"
+    data-rounds-url="{% static 'games/data/terra/rounds.json' %}?v=20260815-2"
+    data-biomes-url="{% static 'games/data/terra/biomes.json' %}?v=20260816-1"
     data-achievements-url="{% static 'games/data/terra/achievements.json' %}?v=20260809-1"
     data-packs-url="{% static 'games/data/terra/packs/index.json' %}?v=20260815-12"
-    data-difficulties-url="{% static 'games/data/terra/difficulties.json' %}?v=20260809-1"
+    data-difficulties-url="{% static 'games/data/terra/difficulties.json' %}?v=20260815-1"
     data-modifiers-url="{% static 'games/data/terra/modifiers.json' %}?v=20260809-1"
     data-events-url="{% static 'games/data/terra/events.json' %}?v=20260814-1"
     data-potions-url="{% static 'games/data/terra/potions.json' %}?v=20260814-1"
     data-ammo-url="{% static 'games/data/terra/ammo.json' %}?v=20260814-2"
     data-debuffs-url="{% static 'games/data/terra/debuffs.json' %}?v=20260814-1"
-    data-decor-url="{% static 'games/assets/terra/sprites/decor.json' %}?v=20260809-1"
+    data-decor-url="{% static 'games/assets/terra/sprites/decor.json' %}?v=20260815-1"
     data-frames-url="{% static 'games/assets/terra/sprites/frames.json' %}?v=20260809-7"
     data-items-url="{% static 'games/assets/terra/sprites/items.json' %}?v=20260809-11"
     data-tiles-url="{% static 'games/assets/terra/sprites/tiles.json' %}?v=20260809-1"
@@ -42,7 +42,7 @@
     data-gore-url="{% static 'games/assets/terra/sprites/gore.json' %}?v=20260809-5"
     data-wings-url="{% static 'games/assets/terra/sprites/wings.json' %}?v=20260808-1"
     {# Bump when any sprite file is re-cut, or browsers serve the old art. #}
-    data-asset-version="20260815-1"
+    data-asset-version="20260815-7"
     data-static-prefix="{% static '' %}"
 >
     <header class="tb-topbar">
@@ -94,7 +94,7 @@
                             title="Cycle difficulty">Difficulty: Journey</button>
                     <button id="tb-open-characters" class="tb-button">Characters</button>
                     <button id="tb-open-unlocks" class="tb-button">Unlocks</button>
-                <button id="tb-open-packs" class="tb-button">Packs</button>
+                    <button id="tb-open-packs" class="tb-button">Packs</button>
                     <div class="tb-menu-actions-row">
                         <button id="tb-open-bestiary" class="tb-button">Bestiary</button>
                         <button id="tb-open-weaponry" class="tb-button">Weaponry</button>
@@ -204,27 +204,31 @@
 
     {# Between rounds: vendor above the inventory, equipment alongside. #}
     <section id="tb-shop" class="tb-panel tb-overlay" hidden aria-labelledby="tb-shop-title">
+        {# Its own row: in the shop card it sat below a growing list. #}
+        <div class="tb-between-bar">
+            <span class="tb-shop-coins">🪙 <b id="tb-shop-coins-value">0</b></span>
+            <p class="tb-between-tip" id="tb-shop-hint">
+                Hover for details. Drag an item onto your bags or your gear to buy it.
+            </p>
+            <button id="tb-shop-reroll" class="tb-button">Reroll</button>
+            <button id="tb-shop-continue" class="tb-button tb-button-primary">Next Round →</button>
+        </div>
         <div class="tb-between">
             <div class="tb-between-main">
                 <div class="tb-overlay-card tb-between-shop">
                     <header class="tb-overlay-head">
                         <h2 id="tb-shop-title">Shop</h2>
-                        <span class="tb-shop-coins">🪙 <b id="tb-shop-coins-value">0</b></span>
                     </header>
-                    <p class="tb-overlay-hint" id="tb-shop-hint">
-                        Bought gear equips into a free slot, or drops into your inventory.
-                    </p>
-                    <ul id="tb-shop-list" class="tb-card-list"></ul>
-                    <div class="tb-shop-actions">
-                        <button id="tb-shop-reroll" class="tb-button">Reroll</button>
-                        <button id="tb-shop-continue" class="tb-button tb-button-primary">Next Round →</button>
-                    </div>
+                    <ul id="tb-shop-list" class="tb-card-list tb-shop-shelf"></ul>
                 </div>
                 <div class="tb-overlay-card tb-between-inventory" id="tb-inventory-dock-shop"></div>
             </div>
             <div class="tb-overlay-card tb-between-gear" id="tb-gear-dock-shop"></div>
         </div>
     </section>
+
+    {# Follows the cursor over anything with something to say about itself. #}
+    <div id="tb-tip" class="tb-tip" hidden role="tooltip" aria-hidden="true"></div>
 
     {# A boss kill drops a bag; walking over it deals three of its pool face #}
     {# up. One is yours, the other two are gone -- that is the whole point. #}
@@ -307,7 +311,11 @@
         </div>
 
         <div class="tb-hud tb-hud-right">
-            <div class="tb-hearts" id="tb-hud-hearts"></div>
+            {# Hearts, plus the number Terraria's fancy bar shows. #}
+            <div class="tb-health">
+                <span class="tb-hp-readout" id="tb-hud-hp">100 / 100</span>
+                <div class="tb-hearts" id="tb-hud-hearts"></div>
+            </div>
             {# Active buffs, the way Terraria stacks them under the life bar. #}
             <div class="tb-buffs" id="tb-hud-buffs" hidden></div>
             <div class="tb-hud-row tb-hud-row-end">

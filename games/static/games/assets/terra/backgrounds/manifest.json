@@ -1,0 +1,214 @@
+{
+ "source": "https://steamcommunity.com/sharedfiles/filedetails/?id=2971754944",
+ "art": "Shashwambam",
+ "authorSupplied": 10,
+ "backdrops": {
+  "11": {
+   "file": "back11.jpg",
+   "biome": "jungle",
+   "render": 0,
+   "size": [
+    1920,
+    1004
+   ]
+  },
+  "12": {
+   "file": "back12.jpg",
+   "biome": "hallow",
+   "render": 1,
+   "size": [
+    1920,
+    1004
+   ]
+  },
+  "13": {
+   "file": "back13.jpg",
+   "biome": "hallow",
+   "render": 2,
+   "size": [
+    1920,
+    1004
+   ]
+  },
+  "14": {
+   "file": "back14.jpg",
+   "biome": "forest",
+   "render": 4,
+   "size": [
+    1920,
+    1004
+   ]
+  },
+  "15": {
+   "file": "back15.jpg",
+   "biome": "sky",
+   "render": 5,
+   "size": [
+    1920,
+    1004
+   ]
+  },
+  "16": {
+   "file": "back16.jpg",
+   "biome": "corruption",
+   "render": 6,
+   "size": [
+    1920,
+    1004
+   ]
+  },
+  "17": {
+   "file": "back17.jpg",
+   "biome": "crimson",
+   "render": 7,
+   "size": [
+    1920,
+    1004
+   ]
+  },
+  "18": {
+   "file": "back18.jpg",
+   "biome": "jungle",
+   "render": 8,
+   "size": [
+    1920,
+    1004
+   ]
+  },
+  "19": {
+   "file": "back19.jpg",
+   "biome": "jungle",
+   "render": 9,
+   "size": [
+    1920,
+    1004
+   ]
+  },
+  "20": {
+   "file": "back20.jpg",
+   "biome": "snow",
+   "render": 10,
+   "size": [
+    1920,
+    1004
+   ]
+  },
+  "21": {
+   "file": "back21.jpg",
+   "biome": "forest",
+   "render": 16,
+   "size": [
+    1920,
+    1004
+   ]
+  },
+  "22": {
+   "file": "back22.jpg",
+   "biome": "forest",
+   "render": 17,
+   "size": [
+    1920,
+    1004
+   ]
+  },
+  "23": {
+   "file": "back23.jpg",
+   "biome": "forest",
+   "render": 18,
+   "size": [
+    1920,
+    1004
+   ]
+  },
+  "24": {
+   "file": "back24.jpg",
+   "biome": "forest",
+   "render": 19,
+   "size": [
+    1920,
+    1004
+   ]
+  },
+  "25": {
+   "file": "back25.jpg",
+   "biome": "corruption",
+   "render": 20,
+   "size": [
+    1920,
+    1004
+   ]
+  },
+  "26": {
+   "file": "back26.jpg",
+   "biome": "corruption",
+   "render": 21,
+   "size": [
+    1920,
+    1004
+   ]
+  },
+  "27": {
+   "file": "back27.jpg",
+   "biome": "crimson",
+   "render": 23,
+   "size": [
+    1920,
+    1004
+   ]
+  },
+  "28": {
+   "file": "back28.jpg",
+   "biome": "crimson",
+   "render": 24,
+   "size": [
+    1920,
+    1004
+   ]
+  },
+  "29": {
+   "file": "back29.jpg",
+   "biome": "snow",
+   "render": 25,
+   "size": [
+    1920,
+    1004
+   ]
+  },
+  "30": {
+   "file": "back30.jpg",
+   "biome": "ice",
+   "render": 26,
+   "size": [
+    1920,
+    1004
+   ]
+  },
+  "31": {
+   "file": "back31.jpg",
+   "biome": "ice",
+   "render": 27,
+   "size": [
+    1920,
+    1004
+   ]
+  },
+  "32": {
+   "file": "back32.jpg",
+   "biome": "snow",
+   "render": 28,
+   "size": [
+    1920,
+    1004
+   ]
+  },
+  "33": {
+   "file": "back33.jpg",
+   "biome": "mushroom",
+   "render": 30,
+   "size": [
+    1920,
+    1004
+   ]
+  }
+ }
+}

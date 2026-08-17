@@ -290,7 +290,7 @@
    "sizePx": 190,
    "pattern": "wall",
    "patternConfig": {
-    "marchSpeed": 100,
+    "marchSpeed": 92,
     "shoot": {
      "everyMs": 1500,
      "count": 3,
@@ -299,11 +299,17 @@
      "damage": 14
     },
     "servantsAtHpFractions": [
-     0.66,
-     0.33
+     0.85,
+     0.7,
+     0.55,
+     0.4,
+     0.25,
+     0.1
     ],
-    "servantMob": "zombie",
-    "servantCount": 2
+    "servantMob": "demon-eye",
+    "servantCount": 2,
+    "corridor": true,
+    "marchRamp": 0.8
    },
    "achievementOnKill": "defeat-wall-of-flesh",
    "skin": {
@@ -319,7 +325,7 @@
      "name": "Closing In",
      "say": "The wall picks up pace.",
      "config": {
-      "marchSpeed": 140
+      "marchSpeed": 112
      },
      "shoot": {
       "everyMs": 1200,
@@ -334,7 +340,7 @@
      "name": "Stampede",
      "say": "Nowhere left to back into.",
      "config": {
-      "marchSpeed": 195,
+      "marchSpeed": 156,
       "servantCount": 3
      },
      "shoot": {

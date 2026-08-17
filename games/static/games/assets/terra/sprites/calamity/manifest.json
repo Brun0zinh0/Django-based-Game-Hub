@@ -1,0 +1,504 @@
+{
+ "source": "Calamity Mod source mirror (animation sheets) and wiki (item icons)",
+ "sourceUrl": "https://github.com/CalamityTeam/CalamityModPublic",
+ "wikiUrl": "https://calamitymod.wiki.gg/",
+ "art": "Calamity Mod team",
+ "licence": "Mod and assets proprietary to Azafure, LLC; all rights reserved.",
+ "note": "Raw, unedited. Strips are composed by build_terra_calamity.py.",
+ "sprites": {
+  "desert-scourge-head": {
+   "file": "raw/desert-scourge-head.png",
+   "from": "CalamityModPublic@1.4.4",
+   "sourceFile": "NPCs/DesertScourge/DesertScourgeHead.png",
+   "article": "https://github.com/CalamityTeam/CalamityModPublic/blob/1.4.4/NPCs/DesertScourge/DesertScourgeHead.png",
+   "imageUrl": "https://raw.githubusercontent.com/CalamityTeam/CalamityModPublic/1.4.4/NPCs/DesertScourge/DesertScourgeHead.png",
+   "size": [
+    158,
+    826
+   ],
+   "mode": "RGBA",
+   "bytes": 34884
+  },
+  "desert-scourge-body": {
+   "file": "raw/desert-scourge-body.png",
+   "from": "CalamityModPublic@1.4.4",
+   "sourceFile": "NPCs/DesertScourge/DesertScourgeBody.png",
+   "article": "https://github.com/CalamityTeam/CalamityModPublic/blob/1.4.4/NPCs/DesertScourge/DesertScourgeBody.png",
+   "imageUrl": "https://raw.githubusercontent.com/CalamityTeam/CalamityModPublic/1.4.4/NPCs/DesertScourge/DesertScourgeBody.png",
+   "size": [
+    158,
+    818
+   ],
+   "mode": "RGBA",
+   "bytes": 25057
+  },
+  "desert-scourge-tail": {
+   "file": "raw/desert-scourge-tail.png",
+   "from": "CalamityModPublic@1.4.4",
+   "sourceFile": "NPCs/DesertScourge/DesertScourgeTail.png",
+   "article": "https://github.com/CalamityTeam/CalamityModPublic/blob/1.4.4/NPCs/DesertScourge/DesertScourgeTail.png",
+   "imageUrl": "https://raw.githubusercontent.com/CalamityTeam/CalamityModPublic/1.4.4/NPCs/DesertScourge/DesertScourgeTail.png",
+   "size": [
+    158,
+    116
+   ],
+   "mode": "RGBA",
+   "bytes": 2468
+  },
+  "aquatic-scourge-head": {
+   "file": "raw/aquatic-scourge-head.png",
+   "from": "CalamityModPublic@1.4.4",
+   "sourceFile": "NPCs/AquaticScourge/AquaticScourgeHead.png",
+   "article": "https://github.com/CalamityTeam/CalamityModPublic/blob/1.4.4/NPCs/AquaticScourge/AquaticScourgeHead.png",
+   "imageUrl": "https://raw.githubusercontent.com/CalamityTeam/CalamityModPublic/1.4.4/NPCs/AquaticScourge/AquaticScourgeHead.png",
+   "size": [
+    102,
+    90
+   ],
+   "mode": "RGBA",
+   "bytes": 2824
+  },
+  "aquatic-scourge-body": {
+   "file": "raw/aquatic-scourge-body.png",
+   "from": "CalamityModPublic@1.4.4",
+   "sourceFile": "NPCs/AquaticScourge/AquaticScourgeBody.png",
+   "article": "https://github.com/CalamityTeam/CalamityModPublic/blob/1.4.4/NPCs/AquaticScourge/AquaticScourgeBody.png",
+   "imageUrl": "https://raw.githubusercontent.com/CalamityTeam/CalamityModPublic/1.4.4/NPCs/AquaticScourge/AquaticScourgeBody.png",
+   "size": [
+    86,
+    54
+   ],
+   "mode": "RGBA",
+   "bytes": 1750
+  },
+  "aquatic-scourge-tail": {
+   "file": "raw/aquatic-scourge-tail.png",
+   "from": "CalamityModPublic@1.4.4",
+   "sourceFile": "NPCs/AquaticScourge/AquaticScourgeTail.png",
+   "article": "https://github.com/CalamityTeam/CalamityModPublic/blob/1.4.4/NPCs/AquaticScourge/AquaticScourgeTail.png",
+   "imageUrl": "https://raw.githubusercontent.com/CalamityTeam/CalamityModPublic/1.4.4/NPCs/AquaticScourge/AquaticScourgeTail.png",
+   "size": [
+    42,
+    50
+   ],
+   "mode": "RGBA",
+   "bytes": 869
+  },
+  "crabulon": {
+   "file": "raw/crabulon.png",
+   "from": "CalamityModPublic@1.4.4",
+   "sourceFile": "NPCs/Crabulon/Crabulon.png",
+   "article": "https://github.com/CalamityTeam/CalamityModPublic/blob/1.4.4/NPCs/Crabulon/Crabulon.png",
+   "imageUrl": "https://raw.githubusercontent.com/CalamityTeam/CalamityModPublic/1.4.4/NPCs/Crabulon/Crabulon.png",
+   "size": [
+    312,
+    1176
+   ],
+   "mode": "RGBA",
+   "bytes": 74782
+  },
+  "hive-mind-phase1": {
+   "file": "raw/hive-mind-phase1.png",
+   "from": "CalamityModPublic@1.4.4",
+   "sourceFile": "NPCs/HiveMind/HiveMind.png",
+   "article": "https://github.com/CalamityTeam/CalamityModPublic/blob/1.4.4/NPCs/HiveMind/HiveMind.png",
+   "imageUrl": "https://raw.githubusercontent.com/CalamityTeam/CalamityModPublic/1.4.4/NPCs/HiveMind/HiveMind.png",
+   "size": [
+    178,
+    1952
+   ],
+   "mode": "RGBA",
+   "bytes": 88232
+  },
+  "hive-mind-phase2": {
+   "file": "raw/hive-mind-phase2.png",
+   "from": "CalamityModPublic@1.4.4",
+   "sourceFile": "NPCs/HiveMind/HiveMindP2.png",
+   "article": "https://github.com/CalamityTeam/CalamityModPublic/blob/1.4.4/NPCs/HiveMind/HiveMindP2.png",
+   "imageUrl": "https://raw.githubusercontent.com/CalamityTeam/CalamityModPublic/1.4.4/NPCs/HiveMind/HiveMindP2.png",
+   "size": [
+    356,
+    1136
+   ],
+   "mode": "RGBA",
+   "bytes": 53584
+  },
+  "perforators": {
+   "file": "raw/perforators.png",
+   "from": "CalamityModPublic@1.4.4",
+   "sourceFile": "NPCs/Perforator/PerforatorHive.png",
+   "article": "https://github.com/CalamityTeam/CalamityModPublic/blob/1.4.4/NPCs/Perforator/PerforatorHive.png",
+   "imageUrl": "https://raw.githubusercontent.com/CalamityTeam/CalamityModPublic/1.4.4/NPCs/Perforator/PerforatorHive.png",
+   "size": [
+    142,
+    1540
+   ],
+   "mode": "RGBA",
+   "bytes": 55323
+  },
+  "slime-god": {
+   "file": "raw/slime-god.png",
+   "from": "CalamityModPublic@1.4.4",
+   "sourceFile": "NPCs/SlimeGod/CrimulanPaladin.png",
+   "article": "https://github.com/CalamityTeam/CalamityModPublic/blob/1.4.4/NPCs/SlimeGod/CrimulanPaladin.png",
+   "imageUrl": "https://raw.githubusercontent.com/CalamityTeam/CalamityModPublic/1.4.4/NPCs/SlimeGod/CrimulanPaladin.png",
+   "size": [
+    174,
+    720
+   ],
+   "mode": "P",
+   "bytes": 10670
+  },
+  "cryogen": {
+   "file": "raw/cryogen.png",
+   "from": "CalamityModPublic@1.4.4",
+   "sourceFile": "NPCs/Cryogen/Cryogen_Phase1.png",
+   "article": "https://github.com/CalamityTeam/CalamityModPublic/blob/1.4.4/NPCs/Cryogen/Cryogen_Phase1.png",
+   "imageUrl": "https://raw.githubusercontent.com/CalamityTeam/CalamityModPublic/1.4.4/NPCs/Cryogen/Cryogen_Phase1.png",
+   "size": [
+    86,
+    88
+   ],
+   "mode": "RGBA",
+   "bytes": 2176
+  },
+  "wulfrum-drone": {
+   "file": "raw/wulfrum-drone.png",
+   "from": "CalamityModPublic@1.4.4",
+   "sourceFile": "NPCs/NormalNPCs/WulfrumDrone.png",
+   "article": "https://github.com/CalamityTeam/CalamityModPublic/blob/1.4.4/NPCs/NormalNPCs/WulfrumDrone.png",
+   "imageUrl": "https://raw.githubusercontent.com/CalamityTeam/CalamityModPublic/1.4.4/NPCs/NormalNPCs/WulfrumDrone.png",
+   "size": [
+    32,
+    204
+   ],
+   "mode": "P",
+   "bytes": 722
+  },
+  "aero-slime": {
+   "file": "raw/aero-slime.png",
+   "from": "CalamityModPublic@1.4.4",
+   "sourceFile": "NPCs/NormalNPCs/AeroSlime.png",
+   "article": "https://github.com/CalamityTeam/CalamityModPublic/blob/1.4.4/NPCs/NormalNPCs/AeroSlime.png",
+   "imageUrl": "https://raw.githubusercontent.com/CalamityTeam/CalamityModPublic/1.4.4/NPCs/NormalNPCs/AeroSlime.png",
+   "size": [
+    66,
+    160
+   ],
+   "mode": "RGBA",
+   "bytes": 1333
+  },
+  "cryo-slime": {
+   "file": "raw/cryo-slime.png",
+   "from": "CalamityModPublic@1.4.4",
+   "sourceFile": "NPCs/NormalNPCs/CryoSlime.png",
+   "article": "https://github.com/CalamityTeam/CalamityModPublic/blob/1.4.4/NPCs/NormalNPCs/CryoSlime.png",
+   "imageUrl": "https://raw.githubusercontent.com/CalamityTeam/CalamityModPublic/1.4.4/NPCs/NormalNPCs/CryoSlime.png",
+   "size": [
+    56,
+    88
+   ],
+   "mode": "RGBA",
+   "bytes": 1509
+  },
+  "sulphurous-skater": {
+   "file": "raw/sulphurous-skater.png",
+   "from": "CalamityModPublic@1.4.4",
+   "sourceFile": "NPCs/AcidRain/SulphurousSkater.png",
+   "article": "https://github.com/CalamityTeam/CalamityModPublic/blob/1.4.4/NPCs/AcidRain/SulphurousSkater.png",
+   "imageUrl": "https://raw.githubusercontent.com/CalamityTeam/CalamityModPublic/1.4.4/NPCs/AcidRain/SulphurousSkater.png",
+   "size": [
+    48,
+    240
+   ],
+   "mode": "P",
+   "bytes": 1908
+  },
+  "cnidrion": {
+   "file": "raw/cnidrion.png",
+   "from": "CalamityModPublic@1.4.4",
+   "sourceFile": "NPCs/NormalNPCs/Cnidrion.png",
+   "article": "https://github.com/CalamityTeam/CalamityModPublic/blob/1.4.4/NPCs/NormalNPCs/Cnidrion.png",
+   "imageUrl": "https://raw.githubusercontent.com/CalamityTeam/CalamityModPublic/1.4.4/NPCs/NormalNPCs/Cnidrion.png",
+   "size": [
+    192,
+    1120
+   ],
+   "mode": "RGBA",
+   "bytes": 50957
+  },
+  "barinade": {
+   "file": "raw/barinade.png",
+   "from": "Calamity Mod Wiki",
+   "sourceFile": "Barinade.png",
+   "article": "https://calamitymod.wiki.gg/wiki/Barinade",
+   "imageUrl": "https://calamitymod.wiki.gg/images/Barinade.png",
+   "size": [
+    30,
+    58
+   ],
+   "mode": "P",
+   "bytes": 334
+  },
+  "aquashard-shotgun": {
+   "file": "raw/aquashard-shotgun.png",
+   "from": "Calamity Mod Wiki",
+   "sourceFile": "Aquashard_Shotgun.png",
+   "article": "https://calamitymod.wiki.gg/wiki/Aquashard_Shotgun",
+   "imageUrl": "https://calamitymod.wiki.gg/images/Aquashard_Shotgun.png",
+   "size": [
+    62,
+    26
+   ],
+   "mode": "P",
+   "bytes": 329
+  },
+  "scourge-of-the-desert": {
+   "file": "raw/scourge-of-the-desert.png",
+   "from": "Calamity Mod Wiki",
+   "sourceFile": "Scourge_of_the_Desert.png",
+   "article": "https://calamitymod.wiki.gg/wiki/Scourge_of_the_Desert",
+   "imageUrl": "https://calamitymod.wiki.gg/images/Scourge_of_the_Desert.png",
+   "size": [
+    82,
+    82
+   ],
+   "mode": "P",
+   "bytes": 539
+  },
+  "fungicide": {
+   "file": "raw/fungicide.png",
+   "from": "Calamity Mod Wiki",
+   "sourceFile": "Fungicide.png",
+   "article": "https://calamitymod.wiki.gg/wiki/Fungicide",
+   "imageUrl": "https://calamitymod.wiki.gg/images/Fungicide.png",
+   "size": [
+    40,
+    26
+   ],
+   "mode": "P",
+   "bytes": 272
+  },
+  "shadethrower": {
+   "file": "raw/shadethrower.png",
+   "from": "Calamity Mod Wiki",
+   "sourceFile": "Shadethrower.png",
+   "article": "https://calamitymod.wiki.gg/wiki/Shadethrower",
+   "imageUrl": "https://calamitymod.wiki.gg/images/Shadethrower.png",
+   "size": [
+    76,
+    30
+   ],
+   "mode": "P",
+   "bytes": 415
+  },
+  "blood-bath": {
+   "file": "raw/blood-bath.png",
+   "from": "Calamity Mod Wiki",
+   "sourceFile": "Blood_Bath.png",
+   "article": "https://calamitymod.wiki.gg/wiki/Blood_Bath",
+   "imageUrl": "https://calamitymod.wiki.gg/images/Blood_Bath.png",
+   "size": [
+    52,
+    62
+   ],
+   "mode": "P",
+   "bytes": 436
+  },
+  "overloaded-blaster": {
+   "file": "raw/overloaded-blaster.png",
+   "from": "Calamity Mod Wiki",
+   "sourceFile": "Overloaded_Blaster.png",
+   "article": "https://calamitymod.wiki.gg/wiki/Overloaded_Blaster",
+   "imageUrl": "https://calamitymod.wiki.gg/images/Overloaded_Blaster.png",
+   "size": [
+    42,
+    34
+   ],
+   "mode": "P",
+   "bytes": 317
+  },
+  "hoarfrost-bow": {
+   "file": "raw/hoarfrost-bow.png",
+   "from": "Calamity Mod Wiki",
+   "sourceFile": "Hoarfrost_Bow.png",
+   "article": "https://calamitymod.wiki.gg/wiki/Hoarfrost_Bow",
+   "imageUrl": "https://calamitymod.wiki.gg/images/Hoarfrost_Bow.png",
+   "size": [
+    34,
+    62
+   ],
+   "mode": "P",
+   "bytes": 291
+  },
+  "barinautical": {
+   "file": "raw/barinautical.png",
+   "from": "Calamity Mod Wiki",
+   "sourceFile": "Barinautical.png",
+   "article": "https://calamitymod.wiki.gg/wiki/Barinautical",
+   "imageUrl": "https://calamitymod.wiki.gg/images/Barinautical.png",
+   "size": [
+    28,
+    54
+   ],
+   "mode": "P",
+   "bytes": 334
+  },
+  "aerospec-helmet": {
+   "file": "raw/aerospec-helmet.png",
+   "from": "Calamity Mod Wiki",
+   "sourceFile": "Aerospec_Hood.png",
+   "article": "https://calamitymod.wiki.gg/wiki/Aerospec_armor",
+   "imageUrl": "https://calamitymod.wiki.gg/images/Aerospec_Hood.png",
+   "size": [
+    22,
+    22
+   ],
+   "mode": "P",
+   "bytes": 196
+  },
+  "aerospec-chest": {
+   "file": "raw/aerospec-chest.png",
+   "from": "Calamity Mod Wiki",
+   "sourceFile": "Aerospec_Breastplate.png",
+   "article": "https://calamitymod.wiki.gg/wiki/Aerospec_armor",
+   "imageUrl": "https://calamitymod.wiki.gg/images/Aerospec_Breastplate.png",
+   "size": [
+    34,
+    20
+   ],
+   "mode": "P",
+   "bytes": 225
+  },
+  "aerospec-legs": {
+   "file": "raw/aerospec-legs.png",
+   "from": "Calamity Mod Wiki",
+   "sourceFile": "Aerospec_Leggings.png",
+   "article": "https://calamitymod.wiki.gg/wiki/Aerospec_armor",
+   "imageUrl": "https://calamitymod.wiki.gg/images/Aerospec_Leggings.png",
+   "size": [
+    22,
+    18
+   ],
+   "mode": "P",
+   "bytes": 192
+  },
+  "daedalus-helmet": {
+   "file": "raw/daedalus-helmet.png",
+   "from": "Calamity Mod Wiki",
+   "sourceFile": "Daedalus_Headgear.png",
+   "article": "https://calamitymod.wiki.gg/wiki/Daedalus_armor",
+   "imageUrl": "https://calamitymod.wiki.gg/images/Daedalus_Headgear.png",
+   "size": [
+    26,
+    22
+   ],
+   "mode": "P",
+   "bytes": 223
+  },
+  "daedalus-chest": {
+   "file": "raw/daedalus-chest.png",
+   "from": "Calamity Mod Wiki",
+   "sourceFile": "Daedalus_Breastplate.png",
+   "article": "https://calamitymod.wiki.gg/wiki/Daedalus_armor",
+   "imageUrl": "https://calamitymod.wiki.gg/images/Daedalus_Breastplate.png",
+   "size": [
+    42,
+    28
+   ],
+   "mode": "P",
+   "bytes": 256
+  },
+  "daedalus-legs": {
+   "file": "raw/daedalus-legs.png",
+   "from": "Calamity Mod Wiki",
+   "sourceFile": "Daedalus_Leggings.png",
+   "article": "https://calamitymod.wiki.gg/wiki/Daedalus_armor",
+   "imageUrl": "https://calamitymod.wiki.gg/images/Daedalus_Leggings.png",
+   "size": [
+    22,
+    18
+   ],
+   "mode": "P",
+   "bytes": 215
+  },
+  "rover-drive": {
+   "file": "raw/rover-drive.png",
+   "from": "Calamity Mod Wiki",
+   "sourceFile": "Rover_Drive.png",
+   "article": "https://calamitymod.wiki.gg/wiki/Rover_Drive",
+   "imageUrl": "https://calamitymod.wiki.gg/images/Rover_Drive.png",
+   "size": [
+    34,
+    30
+   ],
+   "mode": "P",
+   "bytes": 324
+  },
+  "aero-stone": {
+   "file": "raw/aero-stone.png",
+   "from": "Calamity Mod Wiki",
+   "sourceFile": "Aero_Stone.png",
+   "article": "https://calamitymod.wiki.gg/wiki/Aero_Stone",
+   "imageUrl": "https://calamitymod.wiki.gg/images/Aero_Stone.png",
+   "size": [
+    36,
+    38
+   ],
+   "mode": "P",
+   "bytes": 303
+  },
+  "crabulon-attack": {
+   "file": "raw/crabulon-attack.png",
+   "from": "CalamityModPublic@1.4.4",
+   "sourceFile": "NPCs/Crabulon/CrabulonAttack.png",
+   "article": "https://github.com/CalamityTeam/CalamityModPublic/blob/1.4.4/NPCs/Crabulon/CrabulonAttack.png",
+   "imageUrl": "https://raw.githubusercontent.com/CalamityTeam/CalamityModPublic/1.4.4/NPCs/Crabulon/CrabulonAttack.png",
+   "size": [
+    312,
+    1176
+   ],
+   "mode": "RGBA",
+   "bytes": 67904
+  },
+  "cryogen-bare": {
+   "file": "raw/cryogen-bare.png",
+   "from": "CalamityModPublic@1.4.4",
+   "sourceFile": "NPCs/Cryogen/Cryogen_Phase6.png",
+   "article": "https://github.com/CalamityTeam/CalamityModPublic/blob/1.4.4/NPCs/Cryogen/Cryogen_Phase6.png",
+   "imageUrl": "https://raw.githubusercontent.com/CalamityTeam/CalamityModPublic/1.4.4/NPCs/Cryogen/Cryogen_Phase6.png",
+   "size": [
+    86,
+    88
+   ],
+   "mode": "RGBA",
+   "bytes": 2784
+  },
+  "cryogen-shield": {
+   "file": "raw/cryogen-shield.png",
+   "from": "CalamityModPublic@1.4.4",
+   "sourceFile": "NPCs/Cryogen/CryogenShield.png",
+   "article": "https://github.com/CalamityTeam/CalamityModPublic/blob/1.4.4/NPCs/Cryogen/CryogenShield.png",
+   "imageUrl": "https://raw.githubusercontent.com/CalamityTeam/CalamityModPublic/1.4.4/NPCs/Cryogen/CryogenShield.png",
+   "size": [
+    222,
+    216
+   ],
+   "mode": "RGBA",
+   "bytes": 6803
+  },
+  "crimson-slime-spawn": {
+   "file": "raw/crimson-slime-spawn.png",
+   "from": "CalamityModPublic@1.4.4",
+   "sourceFile": "NPCs/SlimeGod/CrimsonSlimeSpawn.png",
+   "article": "https://github.com/CalamityTeam/CalamityModPublic/blob/1.4.4/NPCs/SlimeGod/CrimsonSlimeSpawn.png",
+   "imageUrl": "https://raw.githubusercontent.com/CalamityTeam/CalamityModPublic/1.4.4/NPCs/SlimeGod/CrimsonSlimeSpawn.png",
+   "size": [
+    44,
+    68
+   ],
+   "mode": "RGBA",
+   "bytes": 1198
+  }
+ }
+}

@@ -70,12 +70,22 @@ ce qui suit en est le résumé.
   l’URL de chaque planche sont dans
   `games/static/games/assets/terra/sprites/manifest.json`. Merci aux
   personnes qui les ont extraites et mises en ligne.
-- **[Calamity Mod](https://calamitymod.wiki.gg/)** — par la Calamity Mod
-  Team. Le pack de contenu optionnel en reprend les noms, les statistiques
-  et le comportement, **mais aucune image** : chaque entrée pointe vers un
-  sprite que le jeu possède déjà.
-- Les dix arrière-plans d’arène et le clip du menu ont été fournis par
-  l’auteur du projet.
+- **[Calamity Mod](https://calamitymod.wiki.gg/)** — par la **Calamity Mod
+  Team**. Le pack de contenu optionnel en reprend les noms, les
+  statistiques, le comportement **et les sprites**, récupérés depuis leur
+  wiki par `fetch_terra_calamity_sprites.py`. Les fichiers d’origine sont
+  conservés tels quels dans
+  `games/static/games/assets/terra/sprites/calamity/raw/`, avec l’URL de
+  chacun dans le `manifest.json` à côté. Les bandes que le jeu charge en
+  sont recomposées ; aucun dessin n’est de nous.
+- **[Backgrounds o' Plenty](https://steamcommunity.com/sharedfiles/filedetails/?id=2971754944)**
+  — pack de textures Terraria par **Shashwambam**. Les vingt-trois nouveaux
+  arrière-plans d’arène sont les images de présentation publiques de cette
+  page, recadrées pour retirer l’étiquette de nom ; le pack lui-même n’est
+  pas redistribué ici. `manifest.json` note de quelle image vient chaque
+  fichier.
+- Les dix premiers arrière-plans d’arène et le clip du menu ont été fournis
+  par l’auteur du projet.
 
 ### Pokémon Rogue
 

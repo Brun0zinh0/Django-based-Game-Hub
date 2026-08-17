@@ -41,7 +41,8 @@
      "y": 276,
      "width": 96
     }
-   ]
+   ],
+   "roughness": 20
   },
   {
    "id": "towers",
@@ -93,7 +94,8 @@
      "y": 268,
      "width": 112
     }
-   ]
+   ],
+   "roughness": 14
   },
   {
    "id": "islands",
@@ -135,7 +137,8 @@
      "y": 366,
      "width": 112
     }
-   ]
+   ],
+   "roughness": 26
   },
   {
    "id": "gallery",
@@ -172,7 +175,8 @@
      "y": 282,
      "width": 160
     }
-   ]
+   ],
+   "roughness": 16
   },
   {
    "id": "chasm",
@@ -209,7 +213,8 @@
      "y": 252,
      "width": 144
     }
-   ]
+   ],
+   "roughness": 28
   },
   {
    "id": "corridor",
@@ -217,7 +222,8 @@
    "bossOnly": true,
    "comment": "Nothing to climb and a thin floor: for the things that march or burrow straight through you.",
    "groundHeight": 34,
-   "platforms": []
+   "platforms": [],
+   "roughness": 0
   },
   {
    "id": "open-sky",
@@ -236,7 +242,8 @@
      "y": 430,
      "width": 160
     }
-   ]
+   ],
+   "roughness": 10
   },
   {
    "id": "canopy",
@@ -275,7 +282,8 @@
      "y": 280,
      "width": 192
     }
-   ]
+   ],
+   "roughness": 18
   },
   {
    "id": "temple",
@@ -299,7 +307,8 @@
      "y": 300,
      "width": 256
     }
-   ]
+   ],
+   "roughness": 0
   },
   {
    "id": "pillars",
@@ -353,7 +362,8 @@
      "y": 296,
      "width": 88
     }
-   ]
+   ],
+   "roughness": 12
   }
  ],
  "biomes": [
@@ -388,7 +398,15 @@
       4
      ]
     }
-   }
+   },
+   "backgrounds": [
+    1,
+    14,
+    21,
+    22,
+    23,
+    24
+   ]
   },
   {
    "id": "snow",
@@ -414,7 +432,13 @@
       4
      ]
     }
-   }
+   },
+   "backgrounds": [
+    2,
+    20,
+    29,
+    32
+   ]
   },
   {
    "id": "crimson",
@@ -440,7 +464,13 @@
       3
      ]
     }
-   }
+   },
+   "backgrounds": [
+    3,
+    17,
+    27,
+    28
+   ]
   },
   {
    "id": "corruption",
@@ -466,7 +496,13 @@
       3
      ]
     }
-   }
+   },
+   "backgrounds": [
+    4,
+    16,
+    25,
+    26
+   ]
   },
   {
    "id": "ice",
@@ -492,7 +528,12 @@
       3
      ]
     }
-   }
+   },
+   "backgrounds": [
+    5,
+    30,
+    31
+   ]
   },
   {
    "id": "hallow",
@@ -519,7 +560,12 @@
      ]
     }
    },
-   "hardmode": true
+   "hardmode": true,
+   "backgrounds": [
+    6,
+    12,
+    13
+   ]
   },
   {
    "id": "mushroom",
@@ -545,7 +591,11 @@
       4
      ]
     }
-   }
+   },
+   "backgrounds": [
+    7,
+    33
+   ]
   },
   {
    "id": "jungle",
@@ -571,7 +621,13 @@
       3
      ]
     }
-   }
+   },
+   "backgrounds": [
+    8,
+    11,
+    18,
+    19
+   ]
   },
   {
    "id": "sky",
@@ -582,7 +638,11 @@
    "platform": "sky-platform",
    "shade": "#101a3a",
    "shadeAlpha": 0.1,
-   "decor": {}
+   "decor": {},
+   "backgrounds": [
+    9,
+    15
+   ]
   },
   {
    "id": "underworld",
@@ -601,7 +661,10 @@
       12
      ]
     }
-   }
+   },
+   "backgrounds": [
+    10
+   ]
   }
  ]
 }

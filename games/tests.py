@@ -1059,7 +1059,21 @@ class TerraBossTests(TestCase):
         # A boss round ends about a second after the kill, which is not enough
         # time to walk to the bag. The reward must survive that.
         self.assertIn("this.pendingBag = source", engine)
-        cleared = engine.split("onRoundCleared() {", 1)[1][:1600]
+        # Cut at the brace that closes the method, not at a character count.
+        # A fixed 1600-character window broke the moment the method grew: the
+        # between-round mend was added above this and pushed the bag check out
+        # of range, failing a test about treasure bags for reasons that had
+        # nothing to do with them.
+        start = engine.index("onRoundCleared() {") + len("onRoundCleared() {")
+        depth = 1
+        for offset, char in enumerate(engine[start:]):
+            if char == "{":
+                depth += 1
+            elif char == "}":
+                depth -= 1
+                if depth == 0:
+                    break
+        cleared = engine[start:start + offset]
         self.assertIn("this.pendingBag", cleared,
                       "the shop opens without checking for an uncollected bag")
         self.assertIn("openShop(this)", cleared)
@@ -1522,6 +1536,779 @@ class TerraBossTests(TestCase):
             apply_body,
             "applying packs still reads the index default directly",
         )
+
+    def test_boss_attacks_that_arc_split_and_armour(self):
+        engine = (
+            Path(__file__).resolve().parent / "static" / "games" / "terra_boss.js"
+        ).read_text(encoding="utf-8")
+
+        def body_of(signature):
+            start = engine.index(signature) + len(signature)
+            depth = 1
+            for offset, char in enumerate(engine[start:]):
+                if char == "{":
+                    depth += 1
+                elif char == "}":
+                    depth -= 1
+                    if depth == 0:
+                        return engine[start:start + offset]
+            raise AssertionError(f"{signature} is never closed")
+
+        shots = body_of("fireEnemyShots(enemy) {")
+
+        # Arcade adds a body's gravity to the world's, and this world pulls at
+        # 1440. Setting the configured figure straight onto the body made a
+        # lobbed shot fall at 1960 against a solver that assumed 520, so every
+        # arc landed most of a screen short of the player.
+        self.assertIn(
+            "gravity - this.physics.world.gravity.y",
+            shots,
+            "a lobbed shot's gravity ignores the world's again, so it falls short",
+        )
+
+        # A ring has no endpoints. Spreading 16 shots across a 360-degree fan
+        # puts the first and last on the same heading: 15 shots and a gap.
+        self.assertIn("shot.ring", shots, "there is no ring option")
+        self.assertIn(
+            "(Math.PI * 2 * i) / count",
+            shots,
+            "a ring is spaced like a fan again, so it loses a shot to a duplicate",
+        )
+
+        # Damage reduction has to come from what this boss summoned, not from
+        # whatever happens to be on screen, or a horde round armours a boss
+        # that summoned nothing.
+        armour = body_of("servantArmour(boss) {")
+        self.assertIn(
+            "mob.summonedBy === boss",
+            armour,
+            "servant armour counts every mob alive, not the boss's own",
+        )
+        self.assertIn("damageReductionCap", armour, "the reduction has no ceiling")
+        self.assertIn(
+            "this.servantArmour(mob)",
+            body_of("damageMob(mob, amount, crit = false, options = {}) {"),
+            "nothing applies servant armour to an incoming hit",
+        )
+
+        # Halves must be marked, or one slime dissolves into a cloud of specks.
+        split = body_of("splitMob(mob) {")
+        self.assertIn("mob.hasSplit", split, "a split creature can split forever")
+        self.assertIn("half.hasSplit = true", split, "the halves are not marked")
+        self.assertIn(
+            "half.summonedBy = mob.summonedBy",
+            split,
+            "splitting launders a summon, so halves stop armouring their boss",
+        )
+
+    def test_the_arena_is_shaped_by_the_fight_in_it(self):
+        import json
+
+        static_dir = Path(__file__).resolve().parent / "static" / "games"
+        engine = (static_dir / "terra_boss.js").read_text(encoding="utf-8")
+
+        def body_of(signature):
+            start = engine.index(signature) + len(signature)
+            depth = 1
+            for offset, char in enumerate(engine[start:]):
+                if char == "{":
+                    depth += 1
+                elif char == "}":
+                    depth -= 1
+                    if depth == 0:
+                        return engine[start:start + offset]
+            raise AssertionError(f"{signature} is never closed")
+
+        # Ground-bound enemies climb by jumping when something blocks them, and
+        # they only clear so much. Terrain that steps higher than that is a
+        # wall a slime hops into forever.
+        profile = body_of("groundProfile(baseTop, roughness) {")
+        self.assertIn("STEP_LIMIT", profile, "nothing caps how tall a step can be")
+        self.assertIn(
+            "Math.abs(rise) > STEP_LIMIT",
+            profile,
+            "steps are never flattened, so the ground can strand what walks on it",
+        )
+
+        # Anything asking where the floor is needs the floor under that spot,
+        # not one number for the whole arena.
+        self.assertIn("groundAt(x) {", engine, "there is no way to sample the ground")
+        for caller, what in (
+            ("this.groundAt(x) - 60", "horde mobs"),
+            ("this.groundAt(x) - 80", "a walking boss"),
+            ("this.groundAt(x) + 1", "decor"),
+        ):
+            self.assertIn(caller, engine, f"{what} still assume a flat floor")
+
+        # Scaffolding answers to what is being fought, not to the round number.
+        platforms = body_of("buildOneWayPlatforms(biome, layout) {")
+        self.assertIn(
+            "plan.airborneShare < AIRBORNE_FOR_PLATFORMS",
+            platforms,
+            "platforms no longer depend on whether the fight leaves the floor",
+        )
+
+        # A boss as wide as the screen needs flat ground and a clear floor.
+        ground = body_of("buildGround(biome, layout) {")
+        self.assertIn("plan.bulk", ground, "ground shape ignores how big the fight is")
+        self.assertIn("plan.crowd", ground, "headroom ignores how many are coming")
+
+        # Every layout has to say how rough it is, or it silently gets the
+        # default and a slam arena grows hills under the boss.
+        biomes = json.loads(
+            (static_dir / "data" / "terra" / "biomes.json").read_text("utf-8")
+        )
+        for layout in biomes.get("layouts", []):
+            self.assertIn(
+                "roughness",
+                layout,
+                f"layout '{layout['id']}' never says how uneven its ground is",
+            )
+            self.assertGreaterEqual(layout["roughness"], 0)
+
+    def test_the_wall_of_flesh_is_a_chase_down_a_corridor(self):
+        import json
+
+        static_dir = Path(__file__).resolve().parent / "static" / "games"
+        engine = (static_dir / "terra_boss.js").read_text(encoding="utf-8")
+
+        def body_of(signature):
+            start = engine.index(signature) + len(signature)
+            depth = 1
+            for offset, char in enumerate(engine[start:]):
+                if char == "{":
+                    depth += 1
+                elif char == "}":
+                    depth -= 1
+                    if depth == 0:
+                        return engine[start:start + offset]
+            raise AssertionError(f"{signature} is never closed")
+
+        wall = next(
+            boss for boss in json.loads(
+                (static_dir / "data" / "terra" / "bosses.json").read_text("utf-8")
+            )["bosses"] if boss["id"] == "wall-of-flesh"
+        )
+        config = wall["patternConfig"]
+        self.assertTrue(config.get("corridor"), "the Wall of Flesh has no corridor")
+        self.assertGreater(
+            config.get("marchRamp", 0), 0,
+            "the wall never speeds up, so a wounded wall is only a longer run",
+        )
+        self.assertEqual(
+            wall.get("arena"), "corridor",
+            "the wall is fought in an arena with scaffolding in it",
+        )
+
+        # The march is one-way. Bouncing it off the edges of a single screen
+        # was a chase with nowhere to run: it turned round and came back.
+        # The pattern name appears twice -- once where the boss is set up and
+        # once where it moves. This wants the second.
+        march = engine.split("// It only ever goes one way.", 1)[1].split("return;", 1)[0]
+        self.assertNotIn(
+            "marchDirection *= -1", march, "the wall turns round again",
+        )
+        self.assertIn("boss.hp / boss.maxHp", march, "the march ignores its health")
+
+        # The world has to actually be longer than the window, and the camera
+        # has to be allowed to move across it.
+        ground = body_of("buildGround(biome, layout) {")
+        for needed, why in (
+            ("this.arenaWidth", "the arena has no width of its own"),
+            ("physics.world.setBounds", "physics still ends at the window edge"),
+            ("cameras.main.setBounds", "the camera cannot leave the first screen"),
+        ):
+            self.assertIn(needed, ground, why)
+        self.assertIn(
+            "startFollow(this.player", engine, "the camera never follows anyone",
+        )
+
+        # Screen furniture must not slide off with the scenery.
+        for pinned in ("this.banner", "this.bossBar"):
+            index = engine.index(pinned)
+            # Wide enough to clear the text style block between the two.
+            self.assertIn(
+                "setScrollFactor(0)",
+                engine[index:index + 900],
+                f"{pinned} scrolls away with the corridor",
+            )
+
+        # You cannot get behind it, and being caught costs you.
+        squeeze = body_of("tickCorridorSqueeze(boss) {")
+        self.assertIn("this.hurtPlayer", squeeze, "being caught by the wall is free")
+        self.assertIn("this.player.x = edge", squeeze, "the wall does not shove")
+
+    def test_the_vendor_screen_describes_and_sells_by_hand(self):
+        import json
+        import re as regex
+
+        static_dir = Path(__file__).resolve().parent / "static" / "games"
+        engine = (static_dir / "terra_boss.js").read_text(encoding="utf-8")
+        markup = (
+            static_dir.parent.parent / "templates" / "games" / "terra_boss.html"
+        ).read_text(encoding="utf-8")
+
+        # Leaving the round lived inside the shop card, below a list that grows
+        # with the offers, so on a full shelf it scrolled out of reach.
+        bar = markup.split('class="tb-between-bar"', 1)
+        self.assertEqual(len(bar), 2, "the between-rounds bar is gone")
+        bar_html = bar[1].split("</div>", 1)[0]
+        for control in ("tb-shop-continue", "tb-shop-reroll"):
+            self.assertIn(
+                control, bar_html, f"{control} is back inside the scrolling card",
+            )
+        self.assertIn('id="tb-tip"', markup, "there is no hover panel to fill")
+
+        # Weapons keep their prose under `notes`; reading only `description`
+        # left every weapon's tooltip with no text at all.
+        self.assertIn(
+            "item.description || item.notes",
+            engine,
+            "weapon tooltips read a field weapons do not have",
+        )
+
+        # Effect keys are shown to the player, so they need real labels rather
+        # than raw camelCase. Every key the data actually uses must have one.
+        labels = engine.split("const EFFECT_LABELS = {", 1)[1].split("};", 1)[0]
+        named = set(regex.findall(r"(\w+):", labels))
+        used = set()
+        for name in ("accessories", "ammo", "potions", "armor"):
+            path = static_dir / "data" / "terra" / f"{name}.json"
+            if not path.is_file():
+                continue
+
+            def walk(node):
+                if isinstance(node, dict):
+                    for key, value in node.items():
+                        if key == "effects" and isinstance(value, dict):
+                            used.update(value.keys())
+                        else:
+                            walk(value)
+                elif isinstance(node, list):
+                    for entry in node:
+                        walk(entry)
+
+            walk(json.loads(path.read_text(encoding="utf-8")))
+        self.assertTrue(used, "no effects found to check labels against")
+        self.assertFalse(
+            used - named,
+            f"these effects would show as raw keys: {sorted(used - named)}",
+        )
+
+        # Dragging must not be the only way to buy: it is undiscoverable on its
+        # own and useless to anyone on a keyboard.
+        self.assertIn("beginDrag(event, offer", engine, "cards cannot be dragged")
+        # Scoped to the shop's own renderer: the same call appears in the bag
+        # and the sell list, so a bare search passes with this one deleted.
+        shop_render = engine.split("function renderShop() {", 1)[1]
+        self.assertIn(
+            'buy.addEventListener("click"',
+            shop_render.split("\n    }", 1)[0],
+            "the shop's buy button is gone, leaving dragging as the only way",
+        )
+        # And a drag that ends anywhere else must not charge for anything.
+        drop = engine.split("const drop = (upEvent)", 1)[1].split("};", 1)[0]
+        self.assertIn("landed &&", drop, "a drag dropped on nothing still buys")
+
+    def test_ground_decor_is_whole_objects_on_its_own_art(self):
+        import hashlib
+        import json
+
+        import numpy as np
+        from PIL import Image
+
+        sprites = (
+            Path(__file__).resolve().parent / "static" / "games"
+            / "assets" / "terra" / "sprites"
+        )
+        decor = json.loads((sprites / "decor.json").read_text(encoding="utf-8"))
+
+        def pieces(path):
+            """The runs of opaque columns -- one per object in the strip."""
+            alpha = np.array(Image.open(path).convert("RGBA"))[:, :, 3]
+            filled = (alpha > 8).any(axis=0)
+            spans, start = [], None
+            for x, on in enumerate(filled):
+                if on and start is None:
+                    start = x
+                elif not on and start is not None:
+                    spans.append((start, x))
+                    start = None
+            if start is not None:
+                spans.append((start, len(filled)))
+            return spans
+
+        # A clutter frame has to hold a whole pile. These were cut on
+        # Terraria's 16px tile pitch, but a pile of rubble is a multi-tile
+        # object, so each frame held a third of one and the floor was strewn
+        # with fragments of bone.
+        #
+        # Clutter only. The plant sheets look like they have the same fault
+        # and do not: their tufts abut, so what reads as one 78px object is
+        # four plants in a row, and the tile pitch falls cleanly between them.
+        for key, meta in decor.items():
+            if "clutter" not in key:
+                continue
+            path = sprites / meta["file"]
+            if not path.is_file():
+                continue
+            width = meta["frameWidth"]
+            for start, end in pieces(path):
+                self.assertLessEqual(
+                    end - start,
+                    width + 1,
+                    f"{key}: a pile spans {end - start}px across "
+                    f"{width}px frames, so a frame shows part of one",
+                )
+
+        # And two biomes must not decorate themselves out of the same file:
+        # snow and the underworld shared one, so hell had snowdrift in it.
+        digests = {}
+        for key, meta in decor.items():
+            path = sprites / meta["file"]
+            if not path.is_file():
+                continue
+            digests.setdefault(
+                hashlib.sha256(path.read_bytes()).hexdigest(), []
+            ).append(key)
+        shared = [names for names in digests.values() if len(names) > 1]
+        self.assertFalse(
+            shared, f"these decor sets are the same picture: {shared}",
+        )
+
+    def test_items_and_shots_are_sized_against_the_character(self):
+        import json
+
+        from PIL import Image
+
+        root = Path(__file__).resolve().parent
+        static_dir = root / "static" / "games"
+        sprites = static_dir / "assets" / "terra" / "sprites"
+        engine = (static_dir / "terra_boss.js").read_text(encoding="utf-8")
+
+        def ink(path):
+            box = Image.open(path).convert("RGBA").getbbox()
+            return max(box[2] - box[0], box[3] - box[1]) if box else 0
+
+        items = json.loads((sprites / "items.json").read_text(encoding="utf-8"))
+        base = json.loads(
+            (static_dir / "data" / "terra" / "weapons.json").read_text("utf-8")
+        )["weapons"]
+
+        # The biggest vanilla weapon of each class is the ceiling: a pack's
+        # weapon has to fit on the same shelf, not tower over it.
+        caps = {}
+        for weapon in base:
+            key = weapon["sprite"].split("/")[-1][:-4]
+            meta = items.get(key)
+            if meta and (sprites / meta["file"]).is_file():
+                caps[weapon["category"]] = max(
+                    caps.get(weapon["category"], 0), ink(sprites / meta["file"])
+                )
+
+        pack_path = static_dir / "data" / "terra" / "packs" / "calamity.json"
+        if pack_path.is_file():
+            for weapon in json.loads(pack_path.read_text("utf-8"))["weapons"]:
+                art = sprites / weapon["sprite"]
+                if not art.is_file():
+                    continue
+                cap = caps.get(weapon["category"])
+                if not cap:
+                    continue
+                self.assertLessEqual(
+                    ink(art), cap + 1,
+                    f"{weapon['id']} draws at {ink(art)}px against a {cap}px "
+                    f"ceiling for a {weapon['category']}",
+                )
+
+        # An inventory icon is drawn to be read in a slot. Flying at full size
+        # the wooden arrow was 32px tall against a 46px character, so shots
+        # looked like thrown furniture. The old code multiplied by WORLD_SCALE
+        # under a comment saying the world ran at 2x -- it runs at 1, so the
+        # call did nothing whatsoever.
+        self.assertIn(
+            "PROJECTILE_ART_SCALE", engine, "shots draw at their icon size again",
+        )
+        scale = float(
+            engine.split("const PROJECTILE_ART_SCALE = ", 1)[1].split(";", 1)[0]
+        )
+        self.assertLess(scale, 1.0, "the projectile scale no longer shrinks anything")
+        spawn = engine.split("spawnShot(weapon, muzzle, angle, now, isYoyo) {", 1)[1]
+        self.assertIn(
+            "projectile.setScale(PROJECTILE_ART_SCALE)",
+            spawn.split("\n        }", 1)[0],
+            "spawnShot does not apply the projectile scale",
+        )
+
+    def test_only_journey_patches_you_up_between_rounds(self):
+        import json
+
+        static_dir = Path(__file__).resolve().parent / "static" / "games"
+        levels = json.loads(
+            (static_dir / "data" / "terra" / "difficulties.json").read_text("utf-8")
+        )["difficulties"]
+        engine = (static_dir / "terra_boss.js").read_text(encoding="utf-8")
+
+        healing = {
+            level["id"]: level.get("healBetweenRounds", 0) for level in levels
+        }
+        self.assertEqual(
+            healing.get("journey"), 1,
+            "Journey no longer mends you between rounds",
+        )
+        # Every rung above it has to stay unforgiving, or the ladder collapses
+        # into one difficulty with different numbers on the enemies.
+        for level in levels:
+            if level["id"] == "journey":
+                continue
+            self.assertFalse(
+                level.get("healBetweenRounds"),
+                f"{level['id']} heals between rounds, so it is no harder "
+                "than Journey where it counts",
+            )
+
+        # Driven by the difficulty's own field, not by its name, so another
+        # rung can offer a partial mend without touching the engine.
+        cleared = engine.split("onRoundCleared() {", 1)[1].split("\n        }", 1)[0]
+        self.assertIn(
+            "this.difficulty.healBetweenRounds",
+            cleared,
+            "the between-round mend is not read off the difficulty",
+        )
+        self.assertNotIn(
+            '"journey"', cleared, "the mend is hardcoded to a difficulty name",
+        )
+        # Capped, so a value above 1 cannot heal past maximum.
+        self.assertIn("Math.min(this.maxHp", cleared, "the mend is not capped")
+
+    def test_a_boss_round_pays_for_itself(self):
+        import json
+
+        static_dir = Path(__file__).resolve().parent / "static" / "games"
+        rounds = json.loads(
+            (static_dir / "data" / "terra" / "rounds.json").read_text("utf-8")
+        )
+        engine = (static_dir / "terra_boss.js").read_text(encoding="utf-8")
+        scaling = rounds["scaling"]
+
+        # A boss round spawns no horde, so the boss is the whole income for
+        # that round. Paying a flat 25 meant reaching one cost you the round:
+        # at round 20 the wave it cancelled would have paid 240, and the Moon
+        # Lord paid 25 for the hardest fight on the board.
+        self.assertGreater(
+            scaling.get("bossCoinMultiplier", 0), 1,
+            "a boss pays less than the wave it replaces",
+        )
+        self.assertNotRegex(
+            engine,
+            r"boss\.coinDrop\s*=\s*Math\.round\(\s*\d+\s*\*",
+            "the boss drop is a flat number again, so it stops scaling",
+        )
+        self.assertIn(
+            "this.waveValue()",
+            engine.split("spawnBoss(bossData) {", 1)[1].split("\n        }", 1)[0],
+            "the boss drop is not measured against the wave it replaces",
+        )
+
+        # And that measure has to grow with the round, or the flat number is
+        # back under a different name.
+        wave = engine.split("waveValue() {", 1)[1].split("\n        }", 1)[0]
+        self.assertIn("this.roundScale", wave, "the wave value ignores the round")
+        self.assertIn(
+            "this.expectedMobCount()", wave, "the wave value ignores the crowd",
+        )
+
+        # The first shop has to be able to sell you something. It opens after
+        # round one, when a wave of three has paid single digits.
+        # Priced above zero: the starting bow is free and never on the shelf,
+        # so including it made this pass with an empty purse.
+        cheapest = min(
+            weapon["price"]
+            for weapon in json.loads(
+                (static_dir / "data" / "terra" / "weapons.json").read_text("utf-8")
+            )["weapons"]
+            if weapon.get("tier", 1) == 1 and weapon["price"] > 0
+        )
+        purse = (rounds.get("player", {}).get("startingCoins", 0)
+                 + scaling["mobCountBase"]
+                 * min(mob["coins"] for mob in rounds["mobs"]))
+        self.assertGreaterEqual(
+            purse, cheapest,
+            f"after round one you hold {purse} and the cheapest thing on the "
+            f"shelf is {cheapest}, so the first shop sells nothing",
+        )
+
+    def test_the_menu_clip_and_buttons_line_up(self):
+        import re as regex
+        import struct
+
+        static_dir = Path(__file__).resolve().parent / "static" / "games"
+        css = (static_dir / "terra_boss.css").read_text(encoding="utf-8")
+
+        # The clip's own resolution, read out of the file rather than assumed,
+        # so replacing it with a different one keeps this honest.
+        clip = static_dir / "assets" / "terra" / "menu-animation.mp4"
+        data = clip.read_bytes()
+        at = data.find(b"tkhd")
+        self.assertGreater(at, 0, "the menu clip has no track header to measure")
+        native_w, native_h = (
+            value >> 16 for value in struct.unpack(">II", data[at:at + 88][-8:])
+        )
+
+        block = css.split(".tb-menu-art video {", 1)[1].split("}", 1)[0]
+        drawn = regex.search(r"width:\s*(\d+)px", block)
+        self.assertIsNotNone(drawn, "the menu clip has no fixed width to check")
+        width = int(drawn.group(1))
+        # Stretched to fill the panel it came out at about 2.26x and cropped:
+        # at a fractional multiple a source pixel smears across a boundary,
+        # so some blocks land two wide and some three and the edges wobble.
+        self.assertEqual(
+            width % native_w, 0,
+            f"the clip draws at {width}px against a {native_w}px source, "
+            f"which is {width / native_w:.2f}x -- not a whole multiple",
+        )
+        self.assertIn(
+            "image-rendering: pixelated", block, "the clip is drawn smoothed",
+        )
+        self.assertNotIn(
+            "object-fit: cover", block,
+            "the clip is cropped to fill again instead of shown whole",
+        )
+
+        # Three buttons in a two-column grid orphaned Feats on the row below.
+        # minmax(0, 1fr) rather than 1fr, or the longest label sets the width
+        # and the columns come out uneven.
+        row = css.split(".tb-menu-actions-row {", 1)[1].split("}", 1)[0]
+        self.assertIn(
+            "repeat(3, minmax(0, 1fr))",
+            row,
+            "the codex buttons are not three equal columns",
+        )
+
+        # And the stack sits down the middle rather than stretching edge to edge.
+        actions = css.split(".tb-menu-actions {", 1)[1].split("}", 1)[0]
+        self.assertIn("margin: 0 auto", actions, "the button stack is not centred")
+        self.assertIn("max-width", actions, "the button stack has no width to centre")
+
+    def test_coins_you_earned_reach_your_purse(self):
+        engine = (
+            Path(__file__).resolve().parent / "static" / "games" / "terra_boss.js"
+        ).read_text(encoding="utf-8")
+
+        def body_of(signature):
+            start = engine.index(signature) + len(signature)
+            depth = 1
+            for offset, char in enumerate(engine[start:]):
+                if char == "{":
+                    depth += 1
+                elif char == "}":
+                    depth -= 1
+                    if depth == 0:
+                        return engine[start:start + offset]
+            raise AssertionError(f"{signature} is never closed")
+
+        # A coin is worth what it says, not one. Dropping a sprite per unit
+        # put 323 bodies on the floor for one boss -- more than the round had
+        # time to walk over, and a physics group that size for a number.
+        self.assertIn("COIN_DROP_MAX", engine, "there is no cap on coin sprites")
+        cap = int(engine.split("const COIN_DROP_MAX = ", 1)[1].split(";", 1)[0])
+        self.assertLessEqual(cap, 24, "the cap is high enough to be no cap at all")
+        self.assertIn(
+            "coin.value = each", engine, "coins no longer carry a denomination",
+        )
+        # And collecting one has to bank what it is worth, or the cap quietly
+        # becomes a pay cut.
+        pickup = engine.split("this.physics.add.overlap(this.player, this.coins", 1)[1]
+        self.assertIn(
+            "coin.value || 1",
+            pickup.split("});", 1)[0],
+            "picking up a coin still banks 1 whatever it is worth",
+        )
+
+        # The shop opens about a second after the last kill, so whatever is
+        # still rolling around has to be collected for you rather than lost.
+        self.assertIn("sweepDroppedCoins", engine, "nothing sweeps the floor")
+        sweep = body_of("sweepDroppedCoins() {")
+        self.assertIn("coin.value || 1", sweep, "the sweep undercounts big coins")
+        self.assertIn(
+            "this.coinsCollected += swept", sweep, "the sweep banks nothing",
+        )
+        cleared = body_of("onRoundCleared() {")
+        self.assertIn(
+            "this.sweepDroppedCoins()",
+            cleared,
+            "the round ends without collecting what is still on the floor",
+        )
+
+    def test_a_new_arena_never_buries_the_player(self):
+        engine = (
+            Path(__file__).resolve().parent / "static" / "games" / "terra_boss.js"
+        ).read_text(encoding="utf-8")
+
+        def body_of(signature):
+            start = engine.index(signature) + len(signature)
+            depth = 1
+            for offset, char in enumerate(engine[start:]):
+                if char == "{":
+                    depth += 1
+                elif char == "}":
+                    depth -= 1
+                    if depth == 0:
+                        return engine[start:start + offset]
+            raise AssertionError(f"{signature} is never closed")
+
+        # Every round rolls a new height profile and rebuilds the arena around
+        # whoever is standing in it. Where the new ground came in higher, the
+        # player was left inside it -- and a body inside a static slab is not
+        # pushed out, it falls through and lands on the bottom of the world.
+        self.assertIn("standOnGround", engine, "nothing lifts anyone out of new ground")
+        rotate = body_of("rotateArena(prefer, wantLayout, boss = null) {")
+        self.assertIn(
+            "this.standOnGround(this.player)",
+            rotate,
+            "the arena is rebuilt without checking the player is above it",
+        )
+
+        lift = body_of("standOnGround(sprite) {")
+        self.assertIn("body.bottom", lift, "the check does not use the body's feet")
+        # Only ever upward: yanking a jumping player down to the floor every
+        # time the arena changed would be its own bug.
+        self.assertIn(
+            "if (overlap <= 0)", lift, "the lift is not one-directional",
+        )
+        self.assertIn("sprite.y -= overlap", lift, "the lift does not move upward")
+        self.assertNotIn(
+            "sprite.y +=", lift, "something in the lift pushes downward",
+        )
+
+    def test_health_reads_the_way_terraria_shows_it(self):
+        static_dir = Path(__file__).resolve().parent / "static" / "games"
+        engine = (static_dir / "terra_boss.js").read_text(encoding="utf-8")
+        css = (static_dir / "terra_boss.css").read_text(encoding="utf-8")
+        markup = (
+            static_dir.parent.parent / "templates" / "games" / "terra_boss.html"
+        ).read_text(encoding="utf-8")
+
+        # Terraria's scale, which this game already shares: 20 to a heart, ten
+        # to a row, 400 at the ceiling -- so a full loadout is two rows of ten.
+        self.assertIn("const HP_PER_HEART = 20;", engine)
+        self.assertIn("const HEARTS_PER_ROW = 10;", engine, "hearts have no row length")
+        row = css.split(".tb-heart-row {", 1)[1].split("}", 1)[0]
+        self.assertIn(
+            "repeat(10,", row,
+            "the rows are not ten wide, so they wrap at whatever fits",
+        )
+
+        body = engine.split("function updateHudHearts(", 1)[1].split("\n    }", 1)[0]
+
+        # Rows are appended top-first so the bottom row is last in the
+        # document. Reading the cells in document order therefore fills the
+        # top row first and drains the bottom -- backwards. Each cell has to
+        # carry which heart it is.
+        # The assignment specifically: searching for the bare property name
+        # also matched the line that reads it back, so deleting the tag left
+        # the guard passing.
+        self.assertIn(
+            "cell.dataset.index = String(",
+            body,
+            "hearts are not tagged with their number",
+        )
+        self.assertIn(
+            "Number(cell.dataset.index)",
+            body,
+            "hearts are filled in document order, which inverts the rows",
+        )
+
+        # A heart drains rather than blinking out, or the last twenty health
+        # look exactly like the last one.
+        self.assertIn("clipPath", body, "hearts have no partial state")
+        self.assertIn("tb-heart-live", css, "there is no layer to clip")
+        self.assertIn("tb-heart-spent", css, "there is nothing behind a spent heart")
+
+        # And the number Terraria's fancy bar shows.
+        self.assertIn('id="tb-hud-hp"', markup, "there is no health readout")
+        self.assertIn("is-low", body, "the readout never warns")
+
+    def test_every_biome_can_look_more_than_one_way(self):
+        import json
+
+        static_dir = Path(__file__).resolve().parent / "static" / "games"
+        biomes = json.loads(
+            (static_dir / "data" / "terra" / "biomes.json").read_text("utf-8")
+        )
+        engine = (static_dir / "terra_boss.js").read_text(encoding="utf-8")
+        art = static_dir / "assets" / "terra" / "backgrounds"
+
+        count = int(engine.split("const BACKGROUND_COUNT = ", 1)[1].split(";", 1)[0])
+
+        # A biome named one backdrop, so the jungle looked identical on every
+        # visit however long a run lasted. It names a set now.
+        for biome in biomes["biomes"]:
+            listed = biome.get("backgrounds")
+            self.assertTrue(
+                listed, f"{biome['id']} has no backdrop set",
+            )
+            for index in listed:
+                self.assertLessEqual(
+                    index, count,
+                    f"{biome['id']} lists backdrop {index}, past the "
+                    f"{count} the engine preloads -- it would never appear",
+                )
+                self.assertTrue(
+                    (art / f"back{index}.jpg").is_file(),
+                    f"{biome['id']} lists backdrop {index} and there is no file",
+                )
+
+        # Every backdrop that exists has to be preloaded, or a biome that
+        # lists it falls back to a flat colour.
+        on_disk = sorted(int(p.stem[4:]) for p in art.glob("back*.jpg")
+                         if p.stem[4:].isdigit())
+        self.assertGreaterEqual(
+            count, max(on_disk), "there is art the engine never loads",
+        )
+
+        # Where the borrowed ones came from stays recorded beside them.
+        self.assertTrue((art / "SOURCES.md").is_file(), "the backdrops have no register")
+        manifest = json.loads((art / "manifest.json").read_text(encoding="utf-8"))
+        readme = (
+            Path(__file__).resolve().parent.parent / "README.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn(
+            manifest["art"], readme, "the backdrop artist is not credited",
+        )
+
+    def test_the_between_rounds_screen_stacks_rather_than_spreads(self):
+        static_dir = Path(__file__).resolve().parent / "static" / "games"
+        css = (static_dir / "terra_boss.css").read_text(encoding="utf-8")
+        markup = (
+            static_dir.parent.parent / "templates" / "games" / "terra_boss.html"
+        ).read_text(encoding="utf-8")
+
+        # .tb-panel is a flex row that centres a single child with margin:auto.
+        # The shop has two children now -- the bar and the three cards -- so
+        # without a direction they laid out side by side and shoved the whole
+        # screen off the edge.
+        shop_children = markup.split('id="tb-shop"', 1)[1].split("</section>", 1)[0]
+        self.assertIn("tb-between-bar", shop_children)
+        self.assertIn('class="tb-between"', shop_children)
+
+        rule = css.split("#tb-shop {", 1)[1].split("}", 1)[0]
+        self.assertIn(
+            "flex-direction: column",
+            rule,
+            "the shop lays its bar out beside the cards instead of above them",
+        )
+
+        # And those auto margins have to go, or in a column they absorb the
+        # free space and push the bar away from the cards.
+        override = css.split("#tb-shop > * {", 1)[1].split("}", 1)[0]
+        self.assertIn("margin: 0", override, "the panel's auto margins still apply")
+
+        # The cards take what height is left rather than asking for the full
+        # panel height on their own, which would push them past the bottom.
+        sized = css.split("#tb-shop .tb-between {", 1)[1].split("}", 1)[0]
+        self.assertIn("height: auto", sized, "the cards still demand a fixed height")
+        self.assertIn("flex: 1", sized, "the cards do not take the remaining space")
 
     def test_the_save_is_rebuilt_field_by_field(self):
         import re
@@ -2154,8 +2941,17 @@ class TerraBossTests(TestCase):
             Path(__file__).resolve().parent
             / "static" / "games" / "assets" / "terra" / "backgrounds"
         )
-        found = sorted(path.name for path in backgrounds.glob("back*.jpg"))
-        self.assertEqual(len(found), 10, f"expected 10 backgrounds, found {found}")
+        found = sorted(int(path.stem[4:]) for path in backgrounds.glob("back*.jpg")
+                       if path.stem[4:].isdigit())
+        self.assertGreaterEqual(len(found), 10, f"too few backdrops: {found}")
+        # Numbered without gaps from 1. A fixed count was wrong the moment
+        # more were added; what actually matters is that the run is unbroken,
+        # because the engine preloads 1..BACKGROUND_COUNT and a hole in the
+        # middle is a biome pointing at art that was never loaded.
+        self.assertEqual(
+            found, list(range(1, len(found) + 1)),
+            f"backdrop numbering has a gap in it: {found}",
+        )
 
     def test_terra_data_files_are_valid_json(self):
         import json
@@ -2339,6 +3135,10 @@ class AssetPipelineTests(TestCase):
 
         root = Path(__file__).resolve().parent.parent
         readme = (root / "README.md").read_text(encoding="utf-8")
+        # The README is hard-wrapped prose, so a credit can be split across a
+        # line break. Match against flattened text, or the test fails on where
+        # the words happen to wrap rather than on whether anyone is credited.
+        flat = re.sub(r"\s+", " ", readme).lower()
 
         self.assertIn("## Crédits", readme, "the README has no credits section")
 
@@ -2349,7 +3149,8 @@ class AssetPipelineTests(TestCase):
         uploaders = set(re.findall(r"(?:Uploaded by|contributed by) (\w+)", register))
         self.assertGreaterEqual(len(uploaders), 5, "the register stopped naming uploaders")
         for who in sorted(uploaders):
-            self.assertIn(who, readme, f"{who} ripped a sheet we ship and is not credited")
+            self.assertIn(who.lower(), flat,
+                          f"{who} ripped a sheet we ship and is not credited")
 
         # Where the Terraria art came from, per its own manifest.
         manifest = json.loads(
@@ -2357,14 +3158,36 @@ class AssetPipelineTests(TestCase):
             .read_text(encoding="utf-8")
         )
         self.assertIn("The Spriters Resource", manifest["source"])
-        self.assertIn("spriters-resource.com", readme,
+        self.assertIn("spriters-resource.com", flat,
                       "the Terraria sprites' source is not in the README")
+
+        # The Calamity pack ships that team's own art now rather than
+        # borrowing vanilla sprites, so they are owed an art credit and not
+        # only a credit for the names and numbers.
+        calamity = self.static_dir / "assets" / "terra" / "sprites" / "calamity"
+        if calamity.is_dir():
+            cal_manifest = json.loads(
+                (calamity / "manifest.json").read_text(encoding="utf-8"))
+            self.assertTrue(
+                (calamity / "SOURCES.md").is_file(),
+                "the Calamity art has no register beside it",
+            )
+            self.assertIn(cal_manifest["art"].lower(), flat,
+                          "the Calamity artists are not credited")
+            self.assertIn("calamitymod.wiki.gg", flat,
+                          "where the Calamity art came from is not in the README")
+            # Every raw file the manifest claims should actually be there.
+            for key, entry in cal_manifest["sprites"].items():
+                self.assertTrue(
+                    (calamity / entry["file"]).is_file(),
+                    f"{key} is in the register but its file is missing",
+                )
 
         # And the rights holders and projects the games lean on.
         for owed in ("Re-Logic", "Calamity", "Pokémon Showdown",
                      "pokeemerald-expansion", "carchagui", "Princess-Phoenix",
                      "Phaser"):
-            self.assertIn(owed, readme, f"{owed} is not credited")
+            self.assertIn(owed.lower(), flat, f"{owed} is not credited")
 
     def test_material_ids_cover_all_nine_tiles(self):
         source = (
