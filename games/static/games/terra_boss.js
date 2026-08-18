@@ -3727,10 +3727,24 @@
                 this.wornHelmetKey = key;
             }
             const frameIndex = Number(this.player.frame.name) || 0;
+            // Helmets are cut to Terraria's 40x56 player rig; the characters
+            // are re-cut from town-NPC sheets at their own pitch and disagree
+            // -- 40x64 the Wizard, 48x58 the Clothier, 52x56 the Demolitionist
+            // and so on. Drawn plainly centred, the helmet lands off the head
+            // on ten of the twelve. The offset is measured per character by
+            // build_terra_helmet_fit.py against the Guide, who is 40x56 and is
+            // the pairing the art was drawn for.
+            const fit = (this.character || {}).helmetOffset || {};
+            // Mirror it: a head three pixels right of centre facing right is
+            // three pixels left of it facing left.
+            const offsetX = (fit.x || 0) * (this.player.flipX ? -1 : 1);
             helmet.setVisible(true)
                 .setScale(this.player.scaleX, this.player.scaleY)
                 .setFlipX(this.player.flipX)
-                .setPosition(this.player.x, this.player.y)
+                .setPosition(
+                    this.player.x + offsetX * this.player.scaleX,
+                    this.player.y + (fit.y || 0) * this.player.scaleY,
+                )
                 .setAlpha(this.player.alpha)
                 .setFrame(Math.min(frameIndex, helmet.texture.frameTotal - 2));
         }

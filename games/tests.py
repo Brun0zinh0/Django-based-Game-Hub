@@ -3329,6 +3329,144 @@ class WornArmorTests(TestCase):
             )
 
 
+class HelmetFitTests(TestCase):
+    """A helmet has to sit on the head whichever character is wearing it.
+
+    Helmet strips are cut to Terraria's 40x56 player rig. The characters are
+    re-cut from town-NPC sheets at their own native pitch and disagree with it
+    -- 40x64 the Wizard, 48x58 the Clothier, 52x56 the Demolitionist -- so a
+    helmet drawn plainly centred on the player landed off the head on ten of
+    the twelve, by as much as seven pixels on the Demolitionist.
+
+    The offsets are measured, not chosen, so this re-derives them from the
+    shipped art rather than trusting build_terra_helmet_fit.py: a bug in the
+    builder must not be able to certify itself.
+    """
+
+    HELMET_BAND = (10, 25)
+    FRAMES = 16
+    ALPHA_FLOOR = 16
+
+    def setUp(self):
+        import json
+
+        static_dir = Path(__file__).resolve().parent / "static" / "games"
+        self.sprites_dir = static_dir / "assets" / "terra" / "sprites"
+        data_dir = static_dir / "data" / "terra"
+        self.frames = json.loads(
+            (self.sprites_dir / "frames.json").read_text(encoding="utf-8")
+        )
+        self.characters = json.loads(
+            (data_dir / "characters.json").read_text(encoding="utf-8")
+        )["characters"]
+        self.engine = (static_dir / "terra_boss.js").read_text(encoding="utf-8")
+
+    def _cells(self, spec):
+        width, height = spec["frameWidth"], spec["frameHeight"]
+        with Image.open(self.sprites_dir / spec["file"]) as sheet:
+            sheet = sheet.convert("RGBA")
+            return (
+                [
+                    sheet.crop((i * width, 0, (i + 1) * width, height))
+                    for i in range(self.FRAMES)
+                ],
+                width,
+                height,
+            )
+
+    def _feet(self, cell, width, height):
+        pixels = cell.load()
+        lowest = None
+        for y in range(height):
+            if any(pixels[x, y][3] > self.ALPHA_FLOOR for x in range(width)):
+                lowest = y
+        return lowest
+
+    def _band(self, cell, width, low, high):
+        pixels = cell.load()
+        columns = [
+            x
+            for y in range(max(0, low), min(cell.height, high + 1))
+            for x in range(width)
+            if pixels[x, y][3] > self.ALPHA_FLOOR
+        ]
+        return (min(columns) + max(columns)) / 2 if columns else None
+
+    def _measure(self, spec, reference):
+        cells, width, height = self._cells(spec)
+        feet = self._feet(cells[0], width, height)
+        shift = feet - reference["feet"]
+        centres = [
+            self._band(cell, width, self.HELMET_BAND[0] + shift,
+                       self.HELMET_BAND[1] + shift)
+            for cell in cells
+        ]
+        centres = [c for c in centres if c is not None]
+        head = sum(centres) / len(centres)
+        return {
+            "x": round((head - width / 2) - reference["head"]),
+            "y": round((feet - height / 2) - reference["feet_offset"]),
+        }
+
+    def test_stored_offsets_match_the_art(self):
+        cells, width, height = self._cells(self.frames["guide"])
+        guide_feet = self._feet(cells[0], width, height)
+        reference = {
+            "feet": guide_feet,
+            "feet_offset": guide_feet - height / 2,
+            "head": self._band(cells[0], width, *self.HELMET_BAND) - width / 2,
+        }
+        # The Guide is 40x56, the rig the helmet art was drawn for, so it is
+        # the one character that must never need an offset.
+        guide = next(c for c in self.characters if c["id"] == "guide")
+        self.assertIsNone(
+            guide.get("helmetOffset"),
+            "the reference character has an offset, so the reference moved",
+        )
+
+        wrong = []
+        for character in self.characters:
+            spec = self.frames.get(character["id"])
+            if not spec:
+                continue
+            expected = self._measure(spec, reference)
+            expected = expected if (expected["x"] or expected["y"]) else None
+            actual = character.get("helmetOffset")
+            if actual != expected:
+                wrong.append(f"{character['id']}: stored {actual}, art says {expected}")
+        self.assertEqual(
+            wrong,
+            [],
+            "helmet offsets no longer match the character art -- re-run "
+            "build_terra_helmet_fit.py:\n  " + "\n  ".join(wrong),
+        )
+
+    def test_engine_applies_the_offset_and_mirrors_it(self):
+        start = self.engine.index("updateWornArmor() {")
+        depth, body = 1, None
+        for offset, char in enumerate(self.engine[start + len("updateWornArmor() {"):]):
+            if char == "{":
+                depth += 1
+            elif char == "}":
+                depth -= 1
+                if depth == 0:
+                    body = self.engine[start:start + len("updateWornArmor() {") + offset]
+                    break
+        self.assertIsNotNone(body, "updateWornArmor is never closed")
+        self.assertIn(
+            "helmetOffset",
+            body,
+            "the helmet ignores the per-character fit again",
+        )
+        # Without the mirror the helmet jumps across the head on every turn,
+        # which is worse than the constant offset it replaced.
+        self.assertIn(
+            "flipX ? -1 : 1",
+            body,
+            "the horizontal offset is not mirrored when facing left",
+        )
+
+
 class ArcadeGameTests(TestCase):
     def test_home_only_lists_the_current_arcade_game(self):
         response = self.client.get(reverse("games:home"))

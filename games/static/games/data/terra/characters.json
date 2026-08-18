@@ -36,6 +36,10 @@
       "unlock": {
         "type": "souls",
         "cost": 25
+      },
+      "helmetOffset": {
+        "x": 1,
+        "y": 0
       }
     },
     {
@@ -72,6 +76,10 @@
       "unlock": {
         "type": "souls",
         "cost": 40
+      },
+      "helmetOffset": {
+        "x": 7,
+        "y": 0
       }
     },
     {
@@ -90,6 +98,10 @@
       "unlock": {
         "type": "souls",
         "cost": 40
+      },
+      "helmetOffset": {
+        "x": 1,
+        "y": 0
       }
     },
     {
@@ -108,6 +120,10 @@
       "unlock": {
         "type": "achievement",
         "achievement": "defeat-skeletron"
+      },
+      "helmetOffset": {
+        "x": 2,
+        "y": -1
       }
     },
     {
@@ -127,6 +143,10 @@
       "unlock": {
         "type": "souls",
         "cost": 20
+      },
+      "helmetOffset": {
+        "x": 5,
+        "y": 0
       }
     },
     {
@@ -146,6 +166,10 @@
       "unlock": {
         "type": "souls",
         "cost": 30
+      },
+      "helmetOffset": {
+        "x": 3,
+        "y": 0
       }
     },
     {
@@ -164,6 +188,10 @@
       "unlock": {
         "type": "souls",
         "cost": 30
+      },
+      "helmetOffset": {
+        "x": -3,
+        "y": 0
       }
     },
     {
@@ -183,6 +211,10 @@
       "unlock": {
         "type": "souls",
         "cost": 35
+      },
+      "helmetOffset": {
+        "x": 3,
+        "y": 2
       }
     },
     {
@@ -203,6 +235,10 @@
       "unlock": {
         "type": "souls",
         "cost": 40
+      },
+      "helmetOffset": {
+        "x": 1,
+        "y": -1
       }
     },
     {
@@ -224,6 +260,10 @@
       "unlock": {
         "type": "souls",
         "cost": 45
+      },
+      "helmetOffset": {
+        "x": 3,
+        "y": 0
       }
     }
   ]
