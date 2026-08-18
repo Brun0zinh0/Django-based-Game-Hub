@@ -2808,6 +2808,19 @@
                 if (biome.hardmode && !this.hardmode) {
                     return false;
                 }
+                // And the rest arrive in the order Terraria finds them, so a
+                // run descends instead of shuffling. Round one opened in hell
+                // before this, which is the ending, not the beginning.
+                //
+                // Counted from one, not from this.round directly: the first
+                // arena is built in create() before any round has started,
+                // when the counter is still zero, and comparing that against
+                // a gate of 1 excluded every biome in the game -- the run
+                // opened on a floor with no biome, no decor and no weighting.
+                const reached = Math.max(1, this.round);
+                if (reached < (biome.minRound || 0)) {
+                    return false;
+                }
                 // Any of its backdrops will do. Testing one random pick
                 // would drop a whole biome from the rotation because the one
                 // it happened to roll had failed to load.

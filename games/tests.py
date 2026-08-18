@@ -2360,6 +2360,69 @@ class TerraBossTests(TestCase):
             "sessions moved to the database, which now has to persist",
         )
 
+    def test_biomes_arrive_in_the_order_terraria_finds_them(self):
+        import json
+
+        static_dir = Path(__file__).resolve().parent / "static" / "games"
+        biomes = json.loads(
+            (static_dir / "data" / "terra" / "biomes.json").read_text("utf-8")
+        )["biomes"]
+        bosses = json.loads(
+            (static_dir / "data" / "terra" / "bosses.json").read_text("utf-8")
+        )["bosses"]
+        rounds = json.loads(
+            (static_dir / "data" / "terra" / "rounds.json").read_text("utf-8")
+        )
+        engine = (static_dir / "terra_boss.js").read_text(encoding="utf-8")
+
+        gates = {b["id"]: b.get("minRound", 0) for b in biomes}
+
+        # Round one opened in the underworld before this, which is the end of
+        # a Terraria world rather than the start of one.
+        self.assertGreater(
+            gates.get("underworld", 0), 1, "a run can begin in hell again",
+        )
+        self.assertGreater(gates.get("sky", 0), 1, "a run can begin in the sky")
+
+        # Something has to be available on round one, or there is no arena.
+        self.assertTrue(
+            [b for b in biomes if b.get("minRound", 0) <= 1 and not b.get("hardmode")],
+            "no biome is available on the first round",
+        )
+
+        # No gate may sit after the first boss that names the biome, or that
+        # boss is fought somewhere it does not belong.
+        boss_every = (rounds.get("scaling", {}).get("bossEvery")
+                      or rounds.get("bossEvery") or 5)
+        earliest = {}
+        for order, boss in enumerate(bosses, start=1):
+            for name in boss.get("biomes", []):
+                earliest.setdefault(name, order * boss_every)
+        for name, needed in earliest.items():
+            gate = gates.get(name, 0)
+            self.assertLessEqual(
+                gate, needed,
+                f"{name} opens at round {gate}, but a boss wants it at "
+                f"{needed} -- that fight would be moved somewhere else",
+            )
+
+        # And the engine has to actually read the gate.
+        pick = engine.split("pickArena(prefer, wantLayout) {", 1)[1]
+        body = pick.split("return {", 1)[0]
+        self.assertIn(
+            "biome.minRound", body,
+            "the arena picker ignores how deep the run has got",
+        )
+        # Counted from one. The first arena is built before any round starts,
+        # while the counter is still zero, and comparing that raw against a
+        # gate of 1 excluded every biome at once -- the run opened on a floor
+        # with no biome, so no decor and no enemy weighting.
+        self.assertIn(
+            "Math.max(1, this.round)", body,
+            "the gate reads the round counter before it has started, which "
+            "leaves the opening arena with no biome",
+        )
+
     def test_the_save_is_rebuilt_field_by_field(self):
         import re
 

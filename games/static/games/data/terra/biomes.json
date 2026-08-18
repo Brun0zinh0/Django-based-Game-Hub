@@ -406,7 +406,8 @@
     22,
     23,
     24
-   ]
+   ],
+   "minRound": 1
   },
   {
    "id": "snow",
@@ -438,7 +439,8 @@
     20,
     29,
     32
-   ]
+   ],
+   "minRound": 1
   },
   {
    "id": "crimson",
@@ -470,7 +472,8 @@
     17,
     27,
     28
-   ]
+   ],
+   "minRound": 4
   },
   {
    "id": "corruption",
@@ -502,7 +505,8 @@
     16,
     25,
     26
-   ]
+   ],
+   "minRound": 4
   },
   {
    "id": "ice",
@@ -533,7 +537,8 @@
     5,
     30,
     31
-   ]
+   ],
+   "minRound": 10
   },
   {
    "id": "hallow",
@@ -595,7 +600,8 @@
    "backgrounds": [
     7,
     33
-   ]
+   ],
+   "minRound": 8
   },
   {
    "id": "jungle",
@@ -627,7 +633,8 @@
     11,
     18,
     19
-   ]
+   ],
+   "minRound": 3
   },
   {
    "id": "sky",
@@ -642,7 +649,8 @@
    "backgrounds": [
     9,
     15
-   ]
+   ],
+   "minRound": 12
   },
   {
    "id": "underworld",
@@ -664,7 +672,8 @@
    },
    "backgrounds": [
     10
-   ]
+   ],
+   "minRound": 16
   }
  ]
 }
