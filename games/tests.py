@@ -3183,6 +3183,61 @@ class TerraBossTests(TestCase):
             )
             previous_hp = boss["hp"]
 
+    def test_shop_only_offers_ammo_a_carried_weapon_can_fire(self):
+        """Musket balls were on sale at round one to a player holding a bow.
+
+        Found by playing the game rather than reading it: a bot that spends
+        its coins bought bullets it could never fire. The shelf is four slots
+        and early rounds pay for about one item, so a dead offer costs a real
+        choice as well as the coins, and the card says nothing.
+        """
+        import json
+
+        engine = (
+            Path(__file__).resolve().parent / "static" / "games" / "terra_boss.js"
+        ).read_text(encoding="utf-8")
+
+        def body_of(signature):
+            start = engine.index(signature) + len(signature)
+            depth = 1
+            for offset, char in enumerate(engine[start:]):
+                if char == "{":
+                    depth += 1
+                elif char == "}":
+                    depth -= 1
+                    if depth == 0:
+                        return engine[start:start + offset]
+            raise AssertionError(f"{signature} is never closed")
+
+        pools = body_of("function buildShopPools(scene) {")
+        self.assertIn(
+            "chambered.has(entry.family)",
+            pools,
+            "the shop offers ammo without checking you carry a weapon for it",
+        )
+        # The stash counts: buying a gun you have not equipped yet should still
+        # open bullets up, or the obvious purchase order stays locked out.
+        self.assertIn(
+            "entry.kind === \"weapon\"",
+            pools,
+            "a weapon waiting in the stash does not unlock its ammo",
+        )
+
+        data_dir = Path(__file__).resolve().parent / "static" / "games" / "data" / "terra"
+        ammo = json.loads((data_dir / "ammo.json").read_text(encoding="utf-8"))
+        weapons = json.loads((data_dir / "weapons.json").read_text(encoding="utf-8"))
+        categories = {weapon["category"] for weapon in weapons["weapons"]}
+        # The gate matches an ammo family against a weapon category. If a
+        # family were ever named something no weapon uses, that ammo would
+        # quietly become unbuyable rather than merely gated.
+        for entry in ammo["ammo"]:
+            self.assertIn(
+                entry["family"],
+                categories,
+                f"{entry['id']} is in family {entry['family']}, which no weapon uses,"
+                " so the shop can never offer it",
+            )
+
 
 class ArcadeGameTests(TestCase):
     def test_home_only_lists_the_current_arcade_game(self):

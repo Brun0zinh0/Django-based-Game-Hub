@@ -1750,8 +1750,27 @@
 
         // Only ammo you are not already firing, and only what the round has
         // reached. Stashed ammo still shows: you may want a second box.
+        //
+        // A family you carry no weapon for is a dead purchase -- the shelf is
+        // four slots wide and early coins buy about one item a round, so
+        // offering musket balls to someone holding a bow costs them a real
+        // choice as well as the money, and nothing on the card says it will
+        // never fire. Ammo families are named after the weapon category that
+        // chambers them, so carrying the weapon is the whole test.
+        const chambered = new Set();
+        for (const weapon of scene.weaponSlots) {
+            if (weapon) {
+                chambered.add(weapon.category);
+            }
+        }
+        for (const entry of scene.stash) {
+            if (entry.kind === "weapon" && entry.item) {
+                chambered.add(entry.item.category);
+            }
+        }
         const ammo = (data.ammo.ammo || []).filter(
             (entry) => reachable(entry) && (entry.tier || 1) <= maxTier
+                && chambered.has(entry.family)
                 && (!scene.ammo[entry.family] || scene.ammo[entry.family].id !== entry.id),
         );
 
