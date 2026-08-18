@@ -2310,6 +2310,56 @@ class TerraBossTests(TestCase):
         self.assertIn("height: auto", sized, "the cards still demand a fixed height")
         self.assertIn("flex: 1", sized, "the cards do not take the remaining space")
 
+    def test_a_fresh_clone_needs_no_writable_database(self):
+        from django.conf import settings
+
+        # This project never touches a database: no models, no migrations, and
+        # sessions live in a signed cookie. A file-backed SQLite therefore
+        # existed only to be created at startup -- and on a machine where the
+        # clone's folder is not writable, SQLite fails with "unable to open
+        # database file" and runserver refuses to start over a database
+        # nobody reads. Someone hit exactly that on a second PC.
+        #
+        # Read out of the settings file rather than off the live settings
+        # object: the test runner swaps NAME for a test database of its own
+        # ("file:memorydb_default?..."), so asking Django at runtime tells you
+        # what the runner chose, never what a fresh clone would start with.
+        settings_source = (
+            Path(settings.BASE_DIR) / "config" / "settings.py"
+        ).read_text(encoding="utf-8")
+        configured = settings_source.split("DATABASES = {", 1)[1].split("}", 1)[0]
+        self.assertIn(
+            '"NAME": ":memory:"',
+            configured,
+            "the database is a file again, so a clone in a folder the user "
+            "cannot write to will not start",
+        )
+
+        # The premise the above rests on. If a model or a migration ever
+        # appears, an in-memory database silently loses its data every
+        # restart, and this should fail loudly rather than let that happen.
+        app_path = Path(__file__).resolve().parent
+        models = (app_path / "models.py")
+        if models.is_file():
+            body = [
+                line for line in models.read_text(encoding="utf-8").splitlines()
+                if line.strip() and not line.strip().startswith("#")
+            ]
+            self.assertFalse(
+                body,
+                "games/models.py defines something now -- an in-memory "
+                "database will lose it on every restart",
+            )
+        self.assertFalse(
+            (app_path / "migrations").is_dir(),
+            "there are migrations now, so the database has to be a real file",
+        )
+        self.assertEqual(
+            settings.SESSION_ENGINE,
+            "django.contrib.sessions.backends.signed_cookies",
+            "sessions moved to the database, which now has to persist",
+        )
+
     def test_the_save_is_rebuilt_field_by_field(self):
         import re
 

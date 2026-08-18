@@ -43,10 +43,19 @@ TEMPLATES = [
 WSGI_APPLICATION = "config.wsgi.application"
 ASGI_APPLICATION = "config.asgi.application"
 
+# En memoire, pas dans un fichier. Ce projet ne se sert jamais d'une base :
+# aucun modele, aucune migration, et les sessions vivent dans un cookie signe
+# (voir SESSION_ENGINE plus bas). Le fichier db.sqlite3 n'existait donc que
+# pour etre cree au demarrage -- et sur un poste ou le dossier du depot n'est
+# pas inscriptible, SQLite echoue avec "unable to open database file" et le
+# serveur refuse de demarrer, pour une base dont personne ne lit rien.
+#
+# Si un jour un modele apparait, il faudra repasser a BASE_DIR / "db.sqlite3" :
+# une base en memoire est videe a chaque arret du serveur.
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "NAME": ":memory:",
     }
 }
 
