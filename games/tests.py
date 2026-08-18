@@ -3239,6 +3239,96 @@ class TerraBossTests(TestCase):
             )
 
 
+class WornArmorTests(TestCase):
+    """Every helmet you can equip has to actually appear on the character.
+
+    Two Calamity sets shipped without worn art. A missing worn texture just
+    hides the sprite -- no error, no warning -- so the head slot took the
+    defense and drew nothing, and the pack was enabled by default. The cause
+    was structural: a pack could add an armour set but wornArmor was not a
+    pack map, so it had no way to ship the helmet to go with it.
+    """
+
+    def setUp(self):
+        self.static_dir = Path(__file__).resolve().parent / "static" / "games"
+        self.data_dir = self.static_dir / "data" / "terra"
+        self.sprites_dir = self.static_dir / "assets" / "terra" / "sprites"
+
+    def _read(self, path):
+        import json
+
+        return json.loads(path.read_text(encoding="utf-8"))
+
+    def test_a_pack_can_ship_worn_armor(self):
+        engine = (self.static_dir / "terra_boss.js").read_text(encoding="utf-8")
+        self.assertIn(
+            'wornArmor: ["wornArmor", null]',
+            engine,
+            "packs cannot ship worn helmets again, so pack armour equips invisible",
+        )
+
+    def test_every_head_piece_has_a_worn_strip(self):
+        sets = list(self._read(self.data_dir / "armor.json")["sets"])
+        worn = dict(self._read(self.sprites_dir / "armor.json"))
+
+        index = self._read(self.data_dir / "packs" / "index.json")
+        for entry in index["packs"]:
+            if entry.get("enabled") is False or not entry.get("file"):
+                continue
+            pack = self._read(self.data_dir / entry["file"])
+            sets.extend(pack.get("armorSets") or [])
+            worn.update(pack.get("wornArmor") or {})
+
+        missing = []
+        for armor_set in sets:
+            for piece in armor_set["pieces"]:
+                if piece["slot"] == "head" and piece["id"] not in worn:
+                    missing.append(f"{armor_set['id']}/{piece['id']}")
+        self.assertEqual(
+            missing,
+            [],
+            "these helmets equip but never appear on the character: "
+            + ", ".join(missing),
+        )
+
+    def test_worn_strips_match_the_player_rig(self):
+        """A strip cut at the wrong pitch shears every frame after the first.
+
+        Terraria lays a worn head out as 20 frames and several sheets are
+        1118px rather than 1120, so height//20 drifts. The character is 16
+        frames of 40x56 and a helmet has to match it exactly or it slides
+        off the head partway through the walk cycle.
+        """
+        worn = dict(self._read(self.sprites_dir / "armor.json"))
+        index = self._read(self.data_dir / "packs" / "index.json")
+        for entry in index["packs"]:
+            if entry.get("enabled") is False or not entry.get("file"):
+                continue
+            pack = self._read(self.data_dir / entry["file"])
+            worn.update(pack.get("wornArmor") or {})
+
+        self.assertTrue(worn, "no worn armour is registered at all")
+        for piece_id, spec in worn.items():
+            path = self.sprites_dir / spec["file"]
+            self.assertTrue(path.exists(), f"{piece_id} points at a missing file")
+            with Image.open(path) as image:
+                width, height = image.size
+            self.assertEqual(
+                (spec["frameWidth"], spec["frameHeight"]),
+                (40, 56),
+                f"{piece_id} is not cut to the character's frame",
+            )
+            self.assertEqual(
+                spec["frames"], 16, f"{piece_id} does not have the character's 16 frames"
+            )
+            self.assertEqual(
+                (width, height),
+                (spec["frameWidth"] * spec["frames"], spec["frameHeight"]),
+                f"{piece_id} is {width}x{height}, which is not {spec['frames']} frames "
+                f"of {spec['frameWidth']}x{spec['frameHeight']}",
+            )
+
+
 class ArcadeGameTests(TestCase):
     def test_home_only_lists_the_current_arcade_game(self):
         response = self.client.get(reverse("games:home"))

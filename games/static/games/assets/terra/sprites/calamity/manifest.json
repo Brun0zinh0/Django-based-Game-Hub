@@ -499,6 +499,30 @@
    ],
    "mode": "RGBA",
    "bytes": 1198
+  },
+  "aerospec-helmet-worn": {
+   "file": "raw/aerospec-helmet-worn.png",
+   "from": "CalamityModPublic@1.4.4",
+   "sourceFile": "Items/Armor/Aerospec/AerospecHeadRanged_Head.png",
+   "article": "https://github.com/CalamityTeam/CalamityModPublic/blob/1.4.4/Items/Armor/Aerospec/AerospecHeadRanged_Head.png",
+   "imageUrl": "https://raw.githubusercontent.com/CalamityTeam/CalamityModPublic/1.4.4/Items/Armor/Aerospec/AerospecHeadRanged_Head.png",
+   "size": [
+    40,
+    1120
+   ],
+   "mode": "RGBA"
+  },
+  "daedalus-helmet-worn": {
+   "file": "raw/daedalus-helmet-worn.png",
+   "from": "CalamityModPublic@1.4.4",
+   "sourceFile": "Items/Armor/Daedalus/DaedalusHeadRanged_Head.png",
+   "article": "https://github.com/CalamityTeam/CalamityModPublic/blob/1.4.4/Items/Armor/Daedalus/DaedalusHeadRanged_Head.png",
+   "imageUrl": "https://raw.githubusercontent.com/CalamityTeam/CalamityModPublic/1.4.4/Items/Armor/Daedalus/DaedalusHeadRanged_Head.png",
+   "size": [
+    40,
+    1120
+   ],
+   "mode": "RGBA"
   }
  }
 }

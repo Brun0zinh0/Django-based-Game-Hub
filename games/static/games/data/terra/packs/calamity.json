@@ -1,5 +1,5 @@
 {
- "comment": "A slice of the Calamity Mod: its pre-hardmode bosses, two from early hardmode, and the ranged gear that drops from them. Stats are converted from the Calamity wiki with the same rules the vanilla weapons use, so these sit on the same tier ladder rather than beside it. Each boss is placed against the vanilla one it shares a progression slot with instead of having its health copied over. No Calamity artwork is included: every entry points at a sprite this game already ships, so what reads as Calamity here is the names, the numbers and the behaviour. Melee, magic and summon content is left out because this game is ranged-only. Written by build_terra_calamity.py.",
+ "comment": "A slice of the Calamity Mod: its pre-hardmode bosses, two from early hardmode, and the ranged gear that drops from them. Stats are converted from the Calamity wiki with the same rules the vanilla weapons use, so these sit on the same tier ladder rather than beside it. Each boss is placed against the vanilla one it shares a progression slot with instead of having its health copied over. The art is Calamity's own, fetched from the mod's source mirror and credited in the README. Melee, magic and summon content is left out because this game is ranged-only. Written by build_terra_calamity.py.",
  "frameSprites": {
   "calamity-desert-scourge": {
    "file": "calamity/frames/calamity-desert-scourge.png",
@@ -1341,5 +1341,21 @@
    "description": "Defeat the Aquatic Scourge.",
    "hint": "The largest thing in the game."
   }
- ]
+ ],
+ "wornArmor": {
+  "calamity-aerospec-hood": {
+   "file": "calamity/armor/calamity-aerospec-hood.png",
+   "frameWidth": 40,
+   "frameHeight": 56,
+   "frames": 16,
+   "source": "Items/Armor/Aerospec/AerospecHeadRanged_Head.png"
+  },
+  "calamity-daedalus-headgear": {
+   "file": "calamity/armor/calamity-daedalus-headgear.png",
+   "frameWidth": 40,
+   "frameHeight": 56,
+   "frames": 16,
+   "source": "Items/Armor/Daedalus/DaedalusHeadRanged_Head.png"
+  }
+ }
 }

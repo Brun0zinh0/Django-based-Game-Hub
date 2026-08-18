@@ -11,7 +11,7 @@
   {
    "id": "calamity",
    "name": "Calamity",
-   "description": "Bosses and ranged gear from the Calamity Mod by the Calamity Mod team, converted onto this game's tier ladder. Uses this game's own sprites, not Calamity's.",
+   "description": "Bosses, ranged gear and armour from the Calamity Mod by the Calamity Mod team, converted onto this game's tier ladder. Uses Calamity's own sprites, credited in the README.",
    "file": "packs/calamity.json",
    "enabled": true
   }

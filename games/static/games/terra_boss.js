@@ -250,6 +250,11 @@
         categories: ["weapons", "categories"],
         itemSprites: ["items", null],
         frameSprites: ["frames", null],
+        // A pack could add an armour set but never the helmet worn on the
+        // character, so its head slot equipped for the defense and drew
+        // nothing -- silently, since a missing worn texture just hides the
+        // sprite. Calamity shipped two sets in exactly that state.
+        wornArmor: ["wornArmor", null],
     };
 
     function mergePackList(pack, key, entries) {
