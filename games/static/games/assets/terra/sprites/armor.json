@@ -4,62 +4,71 @@
     "frameWidth": 40,
     "frameHeight": 56,
     "frames": 16,
-    "source": "Armor_Head_1"
+    "source": "Armor_Head_1",
+    "clipTop": 10
   },
   "wood-helmet": {
     "file": "armor/wood-helmet.png",
     "frameWidth": 40,
     "frameHeight": 56,
     "frames": 16,
-    "source": "Armor_Head_52"
+    "source": "Armor_Head_52",
+    "clipTop": 10
   },
   "fossil-helmet": {
     "file": "armor/fossil-helmet.png",
     "frameWidth": 40,
     "frameHeight": 56,
     "frames": 16,
-    "source": "Armor_Head_188"
+    "source": "Armor_Head_188",
+    "clipTop": 12
   },
   "silver-helmet": {
     "file": "armor/silver-helmet.png",
     "frameWidth": 40,
     "frameHeight": 56,
     "frames": 16,
-    "source": "Armor_Head_3"
+    "source": "Armor_Head_3",
+    "clipTop": 12
   },
   "gold-helmet": {
     "file": "armor/gold-helmet.png",
     "frameWidth": 40,
     "frameHeight": 56,
     "frames": 16,
-    "source": "Armor_Head_4"
+    "source": "Armor_Head_4",
+    "clipTop": 10
   },
   "platinum-helmet": {
     "file": "armor/platinum-helmet.png",
     "frameWidth": 40,
     "frameHeight": 56,
     "frames": 16,
-    "source": "Armor_Head_50"
+    "source": "Armor_Head_50",
+    "clipTop": 8
   },
   "necro-helmet": {
     "file": "armor/necro-helmet.png",
     "frameWidth": 40,
     "frameHeight": 56,
     "frames": 16,
-    "source": "Armor_Head_7"
+    "source": "Armor_Head_7",
+    "clipTop": 6
   },
   "frost-helmet": {
     "file": "armor/frost-helmet.png",
     "frameWidth": 40,
     "frameHeight": 56,
     "frames": 16,
-    "source": "Armor_Head_46"
+    "source": "Armor_Head_46",
+    "clipTop": 10
   },
   "shroomite-mask": {
     "file": "armor/shroomite-mask.png",
     "frameWidth": 40,
     "frameHeight": 56,
     "frames": 16,
-    "source": "Armor_Head_104"
+    "source": "Armor_Head_104",
+    "clipTop": 14
   }
 }

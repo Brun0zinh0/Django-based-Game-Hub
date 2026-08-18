@@ -3441,6 +3441,69 @@ class HelmetFitTests(TestCase):
             "build_terra_helmet_fit.py:\n  " + "\n  ".join(wrong),
         )
 
+    CAP_SHARE = 0.7
+
+    def _cap_row(self, cell):
+        """Where a helmet caps the head, not where its tallest horn starts."""
+        spans = []
+        pixels = cell.load()
+        for y in range(cell.height):
+            columns = [
+                x for x in range(cell.width) if pixels[x, y][3] > self.ALPHA_FLOOR
+            ]
+            spans.append((min(columns), max(columns)) if columns else None)
+        widest = max((s[1] - s[0] + 1) for s in spans if s)
+        for y, span in enumerate(spans):
+            if span and (span[1] - span[0] + 1) >= widest * self.CAP_SHARE:
+                return y
+        return None
+
+    def _worn_manifests(self):
+        import json
+
+        static_dir = Path(__file__).resolve().parent / "static" / "games"
+        data_dir = static_dir / "data" / "terra"
+        worn = dict(
+            json.loads((self.sprites_dir / "armor.json").read_text(encoding="utf-8"))
+        )
+        index = json.loads((data_dir / "packs" / "index.json").read_text(encoding="utf-8"))
+        for entry in index["packs"]:
+            if entry.get("enabled") is False or not entry.get("file"):
+                continue
+            pack = json.loads((data_dir / entry["file"]).read_text(encoding="utf-8"))
+            worn.update(pack.get("wornArmor") or {})
+        return worn
+
+    def test_every_helmet_has_a_clip_line_matching_its_art(self):
+        """The clip line is what hides the character's hat under the helmet.
+
+        Town-NPC hats are painted into the character sprite with nothing drawn
+        underneath, so the only way to hide one is to clip the character above
+        the helmet. Taken at the helmet's lowest cap row over the cycle, or the
+        hat reappears for half the walk.
+        """
+        worn = self._worn_manifests()
+        self.assertTrue(worn, "no worn armour is registered")
+        wrong = []
+        for piece_id, spec in worn.items():
+            with Image.open(self.sprites_dir / spec["file"]) as sheet:
+                sheet = sheet.convert("RGBA")
+                width, height = spec["frameWidth"], spec["frameHeight"]
+                caps = [
+                    self._cap_row(sheet.crop((i * width, 0, (i + 1) * width, height)))
+                    for i in range(spec["frames"])
+                ]
+            caps = [c for c in caps if c is not None]
+            expected = max(caps)
+            if spec.get("clipTop") != expected:
+                wrong.append(f"{piece_id}: stored {spec.get('clipTop')}, art says {expected}")
+        self.assertEqual(
+            wrong,
+            [],
+            "helmet clip lines no longer match the art -- re-run "
+            "build_terra_helmet_fit.py:\n  " + "\n  ".join(wrong),
+        )
+
     def test_engine_applies_the_offset_and_mirrors_it(self):
         start = self.engine.index("updateWornArmor() {")
         depth, body = 1, None
@@ -3464,6 +3527,45 @@ class HelmetFitTests(TestCase):
             "flipX ? -1 : 1",
             body,
             "the horizontal offset is not mirrored when facing left",
+        )
+        # Match the call that carries the piece, not the bare-headed
+        # clipPlayerForHelmet(null) in the early return -- that one is also in
+        # this body, and asserting the name alone passed with the real call
+        # deleted.
+        self.assertIn(
+            "this.clipPlayerForHelmet(piece",
+            body,
+            "the character is no longer clipped, so hats show through helmets",
+        )
+
+    def test_taking_the_helmet_off_puts_the_hat_back(self):
+        """The crop persists on the sprite, so it has to be cleared explicitly.
+
+        Left set, the character keeps a flat-topped head with no helmet on it,
+        which is a worse artefact than the hat this replaced.
+        """
+        start = self.engine.index("clipPlayerForHelmet(piece, fit) {")
+        depth, body = 1, None
+        head = "clipPlayerForHelmet(piece, fit) {"
+        for offset, char in enumerate(self.engine[start + len(head):]):
+            if char == "{":
+                depth += 1
+            elif char == "}":
+                depth -= 1
+                if depth == 0:
+                    body = self.engine[start:start + len(head) + offset]
+                    break
+        self.assertIsNotNone(body, "clipPlayerForHelmet is never closed")
+        self.assertIn(
+            "player.setCrop()",
+            body,
+            "the crop is never cleared, so the head stays clipped bare-headed",
+        )
+        # And the bare-headed path has to reach it at all.
+        self.assertIn(
+            "this.clipPlayerForHelmet(null)",
+            self.engine,
+            "removing a helmet never clears the clip",
         )
 
 

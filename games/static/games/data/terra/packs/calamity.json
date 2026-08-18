@@ -1348,14 +1348,16 @@
    "frameWidth": 40,
    "frameHeight": 56,
    "frames": 16,
-   "source": "Items/Armor/Aerospec/AerospecHeadRanged_Head.png"
+   "source": "Items/Armor/Aerospec/AerospecHeadRanged_Head.png",
+   "clipTop": 12
   },
   "calamity-daedalus-headgear": {
    "file": "calamity/armor/calamity-daedalus-headgear.png",
    "frameWidth": 40,
    "frameHeight": 56,
    "frames": 16,
-   "source": "Items/Armor/Daedalus/DaedalusHeadRanged_Head.png"
+   "source": "Items/Armor/Daedalus/DaedalusHeadRanged_Head.png",
+   "clipTop": 14
   }
  }
 }

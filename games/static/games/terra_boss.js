@@ -3720,6 +3720,7 @@
                 : null;
             if (!key) {
                 helmet.setVisible(false);
+                this.clipPlayerForHelmet(null);
                 return;
             }
             if (this.wornHelmetKey !== key) {
@@ -3747,6 +3748,47 @@
                 )
                 .setAlpha(this.player.alpha)
                 .setFrame(Math.min(frameIndex, helmet.texture.frameTotal - 2));
+            this.clipPlayerForHelmet(piece, fit);
+        }
+
+        /**
+         * Hide the character's hat under the helmet.
+         *
+         * Town-NPC hats are painted into the character sprite and there is no
+         * hatless version to swap to -- nothing is drawn underneath them. So
+         * the character is clipped above the helmet's own top edge, which is
+         * what Terraria does when a helmet hides your hair. The clip is a
+         * full-width band, so it mirrors with the sprite for free.
+         */
+        clipPlayerForHelmet(piece, fit) {
+            const player = this.player;
+            if (!player) {
+                return;
+            }
+            const spec = piece && (data.wornArmor || {})[piece.id];
+            const clipTop = spec && spec.clipTop;
+            if (!clipTop) {
+                if (this.playerClipped) {
+                    player.setCrop();
+                    this.playerClipped = false;
+                }
+                return;
+            }
+            const height = player.frame.height;
+            // The helmet is drawn centred on the player plus its fit offset,
+            // so its top edge lands this far down the character's own frame.
+            const row = Math.round(
+                height / 2 + ((fit || {}).y || 0) - 28 + clipTop,
+            );
+            if (row <= 0) {
+                if (this.playerClipped) {
+                    player.setCrop();
+                    this.playerClipped = false;
+                }
+                return;
+            }
+            player.setCrop(0, row, player.frame.width, height - row);
+            this.playerClipped = true;
         }
 
         /* -- held weapon -- */
