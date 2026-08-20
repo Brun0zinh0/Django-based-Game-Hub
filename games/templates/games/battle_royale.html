@@ -79,6 +79,9 @@
             data-wizard-atlas="{% static 'games/assets/wizard_creature_atlas_v2.png' %}?v=20260731-26"
             data-bonus-wizard-atlas="{% static 'games/assets/wizard_bonus_atlas_v1.png' %}?v=20260731-28"
             data-biome-atlas="{% static 'games/assets/biome_texture_atlas.png' %}?v=20260730-15"
+            data-terrain-atlas="{% static 'games/assets/terrain_atlas.png' %}?v=20260820-2"
+            data-prop-atlas="{% static 'games/assets/prop_atlas.png' %}?v=20260820-2"
+            data-zombie-atlas="{% static 'games/assets/zombie_atlas.png' %}?v=20260820-1"
             aria-label="Arène du Rogue Like Battle Royale"
         >
             Ton navigateur ne prend pas en charge le canvas HTML.
@@ -519,6 +522,30 @@
                                 </span>
                                 <b data-path-progress>200 ◆</b>
                             </button>
+                            <button class="rogue-path path-investor locked"
+                                    type="button" data-element="investor">
+                                <span class="path-avatar" aria-hidden="true">
+                                    ◈
+                                </span>
+                                <span class="path-identity">
+                                    <small>Crésus · fortune</small>
+                                    <strong>Voie de l’Investisseur</strong>
+                                    <span>Tous les gains de points augmentent.</span>
+                                </span>
+                                <b data-path-progress>260 ◆</b>
+                            </button>
+                            <button class="rogue-path path-magnetic locked"
+                                    type="button" data-element="magnetic">
+                                <span class="path-avatar" aria-hidden="true">
+                                    ⬢
+                                </span>
+                                <span class="path-identity">
+                                    <small>Ferro · guidage</small>
+                                    <strong>Voie Magnétique</strong>
+                                    <span>Les balles suivent leur cible.</span>
+                                </span>
+                                <b data-path-progress>320 ◆</b>
+                            </button>
                         </div>
 
                         <section class="skill-tree-panel" id="skill-tree-panel"
@@ -678,5 +705,7 @@
 {{ battle_music_tracks|json_script:"battle-music-tracks" }}
 <script src="{% static 'games/gpu_runtime.js' %}?v=20260731-1" defer></script>
 <script src="{% static 'games/environment_material_atlas_data.js' %}?v=20260731-27" defer></script>
-<script src="{% static 'games/battle_royale.js' %}?v=20260806-32" defer></script>
+<script src="{% static 'games/battle_royale_map.js' %}?v=20260819-1" defer></script>
+<script src="{% static 'games/arena_art_manifest.js' %}?v=20260820-2" defer></script>
+<script src="{% static 'games/battle_royale.js' %}?v=20260820-2" defer></script>
 {% endblock %}

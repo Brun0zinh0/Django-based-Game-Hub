@@ -134,3 +134,45 @@ pendant le developpement ne sont pas redistribuees ici. Les deux premiers
 jeux fonctionnent sans, et `sounds/README.md` explique ou deposer vos
 propres fichiers pour retrouver les playlists. Terra Boss genere ses sons
 dans le navigateur et n'a besoin d'aucun fichier.
+
+## Mettre a jour sans perdre sa sauvegarde
+
+Les sauvegardes ne sont pas dans les fichiers du projet : chaque jeu ecrit
+sa progression dans le navigateur, attachee a l'adresse
+`http://127.0.0.1:8000`. **Remplacer les fichiers du jeu n'efface donc
+jamais une sauvegarde.**
+
+Pour mettre a jour :
+
+```bash
+git pull
+```
+
+Puis relancer le serveur et faire **Ctrl+F5** une fois sur la page du jeu.
+Ce rafraichissement force compte : le navigateur garde les scripts et les
+images en cache, et une page a moitie mise a jour donne des bugs
+d'affichage difficiles a comprendre. Ctrl+F5 ne touche pas aux
+sauvegardes.
+
+Ce qui fait disparaitre une progression :
+
+* effacer les donnees de navigation du site ;
+* le bouton « Reinitialiser ma progression » dans les parametres ;
+* la navigation privee, qui ne conserve rien.
+
+Ce qui la rend seulement **invisible**, sans l'effacer : ouvrir le jeu sur
+une autre adresse. `http://localhost:8000` et `http://127.0.0.1:8000` sont
+deux adresses differentes pour le navigateur, et un autre port en est une
+troisieme. Revenir a l'adresse habituelle fait reapparaitre le profil. Un
+autre navigateur a, lui aussi, ses propres sauvegardes.
+
+Pour transferer ou sauvegarder un profil, ouvrir la console du navigateur
+(`F12`) sur la page du jeu :
+
+```js
+// exporter (le profil part dans le presse-papier)
+copy(localStorage.getItem("rogueBattleProfileV1"))
+
+// reimporter
+localStorage.setItem("rogueBattleProfileV1", 'COLLE_ICI'); location.reload()
+```

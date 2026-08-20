@@ -1854,6 +1854,14 @@ body:has(.battle-page) .page {
     --path-color: #f43f5e;
 }
 
+.rogue-path.path-investor {
+    --path-color: #facc15;
+}
+
+.rogue-path.path-magnetic {
+    --path-color: #94a3b8;
+}
+
 .path-avatar {
     display: grid;
     width: 2.5rem;
@@ -1938,6 +1946,14 @@ body:has(.battle-page) .page {
 
 .skill-tree-panel.path-vampire {
     --path-color: #f43f5e;
+}
+
+.skill-tree-panel.path-investor {
+    --path-color: #facc15;
+}
+
+.skill-tree-panel.path-magnetic {
+    --path-color: #94a3b8;
 }
 
 .skill-tree-profile {

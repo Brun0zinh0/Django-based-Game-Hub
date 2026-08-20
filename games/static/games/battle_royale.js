@@ -34,6 +34,18 @@
             image: new Image(),
             ready: false,
         },
+        terrain: {
+            image: new Image(),
+            ready: false,
+        },
+        props: {
+            image: new Image(),
+            ready: false,
+        },
+        zombies: {
+            image: new Image(),
+            ready: false,
+        },
     };
     const wizardPaletteSources = new Map();
     const bonusWizardPaletteSources = new Map();
@@ -212,10 +224,10 @@
         },
         dash: {
             label: "Rune de dash",
-            description: "Débloque le dash avec Espace",
+            description: "Débloque le dash, puis allonge sa portée",
             baseCost: 100,
-            costStep: 0,
-            maxLevel: 1,
+            costStep: 90,
+            maxLevel: 3,
         },
         fullAuto: {
             label: "Rune automatique",
@@ -286,6 +298,18 @@
             maxCharge: 370,
             color: "#f43f5e",
         },
+        investor: {
+            skillId: "gold-rush",
+            name: "Ruée dorée",
+            maxCharge: 340,
+            color: "#facc15",
+        },
+        magnetic: {
+            skillId: "magnetic-storm",
+            name: "Tempête magnétique",
+            maxCharge: 350,
+            color: "#94a3b8",
+        },
     };
     const ENVIRONMENTS = [
         {
@@ -355,6 +379,25 @@
             gimmick: "Champs d’orage",
             gimmickHint: "Les anciens générateurs infligent des dégâts par pulsations.",
             sceneryKinds: ["moss", "debris", "pebble", "rune"],
+        },
+        {
+            id: "necropolis",
+            minimumRound: 10,
+            label: "Nécropole Éveillée",
+            ground: "#1b1f26",
+            groundAlt: "#262b34",
+            grid: "rgba(148, 163, 184, 0.09)",
+            wall: "#4c525e",
+            wallEdge: "#c3cbd8",
+            hazard: "#2f3a44",
+            foliage: "#3b4a44",
+            accent: "#a3e635",
+            detail: "#454f5c",
+            detailType: "tiles",
+            gimmick: "Réveil des morts",
+            gimmickHint:
+                "Les morts se relèvent sans fin et s’en prennent à tous.",
+            sceneryKinds: ["bones", "debris", "pebble", "rune"],
         },
     ];
     const ENEMY_ELEMENTS = {
@@ -1011,6 +1054,46 @@
                 },
             ],
         },
+        investor: {
+            label: "Voie de l’Investisseur",
+            cost: 260,
+            avatarName: "Crésus",
+            avatar: "💰",
+            passive: "Tous les points gagnés rapportent 40 % de plus.",
+            color: "#facc15",
+            generatedFromTier: 1,
+            nodes: [
+                {
+                    id: "gold-rush",
+                    tier: 3,
+                    label: "Ruée dorée",
+                    description:
+                        "Débloque E : les points doublent pendant 8 s.",
+                    specialAbility: true,
+                },
+            ],
+        },
+        magnetic: {
+            label: "Voie Magnétique",
+            cost: 320,
+            avatarName: "Ferro",
+            avatar: "🧲",
+            passive:
+                "Les balles suivent l’ennemi mais infligent 25 % de dégâts " +
+                "en moins.",
+            color: "#94a3b8",
+            generatedFromTier: 1,
+            nodes: [
+                {
+                    id: "magnetic-storm",
+                    tier: 3,
+                    label: "Tempête magnétique",
+                    description:
+                        "Débloque E : attire les ennemis et renforce le guidage.",
+                    specialAbility: true,
+                },
+            ],
+        },
     };
     const SKINS = {
         aqua: {
@@ -1149,6 +1232,14 @@
     let scenery = [];
     let groundDetails = [];
     let obstacles = [];
+    let arenaLayout = null;
+    const GROUND_TILE = 16;
+    const GROUND_CHUNK_TILES = 32;
+    const GROUND_CHUNK_SIZE = GROUND_TILE * GROUND_CHUNK_TILES;
+    const GROUND_CHUNK_LIMIT = 40;
+    const GROUND_CHUNKS_PER_FRAME = 2;
+    const groundChunks = new Map();
+    const groundChunkOrder = [];
     let mapFeatures = [];
     let supplyCrates = [];
     let pickups = [];
@@ -1549,6 +1640,17 @@
         gameAssets.materials.image.addEventListener("load", () => {
             prepareObstacleTexturePatterns();
         });
+        gameAssets.terrain.image.addEventListener("load", () => {
+            gameAssets.terrain.ready = true;
+            groundChunks.clear();
+            groundChunkOrder.length = 0;
+        });
+        gameAssets.props.image.addEventListener("load", () => {
+            gameAssets.props.ready = true;
+        });
+        gameAssets.zombies.image.addEventListener("load", () => {
+            gameAssets.zombies.ready = true;
+        });
         gameAssets.wizards.image.src = canvas.dataset.wizardAtlas;
         gameAssets.bonusWizards.image.src =
             canvas.dataset.bonusWizardAtlas;
@@ -1558,6 +1660,9 @@
                 `data:image/jpeg;base64,` +
                 window.ENVIRONMENT_MATERIAL_ATLAS_DATA;
         }
+        gameAssets.terrain.image.src = canvas.dataset.terrainAtlas;
+        gameAssets.props.image.src = canvas.dataset.propAtlas;
+        gameAssets.zombies.image.src = canvas.dataset.zombieAtlas;
     }
 
     function createDefaultProfile() {
@@ -1805,8 +1910,16 @@
             elementPath: null,
             elementLevel: 0,
             talentPoints: 0,
+            killTalentProgress: 0,
+            roundTalentFromKills: 0,
             skillNodes: [],
+            seed: Math.floor(Math.random() * 1000000000),
+            generatedTiers: {},
         };
+    }
+
+    function getRoundRewardMultiplier(round) {
+        return Math.pow(1.15, Math.max(0, round - 1));
     }
 
     function createRoundSettings(round) {
@@ -1823,8 +1936,14 @@
             botFireMinimum: Math.max(0.42, 0.98 - difficulty * 0.05),
             botFireMaximum: Math.max(0.68, 1.38 - difficulty * 0.055),
             zoneDamage: 5.5 + difficulty * 0.85,
-            killReward: 3 + Math.min(3, Math.floor(difficulty / 3)),
-            completionBonus: 14 + round * 4,
+            killReward: Math.max(
+                1,
+                Math.round(3 * getRoundRewardMultiplier(round)),
+            ),
+            completionBonus: Math.max(
+                1,
+                Math.round((14 + round * 4) * getRoundRewardMultiplier(round)),
+            ),
             eliteCount: Math.min(8, 1 + Math.floor((round + 1) / 3)),
             crateCount: Math.min(16, 8 + Math.floor(round / 2)),
             enemyAbilityLevel: Math.min(6, 1 + Math.floor(round / 2)),
@@ -1844,6 +1963,207 @@
             MAX_UPGRADE_LEVEL;
     }
 
+    const KILLS_PER_TALENT_POINT = 10;
+
+    function awardKillTalent() {
+        campaign.killTalentProgress += 1;
+        if (campaign.killTalentProgress < KILLS_PER_TALENT_POINT) {
+            return;
+        }
+        campaign.killTalentProgress -= KILLS_PER_TALENT_POINT;
+        campaign.talentPoints += 1;
+        campaign.roundTalentFromKills += 1;
+        statusElement.textContent =
+            "Essence de talent gagnée : 10 éliminations.";
+    }
+
+    const GENERATED_SKILL_POOL = [
+        {
+            id: "gen-ultimate-charge",
+            label: "Charge accélérée",
+            description: "L’ultime se charge 15 % plus vite.",
+            requires: "ultimate",
+        },
+        {
+            id: "gen-ultimate-radius",
+            label: "Onde élargie",
+            description: "Le rayon de l’ultime augmente de 20 %.",
+            requires: "ultimate",
+        },
+        {
+            id: "gen-ultimate-damage",
+            label: "Puissance ultime",
+            description: "L’ultime inflige 25 % de dégâts en plus.",
+            requires: "ultimate",
+        },
+        {
+            id: "gen-dash-distance",
+            label: "Foulée allongée",
+            description: "Le dash parcourt 18 % de distance en plus.",
+            requires: "dash",
+        },
+        {
+            id: "gen-dash-cooldown",
+            label: "Récupération rapide",
+            description: "Le dash récupère 20 % plus vite.",
+            requires: "dash",
+        },
+        {
+            id: "gen-damage",
+            label: "Frappe affûtée",
+            description: "+8 % de dégâts.",
+        },
+        {
+            id: "gen-health",
+            label: "Constitution",
+            description: "+10 % de santé maximale.",
+        },
+        {
+            id: "gen-cadence",
+            label: "Cadence rapide",
+            description: "+8 % de cadence de tir.",
+        },
+        {
+            id: "gen-shield",
+            label: "Égide",
+            description: "+25 de bouclier maximum.",
+        },
+        {
+            id: "gen-speed",
+            label: "Célérité",
+            description: "+6 % de vitesse.",
+        },
+        {
+            id: "gen-investor-points",
+            label: "Intérêts composés",
+            description: "+15 % de points gagnés.",
+            requires: "path:investor",
+        },
+        {
+            id: "gen-investor-crates",
+            label: "Butin doré",
+            description: "Les caisses rapportent 40 % de points en plus.",
+            requires: "path:investor",
+        },
+        {
+            id: "gen-investor-kill",
+            label: "Dividendes",
+            description: "+2 points par élimination.",
+            requires: "path:investor",
+        },
+        {
+            id: "gen-magnetic-turn",
+            label: "Champ resserré",
+            description: "Les balles virent 25 % plus vite.",
+            requires: "path:magnetic",
+        },
+        {
+            id: "gen-magnetic-damage",
+            label: "Noyau dense",
+            description: "Récupère 8 % de la pénalité de dégâts.",
+            requires: "path:magnetic",
+        },
+        {
+            id: "gen-magnetic-range",
+            label: "Attraction élargie",
+            description: "Portée de guidage +30 %.",
+            requires: "path:magnetic",
+        },
+    ];
+
+    function createSeededRandom(seed) {
+        let state = seed >>> 0;
+        return function nextRandom() {
+            state = (state * 1664525 + 1013904223) >>> 0;
+            return state / 4294967296;
+        };
+    }
+
+    function countSkill(skillId) {
+        let total = 0;
+        for (const takenId of campaign.skillNodes) {
+            if (takenId === skillId) {
+                total += 1;
+            }
+        }
+        return total;
+    }
+
+    function isGeneratedOptionAvailable(option) {
+        if (!option.requires) {
+            return true;
+        }
+        if (option.requires === "ultimate") {
+            return Boolean(getSpecialAbilityDefinition());
+        }
+        if (option.requires === "dash") {
+            return campaign.upgrades.dash > 0;
+        }
+        if (option.requires.startsWith("path:")) {
+            return campaign.elementPath === option.requires.slice(5);
+        }
+        return false;
+    }
+
+    function getGeneratedTierOptions(tier, count) {
+        if (count <= 0) {
+            return [];
+        }
+        const cachedIds = campaign.generatedTiers[tier];
+        if (cachedIds) {
+            return cachedIds
+                .map((id) =>
+                    GENERATED_SKILL_POOL.find((option) => option.id === id),
+                )
+                .filter(Boolean);
+        }
+        let pool = GENERATED_SKILL_POOL.filter(isGeneratedOptionAvailable);
+        if (pool.length < count) {
+            pool = GENERATED_SKILL_POOL.filter((option) => !option.requires);
+        }
+        const nextRandom = createSeededRandom(campaign.seed + tier * 7919);
+        const remaining = pool.slice();
+        const picked = [];
+        while (picked.length < count && remaining.length > 0) {
+            const index = Math.floor(nextRandom() * remaining.length);
+            picked.push(remaining.splice(index, 1)[0]);
+        }
+        campaign.generatedTiers[tier] = picked.map((option) => option.id);
+        return picked;
+    }
+
+    function getTierOptions(tier) {
+        const definition = ELEMENT_DEFINITIONS[campaign.elementPath];
+        if (!definition) {
+            return [];
+        }
+        const generatedFrom =
+            definition.generatedFromTier || MAX_SKILL_TIERS + 1;
+        if (tier < generatedFrom) {
+            return definition.nodes.filter((node) => node.tier === tier);
+        }
+        const curated = definition.nodes.filter((node) =>
+            definition.generatedFromTier
+                ? node.tier <= tier && !hasSkill(node.id)
+                : node.tier === tier && !hasSkill(node.id),
+        );
+        return curated.concat(
+            getGeneratedTierOptions(tier, 3 - curated.length),
+        );
+    }
+
+    function getUltimateChargeMultiplier() {
+        return 1 + 0.15 * countSkill("gen-ultimate-charge");
+    }
+
+    function getUltimateDamageMultiplier() {
+        return 1 + 0.25 * countSkill("gen-ultimate-damage");
+    }
+
+    function getUltimateRadiusMultiplier() {
+        return 1 + 0.2 * countSkill("gen-ultimate-radius");
+    }
+
     function hasSkill(skillId) {
         return campaign.skillNodes.includes(skillId);
     }
@@ -1854,9 +2174,93 @@
             : 0;
     }
 
+    function countSurvivors() {
+        return actors.filter(
+            (actor) => actor.alive && !actor.isZombie,
+        ).length;
+    }
+
+    const ZOMBIE_CONTACT_DAMAGE = 14;
+    const ZOMBIE_CONTACT_INTERVAL = 0.85;
+    const ZOMBIE_RESPAWN_DELAY = 3.5;
+    // ~1,5x le rétrécissement max en un ZOMBIE_RESPAWN_DELAY (zone.radius
+    // perd au plus 6 * 0,5 * 0,5 / duration * (END-START) ~ 14,6 px/s au
+    // point le plus raide du smoothstep, à round 10 (duration = 204 s) :
+    // 3,5 s de vie => ~51 px). Volontairement PAS plus large : les salles
+    // (hors spawn) sont semées une seule fois, à la génération de l'arène,
+    // à une distance de la salle de spawn qui ne peut jamais descendre sous
+    // ROOM_SEPARATION + les deux moitiés de salle (voir battle_royale_map.js
+    // placeRooms) ; passé un certain rétrécissement de zone.radius, aucune
+    // marge ne rend plus aucune salle hors-spawn atteignable, donc élargir
+    // la marge ne fait que réduire le taux de réussite en milieu de round
+    // sans rien gagner en fin de round (mesuré par simulation).
+    const ZOMBIE_SPAWN_ZONE_MARGIN = 80;
+    // Deux seuils plutôt qu'un seul : le zombie verrouille le joueur à
+    // ZOMBIE_AGGRO_RANGE et ne le relâche qu'au-delà de
+    // ZOMBIE_AGGRO_RELEASE, sinon il hésiterait entre le joueur et un bot
+    // en oscillant autour d'une frontière unique.
+    const ZOMBIE_AGGRO_RANGE = 700;
+    const ZOMBIE_AGGRO_RELEASE = 1150;
+    let zombieRespawnTimer = 0;
+    let zombieSerial = 0;
+
+    function getZombiePopulationTarget() {
+        return currentEnvironment.id === "necropolis"
+            ? Math.min(
+                18,
+                8 + Math.floor((campaign.round - 10) / 2),
+            )
+            : 0;
+    }
+
+    function spawnZombie() {
+        // Comme randomPointInZone/randomArenaPoint : on retire un point tant
+        // qu'il tombe trop près du joueur (pour qu'un renfort en cours de
+        // round n'apparaisse jamais dans la pièce qu'il occupe déjà) ou tant
+        // qu'il tombe hors de la zone qui rétrécit (sinon, en fin de round,
+        // les renforts apparaissent hors zone et meurent avant d'avoir pu
+        // approcher qui que ce soit). Les deux contraintes partagent le même
+        // compteur de tentatives pour que la boucle reste bornée.
+        let point;
+        let attempts = 0;
+
+        do {
+            point = randomArenaPointAwayFromSpawn(220);
+            attempts += 1;
+        } while (
+            attempts < 30 &&
+            (
+                (player && distanceBetween(point, player) < 600) ||
+                distanceBetween(point, zone) >
+                    zone.radius - ZOMBIE_SPAWN_ZONE_MARGIN
+            )
+        );
+
+        zombieSerial += 1;
+        const zombie = createActor(
+            `zombie-${zombieSerial}`,
+            point.x,
+            point.y,
+            false,
+            false,
+        );
+        zombie.isZombie = true;
+        zombie.zombieKind = Math.random() < 0.5 ? "zombie" : "skeleton";
+        zombie.maxHealth = 54 + campaign.round * 3;
+        zombie.health = zombie.maxHealth;
+        zombie.shield = 0;
+        zombie.maxShield = 0;
+        zombie.speed = randomBetween(130, 160);
+        zombie.element = null;
+        zombie.trait = null;
+        actors.push(zombie);
+    }
+
     function chooseEnvironment() {
         const choices = ENVIRONMENTS.filter(
-            (environment) => environment.id !== previousEnvironmentId,
+            (environment) =>
+                environment.id !== previousEnvironmentId &&
+                campaign.round >= (environment.minimumRound || 1),
         );
         currentEnvironment =
             choices[Math.floor(Math.random() * choices.length)] ||
@@ -1896,10 +2300,23 @@
         pointsGainElement.textContent = "";
     }
 
+    let goldRushTimer = 0;
+
+    function getPointsMultiplier() {
+        return (
+            (campaign.elementPath === "investor" ? 1.4 : 1) *
+            (1 + 0.15 * countSkill("gen-investor-points")) *
+            (goldRushTimer > 0 ? 2 : 1)
+        );
+    }
+
     function awardPoints(amount, announcement) {
-        const awardedPoints = Math.max(0, Math.round(amount));
+        const awardedPoints = Math.max(
+            0,
+            Math.round(amount * getPointsMultiplier()),
+        );
         if (awardedPoints === 0) {
-            return;
+            return awardedPoints;
         }
 
         campaign.points += awardedPoints;
@@ -1918,6 +2335,7 @@
                 `${announcement} +${awardedPoints} points. ` +
                 `Total : ${campaign.points}.`;
         }
+        return awardedPoints;
     }
 
     function createActor(id, x, y, isPlayer = false, isElite = false) {
@@ -1936,6 +2354,9 @@
         if (isElite) {
             maxHealth = Math.round(maxHealth * 1.7);
         }
+        if (isPlayer) {
+            maxHealth *= 1 + 0.1 * countSkill("gen-health");
+        }
         maxHealth = Math.round(maxHealth);
         const skin = SKINS[selectedSkin];
         const pathShield = isPlayer
@@ -1948,7 +2369,8 @@
                 (hasSkill("mental-ward") ? 25 : 0) +
                 (hasSkill("lucid-armor") ? 15 : 0) +
                 (hasSkill("blood-shield") ? 25 : 0) +
-                (hasSkill("blood-armor") ? 20 : 0)
+                (hasSkill("blood-armor") ? 20 : 0) +
+                25 * countSkill("gen-shield")
             : enemyBuild.trait === "guardian"
                 ? 18 + enemyBuild.level * 8
                 : 0;
@@ -1981,15 +2403,19 @@
             alive: true,
             isPlayer,
             isElite,
+            isZombie: false,
+            zombieKind: "zombie",
+            contactCooldown: 0,
             angle: 0,
             speed: isPlayer
-                ? 255 +
+                ? (255 +
                     campaign.upgrades.mobility * 22 +
                     (hasSkill("tailwind") ? 35 : 0) +
                     (hasSkill("slipstream") ? 45 : 0) +
                     (hasSkill("windrunner") ? 35 : 0) +
                     (hasSkill("untouchable-sky") ? 65 : 0) +
-                    (hasSkill("night-predator") ? 35 : 0)
+                    (hasSkill("night-predator") ? 35 : 0)) *
+                    (1 + 0.06 * countSkill("gen-speed"))
                 : (isElite ? 1.08 : 1) * randomBetween(
                     roundSettings.botSpeedMinimum,
                     roundSettings.botSpeedMaximum,
@@ -2000,7 +2426,8 @@
                 (isPlayer && hasSkill("razor-wind") ? 1.15 : 1) *
                 (isPlayer && hasSkill("mind-spike") ? 1.15 : 1) *
                 (isPlayer && hasSkill("sanguine-bolts") ? 1.15 : 1) *
-                (isPlayer && hasSkill("ancient-vampire") ? 1.2 : 1),
+                (isPlayer && hasSkill("ancient-vampire") ? 1.2 : 1) *
+                (isPlayer ? 1 + 0.08 * countSkill("gen-damage") : 1),
             fireDelay: isPlayer
                 ? 0.42 *
                     (0.9 ** campaign.upgrades.cadence) *
@@ -2008,7 +2435,8 @@
                     (hasSkill("time-warp") ? 0.75 : 1) *
                     (hasSkill("jetstream") ? 0.85 : 1) *
                     (hasSkill("perfect-focus") ? 0.85 : 1) *
-                    (hasSkill("ascended-mind") ? 0.8 : 1)
+                    (hasSkill("ascended-mind") ? 0.8 : 1) /
+                    (1 + 0.08 * countSkill("gen-cadence"))
                 : 1,
             shotSpread: isPlayer ? 0.025 : roundSettings.botSpread,
             cooldown: isPlayer ? 0 : randomBetween(1.2, 2.2),
@@ -2016,6 +2444,10 @@
             movementDistance: 0,
             lastStepX: 0,
             lastStepY: 0,
+            lastRoomId: null,
+            routeKey: null,
+            routePath: null,
+            routeIndex: 0,
             inMud: false,
             walkDustCarry: 0,
             shieldFlashTimer: 0,
@@ -2045,6 +2477,7 @@
             spawnShield: isPlayer ? 3.5 : 0,
             aiSeed: randomBetween(0, Math.PI * 2),
             aiTarget: null,
+            huntingPlayer: false,
             aiTargetRefresh: randomBetween(0, 0.16),
             element: enemyBuild.element,
             elementLevel: enemyBuild.level,
@@ -2123,6 +2556,9 @@
 
         for (let index = 0; index < 320; index += 1) {
             const point = randomPointInZone(70);
+            if (pointBlocked(point, 18)) {
+                continue;
+            }
             scenery.push({
                 x: point.x,
                 y: point.y,
@@ -2134,6 +2570,7 @@
                     )
                 ],
                 rotation: randomBetween(0, Math.PI * 2),
+                spriteIndex: Math.floor(Math.random() * 64),
             });
         }
     }
@@ -2158,7 +2595,7 @@
 
         if (currentEnvironment.id === "forest") {
             for (let index = 0; index < 6; index += 1) {
-                const point = randomPointInZone(220);
+                const point = randomArenaPoint(220);
                 mapFeatures.push({
                     id: `grove-${index}`,
                     type: "healing-grove",
@@ -2171,7 +2608,7 @@
         } else if (currentEnvironment.id === "badlands") {
             for (let pair = 0; pair < 4; pair += 1) {
                 for (let side = 0; side < 2; side += 1) {
-                    const point = randomPointInZone(260);
+                    const point = randomArenaPoint(260);
                     mapFeatures.push({
                         id: `portal-${pair}-${side}`,
                         type: "portal",
@@ -2186,7 +2623,7 @@
             }
         } else if (currentEnvironment.id === "frost") {
             for (let index = 0; index < 9; index += 1) {
-                const point = randomPointInZone(170);
+                const point = randomArenaPoint(170);
                 mapFeatures.push({
                     id: `blizzard-${index}`,
                     type: "blizzard",
@@ -2197,9 +2634,12 @@
                     phase: randomBetween(0, Math.PI * 2),
                 });
             }
+        } else if (currentEnvironment.id === "necropolis") {
+            // Pas de champ de danger : la horde de zombies est déjà le
+            // gimmick de la zone, elle n'a pas besoin d'un hasard de terrain.
         } else {
             for (let index = 0; index < 7; index += 1) {
-                const point = randomPointInZone(180);
+                const point = randomArenaPoint(180);
                 mapFeatures.push({
                     id: `surge-${index}`,
                     type: "storm-field",
@@ -2212,12 +2652,51 @@
         }
     }
 
+    // Comme randomPointInZone : la marge est une distance minimale au joueur,
+    // et le point tiré ne doit pas tomber dans un obstacle déjà posé.
+    function randomArenaPoint(margin) {
+        if (!arenaLayout || arenaLayout.rooms.length === 0) {
+            return randomPointInZone(margin);
+        }
+
+        let point;
+        let attempts = 0;
+
+        do {
+            const room = arenaLayout.rooms[
+                Math.floor(Math.random() * arenaLayout.rooms.length)
+            ];
+            point = window.BattleRoyaleMap.randomPointInRoom(room, margin);
+            attempts += 1;
+        } while (
+            player &&
+            (
+                distanceBetween(point, player) < margin ||
+                pointBlocked(point, 35)
+            ) &&
+            attempts < 30
+        );
+
+        return point;
+    }
+
+    function randomArenaPointAwayFromSpawn(margin) {
+        if (arenaLayout && arenaLayout.rooms.length > 1) {
+            const choices = arenaLayout.rooms.filter((room) => !room.isSpawn);
+            const room = choices[
+                Math.floor(Math.random() * choices.length)
+            ];
+            return window.BattleRoyaleMap.randomPointInRoom(room, margin);
+        }
+        return randomArenaPoint(margin);
+    }
+
     function createObstacles() {
         obstacles = [];
         obstacleSpatialGridReady = false;
         const wallHealth = 110 + campaign.round * 11;
 
-        function addWall(x, y, width, height) {
+        function addWall(x, y, width, height, orientation) {
             obstacles.push({
                 id: `wall-${obstacles.length}`,
                 type: "wall",
@@ -2226,6 +2705,7 @@
                 y,
                 width,
                 height,
+                orientation,
                 solid: true,
                 destructible: true,
                 health: wallHealth,
@@ -2234,57 +2714,62 @@
             });
         }
 
-        const structureCount = Math.min(
-            18,
-            12 + Math.floor(campaign.round / 2),
-        );
-        for (let index = 0; index < structureCount; index += 1) {
-            const center = randomPointInZone(270);
-            const layout = Math.floor(Math.random() * 3);
-            const width = randomBetween(170, 260);
-            const height = randomBetween(125, 210);
-            const thickness = randomBetween(20, 30);
-            const opening = Math.floor(Math.random() * 4);
+        if (arenaLayout) {
+            for (const wall of arenaLayout.walls) {
+                addWall(wall.x, wall.y, wall.width, wall.height, wall.orientation);
+            }
+        } else {
+            const structureCount = Math.min(
+                18,
+                12 + Math.floor(campaign.round / 2),
+            );
+            for (let index = 0; index < structureCount; index += 1) {
+                const center = randomPointInZone(270);
+                const layout = Math.floor(Math.random() * 3);
+                const width = randomBetween(170, 260);
+                const height = randomBetween(125, 210);
+                const thickness = randomBetween(20, 30);
+                const opening = Math.floor(Math.random() * 4);
 
-            if (layout === 0) {
-                if (opening !== 0) {
-                    addWall(center.x, center.y - height / 2, width, thickness);
+                if (layout === 0) {
+                    if (opening !== 0) {
+                        addWall(center.x, center.y - height / 2, width, thickness);
+                    }
+                    if (opening !== 1) {
+                        addWall(center.x, center.y + height / 2, width, thickness);
+                    }
+                    if (opening !== 2) {
+                        addWall(center.x - width / 2, center.y, thickness, height);
+                    }
+                    if (opening !== 3) {
+                        addWall(center.x + width / 2, center.y, thickness, height);
+                    }
+                } else if (layout === 1) {
+                    addWall(center.x - width * 0.28, center.y, thickness, height);
+                    addWall(center.x + width * 0.28, center.y, thickness, height);
+                    addWall(
+                        center.x,
+                        center.y + (opening % 2 ? -1 : 1) * height * 0.45,
+                        width * 0.58,
+                        thickness,
+                    );
+                } else {
+                    addWall(center.x, center.y, width, thickness);
+                    addWall(
+                        center.x + (opening % 2 ? -1 : 1) * width * 0.38,
+                        center.y + height * 0.35,
+                        thickness,
+                        height * 0.7,
+                    );
                 }
-                if (opening !== 1) {
-                    addWall(center.x, center.y + height / 2, width, thickness);
-                }
-                if (opening !== 2) {
-                    addWall(center.x - width / 2, center.y, thickness, height);
-                }
-                if (opening !== 3) {
-                    addWall(center.x + width / 2, center.y, thickness, height);
-                }
-            } else if (layout === 1) {
-                addWall(center.x - width * 0.28, center.y, thickness, height);
-                addWall(center.x + width * 0.28, center.y, thickness, height);
-                addWall(
-                    center.x,
-                    center.y + (opening % 2 ? -1 : 1) * height * 0.45,
-                    width * 0.58,
-                    thickness,
-                );
-            } else {
-                addWall(center.x, center.y, width, thickness);
-                addWall(
-                    center.x + (opening % 2 ? -1 : 1) * width * 0.38,
-                    center.y + height * 0.35,
-                    thickness,
-                    height * 0.7,
-                );
             }
         }
 
-        const naturalCount = Math.min(
-            140,
-            94 + campaign.round * 4,
-        );
+        const naturalCount = arenaLayout
+            ? Math.min(70, 46 + campaign.round * 2)
+            : Math.min(140, 94 + campaign.round * 4);
         for (let index = 0; index < naturalCount; index += 1) {
-            const point = randomPointInZone(210);
+            const point = randomArenaPoint(210);
             const treeChance = currentEnvironment.id === "forest"
                 ? 0.72
                 : currentEnvironment.id === "frost"
@@ -2303,6 +2788,7 @@
                 solid: true,
                 destructible: false,
                 alive: true,
+                spriteIndex: Math.floor(Math.random() * 64),
             });
         }
 
@@ -2311,7 +2797,7 @@
             15 + Math.floor(campaign.round / 2),
         );
         for (let index = 0; index < hazardCount; index += 1) {
-            const point = randomPointInZone(150);
+            const point = randomArenaPoint(150);
             obstacles.push({
                 id: `mud-${index}`,
                 type: "mud",
@@ -2334,7 +2820,7 @@
         supplyCrates = [];
 
         for (let index = 0; index < roundSettings.crateCount; index += 1) {
-            const point = randomPointInZone(140);
+            const point = randomArenaPoint(140);
             const maxHealth = 48 + campaign.round * 4;
             supplyCrates.push({
                 id: `crate-${index}`,
@@ -2408,6 +2894,16 @@
             y: randomBetween(zoneMargin, WORLD_HEIGHT - zoneMargin),
             radius: START_ZONE_RADIUS,
         };
+        arenaLayout = window.BattleRoyaleMap
+            ? window.BattleRoyaleMap.generateArena(
+                zone.x,
+                zone.y,
+                START_ZONE_RADIUS,
+                currentEnvironment.id,
+            )
+            : null;
+        groundChunks.clear();
+        groundChunkOrder.length = 0;
 
         player = createActor("player", zone.x, zone.y, true);
         actors = [player];
@@ -2415,11 +2911,22 @@
         createMapFeatures();
 
         for (let index = 0; index < roundSettings.botCount; index += 1) {
-            const point = randomPointInZone(180);
+            const point = randomArenaPointAwayFromSpawn(180);
             const isElite = index < roundSettings.eliteCount;
             actors.push(
                 createActor(`bot-${index}`, point.x, point.y, false, isElite),
             );
+        }
+
+        zombieRespawnTimer = ZOMBIE_RESPAWN_DELAY;
+        zombieSerial = 0;
+        const zombiePopulationTarget = getZombiePopulationTarget();
+        for (
+            let index = 0;
+            index < zombiePopulationTarget;
+            index += 1
+        ) {
+            spawnZombie();
         }
 
         createGroundDetails();
@@ -2483,7 +2990,8 @@
 
             if (isChosen) {
                 progress.textContent =
-                    `${campaign.skillNodes.length}/${MAX_SKILL_TIERS} talents`;
+                    `${campaign.skillNodes.length} ` +
+                    `${campaign.skillNodes.length > 1 ? "talents" : "talent"}`;
             } else if (isChoiceLocked) {
                 progress.textContent = "Voie verrouillée";
             } else if (!isAccountUnlocked) {
@@ -2518,8 +3026,7 @@
             matchState === "ready" && !campaign.elementPath;
         const hasPendingTalent =
             matchState === "between-rounds" &&
-            campaign.talentPoints > 0 &&
-            campaign.skillNodes.length < MAX_SKILL_TIERS;
+            campaign.talentPoints > 0;
         if (matchState === "ready" || matchState === "between-rounds") {
             startButton.disabled = mustChoosePath || hasPendingTalent;
             startButton.title = mustChoosePath
@@ -2550,17 +3057,16 @@
         skillTreeTitle.textContent = definition.label;
         skillPassive.textContent = `Passif : ${definition.passive}`;
         const nextTier = campaign.skillNodes.length + 1;
-        if (nextTier <= MAX_SKILL_TIERS) {
+        {
             const tierElement = document.createElement("div");
             tierElement.className = "skill-tier";
             const tierTitle = document.createElement("strong");
-            tierTitle.textContent =
-                `Palier ${nextTier} · choisis un seul pouvoir`;
+            tierTitle.textContent = nextTier > MAX_SKILL_TIERS
+                ? `Palier ${nextTier} · pouvoirs aléatoires`
+                : `Palier ${nextTier} · choisis un seul pouvoir`;
             tierElement.append(tierTitle);
 
-            const nodes = definition.nodes.filter(
-                (node) => node.tier === nextTier,
-            );
+            const nodes = getTierOptions(nextTier);
             const isRevealed = campaign.talentPoints > 0;
 
             for (const node of nodes) {
@@ -2605,18 +3111,18 @@
             skillTreeElement.append(tierElement);
         }
 
-        if (
-            campaign.talentPoints > 0 &&
-            campaign.skillNodes.length < MAX_SKILL_TIERS
-        ) {
+        if (campaign.talentPoints > 0) {
             skillChoiceHelp.textContent =
                 `Essence disponible : choisis une amélioration du palier ` +
-                `${nextTier}. L’autre sera verrouillée.`;
+                `${nextTier}. ` +
+                (nextTier > MAX_SKILL_TIERS
+                    ? "Les autres seront verrouillées."
+                    : "L’autre sera verrouillée.");
             shopHelp.textContent =
                 "Un choix est requis avant de lancer le prochain round.";
         } else if (campaign.skillNodes.length >= MAX_SKILL_TIERS) {
             skillChoiceHelp.textContent =
-                "Arbre complété : ton build final est prêt.";
+                "Voie maîtrisée : les paliers suivants sont aléatoires.";
         } else {
             skillChoiceHelp.textContent =
                 "Remporte un round pour recevoir une essence de talent.";
@@ -3074,18 +3580,16 @@
         if (
             matchState !== "between-rounds" ||
             !campaign.elementPath ||
-            campaign.talentPoints <= 0 ||
-            campaign.skillNodes.length >= MAX_SKILL_TIERS
+            campaign.talentPoints <= 0
         ) {
             return;
         }
 
-        const definition = ELEMENT_DEFINITIONS[campaign.elementPath];
-        const node = definition.nodes.find(
+        const expectedTier = campaign.skillNodes.length + 1;
+        const node = getTierOptions(expectedTier).find(
             (candidate) => candidate.id === skillId,
         );
-        const expectedTier = campaign.skillNodes.length + 1;
-        if (!node || node.tier !== expectedTier) {
+        if (!node) {
             return;
         }
 
@@ -3095,14 +3599,16 @@
         shopHelp.textContent =
             `${node.label} débloqué pour les prochains rounds.`;
         statusElement.textContent =
-            `Talent choisi : ${node.label}. L’autre option du palier est ` +
-            "désormais verrouillée.";
+            `Talent choisi : ${node.label}. Les autres options du palier ` +
+            "sont désormais verrouillées.";
         updateHud();
         updateUpgradeShop();
     }
 
     function beginRound() {
         clearPointsGain();
+        goldRushTimer = 0;
+        magneticStormTimer = 0;
         prepareRound();
         matchState = "running";
         defeatStats.hidden = true;
@@ -3122,8 +3628,7 @@
             (matchState === "ready" && !campaign.elementPath) ||
             (
                 matchState === "between-rounds" &&
-                campaign.talentPoints > 0 &&
-                campaign.skillNodes.length < MAX_SKILL_TIERS
+                campaign.talentPoints > 0
             )
         ) {
             return;
@@ -3163,25 +3668,28 @@
         matchState = "between-rounds";
         battlePage.classList.remove("battle-running");
         mouse.down = false;
-        awardPoints(
+        const roundPointsEarned = awardPoints(
             roundSettings.completionBonus,
             `Round ${campaign.round} remporté.`,
         );
-        const talentEarned =
-            campaign.skillNodes.length < MAX_SKILL_TIERS ? 1 : 0;
-        campaign.talentPoints += talentEarned;
-        const legacyEarned = awardLegacyCredits(8 + campaign.round * 4);
+        const talentEarned = 1 + campaign.roundTalentFromKills;
+        campaign.talentPoints += 1;
+        campaign.roundTalentFromKills = 0;
+        const legacyEarned = awardLegacyCredits(
+            (8 + campaign.round * 4) *
+                getRoundRewardMultiplier(campaign.round),
+        );
         const nextSettings = createRoundSettings(campaign.round + 1);
         overlay.classList.remove("hidden");
         overlayEyebrow.textContent = `Round ${campaign.round} remporté`;
         overlayTitle.textContent = "Victoire royale !";
         overlayMessage.textContent =
             `Prochain round : ${nextSettings.botCount} adversaires, capacités ` +
-            `niveau ${nextSettings.enemyAbilityLevel}. Choisis 1 pouvoir ` +
-            "parmi 2 puis prépare tes statistiques.";
+            `niveau ${nextSettings.enemyAbilityLevel}. Choisis un pouvoir ` +
+            "puis prépare tes statistiques.";
         rewardKills.textContent = String(roundKills);
-        rewardPoints.textContent = `+${roundSettings.completionBonus}`;
-        rewardTalent.textContent = talentEarned ? "+1" : "Arbre complet";
+        rewardPoints.textContent = `+${roundPointsEarned}`;
+        rewardTalent.textContent = `+${talentEarned}`;
         rewardLegacy.textContent = `+${legacyEarned}`;
         roundRewards.hidden = false;
         defeatStats.hidden = true;
@@ -3189,7 +3697,7 @@
         startButton.textContent = `Lancer le round ${campaign.round + 1}`;
         statusElement.textContent =
             `Round ${campaign.round} remporté. ` +
-            `${roundSettings.completionBonus} points et ${legacyEarned} ` +
+            `${roundPointsEarned} points et ${legacyEarned} ` +
             "jetons d’héritage gagnés.";
         updateHud();
         updateUpgradeShop();
@@ -3207,7 +3715,7 @@
             return;
         }
 
-        const survivors = actors.filter((actor) => actor.alive).length;
+        const survivors = countSurvivors();
         const position = survivors + 1;
         matchState = "finished";
         battlePage.classList.remove("battle-running");
@@ -3438,7 +3946,7 @@
             return;
         }
         player.specialCharge = Math.min(
-            ability.maxCharge,
+            ability.maxCharge / getUltimateChargeMultiplier(),
             player.specialCharge + damage,
         );
     }
@@ -3454,9 +3962,9 @@
                 "Ta capacité E se trouve au palier 3 de l’arbre de compétences.";
             return;
         }
-        if (player.specialCharge < ability.maxCharge) {
+        if (player.specialCharge < ability.maxCharge / getUltimateChargeMultiplier()) {
             const percentage = Math.floor(
-                (player.specialCharge / ability.maxCharge) * 100,
+                (player.specialCharge / (ability.maxCharge / getUltimateChargeMultiplier())) * 100,
             );
             statusElement.textContent =
                 `${ability.name} est chargée à ${percentage} %. ` +
@@ -3468,8 +3976,10 @@
         createBurst(player.x, player.y, ability.color, 36, campaign.elementPath);
 
         if (campaign.elementPath === "fire") {
-            const radius = 300;
-            const damage = 76 + campaign.upgrades.power * 5;
+            const radius = 300 * getUltimateRadiusMultiplier();
+            const damage =
+                (76 + campaign.upgrades.power * 5) *
+                getUltimateDamageMultiplier();
             createPowerEffect(
                 "fire",
                 player.x,
@@ -3497,8 +4007,10 @@
                 }
             }
         } else if (campaign.elementPath === "ice") {
-            const radius = 310;
-            const damage = 36 + campaign.upgrades.power * 2;
+            const radius = 310 * getUltimateRadiusMultiplier();
+            const damage =
+                (36 + campaign.upgrades.power * 2) *
+                getUltimateDamageMultiplier();
             createPowerEffect(
                 "ice",
                 player.x,
@@ -3527,12 +4039,13 @@
                 }
             }
         } else if (campaign.elementPath === "storm") {
+            const chainRange = 640 * getUltimateRadiusMultiplier();
             const targets = actors
                 .filter(
                     (target) =>
                         target.alive &&
                         !target.isPlayer &&
-                        distanceBetween(player, target) <= 640,
+                        distanceBetween(player, target) <= chainRange,
                 )
                 .sort(
                     (first, second) =>
@@ -3561,7 +4074,8 @@
                 });
                 applyDamage(
                     target,
-                    62 + campaign.upgrades.power * 3,
+                    (62 + campaign.upgrades.power * 3) *
+                        getUltimateDamageMultiplier(),
                     player,
                     {
                         ignoreSpawnShield: true,
@@ -3573,7 +4087,7 @@
             player.overdriveTimer = Math.max(player.overdriveTimer, 5);
             player.dashCooldown = 0;
         } else if (campaign.elementPath === "wind") {
-            const radius = 400;
+            const radius = 400 * getUltimateRadiusMultiplier();
             createPowerEffect(
                 "storm",
                 player.x,
@@ -3596,7 +4110,8 @@
                 );
                 applyDamage(
                     target,
-                    48 + campaign.upgrades.power * 2,
+                    (48 + campaign.upgrades.power * 2) *
+                        getUltimateDamageMultiplier(),
                     player,
                     {
                         ignoreSpawnShield: true,
@@ -3611,7 +4126,7 @@
             }
             player.dashCooldown = 0;
         } else if (campaign.elementPath === "psychic") {
-            const radius = 470;
+            const radius = 470 * getUltimateRadiusMultiplier();
             createPowerEffect(
                 "storm",
                 player.x,
@@ -3630,7 +4145,8 @@
                 }
                 applyDamage(
                     target,
-                    38 + campaign.upgrades.power * 2,
+                    (38 + campaign.upgrades.power * 2) *
+                        getUltimateDamageMultiplier(),
                     player,
                     {
                         ignoreSpawnShield: true,
@@ -3652,7 +4168,7 @@
                 );
             }
         } else if (campaign.elementPath === "vampire") {
-            const radius = 380;
+            const radius = 380 * getUltimateRadiusMultiplier();
             let drainedHealth = 0;
             createPowerEffect(
                 "fire",
@@ -3672,7 +4188,8 @@
                 }
                 drainedHealth += applyDamage(
                     target,
-                    70 + campaign.upgrades.power * 3,
+                    (70 + campaign.upgrades.power * 3) *
+                        getUltimateDamageMultiplier(),
                     player,
                     {
                         ignoreSpawnShield: true,
@@ -3692,6 +4209,46 @@
             healPlayer(
                 drainedHealth * 0.55,
                 hasSkill("coagulation"),
+            );
+        } else if (campaign.elementPath === "investor") {
+            goldRushTimer = 8;
+            awardPoints(40, "Ruée dorée : les points doublent !");
+            createPowerEffect(
+                "investor",
+                player.x,
+                player.y,
+                "#facc15",
+                90 * getUltimateRadiusMultiplier(),
+                0.6,
+            );
+        } else if (campaign.elementPath === "magnetic") {
+            magneticStormTimer = 6;
+            const pullRadius = 260 * getUltimateRadiusMultiplier();
+            for (const target of actors) {
+                if (!target.alive || target.isPlayer) {
+                    continue;
+                }
+                const distance = Math.hypot(
+                    target.x - player.x,
+                    target.y - player.y,
+                );
+                if (distance > pullRadius || distance <= 0) {
+                    continue;
+                }
+                const pull = (1 - distance / pullRadius) * 120;
+                moveActor(
+                    target,
+                    ((player.x - target.x) / distance) * pull,
+                    ((player.y - target.y) / distance) * pull,
+                );
+            }
+            createPowerEffect(
+                "magnetic",
+                player.x,
+                player.y,
+                "#94a3b8",
+                pullRadius,
+                0.6,
             );
         }
 
@@ -4173,6 +4730,12 @@
                         ? "Élite éliminée."
                         : "Adversaire éliminé.",
                 );
+                if (!target.isZombie) {
+                    awardKillTalent();
+                }
+                if (countSkill("gen-investor-kill") > 0) {
+                    awardPoints(2 * countSkill("gen-investor-kill"), null);
+                }
 
                 const dropChance =
                     0.3 + campaign.upgrades.scavenger * 0.06;
@@ -4211,9 +4774,9 @@
                     const ability = getSpecialAbilityDefinition();
                     if (ability) {
                         player.specialCharge = Math.min(
-                            ability.maxCharge,
+                            ability.maxCharge / getUltimateChargeMultiplier(),
                             player.specialCharge +
-                                ability.maxCharge * 0.15,
+                                ability.maxCharge / getUltimateChargeMultiplier() * 0.15,
                         );
                     }
                 }
@@ -4394,6 +4957,8 @@
             shooter.isPlayer &&
             bulletElement === "ice" &&
             hasSkill("snowball");
+        const magneticShot =
+            shooter.isPlayer && bulletElement === "magnetic";
 
         bullets.push({
             x: shooter.x + Math.cos(shotAngle) * muzzleDistance,
@@ -4408,10 +4973,19 @@
                     shooter.weakenTimer > 0
                         ? shooter.weakenFactor
                         : 1
+                ) *
+                (
+                    magneticShot
+                        ? Math.min(1, 0.75 + 0.08 * countSkill("gen-magnetic-damage"))
+                        : 1
                 ),
             radius: snowballShot ? 6 : shooter.isPlayer ? 4 : 3.5,
             life: 1.55,
             element: bulletElement,
+            homing: magneticShot,
+            homingRange: 420 * (1 + 0.3 * countSkill("gen-magnetic-range")),
+            homingTurnRate:
+                3.2 * (1 + 0.25 * countSkill("gen-magnetic-turn")),
             elementLevel: bulletElementLevel,
             color: bulletElement
                 ? (
@@ -4476,10 +5050,12 @@
                 : Math.sin(player.angle);
             const dashDistance =
                 165 *
+                (1 + 0.2 * (campaign.upgrades.dash - 1)) *
                 (hasSkill("blink") ? 1.35 : 1) *
                 (hasSkill("tempest-step") ? 1.12 : 1) *
                 (hasSkill("gale-dash") ? 1.18 : 1) *
-                (hasSkill("mist-dash") ? 1.15 : 1);
+                (hasSkill("mist-dash") ? 1.15 : 1) *
+                (1 + 0.18 * countSkill("gen-dash-distance"));
             moveActor(player, dashX * dashDistance, dashY * dashDistance);
             const dashCooldownMultiplier =
                 (hasSkill("fire-dash") ? 0.65 : 1) *
@@ -4488,7 +5064,8 @@
                 (hasSkill("time-warp") ? 0.75 : 1) *
                 (hasSkill("gale-dash") ? 0.68 : 1) *
                 (hasSkill("mist-dash") ? 0.7 : 1) *
-                (hasSkill("untouchable-sky") ? 0.72 : 1);
+                (hasSkill("untouchable-sky") ? 0.72 : 1) *
+                Math.pow(0.8, countSkill("gen-dash-cooldown"));
             player.dashCooldownMaximum = 5 * dashCooldownMultiplier;
             player.dashCooldown = player.dashCooldownMaximum;
             player.spawnShield = Math.max(player.spawnShield, 0.28);
@@ -4574,19 +5151,49 @@
     }
 
     function findClosestTarget(actor) {
+        // Un zombie qui a vu le joueur le poursuit sans se laisser distraire
+        // par les sorciers. Sans ce verrou il héritait de la pénalité de
+        // ciblage ci-dessous et, avec 18 à 46 bots sur la carte, ne
+        // choisissait jamais le joueur : la horde tournait hors écran en
+        // chassant des bots, et le joueur ne croisait jamais un zombie.
+        if (actor.isZombie) {
+            if (player && player.alive) {
+                const playerDistance = distanceBetween(actor, player);
+                if (playerDistance <= ZOMBIE_AGGRO_RANGE) {
+                    actor.huntingPlayer = true;
+                } else if (playerDistance > ZOMBIE_AGGRO_RELEASE) {
+                    actor.huntingPlayer = false;
+                }
+                if (actor.huntingPlayer) {
+                    return { target: player, distance: playerDistance };
+                }
+            } else {
+                actor.huntingPlayer = false;
+            }
+        }
+
         let closest = null;
         let closestDistance = Number.POSITIVE_INFINITY;
         let closestScore = Number.POSITIVE_INFINITY;
 
         for (const candidate of actors) {
-            if (!candidate.alive || candidate === actor) {
+            if (
+                !candidate.alive ||
+                candidate === actor ||
+                (actor.isZombie && candidate.isZombie)
+            ) {
                 continue;
             }
 
             const distance = distanceBetween(actor, candidate);
             // Les bots privilégient légèrement les autres bots afin que le
-            // joueur ne reçoive pas tous les tirs en même temps.
-            const score = candidate.isPlayer ? distance * 1.7 : distance;
+            // joueur ne reçoive pas tous les tirs en même temps. Les zombies
+            // ne tirent pas : cette pénalité n'a pas de sens pour eux, et
+            // les éloignait systématiquement du joueur.
+            const score =
+                candidate.isPlayer && !actor.isZombie
+                    ? distance * 1.7
+                    : distance;
             if (score < closestScore) {
                 closest = candidate;
                 closestDistance = distance;
@@ -4611,13 +5218,124 @@
             const closest = findClosestTarget(bot);
             bot.aiTarget = closest.target;
             bot.aiTargetRefresh = randomBetween(0.12, 0.2);
-            return closest;
+            return {
+                target: closest.target,
+                distance: closest.distance,
+                refreshed: true,
+            };
         }
 
         return {
             target: bot.aiTarget,
             distance: distanceBetween(bot, bot.aiTarget),
+            refreshed: false,
         };
+    }
+
+    const WAYPOINT_ARRIVAL_RADIUS = 60;
+
+    function resolveActorRoom(actor) {
+        const room = window.BattleRoyaleMap.findRoomAt(
+            arenaLayout,
+            actor.x,
+            actor.y,
+        );
+        if (room) {
+            actor.lastRoomId = room.id;
+            return room.id;
+        }
+        return actor.lastRoomId;
+    }
+
+    function clearActorRoute(actor) {
+        actor.routeKey = null;
+        actor.routePath = null;
+        actor.routeIndex = 0;
+    }
+
+    // Le trajet est mémorisé sur le bot : sans index persistant, le point de
+    // passage le plus proche redevient la porte que le bot vient de franchir
+    // et celui-ci fait demi-tour à chaque image. L'index n'avance jamais à
+    // reculons, et le chemin n'est recalculé qu'au changement d'itinéraire ou
+    // sur la cadence aiTargetRefresh.
+    function getBotRouteDirection(bot, targetX, targetY, allowRepath) {
+        if (!arenaLayout) {
+            return null;
+        }
+        const fromRoomId = resolveActorRoom(bot);
+        const targetRoom = window.BattleRoyaleMap.findRoomAt(
+            arenaLayout,
+            targetX,
+            targetY,
+        );
+        if (
+            fromRoomId === null ||
+            !targetRoom ||
+            targetRoom.id === fromRoomId
+        ) {
+            clearActorRoute(bot);
+            return null;
+        }
+
+        const routeKey = `${fromRoomId}>${targetRoom.id}`;
+        if (routeKey !== bot.routeKey) {
+            bot.routeKey = routeKey;
+            bot.routePath = window.BattleRoyaleMap.findPath(
+                arenaLayout.graph,
+                `room-${fromRoomId}`,
+                `room-${targetRoom.id}`,
+            );
+            bot.routeIndex = 0;
+        } else if (allowRepath || !bot.routePath) {
+            bot.routePath = window.BattleRoyaleMap.findPath(
+                arenaLayout.graph,
+                `room-${fromRoomId}`,
+                `room-${targetRoom.id}`,
+            );
+        }
+
+        const path = bot.routePath;
+        if (!path || path.length === 0) {
+            return null;
+        }
+
+        let index = Math.min(bot.routeIndex, path.length - 1);
+        while (
+            index < path.length - 1 &&
+            Math.hypot(path[index].x - bot.x, path[index].y - bot.y) <
+                WAYPOINT_ARRIVAL_RADIUS
+        ) {
+            index += 1;
+        }
+        bot.routeIndex = index;
+
+        const waypoint = path[index];
+        const deltaX = waypoint.x - bot.x;
+        const deltaY = waypoint.y - bot.y;
+        const length = Math.hypot(deltaX, deltaY);
+        if (length < 1) {
+            return null;
+        }
+        return { x: deltaX / length, y: deltaY / length };
+    }
+
+    function updateZombieSpawns(deltaTime) {
+        const target = getZombiePopulationTarget();
+        if (target <= 0) {
+            return;
+        }
+        const alive = actors.filter(
+            (actor) => actor.alive && actor.isZombie,
+        ).length;
+        if (alive >= target) {
+            return;
+        }
+        zombieRespawnTimer -= deltaTime;
+        if (zombieRespawnTimer > 0) {
+            return;
+        }
+        zombieRespawnTimer = ZOMBIE_RESPAWN_DELAY;
+        spawnZombie();
     }
 
     function updateBots(deltaTime) {
@@ -4627,11 +5345,15 @@
             }
 
             const zoneDistance = Math.hypot(bot.x - zone.x, bot.y - zone.y);
-            const { target, distance } = getBotTarget(bot, deltaTime);
+            const isFleeingZone = zoneDistance > zone.radius - 65;
+            const { target, distance, refreshed } = getBotTarget(
+                bot,
+                deltaTime,
+            );
             let movementX = 0;
             let movementY = 0;
 
-            if (zoneDistance > zone.radius - 65) {
+            if (isFleeingZone) {
                 const angleToCenter = Math.atan2(
                     zone.y - bot.y,
                     zone.x - bot.x,
@@ -4671,7 +5393,7 @@
                     );
                 }
 
-                if (distance > 255) {
+                if (distance > 255 || bot.isZombie) {
                     movementX = Math.cos(targetAngle);
                     movementY = Math.sin(targetAngle);
                 } else if (distance < 125) {
@@ -4684,7 +5406,7 @@
                     movementY = Math.sin(targetAngle + strafeDirection * 1.4);
                 }
 
-                if (distance < 520) {
+                if (distance < 520 && !bot.isZombie) {
                     shoot(bot, targetAngle);
                 }
             }
@@ -4692,16 +5414,63 @@
             const movementMultiplier =
                 (bot.slowTimer > 0 ? bot.slowFactor : 1) *
                 getTerrainMultiplier(bot);
+            // La fuite garde sa destination, mais elle emprunte les portes au
+            // lieu de foncer dans les murs : la poursuite ne prend jamais le
+            // pas sur la fuite.
+            let route = null;
+            if (isFleeingZone) {
+                route = getBotRouteDirection(
+                    bot,
+                    zone.x,
+                    zone.y,
+                    refreshed,
+                );
+            } else if (bot.aiTarget) {
+                route = getBotRouteDirection(
+                    bot,
+                    bot.aiTarget.x,
+                    bot.aiTarget.y,
+                    refreshed,
+                );
+            } else {
+                clearActorRoute(bot);
+            }
             const avoidedMovement = avoidObstacle(
                 bot,
-                movementX,
-                movementY,
+                route ? route.x : movementX,
+                route ? route.y : movementY,
             );
             moveActor(
                 bot,
                 avoidedMovement.x * bot.speed * movementMultiplier * deltaTime,
                 avoidedMovement.y * bot.speed * movementMultiplier * deltaTime,
             );
+
+            if (bot.isZombie) {
+                bot.contactCooldown = Math.max(
+                    0,
+                    bot.contactCooldown - deltaTime,
+                );
+                if (bot.contactCooldown <= 0) {
+                    for (const target of actors) {
+                        if (
+                            !target.alive ||
+                            target.isZombie ||
+                            distanceBetween(bot, target) >
+                                bot.radius + target.radius + 6
+                        ) {
+                            continue;
+                        }
+                        applyDamage(
+                            target,
+                            ZOMBIE_CONTACT_DAMAGE,
+                            bot,
+                        );
+                        bot.contactCooldown = ZOMBIE_CONTACT_INTERVAL;
+                        break;
+                    }
+                }
+            }
         }
     }
 
@@ -4873,8 +5642,58 @@
         );
     }
 
+    let magneticStormTimer = 0;
+
+    function steerHomingBullet(bullet, deltaTime) {
+        let closest = null;
+        let closestDistance = bullet.homingRange;
+        for (const target of actors) {
+            if (!target.alive || target === bullet.owner) {
+                continue;
+            }
+            const distance = Math.hypot(
+                target.x - bullet.x,
+                target.y - bullet.y,
+            );
+            if (distance < closestDistance) {
+                closestDistance = distance;
+                closest = target;
+            }
+        }
+        if (!closest) {
+            return;
+        }
+
+        const speed = Math.hypot(bullet.velocityX, bullet.velocityY);
+        if (speed <= 0) {
+            return;
+        }
+        const currentAngle = Math.atan2(bullet.velocityY, bullet.velocityX);
+        const desiredAngle = Math.atan2(
+            closest.y - bullet.y,
+            closest.x - bullet.x,
+        );
+        let difference = desiredAngle - currentAngle;
+        while (difference > Math.PI) {
+            difference -= Math.PI * 2;
+        }
+        while (difference < -Math.PI) {
+            difference += Math.PI * 2;
+        }
+        const turnRate =
+            bullet.homingTurnRate * (magneticStormTimer > 0 ? 2 : 1);
+        const maximumTurn = turnRate * deltaTime;
+        const applied = clamp(difference, -maximumTurn, maximumTurn);
+        const newAngle = currentAngle + applied;
+        bullet.velocityX = Math.cos(newAngle) * speed;
+        bullet.velocityY = Math.sin(newAngle) * speed;
+    }
+
     function updateBullets(deltaTime) {
         for (const bullet of bullets) {
+            if (bullet.homing) {
+                steerHomingBullet(bullet, deltaTime);
+            }
             bullet.x += bullet.velocityX * deltaTime;
             bullet.y += bullet.velocityY * deltaTime;
             bullet.life -= deltaTime;
@@ -5293,8 +6112,9 @@
     }
 
     function collectPickup(pickup) {
-        const lootMultiplier =
-            1 + campaign.upgrades.scavenger * 0.15;
+        const lootMultiplier = 1 + campaign.upgrades.scavenger * 0.15;
+        const investorCrateMultiplier =
+            1 + 0.4 * countSkill("gen-investor-crates");
         if (pickup.type === "health") {
             const healing = Math.round(35 * lootMultiplier);
             player.health = Math.min(
@@ -5313,7 +6133,8 @@
                 `Bouclier récupéré : +${shielding}.`;
         } else if (pickup.type === "credits") {
             awardPoints(
-                (5 + campaign.round) * lootMultiplier,
+                (5 + campaign.round) * lootMultiplier *
+                    investorCrateMultiplier,
                 "Cache de points récupérée.",
             );
         } else if (pickup.type === "overdrive") {
@@ -5456,7 +6277,7 @@
             return;
         }
 
-        const survivors = actors.filter((actor) => actor.alive).length;
+        const survivors = countSurvivors();
         const health = Math.max(0, Math.ceil(player.health));
         const healthPercentage = clamp(
             (player.health / player.maxHealth) * 100,
@@ -5497,7 +6318,8 @@
             const definition = ELEMENT_DEFINITIONS[campaign.elementPath];
             buildStatusElement.textContent =
                 `${definition.avatar} ${definition.avatarName} · ` +
-                `${campaign.skillNodes.length}/${MAX_SKILL_TIERS} talents`;
+                `${campaign.skillNodes.length} ` +
+                `${campaign.skillNodes.length > 1 ? "talents" : "talent"}`;
             buildStatusElement.style.color = definition.color;
         } else {
             buildStatusElement.textContent = "Arme standard";
@@ -5518,12 +6340,13 @@
         dashStatusElement.textContent = campaign.upgrades.dash <= 0
             ? "Dash verrouillé · perk 100 pts"
             : player.dashCooldown <= 0
-                ? "Dash prêt"
-                : `Dash ${player.dashCooldown.toFixed(1)} s`;
+                ? `Dash ${campaign.upgrades.dash}/3 prêt`
+                : `Dash ${campaign.upgrades.dash}/3 · ` +
+                    `${player.dashCooldown.toFixed(1)} s`;
         const ability = getSpecialAbilityDefinition();
         const abilityPercentage = ability
             ? clamp(
-                (player.specialCharge / ability.maxCharge) * 100,
+                (player.specialCharge / (ability.maxCharge / getUltimateChargeMultiplier())) * 100,
                 0,
                 100,
             )
@@ -5558,20 +6381,20 @@
             "ready",
             Boolean(
                 ability &&
-                player.specialCharge >= ability.maxCharge,
+                player.specialCharge >= ability.maxCharge / getUltimateChargeMultiplier(),
             ),
         );
         if (!ability) {
             abilityStatusElement.textContent =
                 "E · capacité au palier 3";
             abilityStatusElement.style.color = "";
-        } else if (player.specialCharge >= ability.maxCharge) {
+        } else if (player.specialCharge >= ability.maxCharge / getUltimateChargeMultiplier()) {
             abilityStatusElement.textContent =
                 `E · ${ability.name} prête`;
             abilityStatusElement.style.color = ability.color;
         } else {
             const percentage = Math.floor(
-                (player.specialCharge / ability.maxCharge) * 100,
+                (player.specialCharge / (ability.maxCharge / getUltimateChargeMultiplier())) * 100,
             );
             abilityStatusElement.textContent =
                 `E · ${ability.name} ${percentage} %`;
@@ -5628,6 +6451,8 @@
             0,
             mapAnnouncementTimer - deltaTime,
         );
+        goldRushTimer = Math.max(0, goldRushTimer - deltaTime);
+        magneticStormTimer = Math.max(0, magneticStormTimer - deltaTime);
 
         for (const actor of actors) {
             actor.cooldown = Math.max(0, actor.cooldown - deltaTime);
@@ -5641,6 +6466,7 @@
         }
 
         updatePlayer(deltaTime);
+        updateZombieSpawns(deltaTime);
         updateBots(deltaTime);
         updateBullets(deltaTime);
         updateActorEffects(deltaTime);
@@ -5655,14 +6481,157 @@
             updateHud();
         }
 
-        const survivors = actors.filter((actor) => actor.alive);
         if (
             matchState === "running" &&
             player.alive &&
-            survivors.length === 1
+            countSurvivors() === 1
         ) {
             completeRound();
         }
+    }
+
+    function tileNoise(tileX, tileY) {
+        let hash = (tileX * 374761393 + tileY * 668265263) | 0;
+        hash = Math.imul(hash ^ (hash >>> 13), 1274126177) | 0;
+        return ((hash ^ (hash >>> 16)) >>> 0) / 4294967296;
+    }
+
+    function getTerrainTiles(kind) {
+        const manifest = window.ARENA_ART_MANIFEST;
+        const biome = manifest && manifest.terrain
+            ? manifest.terrain[currentEnvironment.id]
+            : null;
+        const tiles = biome ? biome[kind] : null;
+        return tiles && tiles.length > 0 ? tiles : null;
+    }
+
+    function buildGroundChunk(chunkX, chunkY) {
+        const groundTiles = getTerrainTiles("ground");
+        const floorTiles = getTerrainTiles("floor") || groundTiles;
+        if (!groundTiles || !gameAssets.terrain.ready) {
+            return null;
+        }
+
+        const surface = document.createElement("canvas");
+        surface.width = GROUND_CHUNK_SIZE;
+        surface.height = GROUND_CHUNK_SIZE;
+        const surfaceContext = surface.getContext("2d");
+        surfaceContext.imageSmoothingEnabled = false;
+
+        const originX = chunkX * GROUND_CHUNK_SIZE;
+        const originY = chunkY * GROUND_CHUNK_SIZE;
+
+        for (let row = 0; row < GROUND_CHUNK_TILES; row += 1) {
+            for (let column = 0; column < GROUND_CHUNK_TILES; column += 1) {
+                const worldX = originX + column * GROUND_TILE;
+                const worldY = originY + row * GROUND_TILE;
+                const inRoom = window.BattleRoyaleMap
+                    ? Boolean(window.BattleRoyaleMap.findRoomAt(
+                        arenaLayout,
+                        worldX + GROUND_TILE / 2,
+                        worldY + GROUND_TILE / 2,
+                    ))
+                    : false;
+                const tiles = inRoom ? floorTiles : groundTiles;
+                const tileIndex = Math.min(
+                    tiles.length - 1,
+                    Math.floor(
+                        tileNoise(
+                            Math.floor(worldX / GROUND_TILE),
+                            Math.floor(worldY / GROUND_TILE),
+                        ) * tiles.length,
+                    ),
+                );
+                const tile = tiles[tileIndex];
+                surfaceContext.drawImage(
+                    gameAssets.terrain.image,
+                    tile[0] * GROUND_TILE,
+                    tile[1] * GROUND_TILE,
+                    GROUND_TILE,
+                    GROUND_TILE,
+                    column * GROUND_TILE,
+                    row * GROUND_TILE,
+                    GROUND_TILE,
+                    GROUND_TILE,
+                );
+            }
+        }
+
+        return surface;
+    }
+
+    function getGroundChunk(chunkX, chunkY, budget) {
+        const key = `${chunkX}:${chunkY}`;
+        const cached = groundChunks.get(key);
+        if (cached) {
+            const position = groundChunkOrder.indexOf(key);
+            if (position >= 0) {
+                groundChunkOrder.splice(position, 1);
+            }
+            groundChunkOrder.push(key);
+            return cached;
+        }
+        if (budget.built >= GROUND_CHUNKS_PER_FRAME) {
+            return null;
+        }
+
+        const surface = buildGroundChunk(chunkX, chunkY);
+        if (!surface) {
+            return null;
+        }
+        budget.built += 1;
+        groundChunks.set(key, surface);
+        groundChunkOrder.push(key);
+        while (groundChunkOrder.length > GROUND_CHUNK_LIMIT) {
+            groundChunks.delete(groundChunkOrder.shift());
+        }
+        return surface;
+    }
+
+    function drawGroundTiles() {
+        // Le test de disponibilité vient AVANT le remplissage : sinon le
+        // chemin de repli peint l'écran entier ici, puis drawGrid le
+        // repeint aussitôt, soit deux remplissages plein écran par image.
+        if (!gameAssets.terrain.ready || !getTerrainTiles("ground")) {
+            return false;
+        }
+
+        const visibleWidth = VIEW_WIDTH / camera.zoom;
+        const visibleHeight = VIEW_HEIGHT / camera.zoom;
+        context.fillStyle = currentEnvironment.ground;
+        context.fillRect(camera.x, camera.y, visibleWidth, visibleHeight);
+
+        const firstChunkX = Math.floor(camera.x / GROUND_CHUNK_SIZE);
+        const firstChunkY = Math.floor(camera.y / GROUND_CHUNK_SIZE);
+        const lastChunkX = Math.floor(
+            (camera.x + visibleWidth) / GROUND_CHUNK_SIZE,
+        );
+        const lastChunkY = Math.floor(
+            (camera.y + visibleHeight) / GROUND_CHUNK_SIZE,
+        );
+        const budget = { built: 0 };
+
+        context.save();
+        context.imageSmoothingEnabled = false;
+        for (let chunkY = firstChunkY; chunkY <= lastChunkY; chunkY += 1) {
+            for (
+                let chunkX = firstChunkX;
+                chunkX <= lastChunkX;
+                chunkX += 1
+            ) {
+                const surface = getGroundChunk(chunkX, chunkY, budget);
+                if (!surface) {
+                    continue;
+                }
+                context.drawImage(
+                    surface,
+                    chunkX * GROUND_CHUNK_SIZE,
+                    chunkY * GROUND_CHUNK_SIZE,
+                );
+            }
+        }
+        context.restore();
+        return true;
     }
 
     function drawGrid() {
@@ -6104,6 +7073,141 @@
         context.closePath();
     }
 
+    function drawPropSprite(kind, spriteIndex, x, y, diameter) {
+        if (!gameAssets.props.ready || !window.ARENA_ART_MANIFEST) {
+            return false;
+        }
+        const byKind = window.ARENA_ART_MANIFEST.props;
+        const options = byKind && byKind[kind]
+            ? byKind[kind][currentEnvironment.id]
+            : null;
+        if (!options || options.length === 0) {
+            return false;
+        }
+
+        const sprite = options[spriteIndex % options.length];
+        const scale = diameter / sprite.width;
+        const drawWidth = sprite.width * scale;
+        const drawHeight = sprite.height * scale;
+        context.save();
+        context.imageSmoothingEnabled = false;
+        context.drawImage(
+            gameAssets.props.image,
+            sprite.x,
+            sprite.y,
+            sprite.width,
+            sprite.height,
+            x - drawWidth / 2,
+            y + diameter / 2 - drawHeight,
+            drawWidth,
+            drawHeight,
+        );
+        context.restore();
+        return true;
+    }
+
+    function drawWallTiles(obstacle, healthRatio) {
+        const tiles = getTerrainTiles("wall");
+        if (!tiles || !gameAssets.terrain.ready) {
+            return false;
+        }
+
+        const left = obstacle.x - obstacle.width / 2;
+        const top = obstacle.y - obstacle.height / 2;
+        const right = left + obstacle.width;
+        const bottom = top + obstacle.height;
+
+        context.save();
+        context.beginPath();
+        context.rect(left, top, obstacle.width, obstacle.height);
+        context.clip();
+        context.imageSmoothingEnabled = false;
+
+        const firstTileX = Math.floor(left / GROUND_TILE);
+        const firstTileY = Math.floor(top / GROUND_TILE);
+        const lastTileX = Math.floor((right - 0.001) / GROUND_TILE);
+        const lastTileY = Math.floor((bottom - 0.001) / GROUND_TILE);
+        for (let tileY = firstTileY; tileY <= lastTileY; tileY += 1) {
+            for (let tileX = firstTileX; tileX <= lastTileX; tileX += 1) {
+                const index = Math.min(
+                    tiles.length - 1,
+                    Math.floor(tileNoise(tileX, tileY) * tiles.length),
+                );
+                const tile = tiles[index];
+                context.drawImage(
+                    gameAssets.terrain.image,
+                    tile[0] * GROUND_TILE,
+                    tile[1] * GROUND_TILE,
+                    GROUND_TILE,
+                    GROUND_TILE,
+                    tileX * GROUND_TILE,
+                    tileY * GROUND_TILE,
+                    GROUND_TILE,
+                    GROUND_TILE,
+                );
+            }
+        }
+
+        // Teinte de dégâts PROGRESSIVE, pas un seuil. Un mur est un abri
+        // destructible : le joueur doit lire combien il en reste avant qu'il
+        // tombe. Le palier unique à 0,45 laissait toute la plage 45-75 %
+        // parfaitement intacte à l'écran, alors que le chemin de repli, lui,
+        // y dessine déjà sa fissure.
+        if (healthRatio < 1) {
+            context.globalAlpha = (1 - healthRatio) * 0.55;
+            context.fillStyle = "#111827";
+            context.fillRect(left, top, obstacle.width, obstacle.height);
+        }
+        context.restore();
+
+        // Les lignes de bord suivent l'ORIENTATION du mur. Tracées
+        // horizontalement pour tout le monde, elles peignaient un tiret de
+        // 26 px en travers de la face des murs horizontaux : un mur vertical
+        // couvre [top, bottom] de la pièce, les murs horizontaux sont
+        // centrés sur ces mêmes lignes avec 13 px de part et d'autre, et les
+        // verticaux passent en dernier. Et les longs côtés d'un mur vertical
+        // n'avaient alors aucun contour — ce qui compte d'autant plus que le
+        // mur de badlands est à 2,5 de luminance de son propre sol.
+        //
+        // buildWalls (battle_royale_map.js) connaît l'orientation réelle du
+        // mur — l'axe du côté de salle qui l'a produit — et la pose sur
+        // obstacle.orientation ; on la lit en priorité. Un stub très court
+        // (9-25 px, sous le seuil de fusion des portes) peut avoir
+        // width < height alors qu'il est architecturalement horizontal, donc
+        // la comparaison de dimensions n'est qu'un repli. Les murs de
+        // l'ancien générateur dispersé (createObstacles, sans arenaLayout)
+        // ne portent pas ce tag et retombent sur ce même repli, inchangés.
+        const horizontal = obstacle.orientation
+            ? obstacle.orientation === "horizontal"
+            : obstacle.width >= obstacle.height;
+        context.save();
+        context.strokeStyle = "rgba(8, 12, 20, 0.55)";
+        context.lineWidth = 3;
+        context.beginPath();
+        if (horizontal) {
+            context.moveTo(left, top + 1.5);
+            context.lineTo(right, top + 1.5);
+        } else {
+            context.moveTo(left + 1.5, top);
+            context.lineTo(left + 1.5, bottom);
+        }
+        context.stroke();
+        context.strokeStyle = "rgba(255, 255, 255, 0.18)";
+        context.lineWidth = 2;
+        context.beginPath();
+        if (horizontal) {
+            context.moveTo(left, bottom - 1);
+            context.lineTo(right, bottom - 1);
+        } else {
+            context.moveTo(right - 1, top);
+            context.lineTo(right - 1, bottom);
+        }
+        context.stroke();
+        context.restore();
+
+        return true;
+    }
+
     function drawObstacles() {
         for (const obstacle of obstacles) {
             if (!obstacle.alive) {
@@ -6181,6 +7285,9 @@
                     0,
                     1,
                 );
+                if (drawWallTiles(obstacle, healthRatio)) {
+                    continue;
+                }
                 const wallTexture = obstacleTexturePatterns.get("wall");
                 context.fillStyle = wallTexture || (
                     healthRatio > 0.45
@@ -6306,6 +7413,15 @@
                     context.stroke();
                 }
             } else if (obstacle.type === "boulder") {
+                if (drawPropSprite(
+                    "boulder",
+                    obstacle.spriteIndex || 0,
+                    obstacle.x,
+                    obstacle.y,
+                    obstacle.radius * 2,
+                )) {
+                    continue;
+                }
                 const rockTexture = obstacleTexturePatterns.get("rock");
                 const rockSeed = obstacle.x * 0.17 + obstacle.y * 0.31;
                 context.save();
@@ -6376,6 +7492,15 @@
                 context.stroke();
                 context.restore();
             } else if (obstacle.type === "tree") {
+                if (drawPropSprite(
+                    "tree",
+                    obstacle.spriteIndex || 0,
+                    obstacle.x,
+                    obstacle.y,
+                    obstacle.radius * 2.4,
+                )) {
+                    continue;
+                }
                 const treeSeed = obstacle.x * 0.13 + obstacle.y * 0.29;
                 context.save();
                 context.shadowColor = "rgba(2, 8, 12, 0.34)";
@@ -6438,6 +7563,29 @@
         }
     }
 
+    // Biome -> kinds de son propre sceneryKinds qui dessinent un sprite de
+    // props.bush dans drawScenery, plutôt que la forme procédurale de repli
+    // (croix d'ossements, ellipse de galet, cercle de rune, ...). PAR BIOME,
+    // pas une liste blanche globale unique : un même kind peut être
+    // "sprite" pour un biome et rester "procédural" pour un autre — "bones"
+    // dessine les tas de crânes du pack undead pour necropolis, mais
+    // badlands a aussi "bones" dans son propre sceneryKinds et doit
+    // continuer à le dessiner en croix d'ossements procédurale ; badlands
+    // n'a donc PAS de ligne "bones" ici. "snow" et "pine" ouvrent l'accès
+    // aux buissons de la toundra, qui n'en avait aucun à l'origine. Tout
+    // kind listé dans la rangée d'un biome doit exister dans le
+    // sceneryKinds de CE biome, et tout biome ayant de l'art dans
+    // props.bush doit avoir au moins un kind partagé entre les deux — sans
+    // quoi ses sprites ne sont jamais dessinés. build_arena_art.py relit
+    // cette table et casse la construction si les deux côtés divergent.
+    const BUSH_SCENERY_KINDS_BY_BIOME = {
+        forest: ["fern", "shrub", "moss"],
+        badlands: ["dry-grass"],
+        frost: ["snow", "pine"],
+        ruins: ["moss"],
+        necropolis: ["bones"],
+    };
+
     function drawScenery() {
         for (const item of scenery) {
             if (!circleIntersectsView(item.x, item.y, item.size * 2)) {
@@ -6445,10 +7593,18 @@
             }
 
             if (
-                ["fern", "shrub", "moss", "dry-grass"].includes(
-                    item.kind,
-                )
+                (BUSH_SCENERY_KINDS_BY_BIOME[currentEnvironment.id] || [])
+                    .includes(item.kind)
             ) {
+                if (drawPropSprite(
+                    "bush",
+                    item.spriteIndex || 0,
+                    item.x,
+                    item.y,
+                    item.size * 2.2,
+                )) {
+                    continue;
+                }
                 context.save();
                 context.translate(item.x, item.y);
                 context.rotate(item.rotation);
@@ -6901,51 +8057,139 @@
         }
     }
 
+    // 9 colonnes de 32 px, pas 8 de 36 : mesuré sur la planche (9 blobs
+    // d'encre par rangée à un pas de 32 px exact, 288 / 9 = 32 ; voir
+    // task-4-report.md). Le squelette occupe donc 6 colonnes (3-8), pas 5.
+    const ZOMBIE_CELL_COLUMNS = 9;
+    const ZOMBIE_CELL_ROWS = 4;
+    const ZOMBIE_DRAW_HEIGHT = 62;
+    const ZOMBIE_FRAMES = {
+        zombie: [0, 3],
+        skeleton: [3, 9],
+    };
+
+    function getZombieFacingRow(angle) {
+        const normalized = Math.atan2(Math.sin(angle), Math.cos(angle));
+        if (normalized >= -Math.PI / 4 && normalized < Math.PI / 4) {
+            return 2;
+        }
+        if (normalized >= Math.PI / 4 && normalized < Math.PI * 0.75) {
+            return 0;
+        }
+        if (normalized < -Math.PI / 4 && normalized >= -Math.PI * 0.75) {
+            return 3;
+        }
+        return 1;
+    }
+
+    function drawZombieSprite(actor) {
+        const sheet = gameAssets.zombies.image;
+        const sheetWidth = sheet.naturalWidth || sheet.width;
+        const sheetHeight = sheet.naturalHeight || sheet.height;
+        if (!gameAssets.zombies.ready || !sheetWidth || !sheetHeight) {
+            return false;
+        }
+
+        const cellWidth = sheetWidth / ZOMBIE_CELL_COLUMNS;
+        const cellHeight = sheetHeight / ZOMBIE_CELL_ROWS;
+        const range = ZOMBIE_FRAMES[actor.zombieKind] ||
+            ZOMBIE_FRAMES.zombie;
+        const frameCount = range[1] - range[0];
+        // Même cadence que getWizardAnimationFrame (Math.floor(clock) % N,
+        // sans multiplicateur) : animationClock avance à 7/s pour tout
+        // actor non-joueur (voir la boucle d'effets plus bas), donc ceci
+        // défile à 7 images/s, identique au rythme de marche de tous les
+        // autres ennemis. Le brief d'origine multipliait par 6 (42 images/s
+        // sur un cycle de 3 images, un scintillement), corrigé après revue.
+        const frame = actor.isMoving
+            ? range[0] + (Math.floor(actor.animationClock) % frameCount)
+            : range[0];
+        const row = getZombieFacingRow(actor.angle);
+        const drawHeight = ZOMBIE_DRAW_HEIGHT;
+        const drawWidth = drawHeight * (cellWidth / cellHeight);
+
+        context.save();
+        context.imageSmoothingEnabled = false;
+        context.drawImage(
+            sheet,
+            frame * cellWidth,
+            row * cellHeight,
+            cellWidth,
+            cellHeight,
+            actor.x - drawWidth / 2,
+            actor.y + actor.radius - drawHeight,
+            drawWidth,
+            drawHeight,
+        );
+        context.restore();
+        return true;
+    }
+
     function drawActor(actor) {
         if (!actor.alive) {
             return;
         }
 
-        context.save();
-        context.translate(actor.x, actor.y);
-        context.rotate(actor.angle);
-        if (Math.cos(actor.angle) < 0) {
-            context.scale(1, -1);
-        }
+        // Les zombies se dessinent en coordonnées du monde, sans rotation
+        // (leur feuille n'a que 4 directions, pas une rotation continue) :
+        // la tentative se fait donc AVANT context.save()/rotate(), et
+        // seul le bloc "corps" tourné est sauté en cas de succès — la barre
+        // de vie et l'étiquette, calculées après context.restore() plus
+        // bas, doivent rester affichées pour eux comme pour tout autre
+        // ennemi (un zombie encaisse les tirs du joueur comme n'importe
+        // quel autre actor, voir updateBullets).
         const visualRadius = getActorVisualRadius(actor);
+        const drewZombieSprite = actor.isZombie && drawZombieSprite(actor);
 
-        if (actor.isPlayer) {
-            if (!drawWizardSprite(actor)) {
-                drawPlayerAvatar(actor);
-            }
-        } else {
-            const enemyColor = actor.element
-                ? ENEMY_ELEMENTS[actor.element].color
-                : actor.color;
-            if (!drawWizardSprite(actor)) {
-                context.shadowColor = enemyColor;
-                context.shadowBlur = actor.isElite ? 16 : 9;
-                context.fillStyle = actor.color;
-                context.beginPath();
-                context.arc(0, 0, actor.radius, 0, Math.PI * 2);
-                context.fill();
-                context.shadowBlur = 0;
-                context.strokeStyle = enemyColor;
-                context.lineWidth = actor.element ? 3 : 2;
-                context.stroke();
+        if (!drewZombieSprite) {
+            context.save();
+            context.translate(actor.x, actor.y);
+            context.rotate(actor.angle);
+            if (Math.cos(actor.angle) < 0) {
+                context.scale(1, -1);
             }
 
-            if (actor.trait) {
-                context.strokeStyle = ENEMY_TRAITS[actor.trait].color;
-                context.lineWidth = 2;
-                context.setLineDash([5, 4]);
-                context.beginPath();
-                context.arc(0, 0, visualRadius + 3, 0, Math.PI * 2);
-                context.stroke();
-                context.setLineDash([]);
+            if (actor.isPlayer) {
+                if (!drawWizardSprite(actor)) {
+                    drawPlayerAvatar(actor);
+                }
+            } else {
+                const enemyColor = actor.element
+                    ? ENEMY_ELEMENTS[actor.element].color
+                    : actor.color;
+                if (!drawWizardSprite(actor)) {
+                    context.shadowColor = enemyColor;
+                    context.shadowBlur = actor.isElite ? 16 : 9;
+                    context.fillStyle = actor.color;
+                    context.beginPath();
+                    context.arc(0, 0, actor.radius, 0, Math.PI * 2);
+                    context.fill();
+                    context.shadowBlur = 0;
+                    context.strokeStyle = enemyColor;
+                    context.lineWidth = actor.element ? 3 : 2;
+                    context.stroke();
+                }
+
+                if (actor.trait) {
+                    context.strokeStyle = ENEMY_TRAITS[actor.trait].color;
+                    context.lineWidth = 2;
+                    context.setLineDash([5, 4]);
+                    context.beginPath();
+                    context.arc(0, 0, visualRadius + 3, 0, Math.PI * 2);
+                    context.stroke();
+                    context.setLineDash([]);
+                }
             }
+
+            context.restore();
         }
 
+        // Contrairement au corps (dessiné en rotation locale ci-dessus, sauté
+        // pour un zombie sprite réussi), cet anneau est un cercle : il rend
+        // à l'identique en coordonnées du monde, rotation ou non. On le
+        // dessine donc ici, hors du bloc "corps", pour qu'il s'affiche pour
+        // TOUT actor affecté — zombie sprite inclus — au lieu de disparaître
+        // dès qu'un zombie se dessine avec sa feuille de sprites.
         if (
             actor.burnTimer > 0 ||
             actor.slowTimer > 0 ||
@@ -6961,11 +8205,9 @@
                         : "#f0abfc";
             context.lineWidth = 3;
             context.beginPath();
-            context.arc(0, 0, visualRadius + 3, 0, Math.PI * 2);
+            context.arc(actor.x, actor.y, visualRadius + 3, 0, Math.PI * 2);
             context.stroke();
         }
-
-        context.restore();
 
         if (
             actor.isPlayer &&
@@ -6975,10 +8217,23 @@
         }
 
         const healthWidth = actor.isElite ? 52 : 38;
+        // Un zombie n'est pas un disque centré sur actor.y comme les autres
+        // actors : c'est un sprite haut ancré à sa base (actor.y +
+        // actor.radius, voir drawZombieSprite), dont le sommet réel est
+        // actor.y + actor.radius - ZOMBIE_DRAW_HEIGHT. La formule
+        // "visualRadius" placerait la barre 1 px À L'INTÉRIEUR de la tête du
+        // sprite (visualRadius = 34 une fois l'atlas des sorciers chargé,
+        // contre un sommet de sprite à 45 px au-dessus d'actor.y) ; on
+        // calcule donc son propre sommet plutôt que de réutiliser
+        // visualRadius, en gardant le même dégagement de 10 px que tous les
+        // autres actors.
+        const healthBarY = actor.isZombie
+            ? actor.y + actor.radius - ZOMBIE_DRAW_HEIGHT - 10
+            : actor.y - visualRadius - 10;
         context.fillStyle = "rgba(4, 9, 17, 0.75)";
         context.fillRect(
             actor.x - healthWidth / 2,
-            actor.y - visualRadius - 10,
+            healthBarY,
             healthWidth,
             5,
         );
@@ -6986,7 +8241,7 @@
             actor.health / actor.maxHealth > 0.35 ? "#5eead4" : "#fb7185";
         context.fillRect(
             actor.x - healthWidth / 2,
-            actor.y - visualRadius - 10,
+            healthBarY,
             healthWidth * clamp(actor.health / actor.maxHealth, 0, 1),
             5,
         );
@@ -7398,6 +8653,8 @@
                 context.fillStyle = "#fbbf24";
             } else if (actor.isPlayer) {
                 context.fillStyle = actor.color;
+            } else if (actor.isZombie) {
+                context.fillStyle = "#a3e635";
             }
             context.fillRect(
                 x + actor.x * scaleX - 1.5,
@@ -7522,8 +8779,10 @@
         context.scale(camera.zoom, camera.zoom);
         context.translate(-camera.x, -camera.y);
 
-        drawGrid();
-        drawGroundDetails();
+        if (!drawGroundTiles()) {
+            drawGrid();
+            drawGroundDetails();
+        }
         drawZone();
         drawMapFeatures();
         drawObstacles();

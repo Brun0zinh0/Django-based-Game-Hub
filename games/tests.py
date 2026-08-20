@@ -75,15 +75,22 @@ class BattleRoyaleTests(TestCase):
         self.assertContains(response, 'data-element="fire"')
         self.assertContains(response, "wizard_creature_atlas_v2.png")
         self.assertContains(response, "biome_texture_atlas.png")
+        self.assertContains(response, "terrain_atlas.png")
+        self.assertContains(response, "prop_atlas.png")
+        self.assertContains(response, "zombie_atlas.png")
         self.assertContains(
             response,
             "environment_material_atlas_data.js?v=",
         )
+        self.assertContains(response, "battle_royale_map.js")
+        self.assertContains(response, "arena_art_manifest.js")
         self.assertContains(response, "battle_royale.js?v=")
         self.assertContains(response, 'id="top-health-fill"')
         self.assertContains(response, 'data-element="wind"')
         self.assertContains(response, 'data-element="psychic"')
         self.assertContains(response, 'data-element="vampire"')
+        self.assertContains(response, 'data-element="investor"')
+        self.assertContains(response, 'data-element="magnetic"')
         self.assertContains(response, 'id="menu-character-preview"')
         self.assertContains(response, 'id="wardrobe-toggle"')
         self.assertContains(response, 'id="wardrobe-panel"')
@@ -3710,3 +3717,68 @@ class AssetPipelineTests(TestCase):
                 "generator",
             ],
         )
+
+    def _edge_strays(self, path, rows):
+        """Components within 12px of a cell edge that are not the main body.
+
+        Measured across both atlases: every actual stray fragment's
+        bounding box sits within 9px of some edge (0px in the main atlas,
+        4-9px in the bonus atlas, where neighbouring-frame art was drawn
+        overlapping the cell but stops just short of the pixel border), and
+        every legitimately kept non-largest component sits farther away
+        than that. 12px separates the two with room on both sides.
+        """
+        with Image.open(path) as atlas:
+            alpha = atlas.convert("RGBA").split()[3]
+            cell = atlas.width // 6
+            pixels = alpha.load()
+            strays = []
+            for row in range(rows):
+                for column in range(6):
+                    ox, oy = column * cell, row * cell
+                    seen = [[False] * cell for _ in range(cell)]
+                    components = []
+                    for sy in range(cell):
+                        for sx in range(cell):
+                            if seen[sy][sx] or pixels[ox + sx, oy + sy] == 0:
+                                continue
+                            stack, comp = [(sx, sy)], []
+                            seen[sy][sx] = True
+                            while stack:
+                                x, y = stack.pop()
+                                comp.append((x, y))
+                                for dx in (-1, 0, 1):
+                                    for dy in (-1, 0, 1):
+                                        nx, ny = x + dx, y + dy
+                                        if not (0 <= nx < cell and 0 <= ny < cell):
+                                            continue
+                                        if seen[ny][nx]:
+                                            continue
+                                        if pixels[ox + nx, oy + ny] == 0:
+                                            continue
+                                        seen[ny][nx] = True
+                                        stack.append((nx, ny))
+                            xs = [x for x, _ in comp]
+                            ys = [y for _, y in comp]
+                            gap = min(
+                                min(xs), min(ys),
+                                cell - 1 - max(xs), cell - 1 - max(ys),
+                            )
+                            components.append((len(comp), gap))
+                    if not components:
+                        continue
+                    largest = max(size for size, _ in components)
+                    for size, gap in components:
+                        if gap <= 12 and size != largest:
+                            strays.append((row, column, size))
+            return strays
+
+    def test_wizard_atlases_have_no_edge_strays(self):
+        for name, rows in [
+            ("wizard_creature_atlas_v2.png", 8),
+            ("wizard_bonus_atlas_v1.png", 4),
+        ]:
+            strays = self._edge_strays(
+                self.static_dir / "assets" / name, rows,
+            )
+            self.assertEqual(strays, [], f"{name} has stray fragments")
